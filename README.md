@@ -10,16 +10,16 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 
 ## Integrantes
 
-* [Nome completo do aluno 1](docs/atas/aluno1.md)
-* [Nome completo do aluno 2](docs/atas/aluno2.md)
-* [Nome completo do aluno 3](docs/atas/aluno3.md)
-* [Nome completo do aluno 4](docs/atas/aluno4.md)
-* [Nome completo do aluno 5](docs/atas/aluno5.md)
-* [Nome completo do aluno 6](docs/atas/aluno6.md)
+* [Carlos Alberto Vieira de Souza](docs/atas/aluno1.md)
+* [Laura de Freitas Mendes Losque](docs/atas/aluno2.md)
+* [Luana Horta de Souza](docs/atas/aluno3.md)
+* [Lucas Araújo Pacheco](docs/atas/aluno4.md)
+* [Victor Samuel Costa Pereira](docs/atas/aluno5.md)
+* [Yan Oyama Moura](docs/atas/aluno6.md)
 
 ## Orientador
 
-* Nome completo do professor 1
+* Kleber Jacques Ferreira de Souza
 
 ## 📊 Relatório de Contribuições
 
