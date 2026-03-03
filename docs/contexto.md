@@ -101,23 +101,23 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 # Catálogo de Serviços
 
-##Serviços oferecidos:
-###Gestão de Usuários:
+## Serviços oferecidos:
+### Gestão de Usuários:
 Controle de permissões (Administração, Recepção).
-###Gestão de Clientes:
+### Gestão de Clientes:
 Cadastro completo;
 Login;
 Histórico de reservas.
-###Serviço de Salas:
+### Serviço de Salas:
 Cadastro de salas;
 Disponibilidade.
-###Serviço de Reservas:
+### Serviço de Reservas:
 Verificação de disponibilidade;
 Criação e cancelamento de reservas;
 Checkout.
-###Serviço de Avaliações:
+### Serviço de Avaliações:
 Comentários.
-###Serviço de Notificações:
+### Serviço de Notificações:
 Alerta.
 
 
