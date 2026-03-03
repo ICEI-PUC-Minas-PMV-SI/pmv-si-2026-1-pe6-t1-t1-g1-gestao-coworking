@@ -1,27 +1,21 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+A dinâmica dos espaços de trabalho compartilhados exige a operação de alta velocidade na sociedade atual. No entanto, muitas empresas que lidam com a administração de spaces de coworking ainda gerenciam seu espaço de coworking com ajuda de planilhas do Excel ou sistemas genéricos que não atendem às necessidades específicas do espaço de coworking ou dos clientes. Tornando assim, a operação altamente ineficiente e lenta.
+A administração realizada dessa maneira acaba gerando gargalos extremamente críticos de operacionalização, com conflitos de agendas, dificuldades no controle de contratos, perda de receitas, ausência de relatórios gerenciais, e falta de controle financeiro, tornando a administração e a experiência de uso dos serviços inviável. Dessa forma, o escopo principal deste projeto é desenvolver um Sistema de Gestão para Coworking que automatize integralmente todos os processos que envolvem a administração, as finanças e as operações dos serviços para que os processos fiquem o mais fluidos possíveis e não tenham-se gargalos que possam vir a prejudicar o processo da empresa ou torná-lo mais lento, dificultando o funcionamento correto.
+
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
+Na sociedade atual muitas empresas de administração de coworking realizam sua gestão por meio de planilhas ou sistemas genéricos que não atendem às necessidades específicas necessárias tanto pelo cliente quanto pela própria administração. Um gerenciamento feito dessa forma pode gerar conflitos de agendamento, dificuldade na gestão de contratos, perda de receita, ausência de relatórios gerenciais, falhas no controle financeiro, dentre outras situações que dificultam a administração e o uso dos serviços por parte dos usuários. Assim, questiona-se: como desenvolver um sistema que otimize a gestão operacional de um coworking?
 
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
-
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
-
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
 
 ## Objetivos
+### Objetivo Geral
+Desenvolver um sistema de gestão para coworking que automatize os processos operacionais.
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+### Objetivos específicos
+Implementar cadastro e gerenciamento de clientes;
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+Desenvolver módulo de reservas de salas e estações;
 
 ## Justificativa
 
@@ -34,19 +28,27 @@ Apresente também alguns (pelo menos 2) objetivos específicos dependendo de ond
  Dessa forma, o desenvolvimento de um sistema específico para a gestão de coworking justifica-se pela necessidade de modernização dos processos internos, automação de rotinas administrativas e centralização de dados em uma única plataforma. A solução proposta contribuirá para a redução de erros humanos, melhoria da organização interna e apoio à tomada de decisões estratégicas, tornando o empreendimento mais estruturado, eficiente e preparado para acompanhar a expansão do setor em âmbito municipal e nacional.
 
 ## Público-Alvo
+O sistema será destinado aos gestores administrativos, recepcionistas e profissionais que utilizam espaços compartilhados.
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
-
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
-
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
 
 # Especificações do Projeto
+## Tema para Desenvolvimento do projeto: 
+Sistema de Gestão para Coworking – Plataforma para reserva de espaços e controle de uso de salas em ambientes de coworking distribuídos.
+### Descrição da Persona Jurídica
+#### Nome do Sistema
+Axis Work
+#### Slogan 
+”O centro estratégico do seu trabalho.”
+#### Identidade Visual e Cultural
+História: A Axis Work foi fundada em Belo Horizonte, Minas Gerais, com o propósito de oferecer uma solução moderna e estruturada para profissionais que atuam em ambientes corporativos compartilhados. A empresa combina infraestrutura executiva com tecnologia, por meio de uma plataforma digital para reserva de salas e controle de utilização em coworkings distribuídos. Inspirada no conceito de “eixo”, a Axis Work busca ser o ponto central que conecta produtividade, planejamento e inovação no ambiente de trabalho.
+##### Missão: Oferecer serviços de gestão de ambientes de coworking, centralizando e automatizando tais processos, proporcionando maior organização e eficiência administrativa.
+#### Visão: Ser reconhecida como a principal empresa de gerenciamento de coworking de Belo Horizonte, destacando-se pela inovação tecnológica, praticidade, organização e confiabilidade.
+#### Valores:
+Transparência e ética;
+Inovação;
+Confiabilidade;
+Organização.
+#### Logo:
 
 ## Requisitos
 
@@ -87,18 +89,37 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
+|01| O projeto deverá ser concluído no prazo máximo de 4 meses. |
+|02| As entregas parciais deverão ocorrer conforme cronograma mensal estabelecido.  |
+|03| A equipe será composta exclusivamente por 6 integrantes.  |
+|04| Cada integrante deverá exercer a função previamente definida no planejamento. |
+|05| O projeto deverá ser desenvolvido utilizando ferramentas gratuitas.  |
+|06| Não haverá investimento em infraestrutura física adicional.  |
+|07| O sistema deverá funcionar em ambiente online. |
+|08| O acesso dependerá de conexão com a internet.  |
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
 
 # Catálogo de Serviços
 
-Descreva aqui todos os serviços que serão disponibilizados pelo seu projeto, detalhando suas características e funcionalidades.
+##Serviços oferecidos:
+###Gestão de Usuários:
+Controle de permissões (Administração, Recepção).
+###Gestão de Clientes:
+Cadastro completo;
+Login;
+Histórico de reservas.
+###Serviço de Salas:
+Cadastro de salas;
+Disponibilidade.
+###Serviço de Reservas:
+Verificação de disponibilidade;
+Criação e cancelamento de reservas;
+Checkout.
+###Serviço de Avaliações:
+Comentários.
+###Serviço de Notificações:
+Alerta.
+
 
 # Arquitetura da Solução
 
