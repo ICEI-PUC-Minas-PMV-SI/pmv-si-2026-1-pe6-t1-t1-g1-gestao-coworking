@@ -127,7 +127,9 @@ Definição de como o software é estruturado em termos dos componentes que faze
 ## Tecnologias Utilizadas
 ### Front-end
  Linguagens: HTML5, CSS3, JavaScript.
+ 
  Bibliotecas: React.js; Angular.
+ 
  UI / UX: Material-UI; Bootstrap.
 
 ### Back-end
@@ -138,6 +140,7 @@ Definição de como o software é estruturado em termos dos componentes que faze
 
 ### Ferramentas de Desenvolvimento
  Visual Studio Code;
+ 
  Git / GitHub;
 
 
