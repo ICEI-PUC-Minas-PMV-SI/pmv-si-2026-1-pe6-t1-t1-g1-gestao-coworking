@@ -1,4 +1,4 @@
-# ATA de Acompanhamento - Nome completo do aluno 2
+# ATA de Acompanhamento - Laura de Freitas Mendes Losque
 
 ## Registro de Atividades Semanais
 
