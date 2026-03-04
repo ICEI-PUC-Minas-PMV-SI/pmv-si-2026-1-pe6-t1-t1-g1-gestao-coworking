@@ -1,4 +1,4 @@
-# ATA de Acompanhamento - Nome completo do aluno 1
+# ATA de Acompanhamento - Carlos Alberto Vieira de Souza
 
 ## Registro de Atividades Semanais
 
