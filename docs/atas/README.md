@@ -22,12 +22,12 @@ Cada ATA contém um **Registro de Atividades Semanais** com 18 semanas:
 
 | Aluno | ATA |
 |-------|-----|
-| Aluno 1 | [aluno1.md](aluno1.md) |
-| Aluno 2 | [aluno2.md](aluno2.md) |
-| Aluno 3 | [aluno3.md](aluno3.md) |
-| Aluno 4 | [aluno4.md](aluno4.md) |
-| Aluno 5 | [aluno5.md](aluno5.md) |
-| Aluno 6 | [aluno6.md](aluno6.md) |
+| Carlos Alberto Vieira de Souza | [aluno1.md](aluno1.md) |
+| Laura de Freitas Mendes Losque | [aluno2.md](aluno2.md) |
+| Luana Horta de Souza | [aluno3.md](aluno3.md) |
+| Lucas Araújo Pacheco | [aluno4.md](aluno4.md) |
+| Victor Samuel Costa Pereira | [aluno5.md](aluno5.md) |
+| Yan Oyama Moura | [aluno6.md](aluno6.md) |
 
 ## Como Preencher
 
