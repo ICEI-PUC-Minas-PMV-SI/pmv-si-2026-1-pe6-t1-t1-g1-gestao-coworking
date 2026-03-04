@@ -1,4 +1,4 @@
-# ATA de Acompanhamento - Nome completo do aluno 3
+# ATA de Acompanhamento - Luana Horta de Souza
 
 ## Registro de Atividades Semanais
 
