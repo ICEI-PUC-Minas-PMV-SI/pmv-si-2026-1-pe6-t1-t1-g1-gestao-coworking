@@ -13,9 +13,9 @@ Na sociedade atual muitas empresas de administração de coworking realizam sua 
 Desenvolver um sistema de gestão para coworking que automatize os processos operacionais.
 
 ### Objetivos específicos
-Implementar cadastro e gerenciamento de clientes;
+ Implementar cadastro e gerenciamento de clientes;
 
-Desenvolver módulo de reservas de salas e estações;
+ Desenvolver módulo de reservas de salas e estações;
 
 ## Justificativa
 
