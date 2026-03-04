@@ -14,6 +14,7 @@ Desenvolver um sistema de gestão para coworking que automatize os processos ope
 
 ### Objetivos específicos
 Implementar cadastro e gerenciamento de clientes;
+
 Desenvolver módulo de reservas de salas e estações;
 
 ## Justificativa
