@@ -49,7 +49,8 @@ Transparência e ética;
 Inovação;
 Confiabilidade;
 Organização.
-#### Logo: <img width="2000" height="2000" alt="Black White Minimalist Initials Monogram Jewelry Logo" src="https://github.com/user-attachments/assets/98b0b99f-b7af-48ad-8528-1cc8886bcd77" />
+#### Logo: <img width="400" height="400" alt="Black White Minimalist Initials Monogram Jewelry Logo (2)" src="https://github.com/user-attachments/assets/0f22e7f7-390b-4e15-b364-f656b92549a4" />
+
 
 
 ## Requisitos
