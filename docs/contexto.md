@@ -124,7 +124,7 @@ Alerta.
 
 Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
 
-![arq](https://github.com/user-attachments/assets/b9402e05-8445-47c3-9d47-f11696e38a3d)
+![Arquitetura](img/arquiteturaeixo6.drawio.png)
 
 
 ## Tecnologias Utilizadas
@@ -146,6 +146,8 @@ Definição de como o software é estruturado em termos dos componentes que faze
  
  Git / GitHub;
 
+ ![Tecnologias](img/tecnologiagflow.drawio.png)
+
 
 
 Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
@@ -154,4 +156,10 @@ Apresente também uma figura explicando como as tecnologias estão relacionadas 
 
 ## Hospedagem
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
+A hospedagem da nossa aplicação será planejada permitindo que os diferentes componentes do sistema, como interface web, APIs e aplicativo Android, funcionem de forma independente e escalável.
+
+Para o desenvolvimento do semestre, planejamos utilizar um laboratório da plataforma Amazon Web Services (AWS), que fornece infraestrutura em nuvem. Nesse ambiente poderemos hospedar os servidores web, de banco de dados, backend, e o que mais se mostrar necessário para processar as requisições enviadas tanto pela interface web quanto pelo aplicativo mobile.
+
+A interface web será disponibilizada por meio de um servidor Apache configurado em uma máquina virtual na AWS. Já o aplicativo mobile será distribuído através de arquivo de intalação (APK). Enquanto isso, o backend da aplicação será executado em um servidor também na AWS, disponibilizando APIs que serão responsáveis pela comunicação entre os clientes e o banco de dados. Dessa forma, tanto a aplicação web quanto o aplicativo mobile conseguem acessar os mesmos serviços através de requisições.
+
+Essa abordagem de hospedagem em nuvem permite maior flexibilidade e facilitaria futuras expansões do sistema, caso o projeto fosse aplicado em um ambiente de produtação real. 
