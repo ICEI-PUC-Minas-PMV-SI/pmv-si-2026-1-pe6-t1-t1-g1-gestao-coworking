@@ -14,12 +14,18 @@ Na sociedade atual muitas empresas de administração de coworking realizam sua 
 
 ## Objetivos
 ### Objetivo Geral
-Desenvolver um sistema de gestão para coworking que automatize os processos operacionais.
+Desenvolver um sistema de gestão para coworking que automatize e integre os principais processos operacionais do espaço, incluindo controle de reservas de salas, gestão de planos e clientes, com o objetivo de otimizar a administração, reduzir tarefas manuais, aumentar a eficiência operacional e melhorar a experiência dos clientes do coworking.
 
 ### Objetivos específicos
- Implementar cadastro e gerenciamento de clientes;
 
- Desenvolver módulo de reservas de salas e estações;
+Definir os requisitos funcionais e não funcionais necessários para o desenvolvimento do sistema de gestão;
+
+Modelar a estrutura do sistema, incluindo a arquitetura da aplicação e o banco de dados;
+
+Desenvolver funcionalidades para cadastro e gerenciamento de usuários, clientes e recursos disponíveis no coworking;
+
+Desenvolver módulo de reservas de salas e estações.
+
 
 ## Justificativa
 
@@ -30,16 +36,17 @@ Dessa forma, torna-se necessária a adoção de soluções tecnológicas especí
 Portanto, a utilização de tecnologias modernas de desenvolvimento, como frameworks para aplicações web, bancos de dados relacionais e infraestrutura em nuvem, possibilita a criação de uma solução mais segura, escalável e acessível. Essas ferramentas contribuem para melhor desempenho do sistema, organização no desenvolvimento da aplicação e maior flexibilidade para futuras expansões da plataforma, tornando a solução adequada às demandas atuais do setor.
 
 ## Público-Alvo
-O sistema será destinado aos gestores administrativos, recepcionistas e profissionais que utilizam espaços compartilhados.
+O sistema será destinado aos gestores administrativos e recepcionistas  que necessitam de ferramentas digitais para auxiliar no gerenciamento eficiente das atividades operacionais e administrativas do ambiente compartilhado. Além disso, o sistema também atende usuários e clientes dos espaços de coworking, como profissionais autônomos, freelancers, empreendedores, startups e pequenas empresas que utilizam destes espaços para realizar suas atividades de trabalho e precisam de uma forma prática de realizar reservas de salas, e acompanhar seus planos e pagamentos. Dessa forma, a aplicação busca facilitar a experiência e organização dos usuários que utilizam os serviços oferecidos pelo espaço.
 
-# Especificações do Projeto
+# Persona Jurídica
+
 ## Tema para Desenvolvimento do projeto: 
 Sistema de Gestão para Coworking – Plataforma para reserva de espaços e controle de uso de salas em ambientes de coworking distribuídos.
 ### Descrição da Persona Jurídica
 #### Nome do Sistema
 Axis Work
 #### Slogan 
-”O centro estratégico do seu trabalho.”
+"O centro estratégico do seu trabalho."
 #### Identidade Visual e Cultural
 História: A Axis Work foi fundada em Belo Horizonte, Minas Gerais, com o propósito de oferecer uma solução moderna e estruturada para profissionais que atuam em ambientes corporativos compartilhados. A empresa combina infraestrutura executiva com tecnologia, por meio de uma plataforma digital para reserva de salas e controle de utilização em coworkings distribuídos. Inspirada no conceito de “eixo”, a Axis Work busca ser o ponto central que conecta produtividade, planejamento e inovação no ambiente de trabalho.
 ##### Missão: Oferecer serviços de gestão de ambientes de coworking, centralizando e automatizando tais processos, proporcionando maior organização e eficiência administrativa.
@@ -51,7 +58,7 @@ Confiabilidade;
 Organização.
 #### Logo: <img width="400" height="400" alt="Black White Minimalist Initials Monogram Jewelry Logo (2)" src="https://github.com/user-attachments/assets/0f22e7f7-390b-4e15-b364-f656b92549a4" />
 
-
+# Especificações do Projeto
 
 ## Requisitos
 As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade de requisitos, aplicar uma técnica de priorização de requisitos e detalhar como a técnica foi aplicada.
