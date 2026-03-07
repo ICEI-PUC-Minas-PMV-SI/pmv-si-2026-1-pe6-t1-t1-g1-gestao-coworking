@@ -24,7 +24,11 @@ Modelar a estrutura do sistema, incluindo a arquitetura da aplicação e o banco
 
 Desenvolver funcionalidades para cadastro e gerenciamento de usuários, clientes e recursos disponíveis no coworking;
 
-Desenvolver módulo de reservas de salas e estações.
+Desenvolver módulo de reservas de salas e estações;
+
+Desenvolver módulo de avaliação;
+
+Desenvolver módulo de notificação.
 
 
 ## Justificativa
