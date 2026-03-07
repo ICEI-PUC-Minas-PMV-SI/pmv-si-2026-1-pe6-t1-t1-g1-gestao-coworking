@@ -72,7 +72,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|`RNF-001`| O sistema deve responder às requisições principais (login, listar salas, consultar disponibilidade, reservar) em até 3 segundos em ambiente de testes.| MÉDIA | 
+|RNF-001| O sistema deve responder às requisições principais em até 3 segundos em ambiente de testes.| MÉDIA | 
 |RNF-002| O sistema deve armazenar senhas com hash e não deve armazenar senhas em texto puro. |  BAIXA |
 |RNF-003| O sistema deve restringir funcionalidades por perfil (ex.: cliente e administrador), impedindo acesso indevido a telas/rotas administrativas.  | MÉDIA |
 |RNF-004| O sistema deve possuir interface responsiva, compatível com desktop e dispositivos móveis. | MÉDIA |
