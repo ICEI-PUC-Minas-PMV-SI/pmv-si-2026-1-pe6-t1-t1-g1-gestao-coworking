@@ -42,9 +42,9 @@ Portanto, a utilização de tecnologias modernas de desenvolvimento, como framew
 ## Público-Alvo
 O sistema será destinado aos gestores administrativos e recepcionistas  que necessitam de ferramentas digitais para auxiliar no gerenciamento eficiente das atividades operacionais e administrativas do ambiente compartilhado. Além disso, o sistema também atende usuários e clientes dos espaços de coworking, como profissionais autônomos, freelancers, empreendedores, startups e pequenas empresas que utilizam destes espaços para realizar suas atividades de trabalho e precisam de uma forma prática de realizar reservas de salas, e acompanhar seus planos e pagamentos. Dessa forma, a aplicação busca facilitar a experiência e organização dos usuários que utilizam os serviços oferecidos pelo espaço.
 
-# Persona Jurídica
+## Persona Jurídica
 
-## Tema para Desenvolvimento do projeto: 
+### Tema para Desenvolvimento do projeto: 
 Sistema de Gestão para Coworking – Plataforma para reserva de espaços e controle de uso de salas em ambientes de coworking distribuídos.
 ### Descrição da Persona Jurídica
 #### Nome do Sistema
