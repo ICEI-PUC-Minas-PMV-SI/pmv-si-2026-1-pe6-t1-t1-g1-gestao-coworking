@@ -61,15 +61,23 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Gestão de clientes | ALTA | 
+|RF-002| Gerenciamento financeiro e assinaturas  | MÉDIA |
+|RF-003| Gerenciamento de salas  | MÉDIA |
+|RF-004| Avaliação de salas  | MÉDIA |
+|RF-005| Sistema de Notificação | MÉDIA |
+|RF-006| Gerenciamento de reservas  | MÉDIA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-001| O sistema deve responder às requisições principais (login, listar salas, consultar disponibilidade, reservar) em até 3 segundos em ambiente de testes.| MÉDIA | 
+|RNF-002| O sistema deve armazenar senhas com hash e não deve armazenar senhas em texto puro. |  BAIXA |
+|RNF-003| O sistema deve restringir funcionalidades por perfil (ex.: cliente e administrador), impedindo acesso indevido a telas/rotas administrativas.  | MÉDIA |
+|RNF-004| O sistema deve possuir interface responsiva, compatível com desktop e dispositivos móveis. | MÉDIA |
+|RNF-005| O sistema deve apresentar mensagens claras de erro, validação e confirmação (ex.: reserva criada, reserva cancelada, horário indisponível). | MÉDIA |
+|RNF-006| O sistema deve impedir reservas conflitantes para a mesma sala e horário (garantindo integridade também no banco de dados).  | MÉDIA |
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
