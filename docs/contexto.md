@@ -114,22 +114,17 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Serviços oferecidos:
 ### Gestão de Usuários:
-Controle de permissões (Administração, Recepção).
+Sistema responsável pelo controle de acesso e permissões dentro da plataforma. Permite a administração de diferentes níveis de usuários, como administradores e equipe de recepção, garantindo a segurança e a organização.
 ### Gestão de Clientes:
-Cadastro completo;
-Login;
-Histórico de reservas.
+Permite o cadastro completo dos clientes, além de acesso ao sistema por meio de login. Também mantém o histórico de reservas realizadas, facilitando o acompanhamento das atividades.
 ### Serviço de Salas:
-Cadastro de salas;
-Disponibilidade.
+Gerencia o cadastro das salas disponíveis no coworking, incluindo informações e controle de disponibilidade. Dessa forma, é possível organizar melhor os espaços e facilitar o processo de reserva.
 ### Serviço de Reservas:
-Verificação de disponibilidade;
-Criação e cancelamento de reservas;
-Checkout.
+Responsável pela verificação de disponibilidade das salas, pela criação e cancelamento de reservas. Também realiza o processo de checkout, garantindo o registro organizado do uso das salas.
 ### Serviço de Avaliações:
-Comentários.
+Permite que os clientes deixem comentários e avaliações sobre as salas e serviços utilizados, contribuindo para a melhoria contínua da experiência no ambiente de coworking.
 ### Serviço de Notificações:
-Alerta.
+Sistema de alertas que informa os usuários sobre confirmações de reservas, lembretes e outras atualizações importantes relacionadas ao uso da plataforma.
 
 
 # Arquitetura da Solução
