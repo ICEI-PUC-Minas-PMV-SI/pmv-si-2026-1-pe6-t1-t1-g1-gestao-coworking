@@ -236,11 +236,19 @@ Considera se a ausência do requisito pode comprometer dados sensíveis ou a con
 
 ### Back-end
 
+&nbsp; &nbsp; &nbsp; Linguagens: Node.js (JavaScript/TypeScript), Python, C#.
 
+&nbsp; &nbsp; &nbsp; Arquitetura: Microserviços.
+
+&nbsp; &nbsp; &nbsp; Bibliotecas: Express.js (Node.js), FastAPI / Django REST Framework (Python), MediatR, MassTransit (C#).
 
 ### Banco de Dados e Armazenamento
 
 &nbsp; &nbsp; &nbsp; Bancos Relacionais: PostgreSQL.
+
+### Infraestrutura/ Hospedagem
+
+&nbsp; &nbsp; &nbsp; Cloud Providers: Amazon Web Services (AWS).
 
 ### Ferramentas de Desenvolvimento
 
