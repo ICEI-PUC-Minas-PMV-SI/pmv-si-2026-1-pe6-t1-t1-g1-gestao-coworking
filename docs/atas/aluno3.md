@@ -6,8 +6,8 @@
 |:-------:|:---------------:|:--------:|:------------------:|:-------------------:|
 | 09/02 - 15/02 | Gestão de Serviços de TI - Unidade 1 | ✅ | - | - |
 | 16/02 - 22/02 | Gestão de Serviços de TI - Unidade 2 | ✅ | - | - |
-| 23/02 - 01/03 | Arquitetura de Software Distribuído - Unidade 1 e 2 | ✅ | Participar da reunião semanal com o grupo |  |
-| 02/03 - 08/03 | Arquitetura de Software Distribuído - Unidade 3 | ✅ | Objetivos, aumentar público alvo, mudar a persona juridica de lugar(embaixo do publico alvo), textinho na arquitetura |  |
+| 23/02 - 01/03 | Arquitetura de Software Distribuído - Unidade 1 e 2 | ✅ | Participar da reunião semanal com o grupo. Fazer rascunho inicial do documento para discussão com o grupo. Fazer parte das correções necessárias após a reunião com o orientador. Começar a planejar a arquitetura do projeto. | Participei da reunião semanal com o grupo. Fiz o rascunho inicial do documento para discussão com o grupo. Fiz parte das correções necessárias após a reunião com o orientador. Começei a planejar a arquitetura do projeto. |
+| 02/03 - 08/03 | Arquitetura de Software Distribuído - Unidade 3 | ✅ | Participar das duas reuniões agendadas com o grupo. Atualizar os objetivos. Aumentar o texto sobre o público alvo. Mudar a persona juridica de lugar. Fazer um texto sobre a arquitetura. Fazer uma revisão final no texto. | Participei das duas reuniões agendadas com o grupo. Atualizei os objetivos. Aumentei o texto sobre o público alvo. Mudei a persona juridica de lugar. Fiz um texto sobre a arquitetura. Fiz uma revisão final no texto. |
 | 09/03 - 15/03 | APIs e Web Services - Unidade 1 | ⬜ |  |  |
 | 16/03 - 22/03 | APIs e Web Services - Unidade 2 | ⬜ |  |  |
 | 23/03 - 29/03 | APIs e Web Services - Unidade 2 | ⬜ |  |  |
