@@ -240,7 +240,7 @@ Considera se a ausência do requisito pode comprometer dados sensíveis ou a con
 
 &nbsp; &nbsp; &nbsp; Arquitetura: Microserviços.
 
-&nbsp; &nbsp; &nbsp; Bibliotecas: Express.js (Node.js), FastAPI / Django REST Framework (Python), MediatR, MassTransit (C#).
+&nbsp; &nbsp; &nbsp; Bibliotecas: Express.js (Node.js); FastAPI / Django REST Framework (Python); MediatR; MassTransit (C#).
 
 ### Banco de Dados e Armazenamento
 
