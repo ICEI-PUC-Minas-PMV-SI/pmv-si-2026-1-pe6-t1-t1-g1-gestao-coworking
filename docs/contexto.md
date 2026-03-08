@@ -33,7 +33,7 @@
 
 ## Justificativa
 
-&nbsp; &nbsp; &nbsp; A gestão de espaços de coworking tornou-se cada vez mais complexa em função da diversificação dos serviços, do aumento da demanda, e da necessidade de um contrele operacional mais preciso. Esses ambientes passaram a oferecer diferentes serviços, como estações de trabalho compartilhadas, salas privativas, escritórios virtuais, eventos corporativos e programas de inovação. Dessa forma, a administração dessas atividades envolve o controle de contratos, a gestão de reservas, o faturamento, os planos de utilização e o acompanhamento financeiro. De modo que quando realizada por meio de planilhas ou sistemas genéricos, tal gestão pode acarretar em falhas operacionais, conflitos de agentamento, perda de informações e dificuldades na análise estratégica do negócio. 
+&nbsp; &nbsp; &nbsp; A gestão de espaços de coworking tornou-se cada vez mais complexa em função da diversificação dos serviços, do aumento da demanda, e da necessidade de um controle operacional mais preciso. Esses ambientes passaram a oferecer diferentes serviços, como estações de trabalho compartilhadas, salas privativas, escritórios virtuais, eventos corporativos e programas de inovação. Dessa forma, a administração dessas atividades envolve o controle de contratos, a gestão de reservas, o faturamento, os planos de utilização e o acompanhamento financeiro. De modo que quando realizada por meio de planilhas ou sistemas genéricos, tal gestão pode acarretar em falhas operacionais, conflitos de agentamento, perda de informações e dificuldades na análise estratégica do negócio. 
 
 &nbsp; &nbsp; &nbsp; Dessa forma, torna-se necessária a adoção de soluções tecnológicas específicas que auxiliem na organização e automação desses processos administrativos. Um sistema especializado permite centralizar informações, reduzir erros humanos e melhorar o controle das operações, contribuindo para maior eficiência na gestão dos espaços de coworking.
 
@@ -53,7 +53,7 @@
 
 #### Nome do Sistema
 
-&nbsp; &nbsp; &nbsp; Axis Work
+&nbsp; &nbsp; &nbsp; Axis Work.
 
 #### Slogan 
 
@@ -67,7 +67,7 @@
 
 ##### Missão:
 
-&nbsp; &nbsp; &nbsp; Oferecer serviços de gestão de ambientes de coworking, centralizando e automatizando tais processos, proporcionando maior organização e eficiência administrativa.
+&nbsp; &nbsp; &nbsp; Oferecer serviços de gestão de ambientes de coworking, centralizando e automatizando tais processos, proporcionando maior organização, eficiência e praticidade.
 
 ##### Visão:
 
@@ -191,6 +191,7 @@ Considera se a ausência do requisito pode comprometer dados sensíveis ou a con
 # Catálogo de Serviços
 
 ## Serviços oferecidos:
+
 ### Gestão de Usuários:
 
 &nbsp; &nbsp; &nbsp; Sistema responsável pelo controle de acesso e permissões dentro da plataforma. Permite a administração de diferentes níveis de usuários, como administradores e equipe de recepção, garantindo a segurança e a organização.
