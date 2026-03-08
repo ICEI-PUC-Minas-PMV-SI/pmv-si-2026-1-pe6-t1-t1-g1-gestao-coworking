@@ -12,7 +12,6 @@
 
 &nbsp; &nbsp; &nbsp; Na sociedade atual muitas empresas de administração de coworking realizam sua gestão por meio de planilhas ou sistemas genéricos que não atendem às necessidades específicas necessárias tanto pelo cliente quanto pela própria administração. Um gerenciamento feito dessa forma pode gerar conflitos de agendamento, dificuldade na gestão de contratos, perda de receita, ausência de relatórios gerenciais, falhas no controle financeiro, dentre outras situações que dificultam a administração e o uso dos serviços por parte dos usuários. Assim, questiona-se: como desenvolver um sistema que otimize a gestão operacional de um coworking?
 
-
 ## Objetivos
 ### Objetivo Geral
 
@@ -31,7 +30,6 @@
 - Desenvolver módulo de avaliação;
 
 - Desenvolver módulo de notificação.
-
 
 ## Justificativa
 
@@ -84,7 +82,7 @@
 
 ##### Logo: 
 
-<img width="400" height="400" alt="Black White Minimalist Initials Monogram Jewelry Logo (2)" src="https://github.com/user-attachments/assets/0f22e7f7-390b-4e15-b364-f656b92549a4" align="center" />
+<img width="400" height="400" alt="Black White Minimalist Initials Monogram Jewelry Logo (2)" src="https://github.com/user-attachments/assets/0f22e7f7-390b-4e15-b364-f656b92549a4" />
 
 # Especificações do Projeto
 
@@ -190,7 +188,6 @@ Considera se a ausência do requisito pode comprometer dados sensíveis ou a con
 |07| O sistema deverá funcionar em ambiente online. |
 |08| O acesso dependerá de conexão com a internet.  |
 
-
 # Catálogo de Serviços
 
 ## Serviços oferecidos:
@@ -218,20 +215,15 @@ Considera se a ausência do requisito pode comprometer dados sensíveis ou a con
 
 &nbsp; &nbsp; &nbsp; Sistema de alertas que informa os usuários sobre confirmações de reservas, lembretes e outras atualizações importantes relacionadas ao uso da plataforma.
 
-
 # Arquitetura da Solução
 
 &nbsp; &nbsp; &nbsp; A arquitetura do sistema foi inspirada em uma abordagem de microsserviços, mas não totalmente implementada. Essa decisão foi tomada para manter o sistema organizado em módulos independentes, o que reduz a complexidade da infraestrutura normalmente exigida por uma arquitetura de microsserviços totalmente distribuída.
  
 &nbsp; &nbsp; &nbsp; Nesse contexto, a aplicação é dividida em serviços responsáveis ​​por funcionalidades específicas, como gerenciamento de usuários, avaliações e gerenciamento de salas. Mas,  apesar dessa separação lógica entre os serviços, todos utilizam um único banco de dados centralizado. Dessa forma, a comunicação com os dados ocorre de maneira compartilhada, o que simplifica o desenvolvimento, a manutenção e a implantação do sistema.
 
-&nbsp; &nbsp; &nbsp; Essa abordagem pode ser considerada uma arquitetura modular baseada em serviços, na qual os componentes do sistema são organizados separadamente, mas ainda dependem de uma infraestrutura comum. Embora a aplicação não possua características completas de microsserviços, como bancos de dados isolados para cada serviço ou comunicação totalmente desacoplada entre eles, a estrutura adotada já permite uma maior organização do código e facilita possíveis evoluções futuras para uma arquitetura mais distribuída.
-
-&nbsp; &nbsp; &nbsp; Portanto, a arquitetura adotada busca equilibrar simplicidade e organização, oferecendo uma estrutura modular que atenda às necessidades do projeto, mantendo o sistema mais acessível para desenvolvimento, manutenção e futuras expansões.
-
+&nbsp; &nbsp; &nbsp; Essa abordagem pode ser considerada uma arquitetura modular baseada em serviços, na qual os componentes do sistema são organizados separadamente, mas ainda dependem de uma infraestrutura comum. Embora a aplicação não possua características completas de microsserviços, como bancos de dados isolados para cada serviço ou comunicação totalmente desacoplada entre eles, a estrutura adotada já permite uma maior organização do código e facilita possíveis evoluções futuras para uma arquitetura mais distribuída. Portanto, a arquitetura adotada busca equilibrar simplicidade e organização, oferecendo uma estrutura modular que atenda às necessidades do projeto, mantendo o sistema mais acessível para desenvolvimento, manutenção e futuras expansões.
 
 ![Arquitetura](img/arquiteturaeixo6.drawio.png)
-
 
 ## Tecnologias Utilizadas
 ### Front-end
