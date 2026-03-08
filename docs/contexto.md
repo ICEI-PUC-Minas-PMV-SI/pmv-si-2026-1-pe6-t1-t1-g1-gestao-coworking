@@ -72,37 +72,83 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
 |RF-001| Gestão de clientes | ALTA | 
-|RF-002| Gerenciamento financeiro e assinaturas  | MÉDIA |
-|RF-003| Gerenciamento de salas  | MÉDIA |
-|RF-004| Avaliação de salas  | MÉDIA |
-|RF-005| Sistema de Notificação | MÉDIA |
-|RF-006| Gerenciamento de reservas  | MÉDIA |
+|RF-002| Gerenciamento financeiro e assinaturas  | ALTA |
+|RF-003| Gerenciamento de salas  | ALTA |
+|RF-004| Sistema de Notificação | MÉDIA |
+|RF-005| Avaliação de salas  | MÉDIA |
+|RF-006| Gerenciamento de reservas  | ALTA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
 |RNF-001| O sistema deve responder às requisições principais em até 3 segundos em ambiente de testes.| MÉDIA | 
-|RNF-002| O sistema deve armazenar senhas com hash e não deve armazenar senhas em texto puro. |  BAIXA |
-|RNF-003| O sistema deve restringir funcionalidades por perfil (ex.: cliente e administrador), impedindo acesso indevido a telas/rotas administrativas.  | MÉDIA |
+|RNF-002| O sistema deve armazenar senhas com hash e não deve armazenar senhas em texto puro. |  ALTA |
+|RNF-003| O sistema deve restringir funcionalidades por perfil (ex.: cliente e administrador), impedindo acesso indevido a telas/rotas administrativas.  | ALTA |
 |RNF-004| O sistema deve possuir interface responsiva, compatível com desktop e dispositivos móveis. | MÉDIA |
-|RNF-005| O sistema deve apresentar mensagens claras de erro, validação e confirmação (ex.: reserva criada, reserva cancelada, horário indisponível). | MÉDIA |
-|RNF-006| O sistema deve impedir reservas conflitantes para a mesma sala e horário (garantindo integridade também no banco de dados).  | MÉDIA |
+|RNF-005| O sistema deve apresentar mensagens claras de erro, validação e confirmação (ex.: reserva criada, reserva cancelada, horário indisponível). | BAIXA |
+|RNF-006| O sistema deve impedir reservas conflitantes para a mesma sala e horário (garantindo integridade também no banco de dados).  | ALTA |
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
+A priorização dos requisitos foi realizada com base no grau de impacto de cada requisito no funcionamento essencial do sistema, considerando três níveis de prioridade: Alta, Média e Baixa.
 
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
+Para definir essa prioridade, o grupo analisou três critérios principais:
+
+1. Essencialidade para o funcionamento do sistema
+Verifica se o sistema consegue operar sem aquele requisito.
+
+2. Impacto na experiência do usuário
+Avalia o quanto o requisito melhora a usabilidade e a interação do usuário com o sistema.
+
+3. Impacto na segurança e integridade dos dados
+Considera se a ausência do requisito pode comprometer dados sensíveis ou a consistência das informações.
+
+A partir desses critérios, os requisitos foram classificados da seguinte forma:
+
+### Prioridade Alta
+
+Requisitos classificados como Alta prioridade são considerados essenciais para o funcionamento do sistema. Sem eles, o sistema não conseguiria operar corretamente ou atender ao seu objetivo principal.
+
+Exemplos:
+
+- RF-001 – Gestão de clientes: necessário para permitir cadastro, login e administração de usuários.
+
+- RF-002 – Gerenciamento financeiro e assinaturas: fundamental para o controle de planos e monetização do sistema.
+
+- RF-003 – Gerenciamento de salas: essencial para cadastrar e administrar as salas disponíveis.
+
+- RF-006 – Gerenciamento de reservas: principal funcionalidade do sistema, responsável por permitir o agendamento das salas.
+
+Nos requisitos não funcionais:
+
+- RNF-002 – Segurança das senhas: protege dados sensíveis dos usuários.
+
+- RNF-003 – Controle de acesso por perfil: evita acesso indevido a funcionalidades administrativas.
+
+- RNF-006 – Integridade das reservas: impede conflitos de horário e garante consistência dos dados.
+
+### Prioridade Média
+
+Requisitos classificados como Média prioridade são importantes para melhorar a experiência do usuário e a qualidade do sistema, porém o sistema ainda poderia funcionar sem eles em uma versão inicial.
+
+Exemplos:
+
+- RF-004 – Sistema de notificação: melhora a comunicação com o usuário, mas não impede o funcionamento do sistema.
+
+- RF-005 – Avaliação de salas: adiciona feedback dos usuários, porém não é essencial para a operação do sistema.
+
+Nos requisitos não funcionais:
+
+- RNF-001 – Tempo de resposta: melhora a experiência do usuário, garantindo desempenho adequado.
+
+- RNF-004 – Interface responsiva: facilita o uso em diferentes dispositivos.
+
+### Prioridade Baixa
+
+Requisitos classificados como Baixa prioridade representam melhorias relacionadas principalmente à experiência de uso, podendo ser implementados em versões futuras do sistema sem comprometer o funcionamento principal.
+
+Exemplo:
+
+- RNF-005 – Mensagens claras de erro e confirmação: melhora a interação com o usuário, mas sua ausência não impede a execução das funcionalidades principais.
 
 ## Restrições
 
