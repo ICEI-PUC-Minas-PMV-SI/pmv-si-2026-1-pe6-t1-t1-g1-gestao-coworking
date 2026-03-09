@@ -4,10 +4,10 @@
 
 | Período | Microfundamento | Estudou? | Atividade Prevista | Atividade Realizada |
 |:-------:|:---------------:|:--------:|:------------------:|:-------------------:|
-| 09/02 - 15/02 | Gestão de Serviços de TI - Unidade 1 | ✅ | Realizar a elaboração da justificativa | Realizei o desenvolvimento da justificativa, sendo que parte dela foi utilizada na introdução, logo tive que fazer uma nova adaptação para ser realizada a entrega  |
-| 16/02 - 22/02 | Gestão de Serviços de TI - Unidade 2 | ✅ | Justificativa |  |
-| 23/02 - 01/03 | Arquitetura de Software Distribuído - Unidade 1 e 2 | ✅ |  |  |
-| 02/03 - 08/03 | Arquitetura de Software Distribuído - Unidade 3 | ✅ |  |  |
+| 09/02 - 15/02 | Gestão de Serviços de TI - Unidade 1 | ✅ | - | -  |
+| 16/02 - 22/02 | Gestão de Serviços de TI - Unidade 2 | ✅ | - | - |
+| 23/02 - 01/03 | Arquitetura de Software Distribuído - Unidade 1 e 2 | ✅ | Realizar a elaboração da justificativa | Realizei o desenvolvimento da justificativa, sendo que parte dela foi utilizada na introdução, logo tive que fazer uma nova adaptação para ser realizada a entrega |
+| 02/03 - 08/03 | Arquitetura de Software Distribuído - Unidade 3 | ✅ | Justificativa | Justificativa |
 | 09/03 - 15/03 | APIs e Web Services - Unidade 1 | ⬜ |  |  |
 | 16/03 - 22/03 | APIs e Web Services - Unidade 2 | ⬜ |  |  |
 | 23/03 - 29/03 | APIs e Web Services - Unidade 2 | ⬜ |  |  |
