@@ -1,4 +1,4 @@
-# TÍTULO DO PROJETO
+# AXIS WORK
 
 `CURSO: Sistemas de Informação`
 
@@ -6,7 +6,10 @@
 
 `SEMESTRE: 6º`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O presente projeto tem como objetivo o desenvolvimento de um sistema de gestão para coworking, visando automatizar processos operacionais. Atualmente, muitos espaços de coworking utilizam planilhas ou controles manuais, o que ocasiona falhas no gerenciamento de reservas, controle financeiro e gestão de clientes. O sistema proposto permitirá cadastro de usuários, controle de planos, reservas de salas e estações de trabalho. O projeto será desenvolvido por uma equipe de seis integrantes, no período de quatro meses, utilizando metodologia ágil. Espera-se como resultado a melhoria da eficiência operacional, redução de erros e aumento da produtividade do espaço coworking.
+
+Palavras-chave: coworking. sistema de gestão. automação. desenvolvimento de software.
+
 
 ## Integrantes
 
