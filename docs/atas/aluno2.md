@@ -8,7 +8,7 @@
 | 16/02 - 22/02 | Gestão de Serviços de TI - Unidade 2 | ✅ |  |  |
 | 23/02 - 01/03 | Arquitetura de Software Distribuído - Unidade 1 e 2 | ✅ |  |  |
 | 02/03 - 08/03 | Arquitetura de Software Distribuído - Unidade 3 | ✅ | Arrumar o tamanho do logotipo e fazer um texto para o catálogo de serviços | Realizei o ajuste do tamanho do logotipo e desenvolvi um breve texto descritivo para o catálogo de serviços. |
-| 09/03 - 15/03 | APIs e Web Services - Unidade 1 | ⬜ |  |  |
+| 09/03 - 15/03 | APIs e Web Services - Unidade 1 | ⬜ | Participar de reunião de separação das tarefas. Participar da reunião de exposição das idéias e levar esboço da tabela relacionada à minha feature de cliente. | Participei da reunião de separação das tarefas. Participei da reunião de exposição das idéias e levei o esboço da tabela relacionada à minha feature de cliente. |
 | 16/03 - 22/03 | APIs e Web Services - Unidade 2 | ⬜ |  |  |
 | 23/03 - 29/03 | APIs e Web Services - Unidade 2 | ⬜ |  |  |
 | 30/03 - 05/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 1 | ⬜ |  |  |
