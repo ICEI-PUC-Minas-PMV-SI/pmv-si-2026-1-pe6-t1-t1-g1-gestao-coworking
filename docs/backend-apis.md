@@ -12,16 +12,40 @@ O primeiro passo é definir os objetivos da sua API. O que você espera alcança
 
 [Inclua os objetivos da sua api.]
 
+&nbsp; &nbsp; &nbsp; O objetivo principal da API de reservas é ser utilizada pelo front-end para criar reservas tratando limpeza dos dados e regras de negócio, ler reservas específicas ou várias reservas utilizando filtros diversos, como cliente, sala e data. Além de editar uma reserva escolhida, tendo a possibilidade de editar apenas o necessário da reserva. E por fim, excluir uma reserva específica do registro.
+
 
 ## Modelagem da Aplicação
-[Descreva a modelagem da aplicação, incluindo a estrutura de dados, diagramas de classes ou entidades, e outras representações visuais relevantes.]
 
+&nbsp; &nbsp; &nbsp; Os dados do nosso projeto serão estruturados em um banco de dados relacional, PostgreSQL, que será acessado por todas as API, priorizando assim a consistência e integridade dos dados, além de uma forma de comunicação entre as APIs.
+
+### Estrutura de Dados
+
+&nbsp; &nbsp; &nbsp; A modelagem foi divida em 7 principais tabelas, que geraram as nossas 6 APIs.
+
+- Usuário: Armazena credenciais e informações dos nossos clientes.
+- Planos e Assinaturas: Gerencia os pacotes de serviço fornecidos e os vínculos dos clientes à eles.
+- Sala: Define as propriedades físicas dos nossos espaços.
+- Reservas: Registra a ocupação dos nossos espaços pelos clientes.
+- Avaliação: Armazena o feedback do nosso cliente sobre sua experiência.
+- Notificação: Permite a comunicação do sistema com o usuário.
+
+&nbsp; &nbsp; &nbsp; Nossa integridade dos dados é garantida pelo uso rigoroso de Foreing Keys nas tabelas que se relacionam. E como forma de garantir a consistência dos dados e melhor a performance do banco utilizamos Enumerates em atributos como tipo da sala e status da assinatura.
+
+### Diagrama de Entidade Relacionamento ( DER )
+
+&nbsp; &nbsp; &nbsp; O diagrama abaixo apresenta visualmente a estrutura lógica das tabelas, juntamente com os tipos dos atributos e cardinalidades dos relacionamentos existentes:
+
+![DER](img/DER-AW.png)
 
 ## Tecnologias Utilizadas
 
 Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs Web. A tecnologia certa para o seu projeto dependerá dos seus objetivos, dos seus clientes e dos recursos que a API deve fornecer.
 
 [Lista das tecnologias principais que serão utilizadas no projeto.]
+
+Geral - PostgreSQL 18, PgAdmin4, GitHub, AWS EC2, AWS API Gateway, AWS RDS
+API Reservas - Python 3.14.3, FastAPI, SQLModel, SQLAlchemy, Pydantic, SwaggerUI
 
 ## API Endpoints
 
