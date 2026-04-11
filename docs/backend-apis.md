@@ -47,34 +47,116 @@ Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs
 Geral - PostgreSQL 18, PgAdmin4, GitHub, AWS EC2, AWS API Gateway, AWS RDS
 API Reservas - Python 3.14.3, FastAPI, SQLModel, SQLAlchemy, Pydantic, SwaggerUI
 
+No desenvolvimento específico da API de Reservas, serão utilizadas as tecnologias Python 3.14.3 como linguagem principal, FastAPI como framework para construção da API, SQLModel e SQLAlchemy para modelagem e manipulação dos dados no banco, Pydantic para validação e serialização dos dados recebidos e retornados, e Swagger UI para documentação e testes interativos dos endpoints.
+
 ## API Endpoints
 
 [Liste os principais endpoints da API, incluindo as operações disponíveis, os parâmetros esperados e as respostas retornadas.]
 
-### Endpoint 1
-- Método: GET
-- URL: /endpoint1
-- Parâmetros:
-  - param1: [descrição]
-- Resposta:
-  - Sucesso (200 OK)
-    ```
-    {
-      "message": "Success",
-      "data": {
-        ...
-      }
-    }
-    ```
-  - Erro (4XX, 5XX)
-    ```
-    {
-      "message": "Error",
-      "error": {
-        ...
-      }
-    }
-    ```
+## Endpoint 1: Criar reserva
+
+**Método:** POST  
+**URL:** `/reservas`
+
+### Parâmetros no corpo da requisição:
+- `id_usuario`: identificador do usuário que realiza a reserva  
+- `id_sala`: identificador da sala reservada  
+- `data_reserva`: data da reserva  
+- `hora_inicio`: horário de início  
+- `hora_fim`: horário de término  
+
+### Resposta:
+
+**Sucesso (201 Created)**
+```json
+{
+  "mensagem": "Reserva criada com sucesso",
+  "reserva": {
+    "id_reserva": 1,
+    "id_usuario": 3,
+    "id_sala": 2,
+    "data_reserva": "2026-04-11",
+    "hora_inicio": "14:00",
+    "hora_fim": "16:00"
+  }
+}
+```
+** Erro (400 Bad Request, 409 Conflict)
+```json
+{
+  "mensagem": "Erro ao criar reserva",
+  "erro": "A sala ja esta reservada para este horario"
+}
+```
+---
+
+## Endpoint 2: Listar reservas
+
+**Método:** GET  
+**URL:** `/reservas`
+
+### Parâmetros de consulta:
+- `id_usuario`: filtra por usuário  
+- `id_sala`: filtra por sala  
+- `data_reserva`: filtra por data  
+
+### Resposta:
+
+**Sucesso (200 OK)**
+```json
+[
+  {
+    "id_reserva": 1,
+    "id_usuario": 3,
+    "id_sala": 2,
+    "data_reserva": "2026-04-11",
+    "hora_inicio": "14:00",
+    "hora_fim": "16:00"
+  }
+]
+```
+---
+
+## Endpoint 3: Buscar reserva por ID
+
+**Método:** GET  
+**URL:** `/reservas/{id}`
+
+### Parâmetros:
+- `id`: identificador da reserva  
+
+### Resposta:
+- **Sucesso (200 OK)**  
+- **Erro (404 Not Found)**
+
+---
+
+## Endpoint 4: Atualizar reserva
+
+**Método:** PUT ou PATCH  
+**URL:** `/reservas/{id}`
+
+### Parâmetros:
+- `id`: identificador da reserva  
+- Campos da reserva a serem alterados  
+
+### Resposta:
+- **Sucesso (200 OK)**  
+- **Erro (400 Bad Request, 404 Not Found)**
+
+---
+
+## Endpoint 5: Excluir reserva
+
+**Método:** DELETE  
+**URL:** `/reservas/{id}`
+
+### Parâmetros:
+- `id`: identificador da reserva  
+
+### Resposta:
+- **Sucesso (200 OK ou 204 No Content)**  
+- **Erro (404 Not Found)**  
 
 ## Considerações de Segurança
 
@@ -99,6 +181,16 @@ API Reservas - Python 3.14.3, FastAPI, SQLModel, SQLAlchemy, Pydantic, SwaggerUI
 3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
 4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
 5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+
+## Teste API reservas
+
+A estratégia de testes da API de Reservas foi focada em verificar se os endpoints funcionam corretamente nas operações principais do sistema, como criar, listar, buscar, editar e excluir reservas. Também foram testados os filtros disponíveis, como busca por cliente, sala e data, além da validação de respostas em casos de erro.
+
+Os testes foram realizados principalmente com o Postman, utilizando uma collection com requisições para cada endpoint e scripts de validação para conferir os códigos de status HTTP e os dados retornados pela API. Dessa forma, foi possível validar na prática se a comunicação entre a API, as regras de negócio e o banco de dados estava funcionando corretamente.
+
+O Swagger UI também foi usado como apoio para visualizar e conferir os endpoints implementados. Já os testes unitários e de carga não foram desenvolvidos nesta etapa, mas podem ser adicionados futuramente para aumentar a cobertura e avaliar melhor o desempenho da aplicação.
+
+---
 
 # Referências
 
