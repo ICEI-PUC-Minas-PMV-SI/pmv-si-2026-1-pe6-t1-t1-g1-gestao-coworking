@@ -47,6 +47,8 @@ Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs
 Geral - PostgreSQL 18, PgAdmin4, GitHub, AWS EC2, AWS API Gateway, AWS RDS
 API Reservas - Python 3.14.3, FastAPI, SQLModel, SQLAlchemy, Pydantic, SwaggerUI
 
+## API Reservas
+
 No desenvolvimento específico da API de Reservas, serão utilizadas as tecnologias Python 3.14.3 como linguagem principal, FastAPI como framework para construção da API, SQLModel e SQLAlchemy para modelagem e manipulação dos dados no banco, Pydantic para validação e serialização dos dados recebidos e retornados, e Swagger UI para documentação e testes interativos dos endpoints.
 
 ## API Endpoints
@@ -81,7 +83,7 @@ No desenvolvimento específico da API de Reservas, serão utilizadas as tecnolog
   }
 }
 ```
-** Erro (400 Bad Request, 409 Conflict)
+**Erro (400 Bad Request, 409 Conflict)**
 ```json
 {
   "mensagem": "Erro ao criar reserva",
@@ -191,6 +193,26 @@ Os testes foram realizados principalmente com o Postman, utilizando uma collecti
 O Swagger UI também foi usado como apoio para visualizar e conferir os endpoints implementados. Já os testes unitários e de carga não foram desenvolvidos nesta etapa, mas podem ser adicionados futuramente para aumentar a cobertura e avaliar melhor o desempenho da aplicação.
 
 ---
+
+## Teste
+### Resultado da execução dos testes da API de Notificações no Postman
+<img width="1916" height="851" alt="Image" src="https://github.com/user-attachments/assets/0ada3d23-0524-4aab-b4f3-52244e975b48" />
+
+A imagem apresenta a execução da collection de testes da API de Notificações no Postman, utilizando o ambiente local da aplicação. Observa-se que todos os 16 testes foram aprovados, sem falhas ou erros, com tempo médio de resposta de 68 ms. Entre os cenários validados estão a listagem de tipos de notificação, criação de notificação, listagem de notificações e busca por ID, demonstrando que os endpoints implementados estão respondendo corretamente de acordo com o comportamento esperado.
+
+---
+
+### Continuação da execução dos testes da API de Notificações no Postman
+<img width="1919" height="640" alt="Image" src="https://github.com/user-attachments/assets/bab93684-90f9-412c-9991-3bd41c866a20" />
+
+A imagem complementa os resultados dos testes da API de Notificações, apresentando a validação das operações de atualização, marcação como lida, exclusão e verificação da remoção de uma notificação. Os resultados mostram respostas esperadas para cada etapa, incluindo 200 OK nas operações de alteração e exclusão, e 404 Not Found ao buscar uma notificação já removida, confirmando o comportamento correto do endpoint e o tratamento padronizado de erros pela API.
+
+---
+
+### Resultado da execução dos testes negativos da API de Notificações no Postman
+<img width="1895" height="983" alt="Image" src="https://github.com/user-attachments/assets/4a563da3-dc5b-4761-a2ff-00b7eef851ce" />
+
+A imagem apresenta a execução da collection de testes negativos da API de Notificações no Postman, utilizando o ambiente local da aplicação. Observa-se que todos os 18 testes foram aprovados, sem falhas ou erros, com tempo médio de resposta de 22 ms. Os cenários executados incluíram validações de requisições inválidas, como envio de dados obrigatórios ausentes, uso de tipo inválido e busca por recurso inexistente, confirmando que a API trata corretamente situações de erro e retorna os códigos HTTP esperados, como 422 Unprocessable Entity e 404 Not Found.
 
 # Referências
 
