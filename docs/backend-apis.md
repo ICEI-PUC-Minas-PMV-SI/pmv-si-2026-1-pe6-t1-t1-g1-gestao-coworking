@@ -58,19 +58,13 @@
 
 - API Salas - C#, ASP.NET Core, Entity Framework Core, JSON, DTOs, HATEOAS, SQL Server, SwaggerUI, Insomnia;
 
-- API Notificações - PostgreSQL 18, PgAdmin4;
+- API Notificações - No desenvolvimento específico da API de Reservas, serão utilizadas as tecnologias Python 3.14.3 como linguagem principal, FastAPI como framework para construção da API, SQLModel e SQLAlchemy para modelagem e manipulação dos dados no banco, Pydantic para validação e serialização dos dados recebidos e retornados, e Swagger UI para documentação e testes interativos dos endpoints;
 
 - API Avaliação - .NET 8, ASP.NET Core Web API, Entity Framework Core, Npgsql, Swagger;
 
 - API Financeiro - Python 3, FastAPI, Uvicorn, SQLite, SQLAlchemy, Pydantic, Swagger UI, Visual Studio Code;
 
-<!-- ## API Reservas
-
-No desenvolvimento específico da API de Reservas, serão utilizadas as tecnologias Python 3.14.3 como linguagem principal, FastAPI como framework para construção da API, SQLModel e SQLAlchemy para modelagem e manipulação dos dados no banco, Pydantic para validação e serialização dos dados recebidos e retornados, e Swagger UI para documentação e testes interativos dos endpoints. -->
-
 ## API Endpoints
-
-<!-- [Liste os principais endpoints da API, incluindo as operações disponíveis, os parâmetros esperados e as respostas retornadas.] -->
 
 ### API Reserva - Carlos
 
@@ -412,6 +406,105 @@ No desenvolvimento específico da API de Reservas, serão utilizadas as tecnolog
 
 ### API Notificação - Lucas
 
+#### Endpoint 1: Criar reserva
+
+**Método:** POST  
+**URL:** `/reservas`
+
+##### Parâmetros no corpo da requisição:
+- `id_usuario`: identificador do usuário que realiza a reserva  
+- `id_sala`: identificador da sala reservada  
+- `data_reserva`: data da reserva  
+- `hora_inicio`: horário de início  
+- `hora_fim`: horário de término  
+
+##### Resposta:
+
+**Sucesso (201 Created)**
+```json
+{
+  "mensagem": "Reserva criada com sucesso",
+  "reserva": {
+    "id_reserva": 1,
+    "id_usuario": 3,
+    "id_sala": 2,
+    "data_reserva": "2026-04-11",
+    "hora_inicio": "14:00",
+    "hora_fim": "16:00"
+  }
+}
+```
+**Erro (400 Bad Request, 409 Conflict)**
+```json
+{
+  "mensagem": "Erro ao criar reserva",
+  "erro": "A sala ja esta reservada para este horario"
+}
+```
+
+#### Endpoint 2: Listar reservas
+
+**Método:** GET  
+**URL:** `/reservas`
+
+##### Parâmetros de consulta:
+- `id_usuario`: filtra por usuário  
+- `id_sala`: filtra por sala  
+- `data_reserva`: filtra por data  
+
+##### Resposta:
+
+**Sucesso (200 OK)**
+```json
+[
+  {
+    "id_reserva": 1,
+    "id_usuario": 3,
+    "id_sala": 2,
+    "data_reserva": "2026-04-11",
+    "hora_inicio": "14:00",
+    "hora_fim": "16:00"
+  }
+]
+```
+
+#### Endpoint 3: Buscar reserva por ID
+
+**Método:** GET  
+**URL:** `/reservas/{id}`
+
+##### Parâmetros:
+- `id`: identificador da reserva  
+
+##### Resposta:
+- **Sucesso (200 OK)**  
+- **Erro (404 Not Found)**
+
+#### Endpoint 4: Atualizar reserva
+
+**Método:** PUT ou PATCH  
+**URL:** `/reservas/{id}`
+
+##### Parâmetros:
+- `id`: identificador da reserva  
+- Campos da reserva a serem alterados  
+
+##### Resposta:
+- **Sucesso (200 OK)**  
+- **Erro (400 Bad Request, 404 Not Found)**
+
+#### Endpoint 5: Excluir reserva
+
+**Método:** DELETE  
+**URL:** `/reservas/{id}`
+
+##### Parâmetros:
+- `id`: identificador da reserva  
+
+##### Resposta:
+- **Sucesso (200 OK ou 204 No Content)**  
+- **Erro (404 Not Found)**
+
 ---
 
 ### API Avaliação - Victor
@@ -668,116 +761,7 @@ Rota:
 Descrição:
 Cancela a assinatura ativa do usuário.
 
-## Endpoint 1: Criar reserva
-
-**Método:** POST  
-**URL:** `/reservas`
-
-### Parâmetros no corpo da requisição:
-- `id_usuario`: identificador do usuário que realiza a reserva  
-- `id_sala`: identificador da sala reservada  
-- `data_reserva`: data da reserva  
-- `hora_inicio`: horário de início  
-- `hora_fim`: horário de término  
-
-### Resposta:
-
-**Sucesso (201 Created)**
-```json
-{
-  "mensagem": "Reserva criada com sucesso",
-  "reserva": {
-    "id_reserva": 1,
-    "id_usuario": 3,
-    "id_sala": 2,
-    "data_reserva": "2026-04-11",
-    "hora_inicio": "14:00",
-    "hora_fim": "16:00"
-  }
-}
-```
-**Erro (400 Bad Request, 409 Conflict)**
-```json
-{
-  "mensagem": "Erro ao criar reserva",
-  "erro": "A sala ja esta reservada para este horario"
-}
-```
 ---
-
-## Endpoint 2: Listar reservas
-
-**Método:** GET  
-**URL:** `/reservas`
-
-### Parâmetros de consulta:
-- `id_usuario`: filtra por usuário  
-- `id_sala`: filtra por sala  
-- `data_reserva`: filtra por data  
-
-### Resposta:
-
-**Sucesso (200 OK)**
-```json
-[
-  {
-    "id_reserva": 1,
-    "id_usuario": 3,
-    "id_sala": 2,
-    "data_reserva": "2026-04-11",
-    "hora_inicio": "14:00",
-    "hora_fim": "16:00"
-  }
-]
-```
----
-
-## Endpoint 3: Buscar reserva por ID
-
-**Método:** GET  
-**URL:** `/reservas/{id}`
-
-### Parâmetros:
-- `id`: identificador da reserva  
-
-### Resposta:
-- **Sucesso (200 OK)**  
-- **Erro (404 Not Found)**
-
----
-
-## Endpoint 4: Atualizar reserva
-
-**Método:** PUT ou PATCH  
-**URL:** `/reservas/{id}`
-
-### Parâmetros:
-- `id`: identificador da reserva  
-- Campos da reserva a serem alterados  
-
-### Resposta:
-- **Sucesso (200 OK)**  
-- **Erro (400 Bad Request, 404 Not Found)**
-
----
-
-## Endpoint 5: Excluir reserva
-
-**Método:** DELETE  
-**URL:** `/reservas/{id}`
-
-### Parâmetros:
-- `id`: identificador da reserva  
-
-### Resposta:
-- **Sucesso (200 OK ou 204 No Content)**  
-- **Erro (404 Not Found)**
-
----
-
-
-
-----
 
 ## Considerações de Segurança
 
