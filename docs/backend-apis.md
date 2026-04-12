@@ -82,6 +82,209 @@ No desenvolvimento específico da API de Reservas, serão utilizadas as tecnolog
 
 ### API Avaliação - Victor
 
+#### 1. Listar todas as avaliacoes
+
+**Metodo:** `GET`
+
+**Rota:**
+
+```text
+/api/avaliacao
+```
+
+**Comportamento:**
+
+- retorna todas as avaliacoes;
+- ordena do maior `idAvaliacao` para o menor;
+- usa `AsNoTracking()` para leitura mais leve no Entity Framework.
+
+**Resposta de sucesso:** `200 OK`
+
+**Exemplo de resposta:**
+
+```json
+[
+  {
+    "idAvaliacao": 2,
+    "idReserva": 15,
+    "nota": 10,
+    "corpo": "Excelente atendimento.",
+    "criadoEm": "2026-04-09"
+  },
+  {
+    "idAvaliacao": 1,
+    "idReserva": 10,
+    "nota": 8,
+    "corpo": "Boa experiencia.",
+    "criadoEm": "2026-04-08"
+  }
+]
+```
+
+#### 2. Buscar avaliacao por ID
+
+**Metodo:** `GET`
+
+**Rota:**
+
+```text
+/api/avaliacao/{id}
+```
+
+**Exemplo:**
+
+```text
+/api/avaliacao/1
+```
+
+**Resposta de sucesso:** `200 OK`
+
+```json
+{
+  "idAvaliacao": 1,
+  "idReserva": 10,
+  "nota": 9,
+  "corpo": "Ambiente muito bom e organizado.",
+  "criadoEm": "2026-04-09"
+}
+```
+
+**Se nao encontrar o registro:** `404 Not Found`
+
+```json
+{
+  "message": "Avaliacao nao encontrada."
+}
+```
+
+#### 3. Criar nova avaliacao
+
+**Metodo:** `POST`
+
+**Rota:**
+
+```text
+/api/avaliacao
+```
+
+**Body esperado:**
+
+```json
+{
+  "idReserva": 1,
+  "nota": 9,
+  "corpo": "Ambiente muito bom e organizado.",
+  "criadoEm": "2026-04-09"
+}
+```
+
+**Comportamento:**
+
+- cria um novo registro na tabela `avaliacao`;
+- o `idAvaliacao` e gerado automaticamente pelo banco;
+- retorna o recurso criado com a localizacao do endpoint de consulta individual.
+
+**Resposta de sucesso:** `201 Created`
+
+```json
+{
+  "idAvaliacao": 3,
+  "idReserva": 1,
+  "nota": 9,
+  "corpo": "Ambiente muito bom e organizado.",
+  "criadoEm": "2026-04-09"
+}
+```
+
+#### 4. Atualizar avaliacao
+
+**Metodo:** `PUT`
+
+**Rota:**
+
+```text
+/api/avaliacao/{id}
+```
+
+**Exemplo:**
+
+```text
+/api/avaliacao/1
+```
+
+**Body esperado:**
+
+```json
+{
+  "idReserva": 1,
+  "nota": 10,
+  "corpo": "Atendimento excelente.",
+  "criadoEm": "2026-04-09"
+}
+```
+
+**Comportamento:**
+
+- busca a avaliacao pelo ID;
+- se existir, substitui os valores atuais pelos enviados no body;
+- salva as alteracoes no banco.
+
+**Resposta de sucesso:** `200 OK`
+
+```json
+{
+  "idAvaliacao": 1,
+  "idReserva": 1,
+  "nota": 10,
+  "corpo": "Atendimento excelente.",
+  "criadoEm": "2026-04-09"
+}
+```
+
+**Se nao encontrar o registro:** `404 Not Found`
+
+```json
+{
+  "message": "Avaliacao nao encontrada."
+}
+```
+
+#### 5. Remover avaliacao
+
+**Metodo:** `DELETE`
+
+**Rota:**
+
+```text
+/api/avaliacao/{id}
+```
+
+**Exemplo:**
+
+```text
+/api/avaliacao/1
+```
+
+**Comportamento:**
+
+- busca a avaliacao pelo ID;
+- se existir, remove o registro;
+- retorna sucesso sem corpo.
+
+**Resposta de sucesso:** `204 No Content`
+
+**Se nao encontrar o registro:** `404 Not Found`
+
+```json
+{
+  "message": "Avaliacao nao encontrada."
+}
+```
+
+---
+
+---
+
 ### API Financeiro - Yan
 
 ## Endpoint 1: Criar reserva
@@ -195,234 +398,29 @@ No desenvolvimento específico da API de Reservas, serão utilizadas as tecnolog
 
 ----
 
-
-## 1. Listar todas as avaliacoes
-
-**Metodo:** `GET`
-
-**Rota:**
-
-```text
-/api/avaliacao
-```
-
-**Comportamento:**
-
-- retorna todas as avaliacoes;
-- ordena do maior `idAvaliacao` para o menor;
-- usa `AsNoTracking()` para leitura mais leve no Entity Framework.
-
-**Resposta de sucesso:** `200 OK`
-
-**Exemplo de resposta:**
-
-```json
-[
-  {
-    "idAvaliacao": 2,
-    "idReserva": 15,
-    "nota": 10,
-    "corpo": "Excelente atendimento.",
-    "criadoEm": "2026-04-09"
-  },
-  {
-    "idAvaliacao": 1,
-    "idReserva": 10,
-    "nota": 8,
-    "corpo": "Boa experiencia.",
-    "criadoEm": "2026-04-08"
-  }
-]
-```
-
-## 2. Buscar avaliacao por ID
-
-**Metodo:** `GET`
-
-**Rota:**
-
-```text
-/api/avaliacao/{id}
-```
-
-**Exemplo:**
-
-```text
-/api/avaliacao/1
-```
-
-**Resposta de sucesso:** `200 OK`
-
-```json
-{
-  "idAvaliacao": 1,
-  "idReserva": 10,
-  "nota": 9,
-  "corpo": "Ambiente muito bom e organizado.",
-  "criadoEm": "2026-04-09"
-}
-```
-
-**Se nao encontrar o registro:** `404 Not Found`
-
-```json
-{
-  "message": "Avaliacao nao encontrada."
-}
-```
-
-## 3. Criar nova avaliacao
-
-**Metodo:** `POST`
-
-**Rota:**
-
-```text
-/api/avaliacao
-```
-
-**Body esperado:**
-
-```json
-{
-  "idReserva": 1,
-  "nota": 9,
-  "corpo": "Ambiente muito bom e organizado.",
-  "criadoEm": "2026-04-09"
-}
-```
-
-**Comportamento:**
-
-- cria um novo registro na tabela `avaliacao`;
-- o `idAvaliacao` e gerado automaticamente pelo banco;
-- retorna o recurso criado com a localizacao do endpoint de consulta individual.
-
-**Resposta de sucesso:** `201 Created`
-
-```json
-{
-  "idAvaliacao": 3,
-  "idReserva": 1,
-  "nota": 9,
-  "corpo": "Ambiente muito bom e organizado.",
-  "criadoEm": "2026-04-09"
-}
-```
-
-## 4. Atualizar avaliacao
-
-**Metodo:** `PUT`
-
-**Rota:**
-
-```text
-/api/avaliacao/{id}
-```
-
-**Exemplo:**
-
-```text
-/api/avaliacao/1
-```
-
-**Body esperado:**
-
-```json
-{
-  "idReserva": 1,
-  "nota": 10,
-  "corpo": "Atendimento excelente.",
-  "criadoEm": "2026-04-09"
-}
-```
-
-**Comportamento:**
-
-- busca a avaliacao pelo ID;
-- se existir, substitui os valores atuais pelos enviados no body;
-- salva as alteracoes no banco.
-
-**Resposta de sucesso:** `200 OK`
-
-```json
-{
-  "idAvaliacao": 1,
-  "idReserva": 1,
-  "nota": 10,
-  "corpo": "Atendimento excelente.",
-  "criadoEm": "2026-04-09"
-}
-```
-
-**Se nao encontrar o registro:** `404 Not Found`
-
-```json
-{
-  "message": "Avaliacao nao encontrada."
-}
-```
-
-## 5. Remover avaliacao
-
-**Metodo:** `DELETE`
-
-**Rota:**
-
-```text
-/api/avaliacao/{id}
-```
-
-**Exemplo:**
-
-```text
-/api/avaliacao/1
-```
-
-**Comportamento:**
-
-- busca a avaliacao pelo ID;
-- se existir, remove o registro;
-- retorna sucesso sem corpo.
-
-**Resposta de sucesso:** `204 No Content`
-
-**Se nao encontrar o registro:** `404 Not Found`
-
-```json
-{
-  "message": "Avaliacao nao encontrada."
-}
-```
-
----
-
----
-
-
 ## Considerações de Segurança
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+<!-- [Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.] -->
 
 ## Implantação
 
-[Instruções para implantar a aplicação distribuída em um ambiente de produção.]
+<!-- [Instruções para implantar a aplicação distribuída em um ambiente de produção.]
 
 1. Defina os requisitos de hardware e software necessários para implantar a aplicação em um ambiente de produção.
 2. Escolha uma plataforma de hospedagem adequada, como um provedor de nuvem ou um servidor dedicado.
 3. Configure o ambiente de implantação, incluindo a instalação de dependências e configuração de variáveis de ambiente.
 4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
-5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
+5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção. -->
 
 ## Testes
 
-[Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
+<!-- [Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
 
 1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
 2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
 3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
 4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste. -->
 
 ## Teste API reservas
 
