@@ -54,7 +54,7 @@ Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs
 
 - API Notificações - PostgreSQL 18, PgAdmin4;
 
-- API Avaliação -
+- API Avaliação - C#, PostgreSQL 18, PgAdmin4;
 
 - API Financeiro - 
 
