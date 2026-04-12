@@ -1019,4 +1019,5 @@ A imagem apresenta a execução da collection de testes negativos da API de Noti
 
 # Referências
 
-Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
+SOUZA, Kleber Jacques Ferreira de. Microfundamento: APIs e Web Services. Aula ministrada online na Pontifícia Universidade Católica de Minas Gerais, Belo Horizonte, 2026.
+
