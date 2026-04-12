@@ -402,6 +402,189 @@
 
 ### API Sala - Luana
 
+
+&nbsp; &nbsp; &nbsp; No desenvolvimento do módulo de Salas da API, são utilizadas as tecnologias C# como linguagem principal e o framework ASP.NET Core para a construção da API. Para o acesso e manipulação dos dados no banco, é utilizado o Entity Framework Core. A validação e serialização dos dados recebidos e retornados são realizadas de forma integrada pelo próprio ASP.NET Core, com suporte ao uso de DTOs para controle das informações trafegadas. E o Swagger UI é utilizado na documentação e testes interativos dos endpoints, facilitando o desenvolvimento e a integração com outras aplicações.
+
+## API Endpoints
+
+## URL Base
+
+http://localhost:5067/api/salas
+
+## Endpoint 1: Criar Sala
+
+**Método:** POST  
+**URL:** `/api/salas`
+
+### Parâmetros:
+- `Não possui parâmetros obrigatórios`
+
+### Corpo da requisição:
+```json
+{
+  "nome": "string",
+  "tipoSala": "string",
+  "capacidade": 0,
+  "descricao": "string",
+  "recursos": "string",
+  "criadoEm": "2026-04-12T21:27:38.643Z"
+}
+```
+
+### Resposta:
+
+**Sucesso (201 Created)**
+```json
+{
+  "id": 9,
+  "nome": "string",
+  "tipoSala": "string",
+  "capacidade": 0,
+  "descricao": "string",
+  "recursos": "string",
+  "criadoEm": "2026-04-12T21:27:38.643Z",
+  "usos": null,
+  "usuarios": null,
+  "links": []
+}
+
+```
+**Erro (400 Bad Request)**
+```json
+{
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "errors": {
+    "$.capacidade": [
+      "'s' is an invalid start of a value. Path: $.capacidade | LineNumber: 3 | BytePositionInLine: 16."
+    ]
+  },
+  "traceId": "00-733afb2038bea017ead3ed725e8a20c4-f447817269eaacfa-00"
+}
+```
+---
+
+## Endpoint 2: Listar Salas
+
+**Método:** GET  
+**URL:** `/api/salas`
+
+### Parâmetros de consulta:
+`nome`: nome da sala;
+`tipoSala`: tipo da sala;
+`capacidade`: quantidade máxima de pessoas suportadas;
+`descricao`: descrição detalhada da sala;
+`recursos`: recursos disponíveis;
+`criadoEm`: data e hora de criação do registro.
+
+### Resposta:
+
+**Sucesso (200 OK)**
+```json
+[
+  {
+    "id": 4,
+    "nome": "string",
+    "tipoSala": "string",
+    "capacidade": 0,
+    "descricao": "string",
+    "recursos": "string",
+    "criadoEm": "2026-04-12T18:12:38.685",
+    "usos": null,
+    "usuarios": null,
+    "links": []
+  }
+]
+```
+---
+
+## Endpoint 3: Buscar Salas por ID
+
+**Método:** GET  
+**URL:** `/api/Salas/{id}`
+
+### Parâmetros:
+- `id`: identificador único da sala
+
+### Resposta:
+- **Sucesso (200 OK)**  
+- **Erro (404 Not Found)**
+```json
+{
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "errors": {
+    "$.usuarios[0].sala": [
+      "The JSON value could not be converted to coworking_salas.Models.Sala. Path: $.usuarios[0].sala | LineNumber: 37 | BytePositionInLine: 22."
+    ]
+  },
+  "traceId": "00-c429c5c811e3a57b65c31f3226183589-2399955f3128ea7d-00"
+}
+```
+---
+
+## Endpoint 4: Atualizar Sala
+
+**Método:** PUT 
+**URL:** `/api/Salas/{id}`
+
+### Parâmetros:
+- `id`: identificador da sala (deve ser igual ao da rota);
+- `nome`: nome da sala;
+- `tipoSala`: tipo da sala;
+- `capacidade`: capacidade da sala;
+- `descricao`: descrição da sala;
+- `recursos`: recursos disponíveis;
+- `criadoEm`: data de criação.
+
+### Corpo da requisição:
+ ```json 
+{
+  "id": 0,
+  "nome": "string",
+  "tipoSala": "string",
+  "capacidade": 0,
+  "descricao": "string",
+  "recursos": "string",
+  "criadoEm": "2026-04-12T21:44:44.873Z"
+}
+```
+
+### Resposta:
+- **Sucesso (200 OK)**  
+- **Erro (400 Bad Request)**
+```json
+{
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.5",
+  "title": "Not Found",
+  "status": 404,
+  "traceId": "00-d9af16ff8a579e7c39b2a2929cd36898-3a38fa06c18d51fd-00"
+}
+```
+---
+
+## Endpoint 5: Excluir Sala
+
+**Método:** DELETE  
+**URL:** `/reservas/{id}`
+
+### Parâmetros:
+- `id`: identificador único da sala
+
+### Resposta:
+- **Sucesso (200 OK)**  
+- **Erro (404 Not Found)**
+```json
+{
+  "type": "https://tools.ietf.org/html/rfc9110#section-15.5.5",
+  "title": "Not Found",
+  "status": 404,
+  "traceId": "00-5f350565bb46a936f5d9712d0ffc0d97-53322bd7b0907bfc-00"
+}
+```
+
 ---
 
 ### API Notificação - Lucas
