@@ -56,7 +56,7 @@
 
 - API Usuário - Python 3.14.3, FastAPI, SQLite, SQLAlchemy, Swagger UI, Postman
 
-- API Salas - C#, ASP.NET Core, Entity Framework Core, JSON, DTOs, HATEOAS, SQL Server, SwaggerUI, Insomnia;
+- API Salas - C#, ASP.NET Core, Entity Framework Core, JSON, DTOs, HATEOAS, SwaggerUI, Insomnia;
 
 - API Notificações - No desenvolvimento específico da API de Reservas, serão utilizadas as tecnologias Python 3.14.3 como linguagem principal, FastAPI como framework para construção da API, SQLModel e SQLAlchemy para modelagem e manipulação dos dados no banco, Pydantic para validação e serialização dos dados recebidos e retornados, e Swagger UI para documentação e testes interativos dos endpoints;
 
