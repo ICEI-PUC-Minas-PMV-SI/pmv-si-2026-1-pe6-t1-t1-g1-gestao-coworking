@@ -44,8 +44,19 @@ Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs
 
 [Lista das tecnologias principais que serão utilizadas no projeto.]
 
-Geral - PostgreSQL 18, PgAdmin4, GitHub, AWS EC2, AWS API Gateway, AWS RDS
-API Reservas - Python 3.14.3, FastAPI, SQLModel, SQLAlchemy, Pydantic, SwaggerUI
+Geral - PostgreSQL 18, PgAdmin4, GitHub, AWS EC2, AWS API Gateway, AWS RDS;
+
+API Reservas - Python 3.14.3, FastAPI, SQLModel, SQLAlchemy, Pydantic, SwaggerUI;
+
+API Usuário - 
+
+API Salas - C#, FastAPI, MySQL, SwaggerUI, Insominia;
+
+API Notificações - PostgreSQL 18, PgAdmin4;
+
+API Avaliação -
+
+API Financeiro - 
 
 ## API Reservas
 
