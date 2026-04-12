@@ -405,21 +405,21 @@
 
 &nbsp; &nbsp; &nbsp; No desenvolvimento do módulo de Salas da API, são utilizadas as tecnologias C# como linguagem principal e o framework ASP.NET Core para a construção da API. Para o acesso e manipulação dos dados no banco, é utilizado o Entity Framework Core. A validação e serialização dos dados recebidos e retornados são realizadas de forma integrada pelo próprio ASP.NET Core, com suporte ao uso de DTOs para controle das informações trafegadas. E o Swagger UI é utilizado na documentação e testes interativos dos endpoints, facilitando o desenvolvimento e a integração com outras aplicações.
 
-## API Endpoints
+#### API Endpoints
 
-## URL Base
+#### URL Base
 
 http://localhost:5067/api/salas
 
-## Endpoint 1: Criar Sala
+#### Endpoint 1: Criar Sala
 
 **Método:** POST  
 **URL:** `/api/salas`
 
-### Parâmetros:
+##### Parâmetros:
 - `Não possui parâmetros obrigatórios`
 
-### Corpo da requisição:
+##### Corpo da requisição:
 ```json
 {
   "nome": "string",
@@ -431,7 +431,7 @@ http://localhost:5067/api/salas
 }
 ```
 
-### Resposta:
+##### Resposta:
 
 **Sucesso (201 Created)**
 ```json
@@ -465,12 +465,12 @@ http://localhost:5067/api/salas
 ```
 ---
 
-## Endpoint 2: Listar Salas
+#### Endpoint 2: Listar Salas
 
 **Método:** GET  
 **URL:** `/api/salas`
 
-### Parâmetros de consulta:
+##### Parâmetros de consulta:
 `nome`: nome da sala;
 `tipoSala`: tipo da sala;
 `capacidade`: quantidade máxima de pessoas suportadas;
@@ -478,7 +478,7 @@ http://localhost:5067/api/salas
 `recursos`: recursos disponíveis;
 `criadoEm`: data e hora de criação do registro.
 
-### Resposta:
+##### Resposta:
 
 **Sucesso (200 OK)**
 ```json
@@ -499,15 +499,15 @@ http://localhost:5067/api/salas
 ```
 ---
 
-## Endpoint 3: Buscar Salas por ID
+#### Endpoint 3: Buscar Salas por ID
 
 **Método:** GET  
 **URL:** `/api/Salas/{id}`
 
-### Parâmetros:
+##### Parâmetros:
 - `id`: identificador único da sala
 
-### Resposta:
+##### Resposta:
 - **Sucesso (200 OK)**  
 - **Erro (404 Not Found)**
 ```json
@@ -525,12 +525,12 @@ http://localhost:5067/api/salas
 ```
 ---
 
-## Endpoint 4: Atualizar Sala
+#### Endpoint 4: Atualizar Sala
 
 **Método:** PUT 
 **URL:** `/api/Salas/{id}`
 
-### Parâmetros:
+##### Parâmetros:
 - `id`: identificador da sala (deve ser igual ao da rota);
 - `nome`: nome da sala;
 - `tipoSala`: tipo da sala;
@@ -539,7 +539,7 @@ http://localhost:5067/api/salas
 - `recursos`: recursos disponíveis;
 - `criadoEm`: data de criação.
 
-### Corpo da requisição:
+##### Corpo da requisição:
  ```json 
 {
   "id": 0,
@@ -552,7 +552,7 @@ http://localhost:5067/api/salas
 }
 ```
 
-### Resposta:
+##### Resposta:
 - **Sucesso (200 OK)**  
 - **Erro (400 Bad Request)**
 ```json
@@ -565,15 +565,15 @@ http://localhost:5067/api/salas
 ```
 ---
 
-## Endpoint 5: Excluir Sala
+#### Endpoint 5: Excluir Sala
 
 **Método:** DELETE  
 **URL:** `/reservas/{id}`
 
-### Parâmetros:
+##### Parâmetros:
 - `id`: identificador único da sala
 
-### Resposta:
+##### Resposta:
 - **Sucesso (200 OK)**  
 - **Erro (404 Not Found)**
 ```json
@@ -981,7 +981,15 @@ Cancela a assinatura ativa do usuário.
 4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
 5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste. -->
 
-## Teste API reservas
+### API Reserva - Carlos
+
+### API Usuário - Laura
+
+### API Sala - Luana
+
+### API Notificação - Lucas
+
+#### Teste API reservas
 
 &nbsp; &nbsp; &nbsp; A estratégia de testes da API de Reservas foi focada em verificar se os endpoints funcionam corretamente nas operações principais do sistema, como criar, listar, buscar, editar e excluir reservas. Também foram testados os filtros disponíveis, como busca por cliente, sala e data, além da validação de respostas em casos de erro.
 
@@ -989,27 +997,25 @@ Cancela a assinatura ativa do usuário.
 
 &nbsp; &nbsp; &nbsp; O Swagger UI também foi usado como apoio para visualizar e conferir os endpoints implementados. Já os testes unitários e de carga não foram desenvolvidos nesta etapa, mas podem ser adicionados futuramente para aumentar a cobertura e avaliar melhor o desempenho da aplicação.
 
----
-
-## Teste
-### Resultado da execução dos testes da API de Notificações no Postman
+#### Teste
+##### Resultado da execução dos testes da API de Notificações no Postman
 <img width="1916" height="851" alt="Image" src="https://github.com/user-attachments/assets/0ada3d23-0524-4aab-b4f3-52244e975b48" />
 
 A imagem apresenta a execução da collection de testes da API de Notificações no Postman, utilizando o ambiente local da aplicação. Observa-se que todos os 16 testes foram aprovados, sem falhas ou erros, com tempo médio de resposta de 68 ms. Entre os cenários validados estão a listagem de tipos de notificação, criação de notificação, listagem de notificações e busca por ID, demonstrando que os endpoints implementados estão respondendo corretamente de acordo com o comportamento esperado.
 
----
-
-### Continuação da execução dos testes da API de Notificações no Postman
+##### Continuação da execução dos testes da API de Notificações no Postman
 <img width="1919" height="640" alt="Image" src="https://github.com/user-attachments/assets/bab93684-90f9-412c-9991-3bd41c866a20" />
 
 A imagem complementa os resultados dos testes da API de Notificações, apresentando a validação das operações de atualização, marcação como lida, exclusão e verificação da remoção de uma notificação. Os resultados mostram respostas esperadas para cada etapa, incluindo 200 OK nas operações de alteração e exclusão, e 404 Not Found ao buscar uma notificação já removida, confirmando o comportamento correto do endpoint e o tratamento padronizado de erros pela API.
 
----
-
-### Resultado da execução dos testes negativos da API de Notificações no Postman
+##### Resultado da execução dos testes negativos da API de Notificações no Postman
 <img width="1895" height="983" alt="Image" src="https://github.com/user-attachments/assets/4a563da3-dc5b-4761-a2ff-00b7eef851ce" />
 
 A imagem apresenta a execução da collection de testes negativos da API de Notificações no Postman, utilizando o ambiente local da aplicação. Observa-se que todos os 18 testes foram aprovados, sem falhas ou erros, com tempo médio de resposta de 22 ms. Os cenários executados incluíram validações de requisições inválidas, como envio de dados obrigatórios ausentes, uso de tipo inválido e busca por recurso inexistente, confirmando que a API trata corretamente situações de erro e retorna os códigos HTTP esperados, como 422 Unprocessable Entity e 404 Not Found.
+
+### API Avaliação - Victor
+
+### API Financeiro - Yan
 
 # Referências
 
