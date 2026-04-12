@@ -54,7 +54,7 @@ Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs
 
 - API Notificações - PostgreSQL 18, PgAdmin4;
 
-- API Avaliação - C#, PostgreSQL 18, PgAdmin4;
+- API Avaliação - .NET 8, ASP.NET Core Web API, Entity Framework Core, Npgsql, Swagger;
 
 - API Financeiro - 
 
@@ -169,7 +169,218 @@ No desenvolvimento específico da API de Reservas, serão utilizadas as tecnolog
 
 ### Resposta:
 - **Sucesso (200 OK ou 204 No Content)**  
-- **Erro (404 Not Found)**  
+- **Erro (404 Not Found)**
+
+---
+
+
+
+----
+
+
+## 1. Listar todas as avaliacoes
+
+**Metodo:** `GET`
+
+**Rota:**
+
+```text
+/api/avaliacao
+```
+
+**Comportamento:**
+
+- retorna todas as avaliacoes;
+- ordena do maior `idAvaliacao` para o menor;
+- usa `AsNoTracking()` para leitura mais leve no Entity Framework.
+
+**Resposta de sucesso:** `200 OK`
+
+**Exemplo de resposta:**
+
+```json
+[
+  {
+    "idAvaliacao": 2,
+    "idReserva": 15,
+    "nota": 10,
+    "corpo": "Excelente atendimento.",
+    "criadoEm": "2026-04-09"
+  },
+  {
+    "idAvaliacao": 1,
+    "idReserva": 10,
+    "nota": 8,
+    "corpo": "Boa experiencia.",
+    "criadoEm": "2026-04-08"
+  }
+]
+```
+
+## 2. Buscar avaliacao por ID
+
+**Metodo:** `GET`
+
+**Rota:**
+
+```text
+/api/avaliacao/{id}
+```
+
+**Exemplo:**
+
+```text
+/api/avaliacao/1
+```
+
+**Resposta de sucesso:** `200 OK`
+
+```json
+{
+  "idAvaliacao": 1,
+  "idReserva": 10,
+  "nota": 9,
+  "corpo": "Ambiente muito bom e organizado.",
+  "criadoEm": "2026-04-09"
+}
+```
+
+**Se nao encontrar o registro:** `404 Not Found`
+
+```json
+{
+  "message": "Avaliacao nao encontrada."
+}
+```
+
+## 3. Criar nova avaliacao
+
+**Metodo:** `POST`
+
+**Rota:**
+
+```text
+/api/avaliacao
+```
+
+**Body esperado:**
+
+```json
+{
+  "idReserva": 1,
+  "nota": 9,
+  "corpo": "Ambiente muito bom e organizado.",
+  "criadoEm": "2026-04-09"
+}
+```
+
+**Comportamento:**
+
+- cria um novo registro na tabela `avaliacao`;
+- o `idAvaliacao` e gerado automaticamente pelo banco;
+- retorna o recurso criado com a localizacao do endpoint de consulta individual.
+
+**Resposta de sucesso:** `201 Created`
+
+```json
+{
+  "idAvaliacao": 3,
+  "idReserva": 1,
+  "nota": 9,
+  "corpo": "Ambiente muito bom e organizado.",
+  "criadoEm": "2026-04-09"
+}
+```
+
+## 4. Atualizar avaliacao
+
+**Metodo:** `PUT`
+
+**Rota:**
+
+```text
+/api/avaliacao/{id}
+```
+
+**Exemplo:**
+
+```text
+/api/avaliacao/1
+```
+
+**Body esperado:**
+
+```json
+{
+  "idReserva": 1,
+  "nota": 10,
+  "corpo": "Atendimento excelente.",
+  "criadoEm": "2026-04-09"
+}
+```
+
+**Comportamento:**
+
+- busca a avaliacao pelo ID;
+- se existir, substitui os valores atuais pelos enviados no body;
+- salva as alteracoes no banco.
+
+**Resposta de sucesso:** `200 OK`
+
+```json
+{
+  "idAvaliacao": 1,
+  "idReserva": 1,
+  "nota": 10,
+  "corpo": "Atendimento excelente.",
+  "criadoEm": "2026-04-09"
+}
+```
+
+**Se nao encontrar o registro:** `404 Not Found`
+
+```json
+{
+  "message": "Avaliacao nao encontrada."
+}
+```
+
+## 5. Remover avaliacao
+
+**Metodo:** `DELETE`
+
+**Rota:**
+
+```text
+/api/avaliacao/{id}
+```
+
+**Exemplo:**
+
+```text
+/api/avaliacao/1
+```
+
+**Comportamento:**
+
+- busca a avaliacao pelo ID;
+- se existir, remove o registro;
+- retorna sucesso sem corpo.
+
+**Resposta de sucesso:** `204 No Content`
+
+**Se nao encontrar o registro:** `404 Not Found`
+
+```json
+{
+  "message": "Avaliacao nao encontrada."
+}
+```
+
+---
+
+---
+
 
 ## Considerações de Segurança
 
