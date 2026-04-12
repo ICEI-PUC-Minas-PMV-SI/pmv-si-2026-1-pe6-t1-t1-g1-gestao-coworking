@@ -51,7 +51,7 @@ Existem muitas tecnologias diferentes que podem ser usadas para desenvolver APIs
 
 - API Usuário - 
 
-- API Salas - C#, ASP.NET Core, Entity Framework, SQL Server, SwaggerUI, Insomnia;
+- API Salas - C#, ASP.NET Core, Entity Framework Core, JSON, DTOs, HATEOAS, SQL Server, SwaggerUI, Insomnia;
 
 - API Notificações - PostgreSQL 18, PgAdmin4;
 
