@@ -19,7 +19,7 @@
 
 - O objetivo do módulo de Salas da API é gerenciar o cadastro de salas, permitindo operações de criação, leitura, atualização e exclusão, além de manter a integridade e organização das informações relacionadas a elas.
 
-- <!-- Lucas - Notificação -->
+- O objetivo principal da API de Notificações é gerenciar o envio, consulta, atualização e exclusão de notificações do sistema de coworking, permitindo filtrar por tipo, status de leitura, assinatura ou reserva relacionada. Além disso, a API garante a integridade dos dados por meio da validação dos tipos aceitos e dos campos obrigatórios, assegurando que os usuários sejam comunicados de forma organizada e consistente sobre alertas, confirmações de reserva, lembretes e renovações de plano.
 
 - <!-- Victor - Notificação -->
 
@@ -589,105 +589,261 @@ http://localhost:5067/api/salas
 
 ### API Notificação - Lucas
 
-#### Endpoint 1: Criar reserva
+## API Endpoints
 
-**Método:** POST  
-**URL:** `/reservas`
+### Endpoint 1: Listar tipos de notificação
 
-##### Parâmetros no corpo da requisição:
-- `id_usuario`: identificador do usuário que realiza a reserva  
-- `id_sala`: identificador da sala reservada  
-- `data_reserva`: data da reserva  
-- `hora_inicio`: horário de início  
-- `hora_fim`: horário de término  
+**Método:** `GET`
+**URL:** `/notificacoes/tipos`
+**Parâmetros:** não possui
 
-##### Resposta:
+**Resposta:**
 
-**Sucesso (201 Created)**
+*Sucesso (`200 OK`)*
+
 ```json
 {
-  "mensagem": "Reserva criada com sucesso",
-  "reserva": {
-    "id_reserva": 1,
-    "id_usuario": 3,
-    "id_sala": 2,
-    "data_reserva": "2026-04-11",
-    "hora_inicio": "14:00",
-    "hora_fim": "16:00"
-  }
+  "tipos": [
+    "Alerta",
+    "Confirmação de Reserva",
+    "Lembrete",
+    "Renovação de Plano"
+  ]
 }
 ```
-**Erro (400 Bad Request, 409 Conflict)**
+---
+
+### Endpoint 2: Criar notificação
+
+**Método:** `POST`
+**URL:** `/notificacoes`
+
+**Parâmetros no corpo da requisição:**
+
+| Parâmetro | Descrição |
+|---|---|
+| `corpo` | Conteúdo da notificação |
+| `tipo` | Tipo da notificação |
+| `lida` | Indica se a notificação foi lida |
+| `id_assinatura` | Identificador da assinatura relacionada |
+| `id_reserva` | Identificador da reserva relacionada |
+
+**Resposta:**
+
+*Sucesso (`201 Created`)*
+
 ```json
 {
-  "mensagem": "Erro ao criar reserva",
-  "erro": "A sala ja esta reservada para este horario"
+  "id_notificacao": 11,
+  "corpo": "Reserva confirmada",
+  "tipo": "Confirmação de Reserva",
+  "lida": false,
+  "id_assinatura": 10,
+  "id_reserva": 20,
+  "criado_em": "2026-04-12"
 }
 ```
 
-#### Endpoint 2: Listar reservas
+*Erro (`422 Unprocessable Entity`)*
 
-**Método:** GET  
-**URL:** `/reservas`
+```json
+{
+  "detail": [
+    {
+      "loc": ["body", "corpo"],
+      "msg": "Field required",
+      "type": "missing"
+    }
+  ]
+}
+```
+---
 
-##### Parâmetros de consulta:
-- `id_usuario`: filtra por usuário  
-- `id_sala`: filtra por sala  
-- `data_reserva`: filtra por data  
+### Endpoint 3: Listar notificações
 
-##### Resposta:
+**Método:** `GET`
+**URL:** `/notificacoes`
 
-**Sucesso (200 OK)**
+**Parâmetros de consulta:**
+
+| Parâmetro | Descrição |
+|---|---|
+| `lida` | Filtra por status de leitura |
+| `tipo` | Filtra por tipo de notificação |
+| `id_assinatura` | Filtra por assinatura |
+| `id_reserva` | Filtra por reserva |
+
+**Resposta:**
+
+*Sucesso (`200 OK`)*
+
 ```json
 [
   {
-    "id_reserva": 1,
-    "id_usuario": 3,
-    "id_sala": 2,
-    "data_reserva": "2026-04-11",
-    "hora_inicio": "14:00",
-    "hora_fim": "16:00"
+    "id_notificacao": 10,
+    "corpo": "Alerta inicial para testes",
+    "tipo": "Alerta",
+    "lida": false,
+    "id_assinatura": 10,
+    "id_reserva": 20,
+    "criado_em": "2026-04-12"
   }
 ]
 ```
 
-#### Endpoint 3: Buscar reserva por ID
+*Erro (`422 Unprocessable Entity`)*
 
-**Método:** GET  
-**URL:** `/reservas/{id}`
+```json
+{
+  "detail": [
+    {
+      "loc": ["query", "tipo"],
+      "msg": "Input should be 'Alerta', 'Confirmação de Reserva', 'Lembrete' or 'Renovação de Plano'",
+      "type": "enum"
+    }
+  ]
+}
+```
+---
 
-##### Parâmetros:
-- `id`: identificador da reserva  
+### Endpoint 4: Buscar notificação por ID
 
-##### Resposta:
-- **Sucesso (200 OK)**  
-- **Erro (404 Not Found)**
+**Método:** `GET`
+**URL:** `/notificacoes/{id}`
 
-#### Endpoint 4: Atualizar reserva
+**Parâmetros:**
 
-**Método:** PUT ou PATCH  
-**URL:** `/reservas/{id}`
+| Parâmetro | Descrição |
+|---|---|
+| `id` | Identificador da notificação |
 
-##### Parâmetros:
-- `id`: identificador da reserva  
-- Campos da reserva a serem alterados  
+**Resposta:**
 
-##### Resposta:
-- **Sucesso (200 OK)**  
-- **Erro (400 Bad Request, 404 Not Found)**
+*Sucesso (`200 OK`)*
 
-#### Endpoint 5: Excluir reserva
+```json
+{
+  "id_notificacao": 10,
+  "corpo": "Alerta inicial para testes",
+  "tipo": "Alerta",
+  "lida": false,
+  "id_assinatura": 10,
+  "id_reserva": 20,
+  "criado_em": "2026-04-12"
+}
+```
 
-**Método:** DELETE  
-**URL:** `/reservas/{id}`
+*Erro (`404 Not Found`)*
 
-##### Parâmetros:
-- `id`: identificador da reserva  
+```json
+{
+  "erro": "Notificacao nao encontrada"
+}
+```
+---
 
-##### Resposta:
-- **Sucesso (200 OK ou 204 No Content)**  
-- **Erro (404 Not Found)**
+### Endpoint 5: Atualizar notificação
 
+**Método:** `PUT`
+**URL:** `/notificacoes/{id}`
+
+**Parâmetros:**
+
+| Parâmetro | Descrição |
+|---|---|
+| `id` | Identificador da notificação |
+| corpo da requisição | Campos atualizados |
+
+**Resposta:**
+
+*Sucesso (`200 OK`)*
+
+```json
+{
+  "id_notificacao": 10,
+  "corpo": "Mensagem atualizada",
+  "tipo": "Lembrete",
+  "lida": true,
+  "id_assinatura": 11,
+  "id_reserva": 21,
+  "criado_em": "2026-04-12"
+}
+```
+
+*Erro (`404 Not Found` ou `422 Unprocessable Entity`)*
+
+```json
+{
+  "erro": "Notificacao nao encontrada"
+}
+```
+---
+
+### Endpoint 6: Marcar notificação como lida
+
+**Método:** `PATCH`
+**URL:** `/notificacoes/{id}/lida`
+
+**Parâmetros:**
+
+| Parâmetro | Descrição |
+|---|---|
+| `id` | Identificador da notificação |
+
+**Resposta:**
+
+*Sucesso (`200 OK`)*
+
+```json
+{
+  "id_notificacao": 10,
+  "corpo": "Alerta inicial para testes",
+  "tipo": "Alerta",
+  "lida": true,
+  "id_assinatura": 10,
+  "id_reserva": 20,
+  "criado_em": "2026-04-12"
+}
+```
+
+*Erro (`404 Not Found`)*
+
+```json
+{
+  "erro": "Notificacao nao encontrada"
+}
+```
+
+---
+
+### Endpoint 7: Excluir notificação
+
+**Método:** `DELETE`
+**URL:** `/notificacoes/{id}`
+
+**Parâmetros:**
+
+| Parâmetro | Descrição |
+|---|---|
+| `id` | Identificador da notificação |
+
+**Resposta:**
+
+*Sucesso (`200 OK`)*
+
+```json
+{
+  "mensagem": "Notificacao removida com sucesso"
+}
+```
+
+*Erro (`404 Not Found`)*
+
+```json
+{
+  "erro": "Notificacao nao encontrada"
+}
+```
 ---
 
 ### API Avaliação - Victor
@@ -989,9 +1145,9 @@ Cancela a assinatura ativa do usuário.
 
 ### API Notificação - Lucas
 
-#### Teste API reservas
+#### Teste API Notificação
 
-&nbsp; &nbsp; &nbsp; A estratégia de testes da API de Reservas foi focada em verificar se os endpoints funcionam corretamente nas operações principais do sistema, como criar, listar, buscar, editar e excluir reservas. Também foram testados os filtros disponíveis, como busca por cliente, sala e data, além da validação de respostas em casos de erro.
+&nbsp; &nbsp; &nbsp; A estratégia de testes da API de Notificações foi focada em verificar se os endpoints funcionam corretamente nas operações principais do sistema, como criar, listar, buscar, atualizar, marcar como lida e excluir notificações. Também foram testados os filtros disponíveis, como busca por tipo, status de leitura, assinatura e reserva, além da validação de respostas em casos de erro.
 
 &nbsp; &nbsp; &nbsp; Os testes foram realizados principalmente com o Postman, utilizando uma collection com requisições para cada endpoint e scripts de validação para conferir os códigos de status HTTP e os dados retornados pela API. Dessa forma, foi possível validar na prática se a comunicação entre a API, as regras de negócio e o banco de dados estava funcionando corretamente.
 
