@@ -72,7 +72,182 @@ No desenvolvimento específico da API de Reservas, serão utilizadas as tecnolog
 
 <!-- [Liste os principais endpoints da API, incluindo as operações disponíveis, os parâmetros esperados e as respostas retornadas.] -->
 
-### API Reservas - Carlos
+### API Reserva - Carlos
+
+#### Endpoint 1 - Criar Reserva
+
+- Método: POST
+- URL: /api/reserva
+- Parâmetros:
+  - Nenhum parâmetro
+- Corpo da requisição:
+  ```
+  {
+    "id_cliente": 1,
+    "id_sala": 2,
+    "entrada": "2026-04-12T11:00:00",
+    "saida": "2026-04-12T16:00:00"
+  }
+  ```
+- Resposta:
+  - Sucesso (201 CREATED)
+    ```
+    {
+      "id_reserva": 8,
+      "id_cliente": 1,
+      "id_sala": 2,
+      "status": "Confirmada",
+      "feito_em": "2026-04-11",
+      "entrada": "2026-04-12T11:00:00-03:00",
+      "saida": "2026-04-12T16:00:00-03:00"
+    }
+    ```
+  - Erro (400 BAD REQUEST)
+    ```
+    {
+      "detail": "Mensagem de erro depende do tipo de falha teve nos dados de entrada. Exemplo: A entrada fornecida é igual ou após a saída."
+    }
+    ```
+  - Erro (404 NOT FOUND)
+    ```
+    {
+      "detail": "Mensagem de erro depende do tipo de dado que não foi encontrado. Exemplo: O id 1 de cliente enviado não existe."
+    }
+    ```
+  - Erro (409 CONFLICT)
+    ```
+    {
+      "detail": "A sala já está ocupada neste horário"
+    }
+    ```
+    
+#### Endpoint 2 - Listar Reservas
+
+- Método: GET
+- URL: /api/reserva
+- Parâmetros:
+  - id_cliente: int, null
+  - id_sala: int, null
+  - inicio: date, null
+  - fim: date, null
+  - offset: int, default = 0
+  - limit: int, default = 10, máximo = 100
+- Corpo da requisição:
+  - Nenhum corpo
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    [
+      {
+        "id_reserva": 0,
+        "id_cliente": 0,
+        "id_sala": 0,
+        "status": "Confirmada",
+        "feito_em": "2026-04-11",
+        "entrada": "2026-04-12T11:00:00-03:00",
+        "saida": "2026-04-12T16:00:00-03:00"
+      }
+    ]
+    ```
+  - Erro (400 BAD REQUEST)
+    ```
+    {
+      "detail": "Se fornecer inicio ou fim, deve fornecer o outro."
+    }
+    ```
+
+#### Endpoint 3 - Listar uma reserva
+
+- Método: GET
+- URL: /api/reserva/{id}
+- Parâmetros:
+  - id: int
+- Corpo da requisição:
+  - Nenhum corpo
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "id_reserva": 0,
+      "id_cliente": 0,
+      "id_sala": 0,
+      "status": "Confirmada",
+      "feito_em": "2026-04-11",
+      "entrada": "2026-04-12T11:00:00-03:00",
+      "saida": "2026-04-12T16:00:00-03:00"
+    }
+    ```
+  - Erro (404 NOT FOUND)
+    ```
+    {
+      "detail": "O id 'X' de reservas enviado não existe."
+    }
+    ```
+
+#### Endpoint 4 - Editar uma reserva
+
+- Método: PATCH
+- URL: /api/reserva/{id}
+- Parâmetros:
+  - id: int
+- Corpo da requisição:
+  ```
+  {
+    "id_cliente": 0,
+    "id_sala": 0,
+    "status": "Finalizada",
+    "entrada": "2026-04-12T11:00:00",
+    "saida": "2026-04-12T16:00:00"
+  }
+  ```
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "id_reserva": 0,
+      "id_cliente": 0,
+      "id_sala": 0,
+      "status": "Confirmada",
+      "feito_em": "2026-04-11",
+      "entrada": "2026-04-12T11:00:00-03:00",
+      "saida": "2026-04-12T16:00:00-03:00"
+    }
+    ```
+  - Erro (400 BAD REQUEST)
+    ```
+    {
+      "detail": "Mensagem de erro depende do tipo de falha teve nos dados de entrada. Exemplo: A entrada fornecida é igual ou após a saída."
+    }
+    ```
+  - Erro (404 NOT FOUND)
+    ```
+    {
+      "detail": "Mensagem de erro depende do tipo de dado que não foi encontrado. Exemplo: O id 1 de cliente enviado não existe."
+    }
+    ```
+  - Erro (409 CONFLICT)
+    ```
+    {
+      "detail": "A sala já está ocupada neste horário"
+    }
+    ```
+
+#### Endpoint 5 - Deletar uma reserva
+
+- Método: DELETE
+- URL: /api/reserva/{id}
+- Parâmetros:
+  - id: int
+- Corpo da requisição:
+  - Nenhum corpo
+- Resposta:
+  - Sucesso (204 NO CONTENT)
+  - Erro (404 NOT FOUND)
+    ```
+    {
+      "detail": "O id 'X' de reservas enviado não existe."
+    }
+    ```
 
 ### API Usuário - Laura
 
