@@ -12,16 +12,16 @@
 | CarlosSouzaPUCSI      |         5 |        13 |        13 |          4 |              5 |               4 |
 | LapucP                |         9 |       230 |        62 |          3 |              9 |               3 |
 | LauraLosque           |         7 |        17 |        20 |          2 |              7 |               2 |
-| Luana-Horta           |        26 |       177 |       101 |          5 |             26 |               5 |
+| Luana-Horta           |        27 |       184 |       108 |          5 |             27 |               5 |
 | Victor Samuel         |         2 |        11 |         7 |          2 |              2 |               2 |
 | Yan Oyama             |         6 |        19 |        20 |          2 |              6 |               2 |
-| github-actions[bot]   |        46 |       246 |       241 |          3 |             46 |               1 |
+| github-actions[bot]   |        47 |       256 |       251 |          3 |             47 |               1 |
 | github-classroom[bot] |         1 |      2152 |         0 |         45 |              1 |              13 |
 
 
 ## 📅 Contribuições Semanais (Todo o Semestre)
 
-**2026-04-05**: Carlos Souza: 2, LapucP: 2, Luana-Horta: 2, github-actions[bot]: 6
+**2026-04-05**: Carlos Souza: 2, LapucP: 2, Luana-Horta: 3, github-actions[bot]: 7
 
 **2026-03-29**: github-actions[bot]: 1
 
