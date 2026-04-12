@@ -10,10 +10,11 @@ Aqui estão algumas etapas importantes que devem ser consideradas no planejament
 
 O primeiro passo é definir os objetivos da sua API. O que você espera alcançar com ela? Você quer que ela seja usada por clientes externos ou apenas por aplicações internas? Quais são os recursos que a API deve fornecer?
 
-[Inclua os objetivos da sua api.]
+- O principal objetivo da API é fornecer uma estrutura organizada, escalável e centralizada para gerenciamento do sistema de coworking da Axis Work, permitindo que aplicações possam acessar, manipular e integrar dados de forma segura e eficiente. Facilitando a comunicação entre frontend e backend e assegurando a integridade e consistência das informações, evitando erros e conflitos no armazenamento dos dados. Ela também é projetada para atender uso interno e externo.
 
-&nbsp; &nbsp; &nbsp; O objetivo principal da API de reservas é ser utilizada pelo front-end para criar reservas tratando limpeza dos dados e regras de negócio, ler reservas específicas ou várias reservas utilizando filtros diversos, como cliente, sala e data. Além de editar uma reserva escolhida, tendo a possibilidade de editar apenas o necessário da reserva. E por fim, excluir uma reserva específica do registro.
+&nbsp; &nbsp; &nbsp; -  O objetivo principal da API de reservas é ser utilizada pelo front-end para criar reservas tratando limpeza dos dados e regras de negócio, ler reservas específicas ou várias reservas utilizando filtros diversos, como cliente, sala e data. Além de editar uma reserva escolhida, tendo a possibilidade de editar apenas o necessário da reserva. E por fim, excluir uma reserva específica do registro.
 
+&nbsp; &nbsp; &nbsp; - O objetivo do módulo de Salas da API é gerenciar o cadastro de salas, permitindo operações de criação, leitura, atualização e exclusão, além de manter a integridade e organização das informações relacionadas a elas.
 
 ## Modelagem da Aplicação
 
