@@ -401,7 +401,9 @@ No desenvolvimento específico da API de Reservas, serão utilizadas as tecnolog
 ## Considerações de Segurança
 
 &nbsp; &nbsp; &nbsp; Durante o desenvolvimento da aplicação distribuída para a Axis Work, a segurança se tornou um aspecto essencial e crítico, pois envolve múltiplos serviços, comunicação em rede e acesso a dados sensíveis. Principalmente quando a aplicação envolve uma empresa que faz reserva de salas para coworking, onde os dados financeiros e sensíveis tanto de clientes quanto da própria instituição são manipulados com frequência.
+
 &nbsp; &nbsp; &nbsp; Dessa forma, a autenticação foi implementada com o objetivo de garantir que apenas usuários devidamente autorizados tenham acesso ao sistema. Para isso, foram utilizados tokens seguros, como o JWT (JSON Web Token), assegurando uma validação confiável das requisições. Além disso, a autorização foi aplicada nas rotas protegidas da aplicação, restringindo o acesso a determinados recursos apenas a usuários autenticados e com permissão adequada. Também foram adotadas medidas de proteção no armazenamento de dados sensíveis, como o uso de hash para senhas, evitando que informações sigilosas sejam armazenadas em formato legível no banco de dados.
+
 &nbsp; &nbsp; &nbsp; Adicionalmente, a aplicação utiliza o ORM SQLAlchemy, o que contribui diretamente para a segurança ao prevenir ataques de SQL Injection, uma vez que as interações com o banco de dados são realizadas por meio de consultas parametrizadas, reduzindo significativamente riscos de manipulação maliciosa das queries. Por fim, também é essencial proteger a aplicação contra ataques comuns, como SQL Injection, sendo mitigado pelo uso de ORM e consultas parametrizadas, reforçando ainda mais a integridade e segurança do sistema.
 
 
