@@ -62,7 +62,7 @@
 
 - API Avaliação - .NET 8, ASP.NET Core Web API, Entity Framework Core, Npgsql, Swagger;
 
-- API Financeiro - 
+- API Financeiro - Python 3, FastAPI, Uvicorn, SQLite, SQLAlchemy, Pydantic, Swagger UI, Visual Studio Code;
 
 <!-- ## API Reservas
 
