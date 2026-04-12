@@ -1,6 +1,6 @@
 # 📊 Relatório de Contribuições do Projeto
 
-**Última atualização:** 12/04/2026 20:06
+**Última atualização:** 12/04/2026 20:10
 
 ---
 
@@ -8,20 +8,20 @@
 
 | Aluno                 |   Commits |   Linhas+ |   Linhas- |   Arquivos |   Docs Commits |   Docs Arquivos |
 |-----------------------|-----------|-----------|-----------|------------|----------------|-----------------|
-| Carlos Souza          |        16 |       367 |       288 |         30 |             14 |              15 |
+| Carlos Souza          |        17 |       379 |       294 |         30 |             15 |              15 |
 | CarlosSouzaPUCSI      |         5 |        13 |        13 |          4 |              5 |               4 |
 | LapucP                |         9 |       230 |        62 |          3 |              9 |               3 |
 | LauraLosque           |         8 |        18 |        21 |          3 |              8 |               3 |
 | Luana-Horta           |        35 |       199 |       121 |          5 |             35 |               5 |
 | Victor Samuel         |         5 |       230 |        15 |          3 |              5 |               3 |
 | Yan Oyama             |        14 |        76 |        26 |          7 |              7 |               3 |
-| github-actions[bot]   |        65 |       335 |       330 |          3 |             65 |               1 |
+| github-actions[bot]   |        66 |       339 |       334 |          3 |             66 |               1 |
 | github-classroom[bot] |         1 |      2152 |         0 |         45 |              1 |              13 |
 
 
 ## 📅 Contribuições Semanais (Todo o Semestre)
 
-**2026-04-05**: Carlos Souza: 6, LapucP: 2, LauraLosque: 1, Luana-Horta: 11, Victor Samuel: 3, Yan Oyama: 8, github-actions[bot]: 25
+**2026-04-05**: Carlos Souza: 7, LapucP: 2, LauraLosque: 1, Luana-Horta: 11, Victor Samuel: 3, Yan Oyama: 8, github-actions[bot]: 26
 
 **2026-03-29**: github-actions[bot]: 1
 
