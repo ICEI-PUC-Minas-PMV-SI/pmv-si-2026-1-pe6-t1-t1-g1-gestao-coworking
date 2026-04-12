@@ -10,11 +10,9 @@
 | 02/03 - 08/03 | Arquitetura de Software Distribuído - Unidade 3 | ✅ | Arrumar o tamanho do logotipo e fazer um texto para o catálogo de serviços | Realizei o ajuste do tamanho do logotipo e desenvolvi um breve texto descritivo para o catálogo de serviços. |
 | 09/03 - 15/03 | APIs e Web Services - Unidade 1 | ✅ | Participar de reunião de separação das tarefas. Participar da reunião de exposição das idéias e levar esboço da tabela relacionada à minha feature de cliente. | Participei da reunião de separação das tarefas. Participei da reunião de exposição das idéias e levei o esboço da tabela relacionada à minha feature de cliente. |
 | 16/03 - 22/03 | APIs e Web Services - Unidade 2 | ✅ | Começar a fazer o backend em Python no Visual Studio Code | Comecei a aprender Python para fazer o backend no Visual Studio Code |
-| 23/03 - 29/03 | APIs e Web Services - Unidade 2 | ✅ | Continuar o backend em Python no Visual Studio Code e aprender a usar o Swagger UI e o Postman.
- | Continuei o backend em Python no Visual Studio Code e usei o Swagger UI e o Postman para aprender a fazer os testes.|
+| 23/03 - 29/03 | APIs e Web Services - Unidade 2 | ✅ | Continuar o backend em Python no Visual Studio Code e aprender a usar o Swagger UI e o Postman.| Continuei o backend em Python no Visual Studio Code e usei o Swagger UI e o Postman para aprender a fazer os testes.|
 | 30/03 - 05/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 1 | ✅ | Começar os testes da parte de cliente/usuario no Postman.  | Comecei a realizar os testes no Postman e acabei fazendo no Swaagger. |
-| 06/04 - 12/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 2 | ✅ | Fazer a minha parte da documentação, subir os codigos para o github
- | Atualizei a minha parte da documentação e subi os codigos para o github |
+| 06/04 - 12/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 2 | ✅ | Fazer a minha parte da documentação, subir os codigos para o github. | Atualizei a minha parte da documentação e subi os codigos para o github |
 | 13/04 - 19/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 1 | ⬜ |  |  |
 | 20/04 - 26/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 2 | ⬜ |  |  |
 | 27/04 - 03/05 | Desenvolvimento de Aplicações Móveis - Unidade 1 | ⬜ |  |  |
