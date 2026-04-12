@@ -1,20 +1,28 @@
 # APIs e Web Services
 
-O planejamento de uma aplicação de APIS Web é uma etapa fundamental para o sucesso do projeto. Ao planejar adequadamente, você pode evitar muitos problemas e garantir que a sua API seja segura, escalável e eficiente.
+<!-- O planejamento de uma aplicação de APIS Web é uma etapa fundamental para o sucesso do projeto. Ao planejar adequadamente, você pode evitar muitos problemas e garantir que a sua API seja segura, escalável e eficiente.
 
 Aqui estão algumas etapas importantes que devem ser consideradas no planejamento de uma aplicação de APIS Web.
 
-[Inclua uma breve descrição do projeto.]
+[Inclua uma breve descrição do projeto.] -->
 
 ## Objetivos da API
 
-O primeiro passo é definir os objetivos da sua API. O que você espera alcançar com ela? Você quer que ela seja usada por clientes externos ou apenas por aplicações internas? Quais são os recursos que a API deve fornecer?
+<!-- O primeiro passo é definir os objetivos da sua API. O que você espera alcançar com ela? Você quer que ela seja usada por clientes externos ou apenas por aplicações internas? Quais são os recursos que a API deve fornecer? -->
 
 - O principal objetivo da API é fornecer uma estrutura organizada, escalável e centralizada para gerenciamento do sistema de coworking da Axis Work, permitindo que aplicações possam acessar, manipular e integrar dados de forma segura e eficiente. Facilitando a comunicação entre frontend e backend e assegurando a integridade e consistência das informações, evitando erros e conflitos no armazenamento dos dados. Ela também é projetada para atender uso interno e externo.
 
 -  O objetivo principal da API de reservas é ser utilizada pelo front-end para criar reservas tratando limpeza dos dados e regras de negócio, ler reservas específicas ou várias reservas utilizando filtros diversos, como cliente, sala e data. Além de editar uma reserva escolhida, tendo a possibilidade de editar apenas o necessário da reserva. E por fim, excluir uma reserva específica do registro.
 
+- <!-- Laura - Usuários -->
+
 - O objetivo do módulo de Salas da API é gerenciar o cadastro de salas, permitindo operações de criação, leitura, atualização e exclusão, além de manter a integridade e organização das informações relacionadas a elas.
+
+- <!-- Lucas - Notificação -->
+
+- <!-- Victor - Notificação -->
+
+- <!-- Yan - Notificação -->
 
 ## Modelagem da Aplicação
 
@@ -55,13 +63,25 @@ O primeiro passo é definir os objetivos da sua API. O que você espera alcança
 
 - API Financeiro - 
 
-## API Reservas
+<!-- ## API Reservas
 
-No desenvolvimento específico da API de Reservas, serão utilizadas as tecnologias Python 3.14.3 como linguagem principal, FastAPI como framework para construção da API, SQLModel e SQLAlchemy para modelagem e manipulação dos dados no banco, Pydantic para validação e serialização dos dados recebidos e retornados, e Swagger UI para documentação e testes interativos dos endpoints.
+No desenvolvimento específico da API de Reservas, serão utilizadas as tecnologias Python 3.14.3 como linguagem principal, FastAPI como framework para construção da API, SQLModel e SQLAlchemy para modelagem e manipulação dos dados no banco, Pydantic para validação e serialização dos dados recebidos e retornados, e Swagger UI para documentação e testes interativos dos endpoints. -->
 
 ## API Endpoints
 
-[Liste os principais endpoints da API, incluindo as operações disponíveis, os parâmetros esperados e as respostas retornadas.]
+<!-- [Liste os principais endpoints da API, incluindo as operações disponíveis, os parâmetros esperados e as respostas retornadas.] -->
+
+### API Reservas - Carlos
+
+### API Usuário - Laura
+
+### API Sala - Luana
+
+### API Notificação - Lucas
+
+### API Avaliação - Victor
+
+### API Financeiro - Yan
 
 ## Endpoint 1: Criar reserva
 

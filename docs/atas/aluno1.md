@@ -12,7 +12,7 @@
 | 18/03 - 24/03 | APIs e Web Services - Unidade 2 | ✅ | Começar a escrever o código do back-end relacionado a reservas | Fiz as rotas de criação e leitura de todas as reservas e de uma reserva específica, mas ainda utilizando uma lista dentro do código, sem conexão com o banco. |
 | 25/03 - 31/03 | APIs e Web Services - Unidade 2 | ✅ | Terminar a estrutura inicial do código usando a lista | Terminei as rotas que faltavam e todas as dependencias para a execução das rotas, ainda usando apenas uma lista |
 | 01/04 - 07/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 1 | ✅ | Fazer o código conectando no banco, transformando todas as rotas modeladas para acessar e usar o banco. | Fiz as dependências necessárias para conectar no banco e refiz todas as rotas para que ficassem em estado de uso e conectando com o banco. |
-| 08/04 - 12/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 2 | ✅ | Fazer a documentação e registrar no github: objetivos, tecnologias, endpoints e testes relacioandos à minha API.  |  |
+| 08/04 - 12/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 2 | ✅ | Fazer a documentação e registrar no github: objetivos, tecnologias, endpoints e testes relacioandos à minha API.  | Fiz a documentação referente à minha API e a seção de modelagem e de implantação. Além do upload dos arquivos da api na pasta SRC. |
 | 13/04 - 19/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 1 | ⬜ |  |  |
 | 20/04 - 26/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 2 | ⬜ |  |  |
 | 27/04 - 03/05 | Desenvolvimento de Aplicações Móveis - Unidade 1 | ⬜ |  |  |
