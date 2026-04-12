@@ -45,7 +45,7 @@ O primeiro passo é definir os objetivos da sua API. O que você espera alcança
 
 - API Reservas - Python 3.14.3, FastAPI, SQLModel, SQLAlchemy, Pydantic, SwaggerUI;
 
-- API Usuário - 
+- API Usuário - Python 3.14.3, FastAPI, SQLite, SQLAlchemy, Swagger UI, Postman
 
 - API Salas - C#, ASP.NET Core, Entity Framework Core, JSON, DTOs, HATEOAS, SQL Server, SwaggerUI, Insomnia;
 
