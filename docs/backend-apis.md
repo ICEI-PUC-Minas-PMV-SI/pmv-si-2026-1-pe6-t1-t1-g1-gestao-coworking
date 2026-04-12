@@ -1144,11 +1144,11 @@ Cancela a assinatura ativa do usuário.
     ```
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
-    <img width="500" height="500" alt="Teste 1 Imagem 1" src="/img/CarlosTE1I1.png" />
+    <img width="500" height="500" alt="Teste 1 Imagem 1" src="img/CarlosTE1I1.png" />
 
     &nbsp; &nbsp; &nbsp; Confirmação com o pgAdmin:
 
-    <img width="500" height="500" alt="Teste 1 Imagem 2" src="/img/CarlosTE1I2.png" />
+    <img width="500" height="500" alt="Teste 1 Imagem 2" src="img/CarlosTE1I2.png" />
 
   - Erro (400 BAD REQUEST)
 
@@ -1163,7 +1163,7 @@ Cancela a assinatura ativa do usuário.
     ```
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
    
-    <img width="500" height="500" alt="Teste 1 Imagem 3" src="/img/CarlosTE1I3.png" />
+    <img width="500" height="500" alt="Teste 1 Imagem 3" src="img/CarlosTE1I3.png" />
 
   - Erro (404 NOT FOUND)
 
@@ -1178,7 +1178,7 @@ Cancela a assinatura ativa do usuário.
     ```
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
     
-    <img width="500" height="500" alt="Teste 1 Imagem 4" src="/img/CarlosTE1I4.png" />
+    <img width="500" height="500" alt="Teste 1 Imagem 4" src="img/CarlosTE1I4.png" />
 
   - Erro (409 CONFLICT)
   
@@ -1193,7 +1193,7 @@ Cancela a assinatura ativa do usuário.
     ```
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
    
-    <img width="500" height="500" alt="Teste 1 Imagem 5" src="/img/CarlosTE1I5.png" />
+    <img width="500" height="500" alt="Teste 1 Imagem 5" src="img/CarlosTE1I5.png" />
 
 #### Teste Endpoint 2 - Listar reservas
 - Resultado Esperado:
@@ -1202,14 +1202,14 @@ Cancela a assinatura ativa do usuário.
     &nbsp; &nbsp; &nbsp; Executei sem informar nenhum parâmetro, isso significa que deve listar todas as reservas existentes.
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
-    <img width="500" height="500" alt="Teste 2 Imagem 1" src="/img/CarlosTE2I1.png" />
+    <img width="500" height="500" alt="Teste 2 Imagem 1" src="img/CarlosTE2I1.png" />
 
   - Erro (400 BAD REQUEST)
   
     &nbsp; &nbsp; &nbsp; Executei informando apenas o parâmetro de inicio como "   2026-04-11 ".
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
-    <img width="500" height="500" alt="Teste 2 Imagem 2" src="/img/CarlosTE2I1.png" />
+    <img width="500" height="500" alt="Teste 2 Imagem 2" src="img/CarlosTE2I1.png" />
 
 #### Teste Endpoint 3 - Listar reservas por ID
 - Resultado Esperado:
@@ -1218,14 +1218,14 @@ Cancela a assinatura ativa do usuário.
     &nbsp; &nbsp; &nbsp; Executei informando o parâmetro de id como "9".
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
-    <img width="500" height="500" alt="Teste 3 Imagem 1" src="/img/CarlosTE3I1.png" />
+    <img width="500" height="500" alt="Teste 3 Imagem 1" src="img/CarlosTE3I1.png" />
 
   - Erro (404 NOT FOUND)
   
     &nbsp; &nbsp; &nbsp; Executei informando o parâmetro de id como "8".
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
-    <img width="500" height="500" alt="Teste 3 Imagem 2" src="/img/CarlosTE3I1.png" />
+    <img width="500" height="500" alt="Teste 3 Imagem 2" src="img/CarlosTE3I1.png" />
 
 #### Teste Endpoint 4 - Editar reservas por ID
 - Resultado Esperado:
@@ -1239,11 +1239,11 @@ Cancela a assinatura ativa do usuário.
     ```
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
-    <img width="500" height="500" alt="Teste 4 Imagem 1" src="/img/CarlosTE4I1.png" />
+    <img width="500" height="500" alt="Teste 4 Imagem 1" src="img/CarlosTE4I1.png" />
 
     &nbsp; &nbsp; &nbsp; Confirmação com o pgAdmin:
   
-    <img width="500" height="500" alt="Teste 4 Imagem 2" src="/img/CarlosTE4I2.png" />
+    <img width="500" height="500" alt="Teste 4 Imagem 2" src="img/CarlosTE4I2.png" />
 
   - Erro (400 BAD REQUEST)
 
@@ -1256,7 +1256,7 @@ Cancela a assinatura ativa do usuário.
     ```
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
-    <img width="500" height="500" alt="Teste 4 Imagem 3" src="/img/CarlosTE1I4.png" />
+    <img width="500" height="500" alt="Teste 4 Imagem 3" src="img/CarlosTE1I4.png" />
 
   - Erro (404 NOT FOUND)
 
@@ -1268,7 +1268,7 @@ Cancela a assinatura ativa do usuário.
     ```
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
    
-    <img width="500" height="500" alt="Teste 4 Imagem 4" src="/img/CarlosTE4I4.png" />
+    <img width="500" height="500" alt="Teste 4 Imagem 4" src="img/CarlosTE4I4.png" />
  
   -  Erro (409 CONFLICT)
 
@@ -1281,7 +1281,7 @@ Cancela a assinatura ativa do usuário.
     ```
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
    
-    <img width="500" height="500" alt="Teste 4 Imagem 5" src="/img/CarlosTE4I5.png" />
+    <img width="500" height="500" alt="Teste 4 Imagem 5" src="img/CarlosTE4I5.png" />
 
 #### Teste Endpoint 5 - Deletar reservas por ID
 - Resultado Esperado:
@@ -1290,14 +1290,14 @@ Cancela a assinatura ativa do usuário.
     &nbsp; &nbsp; &nbsp; Executei com parâmetro id "9".
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
-    <img width="500" height="500" alt="Teste 5 Imagem 1" src="/img/CarlosTE5I1.png" />
+    <img width="500" height="500" alt="Teste 5 Imagem 1" src="img/CarlosTE5I1.png" />
 
   - Erro (400 BAD REQUEST)
   
     &nbsp; &nbsp; &nbsp; Executei com parâmetro id "5".
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
-    <img width="500" height="500" alt="Teste 5 Imagem 2" src="/img/CarlosTE5I1.png" />
+    <img width="500" height="500" alt="Teste 5 Imagem 2" src="img/CarlosTE5I1.png" />
 
 ### API Usuário - Laura
 
