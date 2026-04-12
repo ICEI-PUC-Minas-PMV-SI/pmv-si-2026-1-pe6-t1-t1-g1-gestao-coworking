@@ -409,13 +409,19 @@ No desenvolvimento específico da API de Reservas, serão utilizadas as tecnolog
 
 ## Implantação
 
-<!-- [Instruções para implantar a aplicação distribuída em um ambiente de produção.]
+&nbsp; &nbsp; &nbsp; A aplicação será totalmente hospedada na Amazon Web Services (AWS), seguindo o modelo de arquitetura distribuída para garantir escalabilidade e evitar ao máximo pontos únicos de falha. A implantação será realizada de forma manual diretamente pela interface da AWS, e nas instâncias EC2 via SSH, permitindo controle total sobre as configurações do ambiente.
 
-1. Defina os requisitos de hardware e software necessários para implantar a aplicação em um ambiente de produção.
-2. Escolha uma plataforma de hospedagem adequada, como um provedor de nuvem ou um servidor dedicado.
-3. Configure o ambiente de implantação, incluindo a instalação de dependências e configuração de variáveis de ambiente.
-4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
-5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção. -->
+### Componentes de Infraestrutura
+
+&nbsp; &nbsp; &nbsp; Para ser a camada de entrada e gerenciamento, será utilizado o AWS API Gateway, que servirá como interface única para o frontend realizando o roteamento inteligente para as instâncias necessárias. Para gerenciar essa entrega e servir como intermediário entre o API Gateway e a instância propriamente dita, será utilizado um Application Load Balancer (ALB) que, ao atuar como essa ponte, distribui as requisições e fornece um DNS estável, mascarando uma mudança de IP das instâncias, e permitindo um Blue/Green deployment ao tornar possível conectar uma nova versão junto com as antigas e trocar o tráfego entre elas quando necessário, diminuindo assim ao máximo o downtime de manutenções e atualizações. 
+
+&nbsp; &nbsp; &nbsp; Cada API será implantada em uma instância AWS EC2 individual isolada. Essa estratégia permite isolar erros, e manter funcionando as outras APIs caso aconteça falhas em uma instância, além de proporcionar manutenções ou upgrades de hardware individuais respeitando as necessidades de cada API. Todas as instâncias se conectarão a um banco de dados PostgreSQL que estará em uma instância da AWS RDS, que nos garantirá isolamento dos dados e backups automáticos. Esta estrutura de apenas um banco de dados é o que garantirá também a comunicação entre as APIs já que todas beberão da mesma fonte de dados.
+
+### Rede e Segurança
+
+&nbsp; &nbsp; &nbsp; Em um ambiente real o ideal é que toda a aplicação resida em uma rede virtual privada (VPC) isolada, subdividida em sub-redes públicas, onde estará o ALB, e privada, onde estarão as EC2 e o RDS. Mas para este projeto, a fim de reduzir os custos e ficar dentro do budget do laboratório, será usada a VPC padrão do laboratório, que tem apenas sub-redes públicas. Com isso é necessário configurar bem os grupos de segurança para não ficarmos desprotegidos de conexões indesejadas pela internet.
+
+&nbsp; &nbsp; &nbsp; Serão aplicadas regras de firewall rigorosas pelo grupo de segurança de cada instância, onde o banco de dados só aceitará conexões das nossas instâncias EC2, e elas, por sua vez, aceitarão apenas tráfego do balanceador de carga, e de ips específicos dos desenvolvedores nos momentos que for necessário acesso via SSH para configuração.
 
 ## Testes
 
