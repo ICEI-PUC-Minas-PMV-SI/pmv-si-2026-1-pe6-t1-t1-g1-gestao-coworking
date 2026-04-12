@@ -548,7 +548,7 @@ http://localhost:5067/api/salas
 ```
 
 ##### Resposta:
-- **Sucesso (200 OK)**  
+- **Sucesso (204 No Content)**  
 - **Erro (400 Bad Request)**
 ```json
 {
@@ -568,7 +568,7 @@ http://localhost:5067/api/salas
 - `id`: identificador único da sala
 
 ##### Resposta:
-- **Sucesso (200 OK)**  
+- **Sucesso (204 No Content)**  
 - **Erro (404 Not Found)**
 ```json
 {
