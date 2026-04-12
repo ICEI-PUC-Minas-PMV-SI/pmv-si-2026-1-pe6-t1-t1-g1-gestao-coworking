@@ -15,7 +15,7 @@
 
 -  O objetivo principal da API de reservas é ser utilizada pelo front-end para criar reservas tratando limpeza dos dados e regras de negócio, ler reservas específicas ou várias reservas utilizando filtros diversos, como cliente, sala e data. Além de editar uma reserva escolhida, tendo a possibilidade de editar apenas o necessário da reserva. E por fim, excluir uma reserva específica do registro.
 
-- <!-- Laura - Usuários -->
+- O objetivo principal da API de Usuários é gerenciar o cadastro, consulta, atualização e exclusão de usuários do sistema da empresa de coworking, garantindo a validação dos dados como CPF, telefone e senha. Além disso, a API também auxilia na autenticação e controle de acesso, assegurando a segurança das informações e o uso adequado do sistema.
 
 - O objetivo do módulo de Salas da API é gerenciar o cadastro de salas, permitindo operações de criação, leitura, atualização e exclusão, além de manter a integridade e organização das informações relacionadas a elas.
 
@@ -252,6 +252,157 @@ No desenvolvimento específico da API de Reservas, serão utilizadas as tecnolog
 ---
 
 ### API Usuário - Laura
+
+#### Endpoint 1 - Criar Usuário
+
+- Método: POST
+- URL: /api/clientes
+- Parâmetros:
+  - Nenhum parâmetro
+- Corpo da requisição:
+  ```
+  {
+    "nome": "Cliente1",
+     "cpf": "12345678910",
+     "email": "cliente1@email.com",
+     "telefone": "111111",
+     "senha": "9999"
+  }
+  ```
+- Resposta:
+  - Sucesso (200 CREATED)
+    ```
+    {
+      "nome": "Cliente1",
+       "cpf": "12345678910",
+       "telefone": "111111",
+       "senha": "$2b$12$9AW3BmQKYFevsQ2zzBEP/uswmYJiiKPJkD1xECBzm4vBhjywtee16",
+       "id": 1,
+       "email": "cliente1@email.com"
+    }
+    ```
+
+  - Erro (404 NOT FOUND)
+    ```
+    {
+       "erro": "CPF já cadastrado"
+    }
+    ```
+    
+    
+#### Endpoint 2 - Listar Clientes
+
+- Método: GET
+- URL: /api/reserva
+- Parâmetros:
+  - Nenhum parâmetro
+- Corpo da requisição:
+  - Nenhum corpo
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    [
+      {
+        "nome": "Cliente1",
+        "cpf": "12345678910",
+        "telefone": "111111",
+        "senha": "$2b$12$9AW3BmQKYFevsQ2zzBEP/uswmYJiiKPJkD1xECBzm4vBhjywtee16",
+        "id": 1,
+        "email": "cliente1@email.com"
+      }
+    ]
+    ```
+  - Erro (401 Unauthorized)
+    ```
+    {
+      "detail": "Not authenticated"
+    }
+    ```
+      - Erro (401 Unauthorized)
+    ```
+    {
+      "detail": "Token inválido"
+    }
+    ```
+
+#### Endpoint 3 - Buscar clientes
+
+- Método: GET
+- URL: /api/clientes{id}
+- Parâmetros:
+  - Nenhum parâmetro
+- Corpo da requisição:
+  - Nenhum corpo
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "nome": "Cliente1",
+      "cpf": "12345678910",
+      "telefone": "111111",
+      "senha": "$2b$12$9AW3BmQKYFevsQ2zzBEP/uswmYJiiKPJkD1xECBzm4vBhjywtee16",
+      "id": 1,
+      "email": "cliente1@email.com"
+    }
+    ```
+  - Erro (404 NOT FOUND)
+    ```
+    {
+      "erro": "Cliente não encontrado"
+    }
+    ```
+
+#### Endpoint 4 - Atualizar cliente
+
+- Método: PUT
+- URL: /api/clientes{id}
+- Parâmetros:
+  - Nenhum parâmetro
+- Corpo da requisição:
+  ```
+  {
+    "nome": "Cliente1",
+    "cpf": "12345678910",
+    "telefone": "111111",
+    "senha": "$2b$12$9AW3BmQKYFevsQ2zzBEP/uswmYJiiKPJkD1xECBzm4vBhjywtee16",
+    "email": "cliente1@email.com"
+  }
+  ```
+- Resposta:
+  - Sucesso (200 OK)
+    ```
+    {
+      "nome": "Cliente1 Novo",,
+      "cpf": "12345678910",
+      "telefone": "999999",
+      "senha": "$2b$12$9AW3BmQKYFevsQ2zzBEP/uswmYJiiKPJkD1xECBzm4vBhjywtee16",
+      "email": "clientenovo1@email.com"
+    }
+    ```
+    
+  - Erro (404 NOT FOUND)
+    ```
+    {
+      "Erro": "Cliente não encontrado"
+    }
+    ```
+
+#### Endpoint 5 - Deletar um cliente
+
+- Método: DELETE
+- URL: /api/clientes/{id}
+- Parâmetros:
+  - Nenhum parâmetro
+- Corpo da requisição:
+  - Nenhum corpo
+- Resposta:
+  - Sucesso (204 NO CONTENT)
+  - Erro (404 NOT FOUND)
+    ```
+    {
+      "erro": "Cliente não encontrado"
+    }
+    ```
 
 ---
 
