@@ -1,10 +1,11 @@
 # APIs e Web Services
 
-<!-- O planejamento de uma aplicação de APIS Web é uma etapa fundamental para o sucesso do projeto. Ao planejar adequadamente, você pode evitar muitos problemas e garantir que a sua API seja segura, escalável e eficiente.
+- O projeto tem como objetivo o desenvolvimento de um sistema de gestão para ambientes de coworking, com foco na automação de processos que, em muitos casos, ainda são realizados de forma manual ou por meio de ferramentas genéricas. Observa-se que diversos espaços enfrentam dificuldades na gestão de reservas, clientes e, principalmente, na administração financeira, o que contribui para a ocorrência de erros operacionais, retrabalho e desorganização das informações, impactando diretamente na eficiência dos processos e no controle do negócio.
 
-Aqui estão algumas etapas importantes que devem ser consideradas no planejamento de uma aplicação de APIS Web.
+- Nesse contexto, a solução proposta, denominada Axis Work, foi estruturada como uma aplicação web modular, na qual cada componente do sistema é responsável por uma funcionalidade específica, como gerenciamento de clientes, reservas, salas e financeiro. Essa abordagem favorece a organização do sistema, além de facilitar sua manutenção e evolução.
+  
+- Dessa forma, o projeto busca promover maior eficiência e controle na gestão de coworkings, reduzindo falhas operacionais e otimizando o gerenciamento das informações. Além disso, a arquitetura adotada possibilita futuras expansões, como integração com banco de dados mais robusto e desenvolvimento de interfaces mais completas, tornando a solução mais preparada para aplicação em cenários reais.
 
-[Inclua uma breve descrição do projeto.] -->
 
 ## Objetivos da API
 
