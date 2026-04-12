@@ -461,7 +461,6 @@ http://localhost:5067/api/salas
   "traceId": "00-733afb2038bea017ead3ed725e8a20c4-f447817269eaacfa-00"
 }
 ```
----
 
 #### Endpoint 2: Listar Salas
 
@@ -495,7 +494,6 @@ http://localhost:5067/api/salas
   }
 ]
 ```
----
 
 #### Endpoint 3: Buscar Salas por ID
 
@@ -521,7 +519,6 @@ http://localhost:5067/api/salas
   "traceId": "00-c429c5c811e3a57b65c31f3226183589-2399955f3128ea7d-00"
 }
 ```
----
 
 #### Endpoint 4: Atualizar Sala
 
@@ -561,7 +558,6 @@ http://localhost:5067/api/salas
   "traceId": "00-d9af16ff8a579e7c39b2a2929cd36898-3a38fa06c18d51fd-00"
 }
 ```
----
 
 #### Endpoint 5: Excluir Sala
 
@@ -582,7 +578,6 @@ http://localhost:5067/api/salas
   "traceId": "00-5f350565bb46a936f5d9712d0ffc0d97-53322bd7b0907bfc-00"
 }
 ```
-
 ---
 
 ### API Notificação - Lucas
