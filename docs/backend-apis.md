@@ -9,8 +9,6 @@
 
 ## Objetivos da API
 
-<!-- O primeiro passo é definir os objetivos da sua API. O que você espera alcançar com ela? Você quer que ela seja usada por clientes externos ou apenas por aplicações internas? Quais são os recursos que a API deve fornecer? -->
-
 - O principal objetivo da API é fornecer uma estrutura organizada, escalável e centralizada para gerenciamento do sistema de coworking da Axis Work, permitindo que aplicações possam acessar, manipular e integrar dados de forma segura e eficiente. Facilitando a comunicação entre frontend e backend e assegurando a integridade e consistência das informações, evitando erros e conflitos no armazenamento dos dados. Ela também é projetada para atender uso interno e externo.
 
 -  O objetivo principal da API de reservas é ser utilizada pelo front-end para criar reservas tratando limpeza dos dados e regras de negócio, ler reservas específicas ou várias reservas utilizando filtros diversos, como cliente, sala e data. Além de editar uma reserva escolhida, tendo a possibilidade de editar apenas o necessário da reserva. E por fim, excluir uma reserva específica do registro.
@@ -589,9 +587,7 @@ http://localhost:5067/api/salas
 
 ### API Notificação - Lucas
 
-## API Endpoints
-
-### Endpoint 1: Listar tipos de notificação
+#### Endpoint 1: Listar tipos de notificação
 
 **Método:** `GET`
 **URL:** `/notificacoes/tipos`
@@ -611,9 +607,8 @@ http://localhost:5067/api/salas
   ]
 }
 ```
----
 
-### Endpoint 2: Criar notificação
+#### Endpoint 2: Criar notificação
 
 **Método:** `POST`
 **URL:** `/notificacoes`
@@ -657,9 +652,8 @@ http://localhost:5067/api/salas
   ]
 }
 ```
----
 
-### Endpoint 3: Listar notificações
+#### Endpoint 3: Listar notificações
 
 **Método:** `GET`
 **URL:** `/notificacoes`
@@ -704,9 +698,8 @@ http://localhost:5067/api/salas
   ]
 }
 ```
----
 
-### Endpoint 4: Buscar notificação por ID
+#### Endpoint 4: Buscar notificação por ID
 
 **Método:** `GET`
 **URL:** `/notificacoes/{id}`
@@ -740,9 +733,8 @@ http://localhost:5067/api/salas
   "erro": "Notificacao nao encontrada"
 }
 ```
----
 
-### Endpoint 5: Atualizar notificação
+#### Endpoint 5: Atualizar notificação
 
 **Método:** `PUT`
 **URL:** `/notificacoes/{id}`
@@ -777,9 +769,8 @@ http://localhost:5067/api/salas
   "erro": "Notificacao nao encontrada"
 }
 ```
----
 
-### Endpoint 6: Marcar notificação como lida
+#### Endpoint 6: Marcar notificação como lida
 
 **Método:** `PATCH`
 **URL:** `/notificacoes/{id}/lida`
@@ -814,9 +805,7 @@ http://localhost:5067/api/salas
 }
 ```
 
----
-
-### Endpoint 7: Excluir notificação
+#### Endpoint 7: Excluir notificação
 
 **Método:** `DELETE`
 **URL:** `/notificacoes/{id}`
@@ -1110,7 +1099,6 @@ Cancela a assinatura ativa do usuário.
 
 &nbsp; &nbsp; &nbsp; Adicionalmente, a aplicação utiliza o ORM SQLAlchemy, o que contribui diretamente para a segurança ao prevenir ataques de SQL Injection, uma vez que as interações com o banco de dados são realizadas por meio de consultas parametrizadas, reduzindo significativamente riscos de manipulação maliciosa das queries. Por fim, também é essencial proteger a aplicação contra ataques comuns, como SQL Injection, sendo mitigado pelo uso de ORM e consultas parametrizadas, reforçando ainda mais a integridade e segurança do sistema.
 
-
 ## Implantação
 
 &nbsp; &nbsp; &nbsp; A aplicação será totalmente hospedada na Amazon Web Services (AWS), seguindo o modelo de arquitetura distribuída para garantir escalabilidade e evitar ao máximo pontos únicos de falha. A implantação será realizada de forma manual diretamente pela interface da AWS, e nas instâncias EC2 via SSH, permitindo controle total sobre as configurações do ambiente.
@@ -1127,17 +1115,189 @@ Cancela a assinatura ativa do usuário.
 
 &nbsp; &nbsp; &nbsp; Serão aplicadas regras de firewall rigorosas pelo grupo de segurança de cada instância, onde o banco de dados só aceitará conexões das nossas instâncias EC2, e elas, por sua vez, aceitarão apenas tráfego do balanceador de carga, e de ips específicos dos desenvolvedores nos momentos que for necessário acesso via SSH para configuração.
 
+### Requisitos de Hardware e Software
+
+&nbsp; &nbsp; &nbsp; Os requisitos de hardware para as instâncias EC2 é o tipo de máquina t3.micro, 8GB de armazenamento. Já para o banco teremos 20GB de armazenamento.
+
+&nbsp; &nbsp; &nbsp; Para o software foram definidos como requisitos o sistema operacional Ubuntu Server 24.04 LTS, banco AWS RDS com PostgreSQL, AWS API Gateway, ALB da EC2, AWS EC2. Além do .NET, node.js, fastapi e uvicorn.
+
 ## Testes
 
-<!-- [Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
-
-1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
-2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
-3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
-4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste. -->
-
 ### API Reserva - Carlos
+
+&nbsp; &nbsp; &nbsp; A estratégia de testes adotada para essa API consistiu na validação de cada rota de forma manual a fim de testar todas as possibilidades de respostas previstas nos endpoints.
+
+&nbsp; &nbsp; &nbsp; As ferramentas utilizadas para atingir este objetivo foram o SwaggerUI e o pgAdmin 4.
+
+#### Teste Endpoint 1 - Criar reserva
+- Resultado Esperado:
+  - Sucesso (201 CREATED)
+  
+    &nbsp; &nbsp; &nbsp; Executei a rota com o corpo a seguir:
+    ```
+    {
+      "id_cliente": 1,
+      "id_sala": 2,
+      "entrada": "2026-04-12T11:00:00",
+      "saida": "2026-04-12T16:00:00"
+    }
+    ```
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Teste 1 Imagem 1" src="/img/CarlosTE1I1.png" />
+
+    &nbsp; &nbsp; &nbsp; Confirmação com o pgAdmin:
+
+    <img width="500" height="500" alt="Teste 1 Imagem 2" src="/img/CarlosTE1I2.png" />
+
+  - Erro (400 BAD REQUEST)
+
+    &nbsp; &nbsp; &nbsp; Executei a rota com o corpo a seguir:
+    ```
+    {
+      "id_cliente": 1,
+      "id_sala": 2,
+      "entrada": "2026-04-12T11:00:00",
+      "saida": "2026-04-12T10:00:00"
+    }
+    ```
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+   
+    <img width="500" height="500" alt="Teste 1 Imagem 3" src="/img/CarlosTE1I3.png" />
+
+  - Erro (404 NOT FOUND)
+
+    &nbsp; &nbsp; &nbsp; Executei a rota com o corpo a seguir:
+    ```
+    {
+      "id_cliente": 0,
+      "id_sala": 2,
+      "entrada": "2026-04-12T11:00:00",
+      "saida": "2026-04-12T12:00:00"
+    }
+    ```
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+    
+    <img width="500" height="500" alt="Teste 1 Imagem 4" src="/img/CarlosTE1I4.png" />
+
+  - Erro (409 CONFLICT)
+  
+    &nbsp; &nbsp; &nbsp; Executei a rota com o corpo a seguir:
+    ```
+    {
+      "id_cliente": 1,
+      "id_sala": 2,
+      "entrada": "2026-04-12T11:00:00",
+      "saida": "2026-04-12T10:00:00"
+    }
+    ```
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+   
+    <img width="500" height="500" alt="Teste 1 Imagem 5" src="/img/CarlosTE1I5.png" />
+
+#### Teste Endpoint 2 - Listar reservas
+- Resultado Esperado:
+  - Sucesso (200 OK)
+
+    &nbsp; &nbsp; &nbsp; Executei sem informar nenhum parâmetro, isso significa que deve listar todas as reservas existentes.
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Teste 2 Imagem 1" src="/img/CarlosTE2I1.png" />
+
+  - Erro (400 BAD REQUEST)
+  
+    &nbsp; &nbsp; &nbsp; Executei informando apenas o parâmetro de inicio como "   2026-04-11 ".
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Teste 2 Imagem 2" src="/img/CarlosTE2I1.png" />
+
+#### Teste Endpoint 3 - Listar reservas por ID
+- Resultado Esperado:
+  - Sucesso (200 OK)
+
+    &nbsp; &nbsp; &nbsp; Executei informando o parâmetro de id como "9".
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Teste 3 Imagem 1" src="/img/CarlosTE3I1.png" />
+
+  - Erro (404 NOT FOUND)
+  
+    &nbsp; &nbsp; &nbsp; Executei informando o parâmetro de id como "8".
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Teste 3 Imagem 2" src="/img/CarlosTE3I1.png" />
+
+#### Teste Endpoint 4 - Editar reservas por ID
+- Resultado Esperado:
+  - Sucesso (200 OK)
+  
+    &nbsp; &nbsp; &nbsp; Executei a rota com o parâmetro id "9" e corpo a seguir:
+    ```
+    {
+      "status": "Cancelada"
+    }
+    ```
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Teste 4 Imagem 1" src="/img/CarlosTE4I1.png" />
+
+    &nbsp; &nbsp; &nbsp; Confirmação com o pgAdmin:
+  
+    <img width="500" height="500" alt="Teste 4 Imagem 2" src="/img/CarlosTE4I2.png" />
+
+  - Erro (400 BAD REQUEST)
+
+    &nbsp; &nbsp; &nbsp; Executei a rota com o parâmetro id "9" e corpo a seguir:
+    ```
+    {
+      "entrada": "2026-04-12T12:09:00",
+      "saida": "2026-04-12T13:00:00"
+    }
+    ```
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Teste 4 Imagem 3" src="/img/CarlosTE1I4.png" />
+
+  - Erro (404 NOT FOUND)
+
+    &nbsp; &nbsp; &nbsp; Executei a rota com o parâmetro id "9" e corpo a seguir:
+    ```
+    {
+      "id_cliente": 2
+    }
+    ```
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+   
+    <img width="500" height="500" alt="Teste 4 Imagem 4" src="/img/CarlosTE4I4.png" />
+ 
+  -  Erro (409 CONFLICT)
+
+    &nbsp; &nbsp; &nbsp; Criei uma nova reserva e executei a rota com o parâmetro id "9" e corpo a seguir:
+    ```
+    {
+      "entrada": "2026-04-12T10:00:00",
+      "saida": "2026-04-12T11:00:00"
+    }
+    ```
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+   
+    <img width="500" height="500" alt="Teste 4 Imagem 5" src="/img/CarlosTE4I5.png" />
+
+#### Teste Endpoint 5 - Deletar reservas por ID
+- Resultado Esperado:
+  - Sucesso (204 NO CONTENT)
+
+    &nbsp; &nbsp; &nbsp; Executei com parâmetro id "9".
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Teste 5 Imagem 1" src="/img/CarlosTE5I1.png" />
+
+  - Erro (400 BAD REQUEST)
+  
+    &nbsp; &nbsp; &nbsp; Executei com parâmetro id "5".
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Teste 5 Imagem 2" src="/img/CarlosTE5I1.png" />
 
 ### API Usuário - Laura
 
@@ -1177,3 +1337,6 @@ A imagem apresenta a execução da collection de testes negativos da API de Noti
 
 SOUZA, Kleber Jacques Ferreira de. Microfundamento: APIs e Web Services. Aula ministrada online na Pontifícia Universidade Católica de Minas Gerais, Belo Horizonte, 2026.
 
+https://pydantic.dev/docs/validation/latest/get-started/
+
+https://fastapi.tiangolo.com/tutorial/#advanced-user-guide
