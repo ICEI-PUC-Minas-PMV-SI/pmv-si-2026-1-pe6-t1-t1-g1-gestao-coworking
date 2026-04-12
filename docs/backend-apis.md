@@ -467,11 +467,11 @@ No desenvolvimento específico da API de Reservas, serão utilizadas as tecnolog
 ---
 
 ### API Financeiro - Yan
-1. Listar planos (Página comercial)
+. Listar planos
 
 Método: GET
 Rota:
-
+</> Bash
 /planos
 
 Descrição:
@@ -505,7 +505,7 @@ Rota:
 /assinatura/{plano_id}
 
 Descrição:
-Permite alterar o plano atual do usuário.
+Permite alterar o plano atualmente contratado.
 
 5. Cancelar assinatura
 
@@ -516,32 +516,6 @@ Rota:
 
 Descrição:
 Cancela a assinatura ativa do usuário.
-
-6. Criar plano
-
-Método: POST
-Rota:
-
-/planos
-
-Descrição:
-Permite cadastrar um novo plano no sistema.
-
-7. Atualizar plano
-
-Método: PUT
-Rota:
-
-/planos/{id}
-
-8. Deletar plano
-
-Método: DELETE
-Rota:
-
-/planos/{id}
-
----
 
 ## Endpoint 1: Criar reserva
 
