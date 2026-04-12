@@ -23,7 +23,7 @@
 
 - <!-- Victor - Notificação -->
 
-- <!-- Yan - Notificação -->
+- A API Financeiro é responsável por gerenciar planos e assinaturas dos usuários, permitindo contratar, alterar e cancelar serviços dentro do sistema.
 
 ## Modelagem da Aplicação
 
@@ -467,6 +467,79 @@ No desenvolvimento específico da API de Reservas, serão utilizadas as tecnolog
 ---
 
 ### API Financeiro - Yan
+1. Listar planos (Página comercial)
+
+Método: GET
+Rota:
+
+/planos
+
+Descrição:
+Retorna todos os planos disponíveis para contratação.
+
+2. Assinar plano
+
+Método: POST
+Rota:
+
+/assinar/{plano_id}
+
+Descrição:
+Realiza a assinatura de um plano para o usuário.
+
+3. Ver assinatura atual
+
+Método: GET
+Rota:
+
+/assinatura
+
+Descrição:
+Retorna a assinatura ativa do usuário.
+
+4. Alterar plano
+
+Método: PUT
+Rota:
+
+/assinatura/{plano_id}
+
+Descrição:
+Permite alterar o plano atual do usuário.
+
+5. Cancelar assinatura
+
+Método: DELETE
+Rota:
+
+/assinatura
+
+Descrição:
+Cancela a assinatura ativa do usuário.
+
+6. Criar plano
+
+Método: POST
+Rota:
+
+/planos
+
+Descrição:
+Permite cadastrar um novo plano no sistema.
+
+7. Atualizar plano
+
+Método: PUT
+Rota:
+
+/planos/{id}
+
+8. Deletar plano
+
+Método: DELETE
+Rota:
+
+/planos/{id}
 
 ---
 
