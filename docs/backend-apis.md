@@ -471,7 +471,7 @@ No desenvolvimento específico da API de Reservas, serão utilizadas as tecnolog
 
 Método: GET
 Rota:
-</> Bash
+
 /planos
 
 Descrição:
