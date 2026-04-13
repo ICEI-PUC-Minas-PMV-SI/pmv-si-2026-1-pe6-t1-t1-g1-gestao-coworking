@@ -834,7 +834,7 @@ http://localhost:5067/api/salas
 
 ### API Avaliação - Victor
 
-#### 1. Listar todas as avaliacoes
+#### Endpoint 1 - Listar todas as Avaliação
 
 **Metodo:** `GET`
 
@@ -848,32 +848,37 @@ http://localhost:5067/api/salas
 
 - retorna todas as avaliacoes;
 - ordena do maior `idAvaliacao` para o menor;
-- usa `AsNoTracking()` para leitura mais leve no Entity Framework.
+- usa `AsNoTracking()` para leitura mais leve.
 
-**Resposta de sucesso:** `200 OK`
+**Retornos possiveis:**
 
-**Exemplo de resposta:**
+- `200 OK`: lista retornada com sucesso.
+- `408 Request Timeout`: a consulta demorou mais do que o esperado.
+- `503 Service Unavailable`: falha transitoria ao acessar o PostgreSQL.
+- `500 Internal Server Error`: erro inesperado durante a consulta.
+
+**Exemplo de sucesso:**
 
 ```json
 [
   {
     "idAvaliacao": 2,
-    "idReserva": 15,
-    "nota": 10,
-    "corpo": "Excelente atendimento.",
-    "criadoEm": "2026-04-09"
+    "idReserva": 2,
+    "nota": 8,
+    "corpo": "Boa experiencia e atendimento rapido.",
+    "criadoEm": "2026-04-13"
   },
   {
     "idAvaliacao": 1,
-    "idReserva": 10,
-    "nota": 8,
-    "corpo": "Boa experiencia.",
-    "criadoEm": "2026-04-08"
+    "idReserva": 1,
+    "nota": 9,
+    "corpo": "Ambiente muito bom e organizado.",
+    "criadoEm": "2026-04-12"
   }
 ]
 ```
 
-#### 2. Buscar avaliacao por ID
+#### Endpoint 2 - Buscar Avaliação por ID
 
 **Metodo:** `GET`
 
@@ -889,19 +894,39 @@ http://localhost:5067/api/salas
 /api/avaliacao/1
 ```
 
-**Resposta de sucesso:** `200 OK`
+**Retornos possiveis:**
+
+- `200 OK`: avaliacao encontrada.
+- `400 Bad Request`: ID menor ou igual a zero.
+- `404 Not Found`: avaliacao nao encontrada.
+- `408 Request Timeout`: a consulta demorou mais do que o esperado.
+- `503 Service Unavailable`: falha transitoria ao acessar o PostgreSQL.
+- `500 Internal Server Error`: erro inesperado durante a consulta.
+
+**Exemplo de sucesso:**
 
 ```json
 {
   "idAvaliacao": 1,
-  "idReserva": 10,
+  "idReserva": 1,
   "nota": 9,
   "corpo": "Ambiente muito bom e organizado.",
-  "criadoEm": "2026-04-09"
+  "criadoEm": "2026-04-12"
 }
 ```
 
-**Se nao encontrar o registro:** `404 Not Found`
+**Exemplo de `400 Bad Request`:**
+
+```json
+{
+  "type": "about:blank",
+  "title": "Identificador invalido.",
+  "status": 400,
+  "detail": "O ID da avaliacao deve ser maior que zero."
+}
+```
+
+**Exemplo de `404 Not Found`:**
 
 ```json
 {
@@ -909,7 +934,7 @@ http://localhost:5067/api/salas
 }
 ```
 
-#### 3. Criar nova avaliacao
+## 3. Criar nova avaliacao
 
 **Metodo:** `POST`
 
@@ -934,9 +959,18 @@ http://localhost:5067/api/salas
 
 - cria um novo registro na tabela `avaliacao`;
 - o `idAvaliacao` e gerado automaticamente pelo banco;
-- retorna o recurso criado com a localizacao do endpoint de consulta individual.
+- retorna o recurso criado com localizacao para consulta posterior.
 
-**Resposta de sucesso:** `201 Created`
+**Retornos possiveis:**
+
+- `201 Created`: avaliacao criada com sucesso.
+- `400 Bad Request`: dados invalidos, como nota fora do intervalo permitido.
+- `409 Conflict`: conflito ao salvar, como chave estrangeira invalida ou conflito de concorrencia.
+- `408 Request Timeout`: a gravacao demorou mais do que o esperado.
+- `503 Service Unavailable`: falha transitoria ao gravar no PostgreSQL.
+- `500 Internal Server Error`: erro inesperado durante a criacao.
+
+**Exemplo de sucesso:**
 
 ```json
 {
@@ -948,7 +982,29 @@ http://localhost:5067/api/salas
 }
 ```
 
-#### 4. Atualizar avaliacao
+**Exemplo de `400 Bad Request`:**
+
+```json
+{
+  "type": "about:blank",
+  "title": "Dados invalidos.",
+  "status": 400,
+  "detail": "Os dados enviados violam uma regra de validacao do banco."
+}
+```
+
+**Exemplo de `409 Conflict`:**
+
+```json
+{
+  "type": "about:blank",
+  "title": "Conflito ao salvar.",
+  "status": 409,
+  "detail": "O recurso informado referencia uma reserva inexistente ou invalida."
+}
+```
+
+#### Endpoint 3 - Atualizar Avaliação
 
 **Metodo:** `PUT`
 
@@ -978,10 +1034,20 @@ http://localhost:5067/api/salas
 **Comportamento:**
 
 - busca a avaliacao pelo ID;
-- se existir, substitui os valores atuais pelos enviados no body;
-- salva as alteracoes no banco.
+- se existir, substitui os campos pelos valores enviados;
+- persiste as alteracoes no banco.
 
-**Resposta de sucesso:** `200 OK`
+**Retornos possiveis:**
+
+- `200 OK`: avaliacao atualizada com sucesso.
+- `400 Bad Request`: ID invalido ou dados inconsistentes.
+- `404 Not Found`: avaliacao nao encontrada.
+- `409 Conflict`: conflito ao salvar ou concorrencia.
+- `408 Request Timeout`: a gravacao demorou mais do que o esperado.
+- `503 Service Unavailable`: falha transitoria ao atualizar no PostgreSQL.
+- `500 Internal Server Error`: erro inesperado durante a atualizacao.
+
+**Exemplo de sucesso:**
 
 ```json
 {
@@ -993,15 +1059,18 @@ http://localhost:5067/api/salas
 }
 ```
 
-**Se nao encontrar o registro:** `404 Not Found`
+**Exemplo de `409 Conflict`:**
 
 ```json
 {
-  "message": "Avaliacao nao encontrada."
+  "type": "about:blank",
+  "title": "Conflito ao salvar.",
+  "status": 409,
+  "detail": "O recurso informado referencia uma reserva inexistente ou invalida."
 }
 ```
 
-#### 5. Remover avaliacao
+#### Endpoint 4 - Remover Avaliação
 
 **Metodo:** `DELETE`
 
@@ -1023,15 +1092,27 @@ http://localhost:5067/api/salas
 - se existir, remove o registro;
 - retorna sucesso sem corpo.
 
-**Resposta de sucesso:** `204 No Content`
+**Retornos possiveis:**
 
-**Se nao encontrar o registro:** `404 Not Found`
+- `204 No Content`: avaliacao removida com sucesso.
+- `400 Bad Request`: ID invalido.
+- `404 Not Found`: avaliacao nao encontrada.
+- `409 Conflict`: conflito ao excluir.
+- `408 Request Timeout`: a exclusao demorou mais do que o esperado.
+- `503 Service Unavailable`: falha transitoria ao excluir no PostgreSQL.
+- `500 Internal Server Error`: erro inesperado durante a exclusao.
+
+**Exemplo de `408 Request Timeout`:**
 
 ```json
 {
-  "message": "Avaliacao nao encontrada."
+  "type": "about:blank",
+  "title": "Tempo limite excedido.",
+  "status": 408,
+  "detail": "A operacao de exclusao demorou mais do que o esperado."
 }
 ```
+
 
 ---
 
@@ -1465,6 +1546,72 @@ A imagem apresenta a execução da collection de testes negativos da API de Noti
 ---
 
 ### API Avaliação - Victor
+
+&nbsp; &nbsp; &nbsp; Os testes da API de Avaliação foram focados em verificar se os endpoints funcionam corretamente nas operações principais do sistema, como criar, listar, buscar, atualizar e excluir avaliações. Os testes foram realizados utilizando o Swagger UI também foi usado como apoio para visualizar e conferir os endpoints implementados e para facilitar na hora de inserir os Requerimentos de corpo no JSON. Dessa forma, foi possível validar na prática se a comunicação entre a API, as regras de negócio e o banco de dados estavam funcionando corretamente. 
+
+Segue abaixo os resultados dos testes utilizando os enpoints da API:
+
+#### Endpoint 1 - Listar todas as Avaliação
+
+Para esse endpoint foi-se utilizado somente a url normal da API sem nenhum parametro.
+
+##### Resultado:
+
+<img width="1895" height="983" alt="Image" src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking/blob/main/docs/img/AV_GetAll.png" />
+
+
+#### Endpoint 2 - Buscar Avaliação por ID
+
+Para esse metodo foram utilizadas as foram especificado somente o ID da avaliação a ser pesquisada dentro API, para o testes, foi utilizado o ID 2 como parametro de busca
+
+##### Resultado:
+
+<img width="1895" height="983" alt="Image" src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking/blob/main/docs/img/Av_GetByID.png" />
+
+#### Endpoint 3 - Criar nova avaliacao
+
+Para esse metodo foi utilizado o seguinte corpo para a inserção de uma nova avaliação:
+
+```
+  {
+    "idAvaliacao": 1,
+    "idReserva": 1,
+    "nota": 9,
+    "corpo": "Ambiente muito bom e organizado.",
+    "criadoEm": "2026-04-12"
+  }
+```
+
+##### Resultado:
+
+<img width="1895" height="983" alt="Image" src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking/blob/main/docs/img/Av_PostWorking.png" />
+
+
+
+#### Endpoint 3 - Atualizar Avaliação
+
+Para alterar uma avaliação já existente, foi-se utilizado o seguinte escopo para que se pudesse ser obtido a alteração dos valores da avaliação já existente
+
+```
+{
+  "idAvaliacao": 8,
+  "idReserva": 1,
+  "nota": 10,
+  "corpo": "Avaliação atualizada",
+  "criadoEm": "2026-04-11"
+}
+```
+
+##### Resultado:
+<img width="1895" height="983" alt="Image" src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking/blob/main/docs/img/Av_PutResponseOK.png" />
+
+
+#### Endpoint 5 - Remover Avaliação
+
+Para remover uma avaliação, foi nescessario a inserção do parametro do ID pelo qual deveria ser removida a Avaliação, ao ser especificado corretamente, o seguinte resultado irá aparecer:
+
+##### Resultado:
+<img width="1895" height="983" alt="Image" src="https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking/blob/main/docs/img/Av_DeleteOK.png" />
 
 ---
 
