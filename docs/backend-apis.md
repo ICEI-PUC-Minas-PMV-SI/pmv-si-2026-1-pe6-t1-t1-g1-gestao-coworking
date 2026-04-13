@@ -1293,6 +1293,7 @@ Cancela a assinatura ativa do usuário.
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
     <img width="500" height="500" alt="Teste 5 Imagem 2" src="img/CarlosTE5I1.png" />
+---
 
 ### API Usuário - Laura
 
@@ -1335,6 +1336,7 @@ Cancela a assinatura ativa do usuário.
   - Sucesso (200 OK)
 
     &nbsp; &nbsp; &nbsp; Executei sem informar nenhum parâmetro, isso significa que deve listar todas as reservas existentes.
+
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
     <img width="500" height="500" alt="Captura de tela 2026-04-12 202054" src="https://github.com/user-attachments/assets/00c1ac4c-070c-47da-bf6b-96aed331f039" />
@@ -1344,6 +1346,7 @@ Cancela a assinatura ativa do usuário.
   - Sucesso (200 OK)
 
     &nbsp; &nbsp; &nbsp; Executei informando o parâmetro de id como "1".
+
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
     <img width="500" height="500" alt="Captura de tela 2026-04-12 202237" src="https://github.com/user-attachments/assets/2199b956-7635-41cf-afb0-6867a4a8b606" />
@@ -1351,6 +1354,7 @@ Cancela a assinatura ativa do usuário.
   - Erro (404 NOT FOUND)
   
     &nbsp; &nbsp; &nbsp; Executei informando o parâmetro de id como "9".
+
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
     <img width="500" height="500" alt="Captura de tela 2026-04-12 202303" src="https://github.com/user-attachments/assets/9c6cc290-1c27-45e2-a0b7-ef2f0693071b" />
@@ -1378,6 +1382,7 @@ Cancela a assinatura ativa do usuário.
   - Sucesso (200 NO CONTENT)
 
     &nbsp; &nbsp; &nbsp; Executei com parâmetro id "1".
+
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
     <img width="500" height="500" alt="Captura de tela 2026-04-12 202530" src="https://github.com/user-attachments/assets/5cb39543-1806-4591-bd12-40d4af6e0eca" />
@@ -1386,9 +1391,11 @@ Cancela a assinatura ativa do usuário.
   - Erro (200 BAD REQUEST)
   
     &nbsp; &nbsp; &nbsp; Executei com parâmetro id "1".
+
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
     <img width="500" height="500" alt="Captura de tela 2026-04-12 202551" src="https://github.com/user-attachments/assets/efb3e288-3b8c-4f68-b0d8-054ab37d0fa3" />
+---
 
 ### API Sala - Luana
 &nbsp; &nbsp; &nbsp; Os testes da API de Salas foram focados em verificar se os endpoints funcionam corretamente nas operações principais do sistema, como criar, listar, buscar, atualizar e excluir salas. Os testes foram realizados principalmente com o Insomnia, utilizando requisições para cada endpoint e scripts de validação para conferir os códigos de status HTTP e os dados retornados pela API. Dessa forma, foi possível validar na prática se a comunicação entre a API, as regras de negócio e o banco de dados estavam funcionando corretamente. O Swagger UI também foi usado como apoio para visualizar e conferir os endpoints implementados e para facilitar na hora de inserir os Requerimentos de corpo no JSON.
@@ -1422,8 +1429,7 @@ Cancela a assinatura ativa do usuário.
 <img width="1353" height="712" alt="Teste DELETE Final Insomnia" src="https://github.com/user-attachments/assets/0dda9550-32f7-45e7-9e20-946250f8da92" />
 
 &nbsp; &nbsp; &nbsp; A imagem mostra a execução de uma requisição DELETE no Insomnia para a URL /api/salas/10. O retorno foi 204 No Content, indicando que a sala foi removida com sucesso. O teste confirma que o endpoint de exclusão está funcionando corretamente.
-
-
+---
 
 ### API Notificação - Lucas
 
@@ -1450,6 +1456,7 @@ A imagem complementa os resultados dos testes da API de Notificações, apresent
 <img width="1895" height="983" alt="Image" src="https://github.com/user-attachments/assets/4a563da3-dc5b-4761-a2ff-00b7eef851ce" />
 
 A imagem apresenta a execução da collection de testes negativos da API de Notificações no Postman, utilizando o ambiente local da aplicação. Observa-se que todos os 18 testes foram aprovados, sem falhas ou erros, com tempo médio de resposta de 22 ms. Os cenários executados incluíram validações de requisições inválidas, como envio de dados obrigatórios ausentes, uso de tipo inválido e busca por recurso inexistente, confirmando que a API trata corretamente situações de erro e retorna os códigos HTTP esperados, como 422 Unprocessable Entity e 404 Not Found.
+---
 
 ### API Avaliação - Victor
 
