@@ -1476,13 +1476,19 @@ Foi executada uma requisição POST no endpoint /assinar/{plano_id}, informando 
 
 #### Teste de consulta de assinatura
 
+![test3](https://github.com/user-attachments/assets/13fadd4f-2708-4055-8391-91d5f15f0391)
+
 Em seguida, foi realizada uma requisição GET para o endpoint /assinatura, com o objetivo de verificar a assinatura ativa. O retorno apresentou os dados da assinatura recém-criada, confirmando a persistência das informações.
 
 #### Teste de alteração de plano
 
+![test4](https://github.com/user-attachments/assets/930ca85e-27c9-4db7-b31c-a40edc40ce8f)
+
 Foi executada uma requisição PUT no endpoint /assinatura/{plano_id}, informando um novo plano. A resposta da API confirmou a atualização, evidenciando que a alteração da assinatura foi realizada com sucesso.
 
 #### Teste de cancelamento de assinatura
+
+![test5](https://github.com/user-attachments/assets/4499d586-a604-4b0c-aa58-d2bea322f87b)
 
 Por fim, foi realizada uma requisição DELETE no endpoint /assinatura. A API retornou mensagem de confirmação de cancelamento, e uma nova consulta ao endpoint /assinatura indicou que não havia mais assinatura ativa.
 
