@@ -1296,6 +1296,100 @@ Cancela a assinatura ativa do usuário.
 
 ### API Usuário - Laura
 
+#### Teste Endpoint 1 - Criar cliente
+- Resultado Esperado:
+  - Sucesso (200 CREATED)
+  
+    &nbsp; &nbsp; &nbsp; Executei a rota com o corpo a seguir:
+   ``` 
+  {
+      "nome": "Amora",
+      "cpf": "123456789",
+      "email": "cliente1@email.com",
+      "telefone": "111111",
+      "senha": "99999"
+  }
+   ``` 
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+   <img width="500" height="500" alt="Captura de tela 2026-04-12 201601" src="https://github.com/user-attachments/assets/4b662a76-f3fc-4f09-92a0-12ae25f66d77" />
+
+  - Erro (200 BAD REQUEST)
+
+    &nbsp; &nbsp; &nbsp; Executei a rota com o corpo a seguir:
+    ```
+    {
+        "nome": "Amora",
+        "cpf": "123456789",
+        "email": "cliente1@email.com",
+         "telefone": "111111",
+         "senha": "99999"
+    }
+    ```
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+   
+    <img width="500" height="500" alt="Captura de tela 2026-04-12 201738" src="https://github.com/user-attachments/assets/350d0f1c-cbe0-4993-bc83-1aa01e4f0649" />
+
+    #### Teste Endpoint 2 - Listar reservas
+- Resultado Esperado:
+  - Sucesso (200 OK)
+
+    &nbsp; &nbsp; &nbsp; Executei sem informar nenhum parâmetro, isso significa que deve listar todas as reservas existentes.
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Captura de tela 2026-04-12 202054" src="https://github.com/user-attachments/assets/00c1ac4c-070c-47da-bf6b-96aed331f039" />
+
+#### Teste Endpoint 3 - Buscar cliente por ID
+- Resultado Esperado:
+  - Sucesso (200 OK)
+
+    &nbsp; &nbsp; &nbsp; Executei informando o parâmetro de id como "1".
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Captura de tela 2026-04-12 202237" src="https://github.com/user-attachments/assets/2199b956-7635-41cf-afb0-6867a4a8b606" />
+
+  - Erro (404 NOT FOUND)
+  
+    &nbsp; &nbsp; &nbsp; Executei informando o parâmetro de id como "9".
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Captura de tela 2026-04-12 202303" src="https://github.com/user-attachments/assets/9c6cc290-1c27-45e2-a0b7-ef2f0693071b" />
+
+    #### Teste Endpoint 4 - Editar cliente
+- Resultado Esperado:
+  - Sucesso (200 CREATED)
+  
+    &nbsp; &nbsp; &nbsp; Executei a rota com o corpo a seguir:
+    ```
+     {
+      "telefone": "111112",
+      "email": "cliente2novo@email.com",
+      "nome": "Isis Novo",
+      "cpf": "12345678",
+      "senha": "$2b$12$R1PLT40i2Y8fMuvG6//9jeGeLZj/jcUMBH/tgI5HqSKv3elzNpcoO"
+    }
+    ```
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Captura de tela 2026-04-12 202450" src="https://github.com/user-attachments/assets/d469f8b1-e207-4fcf-81af-6984fac3c773" />
+
+#### Teste Endpoint 5 - Deletar cliente por ID
+- Resultado Esperado:
+  - Sucesso (200 NO CONTENT)
+
+    &nbsp; &nbsp; &nbsp; Executei com parâmetro id "1".
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Captura de tela 2026-04-12 202530" src="https://github.com/user-attachments/assets/5cb39543-1806-4591-bd12-40d4af6e0eca" />
+
+
+  - Erro (200 BAD REQUEST)
+  
+    &nbsp; &nbsp; &nbsp; Executei com parâmetro id "1".
+    &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
+  
+    <img width="500" height="500" alt="Captura de tela 2026-04-12 202551" src="https://github.com/user-attachments/assets/efb3e288-3b8c-4f68-b0d8-054ab37d0fa3" />
+
 ### API Sala - Luana
 &nbsp; &nbsp; &nbsp; Os testes da API de Salas foram focados em verificar se os endpoints funcionam corretamente nas operações principais do sistema, como criar, listar, buscar, atualizar e excluir salas. Os testes foram realizados principalmente com o Insomnia, utilizando requisições para cada endpoint e scripts de validação para conferir os códigos de status HTTP e os dados retornados pela API. Dessa forma, foi possível validar na prática se a comunicação entre a API, as regras de negócio e o banco de dados estavam funcionando corretamente. O Swagger UI também foi usado como apoio para visualizar e conferir os endpoints implementados e para facilitar na hora de inserir os Requerimentos de corpo no JSON.
     
