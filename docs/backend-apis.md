@@ -578,6 +578,7 @@ http://localhost:5067/api/salas
   "traceId": "00-5f350565bb46a936f5d9712d0ffc0d97-53322bd7b0907bfc-00"
 }
 ```
+
 ---
 
 ### API Notificação - Lucas
@@ -828,6 +829,7 @@ http://localhost:5067/api/salas
   "erro": "Notificacao nao encontrada"
 }
 ```
+
 ---
 
 ### API Avaliação - Victor
@@ -1293,6 +1295,7 @@ Cancela a assinatura ativa do usuário.
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
     <img width="500" height="500" alt="Teste 5 Imagem 2" src="img/CarlosTE5I1.png" />
+
 ---
 
 ### API Usuário - Laura
@@ -1395,6 +1398,7 @@ Cancela a assinatura ativa do usuário.
     &nbsp; &nbsp; &nbsp; Saída recebida pela interface:
   
     <img width="500" height="500" alt="Captura de tela 2026-04-12 202551" src="https://github.com/user-attachments/assets/efb3e288-3b8c-4f68-b0d8-054ab37d0fa3" />
+
 ---
 
 ### API Sala - Luana
@@ -1429,6 +1433,7 @@ Cancela a assinatura ativa do usuário.
 <img width="1353" height="712" alt="Teste DELETE Final Insomnia" src="https://github.com/user-attachments/assets/0dda9550-32f7-45e7-9e20-946250f8da92" />
 
 &nbsp; &nbsp; &nbsp; A imagem mostra a execução de uma requisição DELETE no Insomnia para a URL /api/salas/10. O retorno foi 204 No Content, indicando que a sala foi removida com sucesso. O teste confirma que o endpoint de exclusão está funcionando corretamente.
+
 ---
 
 ### API Notificação - Lucas
@@ -1456,6 +1461,7 @@ A imagem complementa os resultados dos testes da API de Notificações, apresent
 <img width="1895" height="983" alt="Image" src="https://github.com/user-attachments/assets/4a563da3-dc5b-4761-a2ff-00b7eef851ce" />
 
 A imagem apresenta a execução da collection de testes negativos da API de Notificações no Postman, utilizando o ambiente local da aplicação. Observa-se que todos os 18 testes foram aprovados, sem falhas ou erros, com tempo médio de resposta de 22 ms. Os cenários executados incluíram validações de requisições inválidas, como envio de dados obrigatórios ausentes, uso de tipo inválido e busca por recurso inexistente, confirmando que a API trata corretamente situações de erro e retorna os códigos HTTP esperados, como 422 Unprocessable Entity e 404 Not Found.
+
 ---
 
 ### API Avaliação - Victor
