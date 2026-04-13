@@ -1297,6 +1297,39 @@ Cancela a assinatura ativa do usuário.
 ### API Usuário - Laura
 
 ### API Sala - Luana
+&nbsp; &nbsp; &nbsp; Os testes da API de Salas foram focados em verificar se os endpoints funcionam corretamente nas operações principais do sistema, como criar, listar, buscar, atualizar e excluir salas. Os testes foram realizados principalmente com o Insomnia, utilizando requisições para cada endpoint e scripts de validação para conferir os códigos de status HTTP e os dados retornados pela API. Dessa forma, foi possível validar na prática se a comunicação entre a API, as regras de negócio e o banco de dados estavam funcionando corretamente. O Swagger UI também foi usado como apoio para visualizar e conferir os endpoints implementados e para facilitar na hora de inserir os Requerimentos de corpo no JSON.
+    
+#### Resultado da execução dos testes da API de Salas no Insomnia
+##### GET
+<img width="1354" height="712" alt="Teste GET Final Insomnia" src="https://github.com/user-attachments/assets/3064db23-f6a0-4bad-a551-cbf0338a3b2e" />
+
+&nbsp; &nbsp; &nbsp; A imagem mostra a execução da requisição GET no Insomnia para a URL /api/salas. O retorno foi 200 OK, indicando sucesso na operação. A resposta da API está em formato JSON, contendo uma lista de salas com seus principais atributos. O teste confirma que o endpoint GET está funcionando corretamente e retornando os dados esperados.
+
+##### POST
+<img width="1365" height="716" alt="Teste POST Final Insomnia" src="https://github.com/user-attachments/assets/93d8099f-059d-493c-9c16-6e320f26720c" />
+
+&nbsp; &nbsp; &nbsp; A imagem mostra a execução de uma requisição POST no Insomnia para a URL /api/salas. O retorno foi 201 Created, indicando que a sala foi cadastrada com sucesso. A resposta da API apresenta os dados da sala criada em formato JSON. O teste confirma que o endpoint de criação está funcionando corretamente.
+
+##### GetById
+<img width="1363" height="712" alt="Teste GETByID Final Insomnia" src="https://github.com/user-attachments/assets/51f53eb3-f25a-4778-90e9-485fcfb48ab9" />
+
+&nbsp; &nbsp; &nbsp;  A imagem mostra a execução de uma requisição GET no Insomnia para a URL /api/salas/{id}. O retorno foi 200 OK, indicando que a sala foi encontrada. A resposta da API apresenta os dados da sala em formato JSON. O teste confirma que o endpoint de busca por ID está funcionando corretamente.
+
+##### UPDATE
+<img width="1362" height="711" alt="Teste UPDATE Final Insomnia" src="https://github.com/user-attachments/assets/43ccecba-0e3f-4b03-824d-b66a7459aad3" />
+
+&nbsp; &nbsp; &nbsp; A imagem mostra a execução de uma requisição PUT no Insomnia para aURL /api/salas/{id}. O retorno foi 204 No Content, indicando que a atualização da sala foi realizada com sucesso. O teste confirma que o endpoint de atualização está funcionando corretamente, permitindo a alteração dos dados da sala conforme esperado.
+
+<img width="1352" height="708" alt="Teste UPDATE2 Final Insomnia" src="https://github.com/user-attachments/assets/e34817d5-8bf3-4e80-9754-37c427a751df" />
+
+&nbsp; &nbsp; &nbsp; A imagem mostra a execução de uma requisição GetById no Insomnia para a URL /api/salas/{id}. O retorno foi 200 OK e há a mudança na capacidade da sala, indicando que a atualização da sala foi realizada com sucesso. O teste confirma que o endpoint de atualização do UPDATE está funcionando corretamente, permitindo a alteração dos dados da sala conforme esperado.
+
+##### DELETE
+<img width="1353" height="712" alt="Teste DELETE Final Insomnia" src="https://github.com/user-attachments/assets/0dda9550-32f7-45e7-9e20-946250f8da92" />
+
+&nbsp; &nbsp; &nbsp; A imagem mostra a execução de uma requisição DELETE no Insomnia para a URL /api/salas/{id}. O retorno foi 204 No Content, indicando que a sala foi removida com sucesso. O teste confirma que o endpoint de exclusão está funcionando corretamente.
+
+
 
 ### API Notificação - Lucas
 
