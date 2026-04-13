@@ -1466,6 +1466,8 @@ A imagem apresenta a execução da collection de testes negativos da API de Noti
 
 ### API Avaliação - Victor
 
+---
+
 ### API Financeiro - Yan
 
 #### Teste de listagem de planos
