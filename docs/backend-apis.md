@@ -1462,6 +1462,33 @@ A imagem apresenta a execução da collection de testes negativos da API de Noti
 
 ### API Financeiro - Yan
 
+#### Teste de listagem de planos
+
+![Test1](https://github.com/user-attachments/assets/82765251-e265-405b-87c8-58cf30aae4e3)
+
+Foi realizada uma requisição do tipo GET para o endpoint /planos, com o objetivo de verificar a recuperação dos planos cadastrados no sistema.
+O retorno apresentou corretamente a lista de planos disponíveis, confirmando o funcionamento da funcionalidade de exibição.
+
+#### Teste de assinatura de plano
+
+Foi executada uma requisição POST no endpoint /assinar/{plano_id}, informando um identificador de plano válido.
+A API retornou mensagem de sucesso, indicando que a assinatura foi registrada corretamente.
+
+#### Teste de consulta de assinatura
+
+Em seguida, foi realizada uma requisição GET para o endpoint /assinatura, com o objetivo de verificar a assinatura ativa.
+O retorno apresentou os dados da assinatura recém-criada, confirmando a persistência das informações.
+
+#### Teste de alteração de plano
+
+Foi executada uma requisição PUT no endpoint /assinatura/{plano_id}, informando um novo plano.
+A resposta da API confirmou a atualização, evidenciando que a alteração da assinatura foi realizada com sucesso.
+
+#### Teste de cancelamento de assinatura
+
+Por fim, foi realizada uma requisição DELETE no endpoint /assinatura.
+A API retornou mensagem de confirmação de cancelamento, e uma nova consulta ao endpoint /assinatura indicou que não havia mais assinatura ativa.
+
 # Referências
 
 SOUZA, Kleber Jacques Ferreira de. Microfundamento: APIs e Web Services. Aula ministrada na Pontifícia Universidade Católica de Minas Gerais, Belo Horizonte, 2026.
