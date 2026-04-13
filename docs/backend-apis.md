@@ -19,7 +19,7 @@
 
 - O objetivo principal da API de Notificações é gerenciar o envio, consulta, atualização e exclusão de notificações do sistema de coworking, permitindo filtrar por tipo, status de leitura, assinatura ou reserva relacionada. Além disso, a API garante a integridade dos dados por meio da validação dos tipos aceitos e dos campos obrigatórios, assegurando que os usuários sejam comunicados de forma organizada e consistente sobre alertas, confirmações de reserva, lembretes e renovações de plano.
 
-- <!-- Victor - Notificação -->
+- O principal objetivo da API de Avaliação é gerenciar o envio, consulta, atualização e exclusão de avaliações do sistema de coworking. Além disso, a API garante a integridade dos dados por meio da validação dos tipos aceitos e dos campos obrigatórios, assegurando que os usuários realizem as avaliações de forma organizada e consistente, confirmações da criação da avaliação, podendo visualizar avaliações de outros usuarios.
 
 - A API Financeiro é responsável por gerenciar planos e assinaturas dos usuários, permitindo contratar, alterar e cancelar serviços dentro do sistema.
 
