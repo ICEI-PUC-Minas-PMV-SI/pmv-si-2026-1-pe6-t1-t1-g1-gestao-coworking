@@ -1,8 +1,8 @@
 # Front-end Web
 <!-- [Inclua uma breve descrição do projeto e seus objetivos.]-->
-\&nbsp;\&nbsp;\&nbsp;No desenvolvimento do front-end do projeto do Axis Work coworking, serão utilizadas as linguagens HTML, CSS e JavaScript. A proposta é criar uma interface moderna, responsiva e intuitiva, que possibilite aos usuários conhecerem os serviços oferecidos, as salas, os planos disponíveis, consigam tirar suas duvidas e realizem ações como reservas, alterações ou cancelamentos de forma simples e prática. O foco está na experiência do usuário e organização das informações para deixar a navegação mais fluida e fácil para os usuários.
+&nbsp; &nbsp; &nbsp; No desenvolvimento do front-end do projeto do Axis Work coworking, serão utilizadas as linguagens HTML, CSS e JavaScript. A proposta é criar uma interface moderna, responsiva e intuitiva, que possibilite aos usuários conhecerem os serviços oferecidos, as salas, os planos disponíveis, consigam tirar suas duvidas e realizem ações como reservas, alterações ou cancelamentos de forma simples e prática. O foco está na experiência do usuário e organização das informações para deixar a navegação mais fluida e fácil para os usuários.
 
-\&nbsp;\&nbsp;\&nbsp;Objetivos:
+&nbsp; &nbsp; &nbsp; Objetivos:
 - Desenvolver uma interface responsiva que funcione bem em desktops;
 - Aplicar boas práticas de estruturação com HTML;
 - Utilizar CSS para estilização e layout;
