@@ -29,12 +29,12 @@
 
 ## Tecnologias Utilizadas
 <!-- [Lista das tecnologias principais que serão utilizadas no projeto.] -->
-HTML – Estruturação das páginas e organização do conteúdo;
-CSS – Estilização e layoult da interface;
-JavaScript – Implementação de interatividade, validações e manipulação de elementos;
-Figma – Criação dos protótipos, wireframes e definição da interface do usuário;
-Visual Studio – Editor de código;
-GitHub – Controle de versão e armazenamento do código-fonte do projeto.
+- HTML – Estruturação das páginas e organização do conteúdo;
+- CSS – Estilização e layoult da interface;
+- JavaScript – Implementação de interatividade, validações e manipulação de elementos;
+- Figma – Criação dos protótipos, wireframes e definição da interface do usuário;
+- Visual Studio – Editor de código;
+- GitHub – Controle de versão e armazenamento do código-fonte do projeto.
 
 
 ## Considerações de Segurança
