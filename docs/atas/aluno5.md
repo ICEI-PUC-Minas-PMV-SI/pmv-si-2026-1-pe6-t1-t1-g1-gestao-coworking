@@ -13,10 +13,10 @@
 | 23/03 - 29/03 | APIs e Web Services - Unidade 2 | ✅ | Terminar a estrutura inicial do código usando a lista | Terminei as rotas que faltavam e todas as dependencias para a execução das rotas |
 | 30/03 - 05/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 1 | ✅ | Fazer o código se conectar ao banco de dados, realizando testes unitarios para o funcionamento do sistema. | Finalizei a estrutura base e realizei testes unitarios para a verificação do funcionamento. |
 | 06/04 - 12/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 2 | ✅ | Fazer a documentação e registrar no github: objetivos, tecnologias, endpoints e testes relacioandos à  API criada. | Subi a documentação dos endpoints para o documento de entrega da etapa, como também o codigo para que o funcionamento do sistema pudesse ocorrer. |
-| 13/04 - 19/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 1 | ⬜ |  |  |
-| 20/04 - 26/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 2 | ⬜ |  |  |
-| 27/04 - 03/05 | Desenvolvimento de Aplicações Móveis - Unidade 1 | ⬜ |  |  |
-| 04/05 - 10/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ⬜ |  |  |
+| 13/04 - 19/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 1 | ✅ | Criar o layout para o painel administrativo do sistema | Foi criado o wireframe para a aplicação do painel administrativo no figma e mostrado para os demais membros de equipe |
+| 20/04 - 26/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 2 | ✅ | Criar a página estatica para o painel administrativo | Criei a pagina estatica utilizando HTML e CSS puro, faltando realizar as integrações com o sistema na semana seguinte |
+| 27/04 - 03/05 | Desenvolvimento de Aplicações Móveis - Unidade 1 | ✅ | Integrar o codigo realizado nas semanas anteriores com o banco de dados |  |
+| 04/05 - 10/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ✅ |  |  |
 | 11/05 - 17/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ⬜ |  |  |
 | 18/05 - 24/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 1 | ⬜ |  |  |
 | 25/05 - 31/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 2 | ⬜ |  |  |
