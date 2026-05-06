@@ -1,0 +1,8 @@
+@coworking_salas_HostAddress = http://localhost:5067
+
+
+GET {{coworking_salas_HostAddress}}/api/salas
+Accept: application/json
+
+
+###

@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AvaliacaoApi</name>
+    </assembly>
+    <members>
+        <member name="T:AvaliacaoApi.DTOs.CreateAvaliacaoDto">
+            <summary>
+            Dados necessarios para criar uma nova avaliacao.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.DTOs.CreateAvaliacaoDto.IdReserva">
+            <summary>
+            Identificador da reserva relacionada.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.DTOs.CreateAvaliacaoDto.Nota">
+            <summary>
+            Nota da avaliacao, entre 0 e 5.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.DTOs.CreateAvaliacaoDto.Corpo">
+            <summary>
+            Comentario complementar da avaliacao.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.DTOs.CreateAvaliacaoDto.CriadoEm">
+            <summary>
+            Data de criacao da avaliacao.
+            </summary>
+        </member>
+        <member name="T:AvaliacaoApi.DTOs.UpdateAvaliacaoDto">
+            <summary>
+            Dados usados para atualizar uma avaliacao existente.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.DTOs.UpdateAvaliacaoDto.IdReserva">
+            <summary>
+            Identificador da reserva relacionada.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.DTOs.UpdateAvaliacaoDto.Nota">
+            <summary>
+            Nota da avaliacao, entre 0 e 5.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.DTOs.UpdateAvaliacaoDto.Corpo">
+            <summary>
+            Comentario complementar da avaliacao.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.DTOs.UpdateAvaliacaoDto.CriadoEm">
+            <summary>
+            Data de criacao da avaliacao.
+            </summary>
+        </member>
+        <member name="T:AvaliacaoApi.Models.Avaliacao">
+            <summary>
+            Representa uma avaliacao registrada para uma reserva.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.Models.Avaliacao.IdAvaliacao">
+            <summary>
+            Identificador unico da avaliacao.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.Models.Avaliacao.IdReserva">
+            <summary>
+            Identificador da reserva associada a avaliacao.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.Models.Avaliacao.Nota">
+            <summary>
+            Nota atribuida, de 0 a 5.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.Models.Avaliacao.Corpo">
+            <summary>
+            Comentario textual da avaliacao.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.Models.Avaliacao.CriadoEm">
+            <summary>
+            Data de criacao da avaliacao.
+            </summary>
+        </member>
+    </members>
+</doc>
