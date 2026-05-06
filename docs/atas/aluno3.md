@@ -14,8 +14,8 @@
 | 30/03 - 05/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 1 | ✅ | Começar a fazer os testes da parte de Salas da aplicação no Inmsonia. Trocar o SQL como banco de dados para o Postgress. Fazer as mudanças de nomes para se adequarem ao banco de dados. Conectar ao banco de dados único usando o laboratório da AWS.  | Comecei a fazer os testes da parte de Salas da aplicação no Inmsonia. Consegui fazer a parte de Post da aplicação funcione. Consegui adicionar o Swagger na aplicação. |
 | 06/04 - 12/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 2 | ✅ | Coordenar com o grupo as entregas. Fazer uma reunião para alinhamento de datas e expectativas. Conferir se todos conseguiram terminar suas partes e ver se o backend da aplicação está completo. Atualizar a documentação. Subir os códigos para o Github. | Coordenei com o grupo as entregas. Fiz uma reunião para alinhamento de datas e expectativas e divisão de tarefas. Atualizei a documentação. Subi os códigos para o Github. |
 | 13/04 - 19/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 1 | ⬜ |  |  |
-| 20/04 - 26/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 2 | ⬜ |  |  |
-| 27/04 - 03/05 | Desenvolvimento de Aplicações Móveis - Unidade 1 | ⬜ |  |  |
+| 20/04 - 26/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 2 | ⬜ | Fazer uma reunião para a separação das tarefas e alinhamento de datas e expectativas. Coordenar com o grupo as entregas. Fazer uma previsão de gastos na AWS  |  |
+| 27/04 - 03/05 | Desenvolvimento de Aplicações Móveis - Unidade 1 | ⬜ | Conferir se todos conseguiram terminar suas partes e ver se o frontend da aplicação está completo. Atualizar a documentação. Subir os códigos para o Github. |  |
 | 04/05 - 10/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ⬜ |  |  |
 | 11/05 - 17/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ⬜ |  |  |
 | 18/05 - 24/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 1 | ⬜ |  |  |
