@@ -1,0 +1,7 @@
+fastapi==0.135.3
+psycopg2-binary==2.9.11
+pydantic==2.12.5
+SQLAlchemy==2.0.49
+uvicorn==0.42.0
+tzdata==2025.3
+

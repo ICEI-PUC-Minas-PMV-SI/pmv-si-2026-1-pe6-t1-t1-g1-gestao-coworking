@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Abajur\\Documents\\GitHub\\SalasCoworking\\src\\coworking-api-visual-studio\\coworking-salas\\coworking-salas\\coworking-salas.csproj": {}
+    "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\API Sala Luana\\coworking-salas\\coworking-salas\\coworking-salas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Abajur\\Documents\\GitHub\\SalasCoworking\\src\\coworking-api-visual-studio\\coworking-salas\\coworking-salas\\coworking-salas.csproj": {
+    "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\API Sala Luana\\coworking-salas\\coworking-salas\\coworking-salas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Abajur\\Documents\\GitHub\\SalasCoworking\\src\\coworking-api-visual-studio\\coworking-salas\\coworking-salas\\coworking-salas.csproj",
+        "projectUniqueName": "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\API Sala Luana\\coworking-salas\\coworking-salas\\coworking-salas.csproj",
         "projectName": "coworking-salas",
-        "projectPath": "C:\\Users\\Abajur\\Documents\\GitHub\\SalasCoworking\\src\\coworking-api-visual-studio\\coworking-salas\\coworking-salas\\coworking-salas.csproj",
-        "packagesPath": "C:\\Users\\Abajur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Abajur\\Documents\\GitHub\\SalasCoworking\\src\\coworking-api-visual-studio\\coworking-salas\\coworking-salas\\obj\\",
+        "projectPath": "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\API Sala Luana\\coworking-salas\\coworking-salas\\coworking-salas.csproj",
+        "packagesPath": "C:\\Users\\senai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\API Sala Luana\\coworking-salas\\coworking-salas\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Abajur\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\senai\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
