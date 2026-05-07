@@ -22,10 +22,20 @@ backend/API Avaliacao/appsettings.json
 O valor atual convertido para SQLAlchemy aponta para:
 
 ```text
-Host=localhost;Port=5432;Database=coopEixo6;Username=Senai;Password=Senai4.0
+Host=54.198.111.239;Port=5432;Database=apiEixo6;Username=postgres
 ```
 
 Tambem e possivel sobrescrever com `DATABASE_URL` no ambiente.
+
+## Provisionar banco na AWS
+
+O script abaixo cria o banco `apiEixo6`, cria as tabelas e popula dados genericos para desenvolvimento frontend:
+
+```bash
+python scripts/setup_aws_db.py
+```
+
+Antes de executar, defina `PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD` e `PGDATABASE`.
 
 ## Como executar
 
@@ -53,4 +63,3 @@ http://127.0.0.1:8000/docs
 - `/api/notificacoes`
 
 Algumas rotas legadas sem `/api` foram mantidas temporariamente para clientes antigos: `/clientes`, `/login`, `/planos`, `/assinaturas` e `/notificacoes`.
-

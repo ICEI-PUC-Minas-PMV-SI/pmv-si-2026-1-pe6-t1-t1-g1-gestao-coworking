@@ -1,14 +1,23 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
-from app.routes import avaliacoes, clientes, financeiro, notificacoes, reservas, salas
+from app.routes import admin, avaliacoes, clientes, financeiro, notificacoes, reservas, salas
 
 
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
     description="API unica em Python para reservas de salas de coworking.",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
@@ -28,6 +37,7 @@ def healthcheck() -> dict[str, str]:
 
 
 for router in (
+    admin.router,
     clientes.router,
     salas.router,
     reservas.router,
@@ -43,4 +53,3 @@ app.include_router(clientes.router)
 app.include_router(financeiro.planos_router)
 app.include_router(financeiro.assinaturas_router)
 app.include_router(notificacoes.router)
-

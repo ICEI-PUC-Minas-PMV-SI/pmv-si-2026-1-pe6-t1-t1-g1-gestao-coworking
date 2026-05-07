@@ -20,6 +20,7 @@ def _avaliacao_or_404(db: Session, id_avaliacao: int) -> Avaliacao:
 
 def _to_read(row) -> AvaliacaoRead:
     avaliacao, nome_usuario, nome_sala, tipo_sala = row
+    tipo_sala_texto = tipo_sala.value if hasattr(tipo_sala, "value") else tipo_sala
     return AvaliacaoRead(
         id_avaliacao=avaliacao.id_avaliacao,
         id_reserva=avaliacao.id_reserva,
@@ -28,7 +29,7 @@ def _to_read(row) -> AvaliacaoRead:
         criado_em=avaliacao.criado_em,
         nome_usuario=nome_usuario or "Usuario nao informado",
         nome_sala=nome_sala or "Sala nao informada",
-        tipo_sala=str(tipo_sala or "Tipo nao informado"),
+        tipo_sala=str(tipo_sala_texto or "Tipo nao informado"),
     )
 
 
@@ -59,7 +60,7 @@ def listar_opcoes_reservas(db: Session = Depends(get_db)) -> list[ReservaOptionR
             id_reserva=id_reserva,
             nome_usuario=nome_usuario or "Usuario nao informado",
             nome_sala=nome_sala or "Sala nao informada",
-            tipo_sala=str(tipo_sala or "Tipo nao informado"),
+            tipo_sala=str((tipo_sala.value if hasattr(tipo_sala, "value") else tipo_sala) or "Tipo nao informado"),
         )
         for id_reserva, nome_usuario, nome_sala, tipo_sala in rows
     ]
@@ -115,4 +116,3 @@ def excluir_avaliacao(id_avaliacao: int, db: Session = Depends(get_db)) -> None:
     db.delete(avaliacao)
     db.commit()
     return None
-
