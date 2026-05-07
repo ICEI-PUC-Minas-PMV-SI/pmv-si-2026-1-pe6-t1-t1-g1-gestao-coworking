@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from app.db import get_db
 from app.models import Avaliacao, Cliente, Reserva, Sala
-from app.schemas import AvaliacaoCreate, AvaliacaoRead, AvaliacaoUpdate, ReservaOptionRead
+from app.schemas import AvaliacaoCreate, AvaliacaoRead, AvaliacaoResposta, AvaliacaoUpdate, ReservaOptionRead
 
 
 router = APIRouter(tags=["Avaliacoes"])
@@ -27,6 +27,8 @@ def _to_read(row) -> AvaliacaoRead:
         nota=avaliacao.nota,
         corpo=avaliacao.corpo,
         criado_em=avaliacao.criado_em,
+        resposta_admin=avaliacao.resposta_admin,
+        respondido_em=avaliacao.respondido_em,
         nome_usuario=nome_usuario or "Usuario nao informado",
         nome_sala=nome_sala or "Sala nao informada",
         tipo_sala=str(tipo_sala_texto or "Tipo nao informado"),
@@ -105,6 +107,16 @@ def atualizar_avaliacao(id_avaliacao: int, payload: AvaliacaoUpdate, db: Session
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Reserva nao encontrada")
     for field, value in payload.model_dump().items():
         setattr(avaliacao, field, value)
+    db.commit()
+    return buscar_avaliacao(id_avaliacao, db)
+
+
+@router.patch("/avaliacao/{id_avaliacao}/resposta", response_model=AvaliacaoRead)
+@router.patch("/avaliacoes/{id_avaliacao}/resposta", response_model=AvaliacaoRead)
+def responder_avaliacao(id_avaliacao: int, payload: AvaliacaoResposta, db: Session = Depends(get_db)) -> AvaliacaoRead:
+    avaliacao = _avaliacao_or_404(db, id_avaliacao)
+    avaliacao.resposta_admin = payload.resposta_admin
+    avaliacao.respondido_em = payload.respondido_em
     db.commit()
     return buscar_avaliacao(id_avaliacao, db)
 

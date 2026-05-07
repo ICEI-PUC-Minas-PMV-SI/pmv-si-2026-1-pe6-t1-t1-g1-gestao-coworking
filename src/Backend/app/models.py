@@ -3,6 +3,7 @@ from datetime import date, datetime
 from decimal import Decimal
 
 from sqlalchemy import Boolean, Date, DateTime, Enum, ForeignKey, Integer, Numeric, String, Text
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db import Base
@@ -24,6 +25,8 @@ class StatusReserva(str, enum.Enum):
 
 class StatusAssinatura(str, enum.Enum):
     ATIVA = "Ativa"
+    PENDENTE = "Pendente"
+    SUSPENSA = "Suspensa"
     CANCELADA = "Cancelada"
     VENCIDA = "Vencida"
 
@@ -50,6 +53,8 @@ class Cliente(Base):
     email: Mapped[str] = mapped_column(String, nullable=False, unique=True)
     telefone: Mapped[str | None] = mapped_column(String, nullable=True)
     senha: Mapped[str] = mapped_column(String, nullable=False)
+    ativo: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    foto_perfil: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     reservas: Mapped[list["Reserva"]] = relationship(back_populates="cliente")
     assinaturas: Mapped[list["Assinatura"]] = relationship(back_populates="cliente")
@@ -64,6 +69,11 @@ class Sala(Base):
     tipo: Mapped[TipoSala] = mapped_column(tipo_sala_enum, nullable=False)
     descricao: Mapped[str | None] = mapped_column(Text, nullable=True)
     recursos: Mapped[str | None] = mapped_column(Text, nullable=True)
+    ambiente: Mapped[str | None] = mapped_column(String, nullable=True)
+    andar: Mapped[str | None] = mapped_column(String, nullable=True)
+    valor_hora: Mapped[Decimal | None] = mapped_column(Numeric, nullable=True)
+    status_operacional: Mapped[str] = mapped_column(String, nullable=False, default="Disponível")
+    fotos: Mapped[list[str]] = mapped_column(JSONB, nullable=False, default=list)
     criado_em: Mapped[date] = mapped_column(Date, nullable=False, default=date.today)
     ativa: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
 
@@ -75,7 +85,7 @@ class Reserva(Base):
 
     id_reserva: Mapped[int] = mapped_column(Integer, primary_key=True)
     id_cliente: Mapped[int | None] = mapped_column(ForeignKey("cliente.id_cliente", ondelete="SET NULL"), nullable=True)
-    id_sala: Mapped[int | None] = mapped_column(ForeignKey("sala.id_sala", ondelete="RESTRICT"), nullable=True)
+    id_sala: Mapped[int | None] = mapped_column(ForeignKey("sala.id_sala", ondelete="SET NULL"), nullable=True)
     status: Mapped[StatusReserva] = mapped_column(status_reserva_enum, nullable=False, default=StatusReserva.CONFIRMADA)
     feito_em: Mapped[date] = mapped_column(Date, nullable=False, default=date.today)
     entrada: Mapped[datetime] = mapped_column(DateTime, nullable=False)
@@ -94,6 +104,8 @@ class Avaliacao(Base):
     nota: Mapped[int] = mapped_column(Integer, nullable=False)
     corpo: Mapped[str | None] = mapped_column(String(255), nullable=True)
     criado_em: Mapped[date] = mapped_column(Date, nullable=False, default=date.today)
+    resposta_admin: Mapped[str | None] = mapped_column(Text, nullable=True)
+    respondido_em: Mapped[date | None] = mapped_column(Date, nullable=True)
 
     reserva: Mapped[Reserva | None] = relationship(back_populates="avaliacao")
 
@@ -105,6 +117,8 @@ class Plano(Base):
     nome: Mapped[str] = mapped_column(String, nullable=False)
     acesso: Mapped[TipoSala] = mapped_column(tipo_sala_enum, nullable=False)
     preco: Mapped[Decimal] = mapped_column(Numeric, nullable=False)
+    descricao: Mapped[str | None] = mapped_column(Text, nullable=True)
+    beneficios: Mapped[list[str]] = mapped_column(JSONB, nullable=False, default=list)
 
     assinaturas: Mapped[list["Assinatura"]] = relationship(back_populates="plano")
 
@@ -114,7 +128,7 @@ class Assinatura(Base):
 
     id_assinatura: Mapped[int] = mapped_column(Integer, primary_key=True)
     id_cliente: Mapped[int | None] = mapped_column(ForeignKey("cliente.id_cliente", ondelete="SET NULL"), nullable=True)
-    id_plano: Mapped[int | None] = mapped_column(ForeignKey("planos.id_plano", ondelete="RESTRICT"), nullable=True)
+    id_plano: Mapped[int | None] = mapped_column(ForeignKey("planos.id_plano", ondelete="SET NULL"), nullable=True)
     status: Mapped[StatusAssinatura] = mapped_column(status_assinatura_enum, nullable=False, default=StatusAssinatura.ATIVA)
     validade: Mapped[date] = mapped_column(Date, nullable=False)
     feita_em: Mapped[date] = mapped_column(Date, nullable=False, default=date.today)
@@ -137,4 +151,3 @@ class Notificacao(Base):
 
     assinatura: Mapped[Assinatura | None] = relationship(back_populates="notificacoes")
     reserva: Mapped[Reserva | None] = relationship()
-
