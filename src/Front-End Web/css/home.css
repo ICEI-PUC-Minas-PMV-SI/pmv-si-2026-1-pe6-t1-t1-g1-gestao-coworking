@@ -1,0 +1,293 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+}
+
+.fundo-claro {
+    background-color: #CAD6E233;
+}
+
+p, button, h1, h2, h3, li, h4, span {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+p {
+    font-size: 18px;
+}
+
+li {
+    font-size: 16px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    height: 72px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% auto 1fr auto 10%;
+    background-color:#fff;
+    z-index: 99;
+}
+
+header div {
+    height: 72px;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+#logo {
+    width: fit-content;
+    grid-column: 2;
+}
+
+#logo img {
+    height: 50%;
+}
+
+#logo p {
+    font-size: x-large;
+    font-weight: 550;
+    color: #0F2A44;
+}
+
+.bot {
+    height: 40px;
+    min-width: 100px;
+    width: auto;
+    padding: 0 20px;
+    border: none;
+    border-radius: 1000px;
+    font-size: medium;
+    font-weight: 400;
+    display: flexbox;
+    align-content: center;
+}
+
+.bot:hover {
+    cursor: pointer;
+}
+
+.bot1 {
+    background-color: #0F2A44;
+    color: #fff;
+}
+
+.bot2 {
+    background-color: #5B748C;
+    color: #fff;
+}
+
+.bot3 {
+    background-color: #CAD6E2;
+    color: #000;
+}
+
+.banner {
+    height: 70vh;
+    background: linear-gradient(#0F2A44B3, #0F2A44B3), url('../img/fundo-escritorio.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.banner-bot {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 150px 30px 150px 1fr;
+}
+
+.banner-bot :first-child {
+    grid-column: 2;
+}
+
+.banner-bot :last-child {
+    grid-column: 4;
+}
+
+.sessao {
+    padding: 40px 0;
+    justify-items: center;
+}
+
+.section-titulo {
+    max-width: 1200px;
+    text-align: center;
+}
+
+.features {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.feature-card {
+    padding: 10px 20px;
+    border: 2px solid #CAD6E2;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px); 
+    border-color: #0F2A44;
+    box-shadow: 0 10px 20px #5B748C; 
+}
+
+.feature-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+footer {
+    height: 100px;
+    border-top: 2px solid #CAD6E2;
+    text-align: center;
+    color: #5B748C;
+}
+
+.salas {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.salas-card {
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.salas-card img { 
+    width: 100%; 
+    height: 220px; 
+    object-fit: cover; 
+}
+
+.salas-info {
+    padding: 0 20px;
+}
+
+.salas-info p {
+    min-height: 150px;
+}
+
+.lista {
+    border-top: 1px solid #CAD6E2;
+    padding-top: 15px;
+    text-align: left;
+}
+
+.salas > .bot {
+    width: 300px;
+    grid-column: span 2;
+    justify-self: center;
+}
+
+.plano-grid {
+    max-width: 1200px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.plano-grid .lista {
+    border: none;
+}
+
+.plano-grid .bot {
+    grid-column: 2;
+}
+
+.plano-card {
+    padding: 30px 60px;
+    border: 3px solid #0F2A44;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.preco {
+    margin: 30px 0;
+    font-size: 45px;
+    font-weight: 800;
+
+}
+
+.preco > span {
+    font-size: 26px;
+    font-weight: 400;
+}
+
+.aval-grid {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.aval-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.aval-card {
+    padding: 30px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 10px #CAD6E233;
+
+}
+
+.user-profile { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px;
+    margin-bottom: 20px; 
+}
+
+.user-profile img { 
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%;
+    object-fit: cover; 
+}
+
+.user-profile h4 { 
+    margin: 0; 
+}
+
+.placeholder {
+    width: 200px;
+    height: 300px;
+    background-color: #CAD6E2;
+    border-radius: 20px;
+}
