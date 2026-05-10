@@ -13,17 +13,17 @@
 | LapucP                |        13 |       461 |       137 |          4 |             12 |               3 |
 | LauraLosque           |        16 |       439 |        31 |          8 |             12 |               3 |
 | Luana                 |         1 |      9460 |         0 |        257 |              0 |               0 |
-| Luana-Horta           |        52 |       470 |       152 |          6 |             52 |               6 |
+| Luana-Horta           |        53 |       473 |       153 |          6 |             53 |               6 |
 | Victor Samuel         |        13 |       419 |        57 |         11 |             12 |               3 |
 | Victor-477            |         8 |     24872 |     10453 |        787 |              0 |               0 |
 | Yan Oyama             |        23 |       308 |        73 |         12 |             15 |               3 |
-| github-actions[bot]   |       133 |       703 |       688 |          3 |            133 |               1 |
+| github-actions[bot]   |       134 |       717 |       702 |          3 |            134 |               1 |
 | github-classroom[bot] |         1 |      2152 |         0 |         45 |              1 |              13 |
 
 
 ## 📅 Contribuições Semanais (Todo o Semestre)
 
-**2026-05-03**: Carlos Souza: 1, Luana-Horta: 2, Victor Samuel: 3, Victor-477: 8, github-actions[bot]: 12
+**2026-05-03**: Carlos Souza: 1, Luana-Horta: 3, Victor Samuel: 3, Victor-477: 8, github-actions[bot]: 13
 
 **2026-04-26**: Luana-Horta: 6, github-actions[bot]: 6
 
