@@ -62,8 +62,9 @@ if(document.getElementById('lista')){
     el.onclick = () => location.href = 'sala.html';
 
     lista.appendChild(el);
-  });
-}*/
+  });*/
+}};
+
 async function carregarSalas(){
 
   const lista =
