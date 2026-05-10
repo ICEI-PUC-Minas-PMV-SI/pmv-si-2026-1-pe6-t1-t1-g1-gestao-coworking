@@ -13,10 +13,10 @@
 | 25/03 - 31/03 | APIs e Web Services - Unidade 2 | ✅ | Terminar a estrutura inicial do código usando a lista | Terminei as rotas que faltavam e todas as dependencias para a execução das rotas, ainda usando apenas uma lista |
 | 01/04 - 07/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 1 | ✅ | Fazer o código conectando no banco, transformando todas as rotas modeladas para acessar e usar o banco. | Fiz as dependências necessárias para conectar no banco e refiz todas as rotas para que ficassem em estado de uso e conectando com o banco. |
 | 08/04 - 12/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 2 | ✅ | Fazer a documentação e registrar no github: objetivos, tecnologias, endpoints e testes relacioandos à minha API.  | Fiz a documentação referente à minha API e a seção de modelagem e de implantação. Além do upload dos arquivos da api na pasta SRC. |
-| 13/04 - 19/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 1 | ⬜ |  |  |
-| 20/04 - 26/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 2 | ⬜ |  |  |
-| 27/04 - 03/05 | Desenvolvimento de Aplicações Móveis - Unidade 1 | ⬜ |  |  |
-| 04/05 - 10/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ⬜ |  |  |
+| 13/04 - 21/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 1 | ⬜ | Participar das reuniões de decisão do design e divisão de tarefas, e montar uma base da home. | Participei das reuniões do grupo e depois de decidirmos a linha de design fiz no figma uma base para facilitar o acesso do grupo ao que foi definido. |
+| 22/04 - 28/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 2 | ⬜ | Fazer o wireframe da home e a página de forma estática. | Fiz o wireframe no formato de "rascunho" e alterei o visual gerado no figma make. Comecei a fazer a página estática. |
+| 29/04 - 05/05 | Desenvolvimento de Aplicações Móveis - Unidade 1 | ⬜ | Acabar a página estática. | Finalizei a página de maneira estática no html e css. |
+| 06/05 - 10/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ⬜ | Fazer a parte dinâmica da minha página e fazer o user flow | Fiz a parte do script da página usando os endpoints das APIs. Fiz um userflow para cara página do site.|
 | 11/05 - 17/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ⬜ |  |  |
 | 18/05 - 24/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 1 | ⬜ |  |  |
 | 25/05 - 31/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 2 | ⬜ |  |  |
