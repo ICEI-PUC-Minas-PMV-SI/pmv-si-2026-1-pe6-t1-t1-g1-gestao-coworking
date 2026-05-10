@@ -197,15 +197,19 @@ if (paginaAtual=='salas.html') {
 const monthNames = [
   "Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
 
-let currentMonth = 4;
-let currentYear = 2026;
+const agora = new Date();
+
+const ano = agora.getFullYear();
+const mes = agora.getMonth();
+
+let currentMonth = mes;
+let currentYear = ano;
 
 /* dias indisponíveis */
 let unavailableDays = [];
 
 /* horários indisponíveis */
 let unavailableTimes = [];
-
 
 function renderCalendar(){
 
@@ -232,6 +236,10 @@ function renderCalendar(){
 
     div.innerText = day;
 
+    const mesFormatado = String(currentMonth + 1).padStart(2, '0');
+    const diaFormatado = String(day).padStart(2, '0');
+    const data = `${currentYear}-${mesFormatado}-${diaFormatado}`;
+
     if(unavailableDays.includes(day)){
       div.classList.add("disabled");
     }
@@ -245,6 +253,9 @@ function renderCalendar(){
         .forEach(d => d.classList.remove("selected"));
 
       div.classList.add("selected");
+
+      carregarDisponibilidadeHora(data);
+      renderTimes();
     });
 
     calendar.appendChild(div);
@@ -264,7 +275,22 @@ document
     currentYear--;
   }
 
+  const daysInMonth =
+    new Date(currentYear, currentMonth + 1, 0)
+    .getDate();
+
+  const mesFormatado = String(currentMonth + 1).padStart(2, '0');
+
+  const dateInicio = `${currentYear}-${mesFormatado}-01`
+  const dateFim = `${currentYear}-${mesFormatado}-${daysInMonth}`
+
+  carregarDisponibilidadeDia(dateInicio, dateFim);
   renderCalendar();
+  
+  const timesList =
+    document.getElementById("times-list");
+
+  timesList.innerHTML = "";
 });
 
 /* botão próximo mês */
@@ -280,7 +306,22 @@ document
     currentYear++;
   }
 
+  const daysInMonth =
+    new Date(currentYear, currentMonth + 1, 0)
+    .getDate();
+
+  const mesFormatado = String(currentMonth + 1).padStart(2, '0');
+
+  const dateInicio = `${currentYear}-${mesFormatado}-01`
+  const dateFim = `${currentYear}-${mesFormatado}-${daysInMonth}`
+
+  carregarDisponibilidadeDia(dateInicio, dateFim);
   renderCalendar();
+
+  const timesList =
+    document.getElementById("times-list");
+
+  timesList.innerHTML = "";
 });
 
 /* horários no caledário*/
@@ -323,8 +364,8 @@ function renderTimes(){
 /* =========================
    DISPONIBILIDADE
 ========================= */
-/*
-async function carregarDisponibilidade(){
+
+async function carregarDisponibilidadeDia(inicio, fim){
 
   const salaId =
     localStorage.getItem("salaId");
@@ -335,45 +376,7 @@ async function carregarDisponibilidade(){
 
     const response =
       await fetch(
-        `https://localhost:8000/api/reserva?id_sala=1
-      );
-
-    const data =
-      await response.json();
-
-    unavailableDays =
-      data.diasIndisponiveis;
-
-    unavailableTimes =
-      data.horariosIndisponiveis;
-
-    renderCalendar();
-
-    renderTimes();
-
-  }catch(error){
-
-    console.log(error);
-  }
-}
-
-carregarDisponibilidade();
-
-renderCalendar();
-renderTimes();
-*/
-async function carregarDisponibilidade(){
-
-  const salaId =
-    localStorage.getItem("salaId");
-
-  if(!salaId) return;
-
-  try{
-
-    const response =
-      await fetch(
-        `http://localhost:8000/api/reserva?id_sala=${salaId}`
+        `http://localhost:8000/api/reserva?id_sala=${salaId}?inicio=${inicio}?fim=${fim}`
       );
 
     const reservas =
@@ -382,7 +385,6 @@ async function carregarDisponibilidade(){
     /* limpa arrays */
 
     unavailableDays = [];
-    unavailableTimes = [];
 
     reservas.forEach(reserva => {
 
@@ -399,26 +401,55 @@ async function carregarDisponibilidade(){
       ){
         unavailableDays.push(dia);
       }
-
-      /* horário indisponível */
-
-      const hora =
-        entrada.toLocaleTimeString(
-          "pt-BR",
-          {
-            hour:"2-digit",
-            minute:"2-digit"
-          }
-        );
-
-      if(
-        !unavailableTimes.includes(hora)
-      ){
-        unavailableTimes.push(hora);
-      }
     });
 
     renderCalendar();
+
+  }catch(error){
+
+    console.log(error);
+  }
+}
+
+async function carregarDisponibilidadeHora(data){
+
+  const salaId =
+    localStorage.getItem("salaId");
+
+  if(!salaId) return;
+
+  try{
+
+    const response =
+      await fetch(
+        `http://localhost:8000/api/reserva?id_sala=${salaId}?inicio=${data}?fim=${data}`
+      );
+
+    const reservas =
+      await response.json();
+
+    /* limpa arrays */
+
+    unavailableTimes = [];
+
+    reservas.forEach(reserva => {
+
+      const horaEntrada =
+        new Date(reserva.entrada).getHours();
+
+      const horaSaida = 
+        new Date(reserva.saida).getHours();
+
+      /* horário indisponível */
+      for (let h = horaEntrada; h < horaSaida; h++) {
+
+        const horaFormatada = `${String(h).padStart(2, '0')}:00`;
+
+        if (!unavailableTimes.includes(horaFormatada)) {
+          unavailableTimes.push(horaFormatada);
+        }
+      }
+    });
 
     renderTimes();
 
@@ -430,9 +461,19 @@ async function carregarDisponibilidade(){
 
 /* iniciar */
 
-carregarDisponibilidade();
+if (paginaAtual=='sala.html') {
+  const daysInMonth =
+    new Date(currentYear, currentMonth + 1, 0)
+    .getDate();
 
+  const mesFormatado = String(currentMonth + 1).padStart(2, '0');
 
+  const dateInicio = `${currentYear}-${mesFormatado}-01`
+  const dateFim = `${currentYear}-${mesFormatado}-${daysInMonth}`
+
+  carregarDisponibilidadeDia(dateInicio, dateFim);
+  renderCalendar();
+};
 
 /* =========================
    AVALIAÇÕES DA SALA - na parte de cima
@@ -716,3 +757,4 @@ async function carregarSala(){
 }
 
 carregarSala();
+
