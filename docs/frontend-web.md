@@ -23,7 +23,7 @@
 
 <!--[Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.] -->
 
-<img src="img/Styles.png" width="300" align="center">
+<img src="img/Styles.png" width="300" justify-self="center">
 
 
 
