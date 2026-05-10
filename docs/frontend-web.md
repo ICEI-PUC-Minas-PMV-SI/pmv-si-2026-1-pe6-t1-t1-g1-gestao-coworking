@@ -47,7 +47,7 @@ Os elementos gráficos seguem um padrão geométrico, com botões em formato de 
 <img src="img/userflow8.png" width="500" justify-self="center">
 <img src="img/userflow9.png" width="500" justify-self="center">
 <img src="img/userflow11.png" width="500" justify-self="center">
-<img src="img/userflow10.png" width="300" justify-self="center">
+<img src="img/userflow10.png" width="100" justify-self="center">
 
 ## Tecnologias Utilizadas
 <!-- [Lista das tecnologias principais que serão utilizadas no projeto.] -->
