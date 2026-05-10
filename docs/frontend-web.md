@@ -37,17 +37,17 @@ Os elementos gráficos seguem um padrão geométrico, com botões em formato de 
 ## Fluxo de Dados
 
 <!--[Diagrama ou descrição do fluxo de dados na aplicação.]-->
-<img src="img/userflow1.png" width="300" justify-self="center">
-<img src="img/userflow2.png" width="300" justify-self="center">
-<img src="img/userflow3.png" width="300" justify-self="center">
-<img src="img/userflow4.png" width="300" justify-self="center">
-<img src="img/userflow5.png" width="300" justify-self="center">
-<img src="img/userflow6.png" width="300" justify-self="center">
-<img src="img/userflow7.png" width="300" justify-self="center">
-<img src="img/userflow8.png" width="300" justify-self="center">
-<img src="img/userflow9.png" width="300" justify-self="center">
-<img src="img/userflow10.png" width="300" justify-self="center">
-<img src="img/userflow11.png" width="300" justify-self="center">
+<img src="img/userflow1.png" width="400" justify-self="center">
+<img src="img/userflow2.png" width="400" justify-self="center">
+<img src="img/userflow3.png" width="400" justify-self="center">
+<img src="img/userflow4.png" width="400" justify-self="center">
+<img src="img/userflow5.png" width="400" justify-self="center">
+<img src="img/userflow6.png" width="400" justify-self="center">
+<img src="img/userflow7.png" width="400" justify-self="center">
+<img src="img/userflow8.png" width="400" justify-self="center">
+<img src="img/userflow9.png" width="400" justify-self="center">
+<img src="img/userflow10.png" width="400" justify-self="center">
+<img src="img/userflow11.png" width="400" justify-self="center">
 
 
 ## Tecnologias Utilizadas
