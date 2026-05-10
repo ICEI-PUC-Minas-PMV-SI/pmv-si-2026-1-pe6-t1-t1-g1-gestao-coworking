@@ -1,6 +1,25 @@
 function goTipo(tipo){
-  localStorage.setItem('tipo', tipo);
-  location.href = 'salas.html';
+  const tipoExiste =
+      localStorage.getItem("tipo");
+
+  const boxes = 
+      document.querySelectorAll('.top-card');
+
+  let div = document.getElementById(tipo);
+
+  if (tipo == tipoExiste){
+    localStorage.setItem('tipo', '');
+
+    boxes.forEach(item => item.className = 'top-card');
+  } else {
+    localStorage.setItem('tipo', tipo);
+
+    boxes.forEach(item => item.className = 'top-card');
+
+    div.className = 'top-card active';
+  }
+
+  carregarSalas();
 }
 
 function alertLogin(){
@@ -10,60 +29,6 @@ function alertLogin(){
 /* =========================
    LISTA DE SALAS
 ========================= */
-
-if(document.getElementById('lista')){
-
-  let lista = document.getElementById('lista');
-
-  if(document.getElementById('lista')){
-
-  let lista = document.getElementById('lista');
-
-  /*const salas = [
-    {
-      nome:'Espaço privativo',
-      img:'https://picsum.photos/500/300?1'
-    },
-    {
-      nome:'Mesa compartilhada',
-      img:'https://picsum.photos/500/300?2'
-    },
-    {
-      nome:'Estação fixa',
-      img:'https://picsum.photos/500/300?3'
-    },
-    {
-      nome:'Sala de reunião',
-      img:'https://picsum.photos/500/300?4'
-    }
-  ];
-
-  salas.forEach(sala => {
-
-    let el = document.createElement('div');
-
-    el.className = 'card';
-
-    el.innerHTML = `
-      <img src="${sala.img}">
-
-      <div class="card-content">
-        <h3>${sala.nome}</h3>
-
-        <p>Capacidade: 1 pessoa</p>
-
-        <p>
-          Wi-Fi de alta velocidade,
-          climatização e ambiente confortável.
-        </p>
-      </div>
-    `;
-
-    el.onclick = () => location.href = 'sala.html';
-
-    lista.appendChild(el);
-  });*/
-}};
 
 async function carregarSalas(){
 
@@ -77,21 +42,28 @@ async function carregarSalas(){
     const tipo =
       localStorage.getItem("tipo");
 
-    let url =
-      "http://localhost:8000/salas";
-
-    /* filtro por tipo */
-
-    if(tipo){
-
-      url += `?tipoSala=${tipo}`;
-    }
+    const url =
+      "http://localhost:8000/salas?ativas=true";
 
     const response =
       await fetch(url);
 
-    const salas =
+    const salasInicial =
       await response.json();
+    
+    /* filtro por tipo */
+
+    let salas = [];
+
+    if(tipo){
+      salasInicial.forEach(sala => {
+        if (sala.tipoSala == tipo) {
+          salas.push(sala);
+        }
+      })
+    } else {
+      salas = salasInicial;
+    }
 
     lista.innerHTML = "";
 
@@ -141,10 +113,82 @@ async function carregarSalas(){
   }catch(error){
 
     console.log(error);
+
+    lista.innerHTML = "";
+
+    if(document.getElementById('lista')){
+
+      let lista = document.getElementById('lista');
+
+      const salas = [
+        {
+          nome:'Espaço privativo',
+          tipo: 'privado',
+          capacidade: 3,
+          img:'https://picsum.photos/500/300?1'
+        },
+        {
+          nome:'Mesa compartilhada',
+          tipo: 'compartilhado',
+          capacidade: 1,
+          img:'https://picsum.photos/500/300?2'
+        },
+        {
+          nome:'Estação fixa',
+          tipo: 'fixa',
+          capacidade: 1,
+          img:'https://picsum.photos/500/300?3'
+        },
+        {
+          nome:'Sala de reunião',
+          tipo: 'reuniao',
+          capacidade: 6,
+          img:'https://picsum.photos/500/300?4'
+        }
+      ];
+    
+      salas.forEach(sala => {
+      
+        const tipo =
+          localStorage.getItem("tipo");
+      
+        if (sala.tipo == tipo || tipo == '') {
+          let el = document.createElement('div');
+        
+          el.className = 'card';
+        
+          el.innerHTML = `
+            <img src="${sala.img}">
+        
+            <div class="card-content">
+              <h3>${sala.nome}</h3>
+        
+              <p>Capacidade: ${sala.capacidade} pessoa</p>
+        
+              <p>
+                Wi-Fi de alta velocidade,
+                climatização e ambiente confortável.
+              </p>
+            </div>
+          `;
+        
+          el.onclick = () => location.href = 'sala.html';
+        
+          lista.appendChild(el);
+        };
+      });
+    };
   }
 }
 
-carregarSalas();
+const paginaAtual = 
+    window.location.pathname.split("/").pop();
+
+if (paginaAtual=='salas.html') {
+  localStorage.setItem('tipo', '');
+  goTipo('');
+  carregarSalas();
+};
 
 /* =========================
    CALENDÁRIO 

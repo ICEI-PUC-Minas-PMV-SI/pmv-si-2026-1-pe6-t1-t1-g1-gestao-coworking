@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Salas</title>
-<link rel="stylesheet" href="../css/salas.css">
+  <meta charset="UTF-8">
+  <title>Salas</title>
+  <link rel="stylesheet" href="../css/salas.css">
 </head>
 <body>
-<header>
-<div class="logo" onclick="location.href='index.html'">
-  <img src="../img/logo.png" alt="Logo">
-</div>
-<nav>
-<a href="salas.html">Salas</a>
-<a>Planos</a>
-<a>Sobre nós</a>
-</nav>
-<button class="btn" onclick="location.href='salas.html'">Login</button>
-</header>
+  <header>
+    <div class="logo" onclick="location.href='index.html'">
+      <img src="../img/logo2.png" alt="Logo">
+    </div>
+    <nav>
+      <a href="salas.html">Salas</a>
+      <a>Planos</a>
+      <a>Sobre nós</a>
+    </nav>
+    <button class="btn" onclick="location.href='salas.html'">Login</button>
+  </header>
 
-<div class="container">
-<h2>Salas</h2>
-<div class="top-cards">
-<div class="top-card" onclick="goTipo('privado')"><img src="../img/individual.jpeg"><p>Espaço privativo</p></div>
-<div class="top-card" onclick="goTipo('compartilhado')"><img src="../img/compartilhada.jpeg"><p>Mesa compartilhada</p></div>
-<div class="top-card" onclick="goTipo('fixa')"><img src="../img/fixa.jpeg"><p>Estação fixa</p></div>
-<div class="top-card" onclick="goTipo('reuniao')"><img src="../img/reuniao.jpeg"><p>Sala de reunião</p></div>
-</div>
-</div>
-<div class="container">
-<h2>Salas</h2>
-<div class="grid" id="lista"></div>
-<div id="lista"></div>
-</div>
-<script src="../scripts/salas.js"></script>
+  <div class="container">
+    <h2>Salas</h2>
+    <div class="top-cards">
+      <div id="privado" class="top-card" onclick="goTipo('privado')">
+        <img src="../img/individual.jpeg">
+        <p>Espaço privativo</p>
+      </div>
+      <div id="compartilhado" class="top-card" onclick="goTipo('compartilhado')">
+        <img src="../img/compartilhada.jpeg">
+        <p>Mesa compartilhada</p>
+      </div>
+      <div id="fixa" class="top-card" onclick="goTipo('fixa')">
+        <img src="../img/fixa.jpeg">
+        <p>Estação fixa</p>
+      </div>
+      <div id="reuniao" class="top-card" onclick="goTipo('reuniao')">
+        <img src="../img/reuniao.jpeg">
+        <p>Sala de reunião</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <h2>Salas</h2>
+    <div class="grid" id="lista">
+
+    </div>
+  </div>
+  <script src="../scripts/salas.js"></script>
 </body>
 </html>
