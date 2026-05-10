@@ -1,329 +1,156 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Planos - Axis Working</title>
-
-  <link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis Work</title>
+    <link rel="shortcut icon" href="../img/favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/home.css">
 </head>
-
 <body>
-
-  <!-- NAVBAR -->
-
-  <nav>
-
-    <div class="logo">
-
-      <img src="img/logo.png">
-
-      <h1>Axis Working</h1>
-
-    </div>
-
-    <div class="menu">
-
-      <a href="#">Salas</a>
-      <a href="index.html">Planos</a>
-      <a href="sobrenos.html">Sobre nós</a>
-      <a href="#">Contatos</a>
-
-    </div>
-
-    <button class="btn-nav">
-      ENTRAR
-    </button>
-
-  </nav>
-
-  <!-- TITULO -->
-
-  <section class="titulo">
-
-    <h2>PLANOS</h2>
-
-  </section>
-
-  <!-- PLANOS -->
-
-  <section class="cards">
-
-    <!-- CARD 1 -->
-
-    <div class="card">
-
-      <div class="marca-fundo">
-        <img src="img/logo.png">
-      </div>
-
-      <div class="carousel">
-
-        <img src="img/diario.png" class="active">
-        <img src="img/diario2.png">
-        <img src="img/diario3.png">
-
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-
-      </div>
-
-      <div class="card-info">
-
-        <h3>Plano Diário</h3>
-
-        <p>
-          Ideal para quem precisa de flexibilidade e acesso rápido ao coworking.
-        </p>
-
-        <ul>
-          <li>Acesso por 1 dia</li>
-          <li>Internet de alta velocidade</li>
-          <li>Espaço compartilhado</li>
-        </ul>
-
-        <div class="preco">
-          R$ 39,90
+    <header>
+        <div id="logo" onclick="window.location.href = 'index.html'">
+            <img src="../img/logoaxis.png" alt="">
+            <p>Axis Work</p>
         </div>
-
-        <a href="carrinho.html?plano=diario">
-          <button class="btn">
-            Escolher Plano
-          </button>
-        </a>
-
-      </div>
-
-    </div>
-
-    <!-- CARD 2 -->
-
-    <div class="card">
-
-      <div class="marca-fundo">
-        <img src="img/logo.png">
-      </div>
-
-      <div class="carousel">
-
-        <img src="img/semanal.png" class="active">
-        <img src="img/semanal2.png">
-        <img src="img/semanal3.png">
-
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-
-      </div>
-
-      <div class="card-info">
-
-        <h3>Plano Semanal</h3>
-
-        <p>
-          Perfeito para produtividade durante toda a semana.
-        </p>
-
-        <ul>
-          <li>7 dias de acesso</li>
-          <li>Networking profissional</li>
-          <li>Maior economia</li>
-        </ul>
-
-        <div class="preco">
-          R$ 119,90
+        <div></div>
+        <div>
+            <button class="bot2 bot" onclick="window.location.href = 'cadastro.html'">Cadastrar</button>
+            <button class="bot1 bot" onclick="window.location.href = 'login.html'">Entrar</button>
         </div>
+    </header>
 
-        <a href="carrinho.html?plano=semanal">
-          <button class="btn">
-            Escolher Plano
-          </button>
-        </a>
-
-      </div>
-
-    </div>
-
-    <!-- CARD 3 -->
-
-    <div class="card">
-
-      <div class="marca-fundo">
-        <img src="img/logo.png">
-      </div>
-
-      <div class="carousel">
-
-        <img src="img/mensal.png" class="active">
-        <img src="img/mensal2.png">
-        <img src="img/mensal3.png">
-
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-
-      </div>
-
-      <div class="card-info">
-
-        <h3>Plano Mensal</h3>
-
-        <p>
-          Um espaço fixo para produtividade durante todo o mês.
-        </p>
-
-        <ul>
-          <li>Acesso ilimitado</li>
-          <li>Estação de trabalho</li>
-          <li>Ambiente climatizado</li>
-        </ul>
-
-        <div class="preco">
-          R$ 349,90
+    <section class="banner">
+        <div>
+            <h1>O centro estratégico do seu trabalho.</h1>
+            <p>Um espaço de trabalho moderno projetado para empresários, freelancer, e times que valorizam flexibilidade e senso de comunidade.</p>
+            <div class="banner-bot">
+                <button class="bot bot3" onclick="window.location.href = 'sobre.html'">Sobre Nós</button>
+                <button class="bot bot2" onclick="window.location.href = 'planos.html'">Nossos Planos</button>
+            </div>
         </div>
+    </section>
 
-        <a href="carrinho.html?plano=mensal">
-          <button class="btn">
-            Escolher Plano
-          </button>
-        </a>
-
-      </div>
-
-    </div>
-
-    <!-- CARD 4 -->
-
-    <div class="card">
-
-      <div class="marca-fundo">
-        <img src="img/logo.png">
-      </div>
-
-      <div class="carousel">
-
-        <img src="img/anual.png" class="active">
-        <img src="img/anual3.png">
-        <img src="img/anual2.png">
-
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-
-      </div>
-
-      <div class="card-info">
-
-        <h3>Plano Anual</h3>
-
-        <p>
-          O plano mais completo da Axis Working.
-        </p>
-
-        <ul>
-          <li>12 meses de acesso</li>
-          <li>Benefícios exclusivos</li>
-          <li>Reservas prioritárias</li>
-        </ul>
-
-        <div class="preco">
-          R$ 2.999,90
+    <section class="sessao">
+        <div class="section-titulo">
+            <h2>Tudo que você precisa para prosperar</h2>
+            <p>Criamos um ambiente focado no seu crescimento, oferecendo instalações de alto padrão e todo o suporte que você precisa.</p>
         </div>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3>Espaços Flexíveis</h3>
+                <p>De mesas compartilhadas a escritórios privativos, escolha o lugar que mais combina com seu momento.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>Internet de Alta Velocidade</h3>
+                <p>Conexão via fibra óptica ultrarrápida para você produzir sem interrupções.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">☕</div>
+                <h3>Comodidades Premium</h3>
+                <p>Café, chá e snacks disponíveis o dia todo em nosso lounge para você recarregar as energias.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Eventos de Networking</h3>
+                <p>Meetups, workshops e happy hours frequentes para você expandir sua rede de contatos.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📍</div>
+                <h3>Localização Privilegiada</h3>
+                <p>No coração da cidade, com fácil acesso ao transporte público e aos melhores restaurantes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Acesso 24/7</h3>
+                <p>Trabalhe no seu ritmo com acesso seguro e monitorado ao espaço a qualquer hora do dia.</p>
+            </div>
+        </div>
+    </section>
 
-        <a href="carrinho.html?plano=anual">
-          <button class="btn">
-            Escolher Plano
-          </button>
-        </a>
+    <section class="sessao fundo-claro">
+        <div class="section-titulo">
+            <h2>Nossos espaços</h2>
+            <p>Escolha o espaço de trabalho que mais se encaixa nas suas necessidades. De mesas compartilhadas que te trazem flexibilidade até escritórios privativos e salas de reunião, nós temos opções para todos os estilos de trabalho.</p>
+        </div>
+        <div class="salas">
+            <div class="placeholder">
+            </div>
+            <div class="placeholder">
+            </div>
+            <div class="placeholder">
+            </div>
+            <div class="placeholder">
+            </div>
+            <button class="bot bot2" onclick="window.location.href = 'salas.html'">Veja mais sobre os nossos espaços.</button>
+            <button id="marcar" class="bot bot1" onclick="direcionar_marcar()">Marque um horário !</button>
+        </div>
+    </section>
 
-      </div>
+    <section class="sessao">
+        <div class="section-titulo">
+            <h2>Simples e transparente </h2>
+            <p>Escolha o plano que funcione melhor para você. Sem taxas extras, sem surpresas.</p>
+        </div>
+        <div class="plano-grid">
+            <div class="placeholder">
+            </div>
+            <div class="placeholder">
+            </div>
+            <div class="placeholder">
+            </div>
+            <button class="bot bot1" onclick="direcionar_plano(0)">Veja mais sobre nossos planos !</button>
+        </div>
+    </section>
 
-    </div>
+    <section class="sessao fundo-claro">
+        <div class="section-titulo">
+            <h2>Faça Parte da Nossa Comunidade</h2>
+            <p>Conheça as histórias de quem transformou o jeito de trabalhar aqui no Axis Working.</p>
+        </div>
+        <div class="aval-grid">
+            <div class="aval-card">
+                <div class="user-profile">
+                    <img src="https://randomuser.me/api/portraits/women/34.jpg" alt="Fernanda Oliveira">
+                    <div>
+                        <h4>Fernanda Oliveira</h4>
+                        <span>Fundadora da TechStart</span>
+                    </div>
+                </div>
+                <p>"O Axis Working foi fundamental para o crescimento da minha startup. A comunidade aqui é incrível, muito acolhedora e inspiradora."</p>
+            </div>
+            <div class="aval-card">
+                <div class="user-profile">
+                    <img src="https://randomuser.me/api/portraits/men/83.jpg" alt="Ricardo Santos">
+                    <div>
+                        <h4>Ricardo Santos</h4>
+                        <span>Designer Freelancer</span>
+                    </div>
+                </div>
+                <p>"O melhor coworking da cidade, sem dúvida. A energia aqui é contagiante e nunca me senti tão produtivo quanto agora."</p>
+            </div>
+            <div class="aval-card">
+                <div class="user-profile">
+                    <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Juliana Mendes">
+                    <div>
+                        <h4>Juliana Mendes</h4>
+                        <span>Gerente Remota</span>
+                    </div>
+                </div>
+                <p>"Os eventos de networking e workshops são fantásticos. Já fiz conexões valiosas e aprendi demais desde que cheguei."</p>
+            </div>
+            <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80" alt="Space 1">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80" alt="Space 2">
+            <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=600&q=80" alt="Space 3">
+        </div>
+    </section>
 
-  </section>
-
-  <!-- SCRIPT -->
-
-  <script>
-
-    const carousels = document.querySelectorAll(".carousel");
-
-    carousels.forEach(carousel => {
-
-      const images = carousel.querySelectorAll("img");
-
-      const prev = carousel.querySelector(".prev");
-      const next = carousel.querySelector(".next");
-
-      let index = 0;
-
-      function showImage(i){
-
-        images.forEach(img => {
-          img.classList.remove("active");
-        });
-
-        images[i].classList.add("active");
-
-      }
-
-      next.addEventListener("click", () => {
-
-        index++;
-
-        if(index >= images.length){
-          index = 0;
-        }
-
-        showImage(index);
-
-      });
-
-      prev.addEventListener("click", () => {
-
-        index--;
-
-        if(index < 0){
-          index = images.length - 1;
-        }
-
-        showImage(index);
-
-      });
-
-      setInterval(() => {
-
-        index++;
-
-        if(index >= images.length){
-          index = 0;
-        }
-
-        showImage(index);
-
-      }, 4000);
-
-    });
-
-  </script>
-<footer>
-    <div class="footer-container">
-      <div class="footer-logo">
-        <img src="img/logo.png" alt="Logo">
-        <h2>Axis Working</h2>
-        <p>Transformando seu jeito de trabalhar com foco e inovação.</p>
-      </div>
-
-      <div class="footer-contato">
-        <h3>Contato</h3>
-        <p>Email: contato@axisworking.com</p>
-        <p>Telefone: (11) 9999-9999</p>
-        <p>Endereço: Av. Paulista, 1000 - SP</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Axis Working. Todos os direitos reservados.</p>
-    </div>
-  </footer>
+    <footer>
+        <p>© 2026 Axis Working. All rights reserved.</p>
+    </footer>
+    
+    <script src="../scripts/home.js"></script>
 </body>
 </html>
