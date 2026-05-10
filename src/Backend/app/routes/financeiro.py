@@ -2,6 +2,7 @@ from datetime import date, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.db import get_db
@@ -59,11 +60,12 @@ def atualizar_plano(id_plano: int, payload: PlanoUpdate, db: Session = Depends(g
 @planos_router.delete("/{id_plano}", status_code=status.HTTP_204_NO_CONTENT)
 def excluir_plano(id_plano: int, db: Session = Depends(get_db)) -> None:
     plano = _plano_or_404(db, id_plano)
-    assinaturas = db.scalars(select(Assinatura).where(Assinatura.id_plano == id_plano)).all()
-    for assinatura in assinaturas:
-        assinatura.id_plano = None
     db.delete(plano)
-    db.commit()
+    try:
+        db.commit()
+    except IntegrityError as exc:
+        db.rollback()
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Plano possui assinaturas relacionadas") from exc
     return None
 
 
@@ -81,14 +83,12 @@ def criar_assinatura(payload: AssinaturaCreate, db: Session = Depends(get_db)) -
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cliente nao encontrado")
     _plano_or_404(db, payload.id_plano)
 
-    ativa = None
-    if payload.status == StatusAssinatura.ATIVA:
-        ativa = db.scalar(
-            select(Assinatura).where(
-                Assinatura.id_cliente == payload.id_cliente,
-                Assinatura.status == StatusAssinatura.ATIVA,
-            )
+    ativa = db.scalar(
+        select(Assinatura).where(
+            Assinatura.id_cliente == payload.id_cliente,
+            Assinatura.status == StatusAssinatura.ATIVA,
         )
+    )
     if ativa is not None:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Cliente ja possui assinatura ativa")
 
@@ -96,7 +96,7 @@ def criar_assinatura(payload: AssinaturaCreate, db: Session = Depends(get_db)) -
     assinatura = Assinatura(
         id_cliente=payload.id_cliente,
         id_plano=payload.id_plano,
-        status=payload.status,
+        status=StatusAssinatura.ATIVA,
         validade=payload.validade or hoje + timedelta(days=30),
         feita_em=hoje,
     )
@@ -135,3 +135,4 @@ def excluir_assinatura(id_assinatura: int, db: Session = Depends(get_db)) -> Non
     db.delete(assinatura)
     db.commit()
     return None
+

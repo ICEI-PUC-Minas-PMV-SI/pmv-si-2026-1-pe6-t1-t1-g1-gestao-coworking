@@ -56,6 +56,41 @@ public class AvaliacaoController(AppDbContext context) : ControllerBase
         }
     }
 
+    [HttpGet("cliente/{idCliente:int}")]
+    [ProducesResponseType(typeof(IEnumerable<AvaliacaoResponseDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status408RequestTimeout)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status503ServiceUnavailable)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    public async Task<ActionResult<IEnumerable<AvaliacaoResponseDto>>> GetByCliente(int idCliente)
+    {
+        if (idCliente <= 0)
+        {
+            return CreateProblem(StatusCodes.Status400BadRequest, "Identificador invalido.", "O ID do cliente deve ser maior que zero.");
+        }
+
+        try
+        {
+            return Ok(await GetReviewDtosAsync(idCliente: idCliente));
+        }
+        catch (OperationCanceledException)
+        {
+            return CreateProblem(StatusCodes.Status408RequestTimeout, "Tempo limite excedido.", "A consulta demorou mais do que o esperado.");
+        }
+        catch (TimeoutException)
+        {
+            return CreateProblem(StatusCodes.Status408RequestTimeout, "Tempo limite excedido.", "A consulta demorou mais do que o esperado.");
+        }
+        catch (NpgsqlException ex) when (ex.IsTransient)
+        {
+            return CreateProblem(StatusCodes.Status503ServiceUnavailable, "Banco de dados indisponivel.", "Nao foi possivel consultar o banco de dados no momento.");
+        }
+        catch (Exception)
+        {
+            return CreateProblem(StatusCodes.Status500InternalServerError, "Erro interno.", "Ocorreu um erro inesperado ao listar as avaliacoes do cliente.");
+        }
+    }
+
     [HttpGet("{id:int}")]
     [ProducesResponseType(typeof(AvaliacaoResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -114,9 +149,17 @@ public class AvaliacaoController(AppDbContext context) : ControllerBase
                 return CreateProblem(StatusCodes.Status400BadRequest, "Reserva obrigatoria.", "Selecione uma reserva valida para criar a avaliacao.");
             }
 
+            var reserva = await context.Reservas.AsNoTracking().FirstOrDefaultAsync(r => r.IdReserva == dto.IdReserva.Value);
+            if (reserva is null || !reserva.IdCliente.HasValue || !reserva.IdSala.HasValue)
+            {
+                return CreateProblem(StatusCodes.Status400BadRequest, "Reserva invalida.", "A reserva informada nao possui cliente e sala vinculados.");
+            }
+
             var avaliacao = new Avaliacao
             {
-                IdReserva = dto.IdReserva,
+                IdCliente = reserva.IdCliente.Value,
+                IdSala = reserva.IdSala.Value,
+                IdReserva = dto.IdReserva.Value,
                 Nota = dto.Nota,
                 Corpo = dto.Corpo,
                 CriadoEm = dto.CriadoEm
@@ -180,13 +223,21 @@ public class AvaliacaoController(AppDbContext context) : ControllerBase
                 return CreateProblem(StatusCodes.Status400BadRequest, "Reserva obrigatoria.", "Selecione uma reserva valida para atualizar a avaliacao.");
             }
 
+            var reserva = await context.Reservas.AsNoTracking().FirstOrDefaultAsync(r => r.IdReserva == dto.IdReserva.Value);
+            if (reserva is null || !reserva.IdCliente.HasValue || !reserva.IdSala.HasValue)
+            {
+                return CreateProblem(StatusCodes.Status400BadRequest, "Reserva invalida.", "A reserva informada nao possui cliente e sala vinculados.");
+            }
+
             var avaliacao = await context.Avaliacoes.FirstOrDefaultAsync(a => a.IdAvaliacao == id);
             if (avaliacao is null)
             {
                 return NotFound(new { message = "Avaliacao nao encontrada." });
             }
 
-            avaliacao.IdReserva = dto.IdReserva;
+            avaliacao.IdCliente = reserva.IdCliente.Value;
+            avaliacao.IdSala = reserva.IdSala.Value;
+            avaliacao.IdReserva = dto.IdReserva.Value;
             avaliacao.Nota = dto.Nota;
             avaliacao.Corpo = dto.Corpo;
             avaliacao.CriadoEm = dto.CriadoEm;
@@ -284,7 +335,7 @@ public class AvaliacaoController(AppDbContext context) : ControllerBase
         return Problem(statusCode: statusCode, title: title, detail: detail);
     }
 
-    private async Task<List<AvaliacaoResponseDto>> GetReviewDtosAsync(int? id = null)
+    private async Task<List<AvaliacaoResponseDto>> GetReviewDtosAsync(int? id = null, int? idCliente = null)
     {
         if (IsInMemoryProvider())
         {
@@ -293,6 +344,10 @@ public class AvaliacaoController(AppDbContext context) : ControllerBase
             {
                 query = query.Where(a => a.IdAvaliacao == id.Value);
             }
+            if (idCliente.HasValue)
+            {
+                query = query.Where(a => a.IdCliente == idCliente.Value);
+            }
 
             return await query
                 .OrderByDescending(a => a.CriadoEm)
@@ -300,10 +355,14 @@ public class AvaliacaoController(AppDbContext context) : ControllerBase
                 .Select(a => new AvaliacaoResponseDto
                 {
                     IdAvaliacao = a.IdAvaliacao,
+                    IdCliente = a.IdCliente,
+                    IdSala = a.IdSala,
                     IdReserva = a.IdReserva,
                     Nota = a.Nota,
                     Corpo = a.Corpo,
-                    CriadoEm = a.CriadoEm
+                    CriadoEm = a.CriadoEm,
+                    RespostaAdmin = a.RespostaAdmin,
+                    RespondidoEm = a.RespondidoEm
                 })
                 .ToListAsync();
         }
@@ -311,18 +370,22 @@ public class AvaliacaoController(AppDbContext context) : ControllerBase
         const string sql = """
             SELECT
                 a.id_avaliacao,
+                a.id_cliente,
+                a.id_sala,
                 a.id_reserva,
                 a.nota,
                 a.corpo,
                 a.criado_em,
+                a.resposta_admin,
+                a.respondido_em,
                 COALESCE(c.nome, 'Usuario nao informado') AS nome_usuario,
                 COALESCE(s.nome, 'Sala nao informada') AS nome_sala,
                 COALESCE(s.tipo::text, 'Tipo nao informado') AS tipo_sala
-            FROM public.avaliacao a
-            LEFT JOIN public.reservas r ON r.id_reserva = a.id_reserva
-            LEFT JOIN public.cliente c ON c.id_cliente = r.id_cliente
-            LEFT JOIN public.sala s ON s.id_sala = r.id_sala
+            FROM public.avaliacoes a
+            LEFT JOIN public.usuario_cliente c ON c.id_cliente = a.id_cliente
+            LEFT JOIN public.salas s ON s.id_sala = a.id_sala
             WHERE (@id IS NULL OR a.id_avaliacao = @id)
+              AND (@id_cliente IS NULL OR a.id_cliente = @id_cliente)
             ORDER BY a.criado_em DESC, a.id_avaliacao DESC;
             """;
 
@@ -340,6 +403,11 @@ public class AvaliacaoController(AppDbContext context) : ControllerBase
         parameter.Value = id.HasValue ? id.Value : DBNull.Value;
         command.Parameters.Add(parameter);
 
+        var clienteParameter = command.CreateParameter();
+        clienteParameter.ParameterName = "@id_cliente";
+        clienteParameter.Value = idCliente.HasValue ? idCliente.Value : DBNull.Value;
+        command.Parameters.Add(clienteParameter);
+
         var items = new List<AvaliacaoResponseDto>();
         await using var reader = await command.ExecuteReaderAsync();
         while (await reader.ReadAsync())
@@ -347,13 +415,17 @@ public class AvaliacaoController(AppDbContext context) : ControllerBase
             items.Add(new AvaliacaoResponseDto
             {
                 IdAvaliacao = reader.GetInt32(0),
-                IdReserva = reader.IsDBNull(1) ? null : reader.GetInt32(1),
-                Nota = reader.GetInt32(2),
-                Corpo = reader.IsDBNull(3) ? null : reader.GetString(3),
-                CriadoEm = DateOnly.FromDateTime(reader.GetDateTime(4)),
-                NomeUsuario = reader.GetString(5),
-                NomeSala = reader.GetString(6),
-                TipoSala = reader.GetString(7)
+                IdCliente = reader.GetInt32(1),
+                IdSala = reader.GetInt32(2),
+                IdReserva = reader.GetInt32(3),
+                Nota = reader.GetInt32(4),
+                Corpo = reader.IsDBNull(5) ? null : reader.GetString(5),
+                CriadoEm = DateOnly.FromDateTime(reader.GetDateTime(6)),
+                RespostaAdmin = reader.IsDBNull(7) ? null : reader.GetString(7),
+                RespondidoEm = reader.IsDBNull(8) ? null : DateOnly.FromDateTime(reader.GetDateTime(8)),
+                NomeUsuario = reader.GetString(9),
+                NomeSala = reader.GetString(10),
+                TipoSala = reader.GetString(11)
             });
         }
 

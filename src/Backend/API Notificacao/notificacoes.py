@@ -18,8 +18,7 @@ def list_notificacoes(
     *,
     lida: bool | None = None,
     tipo: TipoNotificacao | None = None,
-    id_assinatura: int | None = None,
-    id_reserva: int | None = None,
+    id_cliente: int | None = None,
 ) -> list[Notificacao]:
     query: Select[tuple[Notificacao]] = select(Notificacao)
 
@@ -27,10 +26,8 @@ def list_notificacoes(
         query = query.where(Notificacao.lida == lida)
     if tipo is not None:
         query = query.where(Notificacao.tipo == tipo)
-    if id_assinatura is not None:
-        query = query.where(Notificacao.id_assinatura == id_assinatura)
-    if id_reserva is not None:
-        query = query.where(Notificacao.id_reserva == id_reserva)
+    if id_cliente is not None:
+        query = query.where(Notificacao.id_cliente == id_cliente)
 
     query = query.order_by(Notificacao.id_notificacao.desc())
     return list(db.scalars(query).all())

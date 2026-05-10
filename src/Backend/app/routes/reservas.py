@@ -2,7 +2,7 @@ from datetime import date, datetime
 from zoneinfo import ZoneInfo
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from sqlalchemy import cast, select
+from sqlalchemy import cast, select, text
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from sqlalchemy.types import Date
@@ -137,8 +137,14 @@ def editar_reserva(id_reserva: int, payload: ReservaUpdate, db: Session = Depend
 @router.delete("/reservas/{id_reserva}", status_code=status.HTTP_204_NO_CONTENT)
 @router.delete("/reserva/{id_reserva}", status_code=status.HTTP_204_NO_CONTENT, include_in_schema=False)
 def deletar_reserva(id_reserva: int, db: Session = Depends(get_db)) -> None:
-    reserva = _reserva_or_404(db, id_reserva)
-    db.delete(reserva)
-    db.commit()
+    _reserva_or_404(db, id_reserva)
+    try:
+        db.execute(
+            text("DELETE FROM reservas WHERE id_reserva = :id_reserva"),
+            {"id_reserva": id_reserva},
+        )
+        db.commit()
+    except IntegrityError as exc:
+        db.rollback()
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Reserva possui registros relacionados") from exc
     return None
-

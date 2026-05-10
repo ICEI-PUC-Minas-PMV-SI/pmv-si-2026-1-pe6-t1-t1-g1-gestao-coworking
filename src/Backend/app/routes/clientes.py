@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from sqlalchemy import select, update
+from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.db import get_db
-from app.models import Assinatura, Cliente, Reserva
-from app.schemas import ClienteCreate, ClienteRead, ClienteStatusUpdate, ClienteUpdate, LoginInput, TokenRead
+from app.models import Cliente
+from app.schemas import ClienteCreate, ClientePatch, ClienteRead, ClienteUpdate, LoginInput, TokenRead
 from app.security import criar_token, hash_senha, verificar_senha, verificar_token
 
 
@@ -39,8 +39,6 @@ def login(payload: LoginInput, db: Session = Depends(get_db)) -> TokenRead:
     cliente = db.scalar(select(Cliente).where(Cliente.cpf == payload.cpf))
     if cliente is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cliente nao encontrado")
-    if not cliente.ativo:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Cliente desabilitado")
     if not verificar_senha(payload.senha, cliente.senha):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Senha incorreta")
     return TokenRead(mensagem="Login realizado", access_token=criar_token(cliente.cpf))
@@ -64,11 +62,9 @@ def buscar_cliente(id_cliente: int, db: Session = Depends(get_db)) -> Cliente:
 @router.put("/clientes/{id_cliente}", response_model=ClienteRead)
 def atualizar_cliente(id_cliente: int, payload: ClienteUpdate, db: Session = Depends(get_db)) -> Cliente:
     cliente = _cliente_or_404(db, id_cliente)
-    dados = payload.model_dump(exclude={"senha"})
-    for field, value in dados.items():
+    for field, value in payload.model_dump(exclude={"senha"}).items():
         setattr(cliente, field, value)
-    if payload.senha:
-        cliente.senha = hash_senha(payload.senha)
+    cliente.senha = hash_senha(payload.senha)
     try:
         db.commit()
     except IntegrityError as exc:
@@ -78,11 +74,16 @@ def atualizar_cliente(id_cliente: int, payload: ClienteUpdate, db: Session = Dep
     return cliente
 
 
-@router.patch("/clientes/{id_cliente}/status", response_model=ClienteRead)
-def atualizar_status_cliente(id_cliente: int, payload: ClienteStatusUpdate, db: Session = Depends(get_db)) -> Cliente:
+@router.patch("/clientes/{id_cliente}", response_model=ClienteRead)
+def atualizar_dados_cliente(id_cliente: int, payload: ClientePatch, db: Session = Depends(get_db)) -> Cliente:
     cliente = _cliente_or_404(db, id_cliente)
-    cliente.ativo = payload.ativo
-    db.commit()
+    for field, value in payload.model_dump(exclude_unset=True).items():
+        setattr(cliente, field, value)
+    try:
+        db.commit()
+    except IntegrityError as exc:
+        db.rollback()
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email ja cadastrado") from exc
     db.refresh(cliente)
     return cliente
 
@@ -90,8 +91,6 @@ def atualizar_status_cliente(id_cliente: int, payload: ClienteStatusUpdate, db: 
 @router.delete("/clientes/{id_cliente}", status_code=status.HTTP_204_NO_CONTENT)
 def excluir_cliente(id_cliente: int, db: Session = Depends(get_db)) -> None:
     cliente = _cliente_or_404(db, id_cliente)
-    db.execute(update(Reserva).where(Reserva.id_cliente == id_cliente).values(id_cliente=None))
-    db.execute(update(Assinatura).where(Assinatura.id_cliente == id_cliente).values(id_cliente=None))
     db.delete(cliente)
     db.commit()
     return None

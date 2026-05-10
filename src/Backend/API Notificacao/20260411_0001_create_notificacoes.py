@@ -27,8 +27,7 @@ def upgrade() -> None:
         sa.Column("corpo", sa.String(length=255), nullable=False),
         sa.Column("tipo", tipo_notificacao, nullable=False),
         sa.Column("lida", sa.Boolean(), nullable=False, server_default=sa.text("false")),
-        sa.Column("id_assinatura", sa.Integer(), nullable=False),
-        sa.Column("id_reserva", sa.Integer(), nullable=False),
+        sa.Column("id_cliente", sa.Integer(), nullable=False),
         sa.Column(
             "criado_em",
             sa.DateTime(timezone=True),
@@ -36,14 +35,12 @@ def upgrade() -> None:
             server_default=sa.text("CURRENT_TIMESTAMP"),
         ),
     )
-    op.create_index("ix_notificacoes_id_assinatura", "notificacoes", ["id_assinatura"])
-    op.create_index("ix_notificacoes_id_reserva", "notificacoes", ["id_reserva"])
+    op.create_index("ix_notificacoes_id_cliente", "notificacoes", ["id_cliente"])
     op.create_index("ix_notificacoes_id_notificacao", "notificacoes", ["id_notificacao"])
 
 
 def downgrade() -> None:
     op.drop_index("ix_notificacoes_id_notificacao", table_name="notificacoes")
-    op.drop_index("ix_notificacoes_id_reserva", table_name="notificacoes")
-    op.drop_index("ix_notificacoes_id_assinatura", table_name="notificacoes")
+    op.drop_index("ix_notificacoes_id_cliente", table_name="notificacoes")
     op.drop_table("notificacoes")
     tipo_notificacao.drop(op.get_bind(), checkfirst=True)

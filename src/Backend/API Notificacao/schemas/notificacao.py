@@ -8,11 +8,10 @@ from app.models.notificacao import TipoNotificacao
 
 
 class NotificacaoBase(BaseModel):
+    id_cliente: int = Field(..., ge=1)
     corpo: str = Field(..., examples=["Reserva confirmada"])
     tipo: TipoNotificacao
     lida: bool = False
-    id_assinatura: int | None = Field(default=None, ge=1)
-    id_reserva: int | None = Field(default=None, ge=1)
 
     @field_validator("tipo", mode="before")
     @classmethod

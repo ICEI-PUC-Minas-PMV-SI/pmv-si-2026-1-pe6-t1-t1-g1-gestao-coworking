@@ -36,9 +36,6 @@ INSERT INTO usuario_cliente (id_cliente, nome, cpf, email, telefone, senha) VALU
   (7, 'Ricardo Barros', '77777777777', 'ricardo@barrosadv.com', '11981000007', 'senha123'),
   (8, 'Studio Cinco', '88888888888', 'ops@studiocinco.cc', '11981000008', 'senha123');
 
-UPDATE cliente SET ativo = false WHERE id_cliente = 7;
-UPDATE usuario_cliente SET ativo = false WHERE id_cliente = 7;
-
 INSERT INTO sala (id_sala, nome, capacidade, tipo, descricao, recursos, criado_em, ativa) VALUES
   (1, 'Sala Atlas', 8, '4 Sala de Reunião', 'Sala de reunião no 2º andar. R$ 80/h. Status no painel: ocupada.', 'Monitor 4K, videoconferência, quadro branco, wifi, café', '2026-04-01', true),
   (2, 'Auditório Norte', 60, '4 Sala de Reunião', 'Auditório no térreo. R$ 320/h. Status no painel: disponível.', 'Projetor, palco, som, wifi, apoio de recepção', '2026-04-02', true),
@@ -57,84 +54,20 @@ INSERT INTO salas (id_sala, nome, capacidade, tipo, descricao, recursos, criado_
   (6, 'Privativa 07', 6, '2 Sala Individual', 'Sala privativa no 2º andar. R$ 2.400/mês. Status no painel: ocupada.', 'Mesa fixa, armários, endereço fiscal, estacionamento', '2026-04-06'),
   (7, 'Sala Cume', 10, '4 Sala de Reunião', 'Sala pendente de avaliação exibida no painel.', 'TV, quadro branco, videoconferência', '2026-04-15');
 
-UPDATE sala SET ambiente = 'Sala de reunião executiva', andar = '2º andar', valor_hora = 80.00, status_operacional = 'Ocupada' WHERE id_sala = 1;
-UPDATE sala SET ambiente = 'Auditório', andar = 'Térreo', valor_hora = 320.00, status_operacional = 'Disponível' WHERE id_sala = 2;
-UPDATE sala SET ambiente = 'Sala privativa', andar = '1º andar', valor_hora = 65.00, status_operacional = 'Disponível' WHERE id_sala = 3;
-UPDATE sala SET ambiente = 'Sala de reunião híbrida', andar = '3º andar', valor_hora = 110.00, status_operacional = 'Manutenção' WHERE id_sala = 4;
-UPDATE sala SET ambiente = 'Hot desk compartilhado', andar = '1º andar', valor_hora = 60.00, status_operacional = 'Disponível' WHERE id_sala = 5;
-UPDATE sala SET ambiente = 'Sala privativa', andar = '2º andar', valor_hora = 95.00, status_operacional = 'Ocupada' WHERE id_sala = 6;
-UPDATE sala SET ambiente = 'Sala de workshop', andar = '4º andar', valor_hora = 120.00, status_operacional = 'Disponível' WHERE id_sala = 7;
-
-UPDATE salas SET ambiente = 'Sala de reunião executiva', andar = '2º andar', valor_hora = 80.00, status_operacional = 'Ocupada' WHERE id_sala = 1;
-UPDATE salas SET ambiente = 'Auditório', andar = 'Térreo', valor_hora = 320.00, status_operacional = 'Disponível' WHERE id_sala = 2;
-UPDATE salas SET ambiente = 'Sala privativa', andar = '1º andar', valor_hora = 65.00, status_operacional = 'Disponível' WHERE id_sala = 3;
-UPDATE salas SET ambiente = 'Sala de reunião híbrida', andar = '3º andar', valor_hora = 110.00, status_operacional = 'Manutenção' WHERE id_sala = 4;
-UPDATE salas SET ambiente = 'Hot desk compartilhado', andar = '1º andar', valor_hora = 60.00, status_operacional = 'Disponível' WHERE id_sala = 5;
-UPDATE salas SET ambiente = 'Sala privativa', andar = '2º andar', valor_hora = 95.00, status_operacional = 'Ocupada' WHERE id_sala = 6;
-UPDATE salas SET ambiente = 'Sala de workshop', andar = '4º andar', valor_hora = 120.00, status_operacional = 'Disponível' WHERE id_sala = 7;
-
-UPDATE sala SET fotos = jsonb_build_array('room-photo:meeting:atlas') WHERE id_sala = 1;
-UPDATE sala SET fotos = jsonb_build_array('room-photo:auditorium:norte') WHERE id_sala = 2;
-UPDATE sala SET fotos = jsonb_build_array('room-photo:private:02') WHERE id_sala = 3;
-UPDATE sala SET fotos = jsonb_build_array('room-photo:meeting:vertice') WHERE id_sala = 4;
-UPDATE sala SET fotos = jsonb_build_array('room-photo:hotdesk:a') WHERE id_sala = 5;
-UPDATE sala SET fotos = jsonb_build_array('room-photo:private:07') WHERE id_sala = 6;
-UPDATE sala SET fotos = jsonb_build_array('room-photo:workshop:cume') WHERE id_sala = 7;
-
-UPDATE salas SET fotos = jsonb_build_array('room-photo:meeting:atlas') WHERE id_sala = 1;
-UPDATE salas SET fotos = jsonb_build_array('room-photo:auditorium:norte') WHERE id_sala = 2;
-UPDATE salas SET fotos = jsonb_build_array('room-photo:private:02') WHERE id_sala = 3;
-UPDATE salas SET fotos = jsonb_build_array('room-photo:meeting:vertice') WHERE id_sala = 4;
-UPDATE salas SET fotos = jsonb_build_array('room-photo:hotdesk:a') WHERE id_sala = 5;
-UPDATE salas SET fotos = jsonb_build_array('room-photo:private:07') WHERE id_sala = 6;
-UPDATE salas SET fotos = jsonb_build_array('room-photo:workshop:cume') WHERE id_sala = 7;
-
-UPDATE sala
-SET fotos = jsonb_build_array(
-  'data:image/svg+xml;base64,' ||
-  encode(convert_to(concat(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 260">',
-    '<defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#C9D6DF"/><stop offset="1" stop-color="#1F3A57"/></linearGradient></defs>',
-    '<rect width="600" height="260" fill="url(#g)"/>',
-    '<rect x="54" y="142" width="128" height="72" rx="10" fill="#0A1F33" opacity=".46"/>',
-    '<rect x="214" y="102" width="152" height="112" rx="10" fill="#0A1F33" opacity=".56"/>',
-    '<rect x="402" y="132" width="112" height="82" rx="10" fill="#E8EEF2" opacity=".38"/>',
-    '<text x="42" y="58" fill="#FFFFFF" font-family="Arial" font-size="26" font-weight="700">', nome, '</text>',
-    '<text x="42" y="92" fill="#E8EEF2" font-family="Arial" font-size="16">', coalesce(ambiente, 'Sala'), '</text>',
-    '</svg>'
-  ), 'UTF8'), 'base64')
-);
-
-UPDATE salas
-SET fotos = jsonb_build_array(
-  'data:image/svg+xml;base64,' ||
-  encode(convert_to(concat(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 260">',
-    '<defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#C9D6DF"/><stop offset="1" stop-color="#1F3A57"/></linearGradient></defs>',
-    '<rect width="600" height="260" fill="url(#g)"/>',
-    '<rect x="54" y="142" width="128" height="72" rx="10" fill="#0A1F33" opacity=".46"/>',
-    '<rect x="214" y="102" width="152" height="112" rx="10" fill="#0A1F33" opacity=".56"/>',
-    '<rect x="402" y="132" width="112" height="82" rx="10" fill="#E8EEF2" opacity=".38"/>',
-    '<text x="42" y="58" fill="#FFFFFF" font-family="Arial" font-size="26" font-weight="700">', nome, '</text>',
-    '<text x="42" y="92" fill="#E8EEF2" font-family="Arial" font-size="16">', coalesce(ambiente, 'Sala'), '</text>',
-    '</svg>'
-  ), 'UTF8'), 'base64')
-);
-
-INSERT INTO planos (id_plano, nome, acesso, preco, descricao, beneficios) VALUES
-  (1, 'Day Pass', '1 Mesa de Trabalho', 60.00, 'Acesso pontual para visitantes e profissionais que precisam de um dia produtivo no coworking.', '["Hot Desk por 8h", "Café e wifi", "1h de sala de reunião"]'::jsonb),
-  (2, 'Flex', '1 Mesa de Trabalho', 480.00, 'Para quem trabalha em ritmo livre e quer usar a estrutura compartilhada com recorrência.', '["Hot Desk ilimitado", "5h/mês de salas de reunião", "Eventos da comunidade", "Locker pessoal"]'::jsonb),
-  (3, 'Dedicated', '1 Mesa de Trabalho', 1180.00, 'Sua mesa fixa sempre disponível, com mais privacidade e benefícios de operação.', '["Mesa dedicada 24/7", "10h/mês de salas", "Endereço fiscal", "Recepção de correspondência"]'::jsonb),
-  (4, 'Office', '2 Sala Individual', 3200.00, 'Sala privativa para times que precisam de estrutura dedicada dentro do coworking.', '["Sala privativa até 6 pessoas", "20h/mês de salas extras", "Endereço fiscal", "Estacionamento (2 vagas)"]'::jsonb);
+INSERT INTO planos (id_plano, nome, acesso, preco) VALUES
+  (1, 'Day Pass', '1 Mesa de Trabalho', 60.00),
+  (2, 'Flex', '1 Mesa de Trabalho', 480.00),
+  (3, 'Dedicated', '1 Mesa de Trabalho', 1180.00),
+  (4, 'Office', '2 Sala Individual', 3200.00);
 
 INSERT INTO assinaturas (id_assinatura, id_cliente, id_plano, status, validade, feita_em) VALUES
   (1, 1, 3, 'Ativa', '2026-05-31', '2026-02-02'),
   (2, 2, 2, 'Ativa', '2026-05-31', '2026-03-15'),
   (3, 3, 4, 'Ativa', '2026-05-31', '2026-01-05'),
   (4, 4, 4, 'Ativa', '2026-05-31', '2026-03-21'),
-  (5, 5, 1, 'Pendente', '2026-05-18', '2026-04-18'),
+  (5, 5, 1, 'Vencida', '2026-04-30', '2026-04-18'),
   (6, 6, 2, 'Ativa', '2026-05-31', '2026-02-26'),
-  (7, 7, 3, 'Suspensa', '2026-03-31', '2026-01-30'),
+  (7, 7, 3, 'Cancelada', '2026-03-31', '2026-01-30'),
   (8, 8, 4, 'Ativa', '2026-05-31', '2026-02-11');
 
 INSERT INTO reservas (id_reserva, id_cliente, id_sala, status, feito_em, entrada, saida) VALUES
@@ -151,19 +84,19 @@ INSERT INTO reservas (id_reserva, id_cliente, id_sala, status, feito_em, entrada
   (11, 7, 6, 'Finalizada', '2026-04-17', '2026-04-17 09:00:00', '2026-04-17 12:00:00'),
   (12, 8, 7, 'Finalizada', '2026-04-15', '2026-04-15 09:00:00', '2026-04-15 11:00:00');
 
-INSERT INTO avaliacao (id_avaliacao, id_reserva, nota, corpo, criado_em, resposta_admin, respondido_em) VALUES
-  (1, 6, 5, 'Excelente acústica e iluminação natural. Monitor 4K funcionou perfeitamente para a apresentação do cliente. Voltarei com certeza.', '2026-04-24', 'Obrigado pelo feedback, Camila. Ficamos felizes que a sala atendeu bem a apresentação.', '2026-05-07'),
-  (2, 7, 4, 'Espaço confortável e silencioso. Só achei que o ar-condicionado estava um pouco alto demais; talvez ajustar o termostato.', '2026-04-23', 'Obrigado pelo aviso, João. Vamos orientar a equipe a revisar o termostato antes das reservas.', '2026-05-07'),
-  (3, 8, 5, 'Recebemos 48 pessoas para um workshop e tudo correu impecavelmente. A equipe de apoio foi atenciosa do início ao fim.', '2026-04-22', NULL, NULL),
-  (4, 9, 3, 'Boa estrutura, mas a área estava bem cheia no início da tarde. Difícil encontrar mesa próxima às tomadas.', '2026-04-21', NULL, NULL),
-  (5, 10, 4, 'Ótima sala para brainstorm; quadros brancos amplos e ambiente bem iluminado.', '2026-04-20', NULL, NULL);
+INSERT INTO avaliacao (id_avaliacao, id_reserva, nota, corpo, criado_em) VALUES
+  (1, 6, 5, 'Excelente acústica e iluminação natural. Monitor 4K funcionou perfeitamente para a apresentação do cliente. Voltarei com certeza.', '2026-04-24'),
+  (2, 7, 4, 'Espaço confortável e silencioso. Só achei que o ar-condicionado estava um pouco alto demais; talvez ajustar o termostato.', '2026-04-23'),
+  (3, 8, 5, 'Recebemos 48 pessoas para um workshop e tudo correu impecavelmente. A equipe de apoio foi atenciosa do início ao fim.', '2026-04-22'),
+  (4, 9, 3, 'Boa estrutura, mas a área estava bem cheia no início da tarde. Difícil encontrar mesa próxima às tomadas.', '2026-04-21'),
+  (5, 10, 4, 'Ótima sala para brainstorm; quadros brancos amplos e ambiente bem iluminado.', '2026-04-20');
 
-INSERT INTO avaliacoes (id_avaliacao, id_cliente, id_sala, id_reserva, nota, corpo, criado_em, resposta_admin, respondido_em) VALUES
-  (1, 1, 1, 6, 5, 'Excelente acústica e iluminação natural. Monitor 4K funcionou perfeitamente para a apresentação do cliente. Voltarei com certeza.', '2026-04-24', 'Obrigado pelo feedback, Camila. Ficamos felizes que a sala atendeu bem a apresentação.', '2026-05-07'),
-  (2, 2, 3, 7, 4, 'Espaço confortável e silencioso. Só achei que o ar-condicionado estava um pouco alto demais; talvez ajustar o termostato.', '2026-04-23', 'Obrigado pelo aviso, João. Vamos orientar a equipe a revisar o termostato antes das reservas.', '2026-05-07'),
-  (3, 4, 2, 8, 5, 'Recebemos 48 pessoas para um workshop e tudo correu impecavelmente. A equipe de apoio foi atenciosa do início ao fim.', '2026-04-22', NULL, NULL),
-  (4, 5, 5, 9, 3, 'Boa estrutura, mas a área estava bem cheia no início da tarde. Difícil encontrar mesa próxima às tomadas.', '2026-04-21', NULL, NULL),
-  (5, 6, 4, 10, 4, 'Ótima sala para brainstorm; quadros brancos amplos e ambiente bem iluminado.', '2026-04-20', NULL, NULL);
+INSERT INTO avaliacoes (id_avaliacao, id_cliente, id_sala, id_reserva, nota, corpo, criado_em) VALUES
+  (1, 1, 1, 6, 5, 'Excelente acústica e iluminação natural. Monitor 4K funcionou perfeitamente para a apresentação do cliente. Voltarei com certeza.', '2026-04-24'),
+  (2, 2, 3, 7, 4, 'Espaço confortável e silencioso. Só achei que o ar-condicionado estava um pouco alto demais; talvez ajustar o termostato.', '2026-04-23'),
+  (3, 4, 2, 8, 5, 'Recebemos 48 pessoas para um workshop e tudo correu impecavelmente. A equipe de apoio foi atenciosa do início ao fim.', '2026-04-22'),
+  (4, 5, 5, 9, 3, 'Boa estrutura, mas a área estava bem cheia no início da tarde. Difícil encontrar mesa próxima às tomadas.', '2026-04-21'),
+  (5, 6, 4, 10, 4, 'Ótima sala para brainstorm; quadros brancos amplos e ambiente bem iluminado.', '2026-04-20');
 
 INSERT INTO notificacao (id_notificacao, id_assinatura, id_reserva, corpo, tipo, lida, criado_em) VALUES
   (1, NULL, 1, 'Reserva da Sala Atlas confirmada para Camila Souza.', 'Confirmação de Reserva', false, '2026-04-29'),

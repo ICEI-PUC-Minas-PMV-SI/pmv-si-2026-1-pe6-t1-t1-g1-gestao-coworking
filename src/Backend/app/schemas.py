@@ -23,18 +23,16 @@ class ClienteCreate(BaseModel):
     email: str = Field(min_length=1, max_length=100)
     telefone: str | None = Field(default=None, max_length=11)
     senha: str = Field(min_length=1, max_length=50)
-    ativo: bool = True
-    foto_perfil: str | None = None
 
 
-class ClienteUpdate(BaseModel):
-    nome: str = Field(min_length=1, max_length=50)
-    cpf: str = Field(min_length=11, max_length=11)
-    email: str = Field(min_length=1, max_length=100)
+class ClienteUpdate(ClienteCreate):
+    pass
+
+
+class ClientePatch(BaseModel):
+    nome: str | None = Field(default=None, min_length=1, max_length=50)
+    email: str | None = Field(default=None, min_length=1, max_length=100)
     telefone: str | None = Field(default=None, max_length=11)
-    senha: str | None = Field(default=None, min_length=1, max_length=50)
-    ativo: bool = True
-    foto_perfil: str | None = None
 
 
 class ClienteRead(BaseModel):
@@ -43,14 +41,8 @@ class ClienteRead(BaseModel):
     cpf: str
     email: str
     telefone: str | None
-    ativo: bool
-    foto_perfil: str | None
 
     model_config = ConfigDict(from_attributes=True)
-
-
-class ClienteStatusUpdate(BaseModel):
-    ativo: bool
 
 
 class LoginInput(BaseModel):
@@ -70,32 +62,10 @@ class SalaBase(BaseModel):
     tipo: TipoSala = Field(alias="tipoSala")
     descricao: str | None = None
     recursos: str | None = None
-    ambiente: str | None = None
-    andar: str | None = None
-    valor_hora: Decimal | None = Field(default=None, ge=0)
-    status_operacional: str = "Disponível"
-    fotos: list[str] = Field(default_factory=list, min_length=1, max_length=5)
     criado_em: date = Field(default_factory=date.today)
     ativa: bool = True
 
     model_config = ConfigDict(populate_by_name=True)
-
-    @field_validator("fotos", mode="before")
-    @classmethod
-    def normalize_fotos(cls, value: object) -> list[str]:
-        if value is None:
-            return []
-        if isinstance(value, str):
-            value = [value]
-        if not isinstance(value, list):
-            return []
-
-        fotos: list[str] = []
-        for item in value:
-            foto = str(item).strip()
-            if foto and foto not in fotos:
-                fotos.append(foto)
-        return fotos
 
 
 class SalaCreate(SalaBase):
@@ -113,11 +83,6 @@ class SalaRead(BaseModel):
     tipo: TipoSala
     descricao: str | None
     recursos: str | None
-    ambiente: str | None
-    andar: str | None
-    valor_hora: Decimal | None
-    status_operacional: str
-    fotos: list[str]
     criado_em: date
     ativa: bool
 
@@ -166,22 +131,17 @@ class AvaliacaoCreate(BaseModel):
     nota: int = Field(ge=0, le=5)
     corpo: str | None = Field(default=None, max_length=255)
     criado_em: date = Field(default_factory=date.today)
-    resposta_admin: str | None = None
-    respondido_em: date | None = None
 
 
 class AvaliacaoUpdate(AvaliacaoCreate):
     pass
 
 
-class AvaliacaoResposta(BaseModel):
-    resposta_admin: str = Field(min_length=1)
-    respondido_em: date = Field(default_factory=date.today)
-
-
 class AvaliacaoRead(BaseModel):
     id_avaliacao: int
-    id_reserva: int | None
+    id_cliente: int
+    id_sala: int
+    id_reserva: int
     nota: int
     corpo: str | None
     criado_em: date
@@ -203,25 +163,6 @@ class PlanoCreate(BaseModel):
     nome: str = Field(min_length=1, max_length=50)
     acesso: TipoSala
     preco: Decimal = Field(gt=0)
-    descricao: str | None = None
-    beneficios: list[str] = Field(default_factory=list)
-
-    @field_validator("beneficios", mode="before")
-    @classmethod
-    def normalize_beneficios(cls, value: object) -> list[str]:
-        if value is None:
-            return []
-        if isinstance(value, str):
-            value = re.split(r"[\n,]+", value)
-        if not isinstance(value, list):
-            return []
-
-        beneficios: list[str] = []
-        for item in value:
-            beneficio = str(item).strip()
-            if beneficio and beneficio not in beneficios:
-                beneficios.append(beneficio)
-        return beneficios
 
 
 class PlanoUpdate(PlanoCreate):
@@ -237,7 +178,6 @@ class PlanoRead(PlanoCreate):
 class AssinaturaCreate(BaseModel):
     id_cliente: int
     id_plano: int
-    status: StatusAssinatura = StatusAssinatura.ATIVA
     validade: date | None = None
 
 
@@ -259,8 +199,7 @@ class AssinaturaRead(BaseModel):
 
 
 class NotificacaoBase(BaseModel):
-    id_assinatura: int | None = Field(default=None, ge=1)
-    id_reserva: int | None = Field(default=None, ge=1)
+    id_cliente: int = Field(ge=1)
     corpo: str = Field(min_length=1)
     tipo: TipoNotificacao
     lida: bool = False

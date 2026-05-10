@@ -1,4 +1,4 @@
-from sqlalchemy import Select, select
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.models.notificacao import Notificacao, TipoNotificacao
@@ -18,48 +18,82 @@ def list_notificacoes(
     *,
     lida: bool | None = None,
     tipo: TipoNotificacao | None = None,
-    id_assinatura: int | None = None,
-    id_reserva: int | None = None,
+    id_cliente: int | None = None,
 ) -> list[Notificacao]:
-    query: Select[tuple[Notificacao]] = select(Notificacao)
-
+    filters: list[str] = []
+    params: dict[str, object] = {}
     if lida is not None:
-        query = query.where(Notificacao.lida == lida)
+        filters.append("lida = :lida")
+        params["lida"] = lida
     if tipo is not None:
-        query = query.where(Notificacao.tipo == tipo)
-    if id_assinatura is not None:
-        query = query.where(Notificacao.id_assinatura == id_assinatura)
-    if id_reserva is not None:
-        query = query.where(Notificacao.id_reserva == id_reserva)
+        filters.append("tipo = :tipo")
+        params["tipo"] = tipo.value
+    if id_cliente is not None:
+        filters.append("id_cliente = :id_cliente")
+        params["id_cliente"] = id_cliente
 
-    query = query.order_by(Notificacao.id_notificacao.desc())
-    return list(db.scalars(query).all())
+    where_clause = f"WHERE {' AND '.join(filters)}" if filters else ""
+    rows = db.execute(
+        text(
+            f"""
+            SELECT id_notificacao, id_cliente, corpo, tipo, lida, criado_em
+            FROM notificacoes
+            {where_clause}
+            ORDER BY id_notificacao DESC
+            """
+        ),
+        params,
+    ).mappings().all()
+    return [dict(row) for row in rows]
 
 
 def get_notificacao(db: Session, notificacao_id: int) -> Notificacao | None:
-    return db.get(Notificacao, notificacao_id)
+    row = db.execute(
+        text(
+            """
+            SELECT id_notificacao, id_cliente, corpo, tipo, lida, criado_em
+            FROM notificacoes
+            WHERE id_notificacao = :notificacao_id
+            """
+        ),
+        {"notificacao_id": notificacao_id},
+    ).mappings().first()
+    return dict(row) if row else None
 
 
 def update_notificacao(
     db: Session, notificacao: Notificacao, payload: NotificacaoUpdate
 ) -> Notificacao:
-    for field, value in payload.model_dump().items():
-        setattr(notificacao, field, value)
-
-    db.add(notificacao)
+    values = payload.model_dump()
+    db.execute(
+        text(
+            """
+            UPDATE notificacoes
+            SET id_cliente = :id_cliente,
+                corpo = :corpo,
+                tipo = :tipo,
+                lida = :lida
+            WHERE id_notificacao = :id_notificacao
+            """
+        ),
+        {**values, "tipo": values["tipo"].value, "id_notificacao": notificacao["id_notificacao"]},
+    )
     db.commit()
-    db.refresh(notificacao)
-    return notificacao
+    return get_notificacao(db, notificacao["id_notificacao"])
 
 
 def mark_as_read(db: Session, notificacao: Notificacao) -> Notificacao:
-    notificacao.lida = True
-    db.add(notificacao)
+    db.execute(
+        text("UPDATE notificacoes SET lida = true WHERE id_notificacao = :id_notificacao"),
+        {"id_notificacao": notificacao["id_notificacao"]},
+    )
     db.commit()
-    db.refresh(notificacao)
-    return notificacao
+    return get_notificacao(db, notificacao["id_notificacao"])
 
 
 def delete_notificacao(db: Session, notificacao: Notificacao) -> None:
-    db.delete(notificacao)
+    db.execute(
+        text("DELETE FROM notificacoes WHERE id_notificacao = :id_notificacao"),
+        {"id_notificacao": notificacao["id_notificacao"]},
+    )
     db.commit()

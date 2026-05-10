@@ -15,9 +15,10 @@ class TipoNotificacao(str, enum.Enum):
 
 
 class Notificacao(Base):
-    __tablename__ = "notificacao"
+    __tablename__ = "notificacoes"
 
     id_notificacao: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    id_cliente: Mapped[int] = mapped_column(Integer, nullable=False, index=True)
     corpo: Mapped[str] = mapped_column(Text, nullable=False)
     tipo: Mapped[TipoNotificacao] = mapped_column(
         Enum(
@@ -28,16 +29,6 @@ class Notificacao(Base):
         nullable=False,
     )
     lida: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False, server_default="false")
-    id_assinatura: Mapped[int | None] = mapped_column(
-        Integer,
-        nullable=True,
-        index=True,
-    )
-    id_reserva: Mapped[int | None] = mapped_column(
-        Integer,
-        nullable=True,
-        index=True,
-    )
     criado_em: Mapped[date] = mapped_column(
         Date,
         nullable=False,

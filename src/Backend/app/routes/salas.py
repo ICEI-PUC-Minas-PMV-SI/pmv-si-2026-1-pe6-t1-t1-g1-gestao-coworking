@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.db import get_db
-from app.models import Reserva, Sala, TipoSala
+from app.models import Sala, TipoSala
 from app.schemas import SalaCreate, SalaRead, SalaUpdate
 
 
@@ -34,7 +35,11 @@ def listar_salas(ativas: bool | None = None, db: Session = Depends(get_db)) -> l
 def criar_sala(payload: SalaCreate, db: Session = Depends(get_db)) -> Sala:
     sala = Sala(**payload.model_dump(by_alias=False))
     db.add(sala)
-    db.commit()
+    try:
+        db.commit()
+    except IntegrityError as exc:
+        db.rollback()
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Dados invalidos para sala") from exc
     db.refresh(sala)
     return sala
 
@@ -57,9 +62,11 @@ def atualizar_sala(id_sala: int, payload: SalaUpdate, db: Session = Depends(get_
 @router.delete("/{id_sala}", status_code=status.HTTP_204_NO_CONTENT)
 def excluir_sala(id_sala: int, db: Session = Depends(get_db)) -> None:
     sala = _sala_or_404(db, id_sala)
-    reservas = db.scalars(select(Reserva).where(Reserva.id_sala == id_sala)).all()
-    for reserva in reservas:
-        reserva.id_sala = None
     db.delete(sala)
-    db.commit()
+    try:
+        db.commit()
+    except IntegrityError as exc:
+        db.rollback()
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Sala possui registros relacionados") from exc
     return None
+

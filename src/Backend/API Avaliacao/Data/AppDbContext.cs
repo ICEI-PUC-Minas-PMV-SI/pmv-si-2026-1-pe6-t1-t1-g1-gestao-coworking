@@ -18,9 +18,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         {
             entity.HasKey(a => a.IdAvaliacao);
 
+            entity.Property(a => a.IdCliente).IsRequired();
+            entity.Property(a => a.IdSala).IsRequired();
+            entity.Property(a => a.IdReserva).IsRequired();
             entity.Property(a => a.Nota).IsRequired();
             entity.Property(a => a.CriadoEm).IsRequired();
-            entity.ToTable(table => table.HasCheckConstraint("ck_avaliacao_nota", "\"nota\" >= 0 AND \"nota\" <= 5"));
+            entity.ToTable(table => table.HasCheckConstraint("chk_nota_range", "\"nota\" >= 0 AND \"nota\" <= 5"));
         });
     }
 }

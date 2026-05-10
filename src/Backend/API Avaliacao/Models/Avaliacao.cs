@@ -6,7 +6,7 @@ namespace AvaliacaoApi.Models;
 /// <summary>
 /// Representa uma avaliacao registrada para uma reserva.
 /// </summary>
-[Table("avaliacao", Schema = "public")]
+[Table("avaliacoes", Schema = "public")]
 public class Avaliacao
 {
     /// <summary>
@@ -17,10 +17,25 @@ public class Avaliacao
     public int IdAvaliacao { get; set; }
 
     /// <summary>
+    /// Identificador do cliente avaliante.
+    /// </summary>
+    [Required]
+    [Column("id_cliente")]
+    public int IdCliente { get; set; }
+
+    /// <summary>
+    /// Identificador da sala avaliada.
+    /// </summary>
+    [Required]
+    [Column("id_sala")]
+    public int IdSala { get; set; }
+
+    /// <summary>
     /// Identificador da reserva associada a avaliacao.
     /// </summary>
+    [Required]
     [Column("id_reserva")]
-    public int? IdReserva { get; set; }
+    public int IdReserva { get; set; }
 
     /// <summary>
     /// Nota atribuida, de 0 a 5.
@@ -42,4 +57,10 @@ public class Avaliacao
     [Required]
     [Column("criado_em")]
     public DateOnly CriadoEm { get; set; }
+
+    [Column("resposta_admin")]
+    public string? RespostaAdmin { get; set; }
+
+    [Column("respondido_em")]
+    public DateOnly? RespondidoEm { get; set; }
 }

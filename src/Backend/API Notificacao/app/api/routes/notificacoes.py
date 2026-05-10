@@ -49,16 +49,19 @@ def get_notificacoes(
     db: DbSession,
     lida: bool | None = Query(default=None),
     tipo: TipoNotificacao | None = Query(default=None),
-    id_assinatura: int | None = Query(default=None, ge=1),
-    id_reserva: int | None = Query(default=None, ge=1),
+    id_cliente: int | None = Query(default=None, ge=1),
 ) -> list[NotificacaoRead]:
     return list_notificacoes(
         db,
         lida=lida,
         tipo=tipo,
-        id_assinatura=id_assinatura,
-        id_reserva=id_reserva,
+        id_cliente=id_cliente,
     )
+
+
+@router.get("/cliente/{id_cliente}", response_model=list[NotificacaoRead])
+def get_notificacoes_by_cliente(id_cliente: int, db: DbSession) -> list[NotificacaoRead]:
+    return list_notificacoes(db, id_cliente=id_cliente)
 
 
 @router.get(

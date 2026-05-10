@@ -64,6 +64,16 @@
             Identificador unico da avaliacao.
             </summary>
         </member>
+        <member name="P:AvaliacaoApi.Models.Avaliacao.IdCliente">
+            <summary>
+            Identificador do cliente avaliante.
+            </summary>
+        </member>
+        <member name="P:AvaliacaoApi.Models.Avaliacao.IdSala">
+            <summary>
+            Identificador da sala avaliada.
+            </summary>
+        </member>
         <member name="P:AvaliacaoApi.Models.Avaliacao.IdReserva">
             <summary>
             Identificador da reserva associada a avaliacao.
