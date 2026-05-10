@@ -13,10 +13,10 @@
 | 23/03 - 29/03 | APIs e Web Services - Unidade 2 | ✅ | Identificar ferramentas para teste de conexão com o banco de dados. | Para a realização da conexão local, optei por utilizar o Docker com PostgreSQL, permitindo validar o processo de conexão de forma isolada e controlada.|
 | 30/03 - 05/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 1 | ✅ | Elaborar roteiro de testes para validação do funcionamento da API de Notificações. |    O roteiro de testes foi elaborado por meio de uma collection no Postman, contendo requisições para cada endpoint da API de Notificações e scripts de validação dos códigos de status HTTP e dos dados retornados.|
 | 06/04 - 12/04 | Recuperação de Informação na Web e Redes Sociais - Unidade 2 | ✅ | Fazer a documentação e registrar no github: objetivos, tecnologias, endpoints e testes da API notificação | Fiz a documentação referente à minha API. |
-| 13/04 - 19/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 1 | ⬜ |  |  |
-| 20/04 - 26/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 2 | ⬜ |  |  |
-| 27/04 - 03/05 | Desenvolvimento de Aplicações Móveis - Unidade 1 | ⬜ |  |  |
-| 04/05 - 10/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ⬜ |  |  |
+| 13/04 - 19/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 1 | ⬜ | Reunião para a definição das características iniciais para o layoult. | Reunimos para a definição das características iniciais para o layoult do site. Escolhemos as inspirações para o site e quantas páginas devem ser feitas |
+| 20/04 - 26/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 2 | ⬜ | Fazer uma reunião para a separação das tarefas e alinhamento de datas e expectativas. | Fazemos uma reunião para a separação das tarefas e alinhamento de datas e expectativas |
+| 27/04 - 03/05 | Desenvolvimento de Aplicações Móveis - Unidade 1 | ⬜ | Desenvolver os componentes e paginas de acordo a separação do grupo | Inicio das tarefas de integração front-end com back-end |
+| 04/05 - 10/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ⬜ | Finalzar a integração do funcionamento entre front-end e back-end e realização dos testes. | Finalzar a integração do funcionamento entre front-end e back-end e realização dos testes |
 | 11/05 - 17/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ⬜ |  |  |
 | 18/05 - 24/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 1 | ⬜ |  |  |
 | 25/05 - 31/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 2 | ⬜ |  |  |
