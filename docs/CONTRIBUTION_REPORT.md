@@ -1,6 +1,6 @@
 # 📊 Relatório de Contribuições do Projeto
 
-**Última atualização:** 10/05/2026 16:22
+**Última atualização:** 10/05/2026 16:28
 
 ---
 
@@ -16,14 +16,14 @@
 | Luana-Horta           |        53 |       473 |       153 |          6 |             53 |               6 |
 | Victor Samuel         |        13 |       419 |        57 |         11 |             12 |               3 |
 | Victor-477            |         8 |     24872 |     10453 |        787 |              0 |               0 |
-| Yan Oyama             |        28 |      1195 |       228 |         17 |             15 |               3 |
-| github-actions[bot]   |       142 |       750 |       735 |          3 |            142 |               1 |
+| Yan Oyama             |        29 |      2008 |       228 |         20 |             15 |               3 |
+| github-actions[bot]   |       143 |       754 |       739 |          3 |            143 |               1 |
 | github-classroom[bot] |         1 |      2152 |         0 |         45 |              1 |              13 |
 
 
 ## 📅 Contribuições Semanais (Todo o Semestre)
 
-**2026-05-03**: Carlos Souza: 1, Luana: 5, Luana-Horta: 3, Victor Samuel: 3, Victor-477: 8, Yan Oyama: 5, github-actions[bot]: 21
+**2026-05-03**: Carlos Souza: 1, Luana: 5, Luana-Horta: 3, Victor Samuel: 3, Victor-477: 8, Yan Oyama: 6, github-actions[bot]: 22
 
 **2026-04-26**: Luana-Horta: 6, github-actions[bot]: 6
 
