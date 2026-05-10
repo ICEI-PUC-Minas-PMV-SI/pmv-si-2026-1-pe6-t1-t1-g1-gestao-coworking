@@ -25,13 +25,13 @@
             <h1>O centro estratégico do seu trabalho.</h1>
             <p>Um espaço de trabalho moderno projetado para empresários, freelancer, e times que valorizam flexibilidade e senso de comunidade.</p>
             <div class="banner-bot">
-                <button class="bot bot3" onclick="window.location.href = 'sobre.html'">Sobre Nós</button>
+                <button class="bot bot3" onclick="document.getElementById('sobre').scrollIntoView()">Sobre Nós</button>
                 <button class="bot bot2" onclick="window.location.href = 'planos.html'">Nossos Planos</button>
             </div>
         </div>
     </section>
 
-    <section class="sessao">
+    <section class="sessao" id="sobre">
         <div class="section-titulo">
             <h2>Tudo que você precisa para prosperar</h2>
             <p>Criamos um ambiente focado no seu crescimento, oferecendo instalações de alto padrão e todo o suporte que você precisa.</p>
@@ -151,6 +151,6 @@
         <p>© 2026 Axis Working. All rights reserved.</p>
     </footer>
     
-    <script src="../scripts/home.js"></script>
+    <script src="../js/home.js"></script>
 </body>
 </html>

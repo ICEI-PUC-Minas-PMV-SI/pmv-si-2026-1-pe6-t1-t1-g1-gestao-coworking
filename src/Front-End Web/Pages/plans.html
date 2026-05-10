@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Axis Work — Painel Admin Coworking</title>
+<link rel="stylesheet" href="../css/admin-coworking.css" />
+</head>
+<body data-page="plans">
+
+<!-- ICON SET (referenced via <use href="#icon-XYZ" />) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="icon-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="icon-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v8h4"/><path d="M18 9h2a2 2 0 0 1 2 2v11h-4"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></symbol>
+    <symbol id="icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42Z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="icon-star-fill" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></symbol>
+    <symbol id="icon-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+    <symbol id="icon-more" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></symbol>
+    <symbol id="icon-user-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></symbol>
+    <symbol id="icon-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></symbol>
+    <symbol id="icon-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></symbol>
+    <symbol id="icon-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></symbol>
+    <symbol id="icon-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="icon-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></symbol>
+    <symbol id="icon-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
+    <symbol id="icon-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></symbol>
+    <symbol id="icon-settings2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></symbol>
+    <symbol id="icon-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+    <symbol id="icon-trending-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol>
+    <symbol id="icon-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+  </defs>
+</svg>
+
+<div class="app">
+  <!-- ============================================== SIDEBAR ============================================== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-row">
+        <svg width="28" height="22" viewBox="0 0 64 50" aria-hidden="true">
+          <path d="M2 48 L18 4 L26 4 L32 22 L38 4 L46 4 L62 48 L52 48 L42 22 L36 38 L32 28 L28 38 L22 22 L12 48 Z" fill="#E8EEF2"/>
+        </svg>
+        <span>Axis Work</span>
+      </div>
+      <div class="brand-tag">Admin Coworking</div>
+    </div>
+
+    <div class="nav-label">MENU</div>
+        <nav class="nav">
+      <a href="../admin-coworking.html" data-page="dashboard"><svg width="16" height="16"><use href="#icon-dashboard"/></svg>Dashboard</a>
+      <a href="users.html" data-page="users"><svg width="16" height="16"><use href="#icon-users"/></svg>Usuários</a>
+      <a href="rooms.html" data-page="rooms"><svg width="16" height="16"><use href="#icon-building"/></svg>Salas</a>
+      <a href="plans.html" data-page="plans" class="is-active"><svg width="16" height="16"><use href="#icon-tag"/></svg>Planos</a>
+      <a href="reviews.html" data-page="reviews"><svg width="16" height="16"><use href="#icon-star"/></svg>Avaliações</a>
+    </nav>
+
+    <div class="nav-footer">
+      <a><svg width="16" height="16"><use href="#icon-settings"/></svg>Configurações</a>
+      <a><svg width="16" height="16"><use href="#icon-logout"/></svg>Sair</a>
+    </div>
+  </aside>
+
+  <!-- ============================================== MAIN ============================================== -->
+  <div class="main">
+    <!-- Topbar (shared) -->
+    <header class="topbar">
+      <div class="search">
+        <svg width="14" height="14" color="#6B7A8A"><use href="#icon-search"/></svg>
+        <input placeholder="Buscar usuários, salas, planos..." />
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn">
+          <svg width="15" height="15"><use href="#icon-bell"/></svg>
+          <span class="dot"></span>
+        </button>
+        <div class="user-pill">
+          <div class="avatar">MR</div>
+          <div class="meta">
+            <b>Marina Reis</b>
+            <small>Administradora</small>
+          </div>
+          <svg width="14" height="14" color="#6B7A8A"><use href="#icon-chevron-down"/></svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- ====================== DASHBOARD ====================== -->
+        <section class="page is-active" data-page="plans">
+      <div class="page-header">
+        <div>
+          <h1>Gerenciamento de planos</h1>
+          <p class="sub">Crie, edite ou arquive planos oferecidos aos membros</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn--ghost"><svg width="14" height="14"><use href="#icon-trending-up"/></svg>Relatório de receita</button>
+          <button class="btn btn--primary"><svg width="14" height="14"><use href="#icon-plus"/></svg>Novo plano</button>
+        </div>
+      </div>
+
+      <div class="page-body">
+        <div class="grid-3 mb-20">
+          <div class="card">
+            <div class="stat-label" style="margin-top:0">Planos publicados</div>
+            <div class="stat-value" style="margin-top:6px">5</div>
+            <div class="stat-delta" style="margin-top:4px">4 ativos · 1 rascunho</div>
+          </div>
+          <div class="card">
+            <div class="stat-label" style="margin-top:0">Receita recorrente</div>
+            <div class="stat-value" style="margin-top:6px">R$ 78.420</div>
+            <div class="stat-delta" style="margin-top:4px">+8,4% vs. mês anterior</div>
+          </div>
+          <div class="card">
+            <div class="stat-label" style="margin-top:0">Plano mais popular</div>
+            <div class="stat-value" style="margin-top:6px">Flex</div>
+            <div class="stat-delta" style="margin-top:4px">142 membros (50%)</div>
+          </div>
+        </div>
+
+        <div class="grid-4 mb-16" style="margin-top: 28px">
+          <!-- Day Pass -->
+          <div class="plan-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <div>
+                <div style="font-size:14px;font-weight:700">Day Pass</div>
+                <div style="font-size:10px;color:#6B7A8A;margin-top:4px;line-height:1.4">Acesso pontual para visitantes</div>
+              </div>
+              <button class="icon-pill" style="width:26px;height:26px;background:transparent;border:1px solid #D9DEDC;color:#6B7A8A"><svg width="12" height="12"><use href="#icon-more"/></svg></button>
+            </div>
+            <div class="price"><b>R$ 60</b><small>/dia</small></div>
+            <ul>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>Hot Desk por 8h</span></li>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>Café e wifi</span></li>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>1h de sala de reunião</span></li>
+            </ul>
+            <div class="footer">
+              <span class="members"><svg width="12" height="12"><use href="#icon-users"/></svg>26 membros</span>
+              <div style="display:inline-flex;gap:6px">
+                <button class="icon-pill" title="Editar"><svg width="12" height="12"><use href="#icon-pencil"/></svg></button>
+                <button class="icon-pill danger" title="Arquivar"><svg width="12" height="12"><use href="#icon-trash"/></svg></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flex (featured) -->
+          <div class="plan-card is-featured">
+            <span class="badge-pop">MAIS POPULAR</span>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <div>
+                <div style="font-size:14px;font-weight:700">Flex</div>
+                <div style="font-size:10px;color:#A9BDCB;margin-top:4px;line-height:1.4">Para quem trabalha em ritmo livre</div>
+              </div>
+              <button class="icon-pill" style="width:26px;height:26px;background:transparent;border:1px solid #1F3A57;color:#A9BDCB"><svg width="12" height="12"><use href="#icon-more"/></svg></button>
+            </div>
+            <div class="price"><b>R$ 480</b><small>/mês</small></div>
+            <ul>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>Hot Desk ilimitado</span></li>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>5h/mês de salas de reunião</span></li>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>Eventos da comunidade</span></li>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>Locker pessoal</span></li>
+            </ul>
+            <div class="footer">
+              <span class="members"><svg width="12" height="12"><use href="#icon-users"/></svg>142 membros</span>
+              <div style="display:inline-flex;gap:6px">
+                <button class="icon-pill" title="Editar"><svg width="12" height="12"><use href="#icon-pencil"/></svg></button>
+                <button class="icon-pill danger" title="Arquivar"><svg width="12" height="12"><use href="#icon-trash"/></svg></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dedicated -->
+          <div class="plan-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <div>
+                <div style="font-size:14px;font-weight:700">Dedicated</div>
+                <div style="font-size:10px;color:#6B7A8A;margin-top:4px;line-height:1.4">Sua mesa fixa, sempre disponível</div>
+              </div>
+              <button class="icon-pill" style="width:26px;height:26px;background:transparent;border:1px solid #D9DEDC;color:#6B7A8A"><svg width="12" height="12"><use href="#icon-more"/></svg></button>
+            </div>
+            <div class="price"><b>R$ 1.180</b><small>/mês</small></div>
+            <ul>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>Mesa dedicada 24/7</span></li>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>10h/mês de salas</span></li>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>Endereço fiscal</span></li>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>Recepção de correspondência</span></li>
+            </ul>
+            <div class="footer">
+              <span class="members"><svg width="12" height="12"><use href="#icon-users"/></svg>78 membros</span>
+              <div style="display:inline-flex;gap:6px">
+                <button class="icon-pill" title="Editar"><svg width="12" height="12"><use href="#icon-pencil"/></svg></button>
+                <button class="icon-pill danger" title="Arquivar"><svg width="12" height="12"><use href="#icon-trash"/></svg></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Office -->
+          <div class="plan-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <div>
+                <div style="font-size:14px;font-weight:700">Office</div>
+                <div style="font-size:10px;color:#6B7A8A;margin-top:4px;line-height:1.4">Sala privativa para times</div>
+              </div>
+              <button class="icon-pill" style="width:26px;height:26px;background:transparent;border:1px solid #D9DEDC;color:#6B7A8A"><svg width="12" height="12"><use href="#icon-more"/></svg></button>
+            </div>
+            <div class="price"><b>R$ 3.200</b><small>/mês</small></div>
+            <ul>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>Sala privativa até 6 pessoas</span></li>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>20h/mês de salas extras</span></li>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>Endereço fiscal</span></li>
+              <li><span class="check"><svg width="9" height="9"><use href="#icon-check"/></svg></span><span>Estacionamento (2 vagas)</span></li>
+            </ul>
+            <div class="footer">
+              <span class="members"><svg width="12" height="12"><use href="#icon-users"/></svg>38 membros</span>
+              <div style="display:inline-flex;gap:6px">
+                <button class="icon-pill" title="Editar"><svg width="12" height="12"><use href="#icon-pencil"/></svg></button>
+                <button class="icon-pill danger" title="Arquivar"><svg width="12" height="12"><use href="#icon-trash"/></svg></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-plan-draft-card hidden>
+          <div class="promo-row">
+            <div style="display:flex;align-items:center;gap:14px">
+              <div class="promo-icon"><svg width="16" height="16"><use href="#icon-star"/></svg></div>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:#0A1F33">Plano "Weekend Pass" · Rascunho</div>
+                <div style="font-size:11px;color:#6B7A8A;margin-top:2px">Criado por Marina Reis em 24/abr/2026 — ainda não publicado</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px">
+              <button class="btn btn--ghost"><svg width="13" height="13"><use href="#icon-pencil"/></svg>Continuar edição</button>
+              <button class="btn btn--primary"><svg width="13" height="13"><use href="#icon-check"/></svg>Publicar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="../js/admin-coworking.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirmar reserva</title>
+  <style>
+    :root {
+      --bg-page: #f5f9fc;
+      --bg-card: #ffffff;
+      --bg-soft: #f8fbff;
+      --bg-selected: #f2f7fd;
+      --bg-success-soft: #eef8f3;
+      --border: #dbe8f3;
+      --border-strong: #c9deef;
+      --text-primary: #102a43;
+      --text-muted: #5f6f7f;
+      --text-soft: #8b9bad;
+      --blue: #55728f;
+      --blue-dark: #425f7c;
+      --green: #37885c;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-primary);
+      padding: 32px;
+    }
+
+    .page-header {
+      margin-bottom: 20px;
+    }
+
+    .page-header h1 {
+      color: var(--text-primary);
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .page-header p {
+      color: #666;
+      font-size: 13px;
+    }
+
+    .confirmation-card {
+      width: 100%;
+      min-height: 565px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 23px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .room-box,
+    .data-box,
+    .total-box,
+    .notice-box,
+    .observation-input {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .room-box {
+      min-height: 64px;
+      background: var(--bg-selected);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .room-box strong {
+      font-size: 14px;
+      line-height: 1.3;
+    }
+
+    .room-box span {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .reservation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 10px;
+      margin-bottom: 14px;
+    }
+
+    .data-box {
+      min-height: 47px;
+      background: #fbfdff;
+      padding: 10px 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-chip {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #e8eff5;
+      color: var(--blue);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      font-size: 12px;
+    }
+
+    .data-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .data-copy span {
+      color: var(--text-soft);
+      font-size: 10px;
+    }
+
+    .data-copy strong {
+      color: var(--text-primary);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .total-box {
+      min-height: 77px;
+      background: var(--bg-success-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+
+    .total-label {
+      color: #66766f;
+      font-size: 11px;
+      margin-bottom: 3px;
+    }
+
+    .total-value {
+      color: var(--green);
+      display: block;
+      font-size: 25px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .total-note {
+      color: #666;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .observation-input {
+      width: 100%;
+      min-height: 42px;
+      background: #fbfdff;
+      color: var(--text-primary);
+      font: inherit;
+      font-size: 12px;
+      outline: none;
+      resize: vertical;
+      padding: 12px 13px;
+      margin-bottom: 18px;
+    }
+
+    .observation-input::placeholder {
+      color: var(--text-soft);
+    }
+
+    .notice-box {
+      min-height: 52px;
+      background: var(--bg-success-soft);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue-dark);
+      font-size: 12px;
+      line-height: 1.45;
+      padding: 12px 13px;
+      margin-bottom: 18px;
+    }
+
+    .notice-dot {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #dfeef1;
+      flex: 0 0 auto;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 800;
+      min-height: 39px;
+      padding: 0 19px;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .btn-back {
+      background: #eef6f5;
+      color: var(--text-primary);
+      min-width: 73px;
+    }
+
+    .btn-confirm {
+      background: var(--blue);
+      color: #ffffff;
+      min-width: 143px;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 24px 18px;
+      }
+
+      .confirmation-card {
+        padding: 18px;
+        min-height: auto;
+      }
+
+      .reservation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .total-box {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .total-note {
+        white-space: normal;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <h1>Confirmar reserva</h1>
+    <p>Revise os dados antes de finalizar</p>
+  </header>
+
+  <main class="confirmation-card">
+    <section aria-labelledby="reservation-summary">
+      <h2 class="section-title" id="reservation-summary">Resumo da reserva</h2>
+
+      <div class="room-box">
+        <strong>Sala Reunião Premium</strong>
+        <span>Unidade Centro</span>
+      </div>
+
+      <div class="reservation-grid">
+        <div class="data-box">
+          <span class="icon-chip" aria-hidden="true">📅</span>
+          <div class="data-copy">
+            <span>Data</span>
+            <strong>17/05/2026</strong>
+          </div>
+        </div>
+
+        <div class="data-box">
+          <span class="icon-chip" aria-hidden="true">⏱</span>
+          <div class="data-copy">
+            <span>Horário</span>
+            <strong>14:00 às 16:00</strong>
+          </div>
+        </div>
+
+        <div class="data-box">
+          <span class="icon-chip" aria-hidden="true">👥</span>
+          <div class="data-copy">
+            <span>Participantes</span>
+            <strong>8 pessoas</strong>
+          </div>
+        </div>
+
+        <div class="data-box">
+          <span class="icon-chip" aria-hidden="true">★</span>
+          <div class="data-copy">
+            <span>Plano assinado</span>
+            <strong>Plano Business</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="total-box">
+        <div>
+          <div class="total-label">Valor total</div>
+          <strong class="total-value">R$ 160</strong>
+        </div>
+        <span class="total-note">Total da reserva</span>
+      </div>
+
+      <label class="form-label" for="observacoes">Observações (opcional)</label>
+      <textarea class="observation-input" id="observacoes" placeholder="Ex: reunião com cliente, necessidade de projetor..."></textarea>
+
+      <div class="notice-box">
+        <span class="notice-dot" aria-hidden="true"></span>
+        <span>Confira os dados antes de finalizar sua reserva. Alterações estão sujeitas à disponibilidade.</span>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-back" type="button">Voltar</button>
+        <button class="btn btn-confirm" type="button">Finalizar reserva</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

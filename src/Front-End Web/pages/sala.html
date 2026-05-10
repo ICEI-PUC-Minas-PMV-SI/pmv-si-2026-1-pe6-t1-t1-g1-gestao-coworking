@@ -2,161 +2,100 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Sala</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sala - Axis Working</title>
   <link rel="stylesheet" href="../css/salas.css">
 </head>
 <body>
   <header>
     <div class="logo" onclick="location.href='index.html'">
-      <img src="../img/logo2.png" alt="Logo">
+      <img src="../img/logo2.png" alt="Axis Working">
     </div>
     <nav>
-      <a href="salas.html">Salas</a>
-      <a>Planos</a>
-      <a>Sobre nós</a>
+      <a href="index.html">Home</a>
+      <a href="planos.html">Planos</a>
+      <a href="sobrenos.html">Sobre nós</a>
     </nav>
-    <button class="btn" onclick="location.href='salas.html'">Login</button>
+    <button class="btn" onclick="location.href='login.html'">Login</button>
   </header>
-  <div class="container flex">
-    <div class="left">
+
+  <main class="container flex">
+    <section class="left">
       <div class="box">
-        <img src="https://picsum.photos/600/300">
-        <p>Sala moderna com ótima estrutura.</p>
+        <img id="sala-imagem" src="../img/reuniao.jpeg" alt="Sala Axis Working">
+        <h2 id="sala-nome">Sala</h2>
+        <p id="sala-descricao">Carregando informações da sala...</p>
       </div>
+
       <div class="box">
         <h3>Disponibilidade</h3>
         <div class="availability-section">
           <div class="calendar-side">
             <div class="calendar-header">
-              <button id="prevMonth" class="month-btn">
-                &#8249;
-              </button>
-              <h3 id="monthTitle">
-                Maio 2026
-              </h3>
-              <button id="nextMonth" class="month-btn">
-                &#8250;
-              </button>
+              <button id="prevMonth" class="month-btn" type="button">&#8249;</button>
+              <h3 id="monthTitle">Maio 2026</h3>
+              <button id="nextMonth" class="month-btn" type="button">&#8250;</button>
             </div>
             <div class="week-days">
-              <span>D</span>
-              <span>S</span>
-              <span>T</span>
-              <span>Q</span>
-              <span>Q</span>
-              <span>S</span>
-              <span>S</span>
+              <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
             </div>
-            <div class="calendar-grid" id="calendar">
-
-            </div>
+            <div class="calendar-grid" id="calendar"></div>
           </div>
           <div class="times-side">
             <h4>Horários</h4>
-            <div class="times-list" id="times-list">
-
-            </div>
+            <div class="times-list" id="times-list"></div>
           </div>
         </div>
-        <button class="btn" onclick="alertLogin()">Reservar</button>
+        <button class="btn" onclick="reservarSala()">Reservar</button>
       </div>
+
       <div class="reviews-section">
         <h2>Avaliações</h2>
         <div class="reviews-layout">
-          <!-- ESQUERDA -->
           <div class="reviews-left">
             <div class="review-card">
               <div class="review-score-row">
-                <h1 id="review-average">
-                  4.5
-                </h1>
-                <div class="review-stars">
-                  ★★★★★
-                </div>
+                <h1 id="review-average">0.0</h1>
+                <div class="review-stars" id="review-stars">-----</div>
               </div>
-              <p id="review-total">
-                Baseado em 128 avaliações
-              </p>
-            </div>
-            <div class="review-card">
-              <h4>Distribuição de notas</h4>
-              <div id="review-distribution">
-
-              </div>
-            </div>
-            <div class="review-card">
-              <h4>Deixe sua avaliação</h4>
-              <textarea
-                id="review-input"
-                placeholder="Conte como foi sua experiência neste espaço..."
-              ></textarea>
-              <button
-                class="btn review-submit"
-                onclick="enviarAvaliacao()"
-              >
-                Enviar avaliação
-              </button>
+              <p id="review-total">Baseado em 0 avaliações</p>
             </div>
           </div>
-          <!-- DIREITA -->
           <div class="reviews-right">
             <h4>Avaliações recentes</h4>
-            <div id="reviews-list">
-
-            </div>
+            <div id="reviews-list"></div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="right">
+    </section>
+
+    <aside class="right">
       <div class="rating-card">
         <div class="rating-top">
           <div>
-            <h2 id="rating-title">Maravilhoso</h2>
-            <p id="rating-count">
-              300 avaliações
-            </p>
+            <h2 id="rating-title">Carregando</h2>
+            <p id="rating-count">0 avaliações</p>
           </div>
-
-          <div class="rating-score" id="rating-score">
-            4.9
-          </div>
-
+          <div class="rating-score" id="rating-score">0.0</div>
         </div>
-
-        <div class="rating-divider">
-
-        </div>
-
-        <p class="rating-subtitle">
-          Destaque entre as melhores avaliações:
-        </p>
-
+        <div class="rating-divider"></div>
+        <p class="rating-subtitle">Destaque entre as melhores avaliações:</p>
         <div class="best-review">
-
-          <p id="best-review-text">
-            “Excelente localização, ótima limpeza e atendimento.”
-          </p>
-
+          <p id="best-review-text">Nenhuma avaliação encontrada.</p>
           <div class="review-user">
-
-            <div class="review-avatar">
-              B
-            </div>
-
-            <span id="best-review-user">
-              Bárbara
-            </span>
+            <div class="review-avatar" id="best-review-avatar">A</div>
+            <span id="best-review-user">Axis</span>
           </div>
         </div>
       </div>
+
       <div class="box">
         <h3>Comodidades</h3>
-        <p>Wi-Fi, Projetor, Ar-condicionado</p>
+        <p id="sala-recursos">Wi-Fi, projetor e ar-condicionado</p>
       </div>
-    </div>
-  </div>
-  <script src="../scripts/salas.js"></script>
+    </aside>
+  </main>
+
+  <script src="../js/salas.js"></script>
 </body>
 </html>
-

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Axis Work — Painel Admin Coworking</title>
+<link rel="stylesheet" href="../css/admin-coworking.css" />
+</head>
+<body data-page="dashboard">
+
+<!-- ICON SET (referenced via <use href="#icon-XYZ" />) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="icon-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="icon-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v8h4"/><path d="M18 9h2a2 2 0 0 1 2 2v11h-4"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></symbol>
+    <symbol id="icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42Z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="icon-star-fill" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></symbol>
+    <symbol id="icon-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+    <symbol id="icon-more" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></symbol>
+    <symbol id="icon-user-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></symbol>
+    <symbol id="icon-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></symbol>
+    <symbol id="icon-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></symbol>
+    <symbol id="icon-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></symbol>
+    <symbol id="icon-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="icon-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></symbol>
+    <symbol id="icon-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
+    <symbol id="icon-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></symbol>
+    <symbol id="icon-settings2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></symbol>
+    <symbol id="icon-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+    <symbol id="icon-trending-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol>
+    <symbol id="icon-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+  </defs>
+</svg>
+
+<div class="app">
+  <!-- ============================================== SIDEBAR ============================================== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-row">
+        <svg width="28" height="22" viewBox="0 0 64 50" aria-hidden="true">
+          <path d="M2 48 L18 4 L26 4 L32 22 L38 4 L46 4 L62 48 L52 48 L42 22 L36 38 L32 28 L28 38 L22 22 L12 48 Z" fill="#E8EEF2"/>
+        </svg>
+        <span>Axis Work</span>
+      </div>
+      <div class="brand-tag">Admin Coworking</div>
+    </div>
+
+    <div class="nav-label">MENU</div>
+        <nav class="nav">
+      <a href="admin-coworking.html" data-page="dashboard" class="is-active"><svg width="16" height="16"><use href="#icon-dashboard"/></svg>Dashboard</a>
+      <a href="pages/users.html" data-page="users"><svg width="16" height="16"><use href="#icon-users"/></svg>Usuários</a>
+      <a href="pages/rooms.html" data-page="rooms"><svg width="16" height="16"><use href="#icon-building"/></svg>Salas</a>
+      <a href="pages/plans.html" data-page="plans"><svg width="16" height="16"><use href="#icon-tag"/></svg>Planos</a>
+      <a href="pages/reviews.html" data-page="reviews"><svg width="16" height="16"><use href="#icon-star"/></svg>Avaliações</a>
+    </nav>
+
+    <div class="nav-footer">
+      <a><svg width="16" height="16"><use href="#icon-settings"/></svg>Configurações</a>
+      <a><svg width="16" height="16"><use href="#icon-logout"/></svg>Sair</a>
+    </div>
+  </aside>
+
+  <!-- ============================================== MAIN ============================================== -->
+  <div class="main">
+    <!-- Topbar (shared) -->
+    <header class="topbar">
+      <div class="search">
+        <svg width="14" height="14" color="#6B7A8A"><use href="#icon-search"/></svg>
+        <input placeholder="Buscar usuários, salas, planos..." />
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn">
+          <svg width="15" height="15"><use href="#icon-bell"/></svg>
+          <span class="dot"></span>
+        </button>
+        <div class="user-pill">
+          <div class="avatar">MR</div>
+          <div class="meta">
+            <b>Marina Reis</b>
+            <small>Administradora</small>
+          </div>
+          <svg width="14" height="14" color="#6B7A8A"><use href="#icon-chevron-down"/></svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- ====================== DASHBOARD ====================== -->
+        <section class="page is-active" data-page="dashboard">
+      <div class="page-header">
+        <div>
+          <h1>Visão geral</h1>
+          <p class="sub">Resumo operacional do espaço — abril de 2026</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn--ghost"><svg width="14" height="14"><use href="#icon-download"/></svg>Exportar</button>
+          <button class="btn btn--primary"><svg width="14" height="14"><use href="#icon-plus"/></svg>Nova reserva</button>
+        </div>
+      </div>
+
+      <div class="page-body">
+        <div class="grid-4">
+          <div class="card">
+            <div class="stat-row">
+              <div class="stat-icon"><svg width="16" height="16"><use href="#icon-users"/></svg></div>
+              <svg width="16" height="16" color="#6B7A8A"><use href="#icon-arrow-up-right"/></svg>
+            </div>
+            <div class="stat-label">Membros ativos</div>
+            <div class="stat-value">284</div>
+            <div class="stat-delta">+12 esta semana</div>
+          </div>
+          <div class="card">
+            <div class="stat-row">
+              <div class="stat-icon"><svg width="16" height="16"><use href="#icon-building"/></svg></div>
+              <svg width="16" height="16" color="#6B7A8A"><use href="#icon-arrow-up-right"/></svg>
+            </div>
+            <div class="stat-label">Salas cadastradas</div>
+            <div class="stat-value">32</div>
+            <div class="stat-delta">8 ocupadas agora</div>
+          </div>
+          <div class="card">
+            <div class="stat-row">
+              <div class="stat-icon"><svg width="16" height="16"><use href="#icon-tag"/></svg></div>
+              <svg width="16" height="16" color="#6B7A8A"><use href="#icon-arrow-up-right"/></svg>
+            </div>
+            <div class="stat-label">Planos ativos</div>
+            <div class="stat-value">5</div>
+            <div class="stat-delta">2 com promoção</div>
+          </div>
+          <div class="card">
+            <div class="stat-row">
+              <div class="stat-icon"><svg width="16" height="16"><use href="#icon-trending-up"/></svg></div>
+              <svg width="16" height="16" color="#6B7A8A"><use href="#icon-arrow-up-right"/></svg>
+            </div>
+            <div class="stat-label">Receita mensal</div>
+            <div class="stat-value">R$ 78.420</div>
+            <div class="stat-delta">+8,4% vs. mês anterior</div>
+          </div>
+        </div>
+
+        <div class="grid-2 mt-16">
+          <div class="card card--flush">
+            <div class="section-head">
+              <div>
+                <div class="title">Reservas recentes</div>
+                <div class="sub">Últimas reservas de salas e estações</div>
+              </div>
+              <a href="#">Ver todas</a>
+            </div>
+            <table>
+              <thead><tr><th>SALA</th><th>RESPONSÁVEL</th><th>HORÁRIO</th><th>STATUS</th></tr></thead>
+              <tbody>
+                <tr><td><div style="display:flex;align-items:center;gap:8px"><svg width="13" height="13" color="#6B7A8A"><use href="#icon-calendar"/></svg>Sala Atlas</div></td><td style="color:#1F3A57">Camila Souza</td><td>09:00 - 11:00</td><td><span class="pill pill--ok">Confirmada</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:8px"><svg width="13" height="13" color="#6B7A8A"><use href="#icon-calendar"/></svg>Auditório Norte</div></td><td style="color:#1F3A57">Empresa Rota Verde</td><td>10:30 - 12:30</td><td><span class="pill pill--ok">Confirmada</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:8px"><svg width="13" height="13" color="#6B7A8A"><use href="#icon-calendar"/></svg>Privativa 02</div></td><td style="color:#1F3A57">João Mendes</td><td>13:00 - 14:00</td><td><span class="pill pill--warn">Pendente</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:8px"><svg width="13" height="13" color="#6B7A8A"><use href="#icon-calendar"/></svg>Hot Desk #14</div></td><td style="color:#1F3A57">Marina Reis</td><td>14:00 - 18:00</td><td><span class="pill pill--ok">Confirmada</span></td></tr>
+                <tr><td><div style="display:flex;align-items:center;gap:8px"><svg width="13" height="13" color="#6B7A8A"><use href="#icon-calendar"/></svg>Sala Vértice</div></td><td style="color:#1F3A57">Studio Mesh</td><td>16:00 - 18:00</td><td><span class="pill pill--bad">Cancelada</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <div class="title" style="font-size:13px;font-weight:700;color:#0A1F33">Distribuição por plano</div>
+            <div style="font-size:11px;color:#6B7A8A;margin-top:2px">284 membros ativos no total</div>
+            <div style="display:flex;flex-direction:column;gap:14px;margin-top:18px">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:#0A1F33"><b>Flex</b><span style="color:#6B7A8A">142 <span style="color:#A9BDCB">·</span> 50%</span></div>
+                <div class="bar" style="margin-top:6px"><span style="width:50%"></span></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:#0A1F33"><b>Dedicated</b><span style="color:#6B7A8A">78 <span style="color:#A9BDCB">·</span> 28%</span></div>
+                <div class="bar" style="margin-top:6px"><span style="width:28%"></span></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:#0A1F33"><b>Office</b><span style="color:#6B7A8A">38 <span style="color:#A9BDCB">·</span> 13%</span></div>
+                <div class="bar" style="margin-top:6px"><span style="width:13%"></span></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:#0A1F33"><b>Day Pass</b><span style="color:#6B7A8A">26 <span style="color:#A9BDCB">·</span> 9%</span></div>
+                <div class="bar" style="margin-top:6px"><span style="width:9%"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="../js/admin-coworking.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axis Working - Alterar reserva</title>
+  <style>
+    :root {
+      --bg: #F5FAFD;
+      --card: #FFFFFF;
+      --ink: #0A2A47;
+      --muted: #6E7F91;
+      --line: #DDE8F2;
+      --soft: #F7FAFC;
+      --blue: #607D99;
+      --green: #32915B;
+      --danger: #D84F55;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page {
+      width: min(1320px, calc(100% - 64px));
+      margin: 0 auto;
+      padding: 34px 0 32px;
+    }
+
+    .head h1 {
+      font-size: 26px;
+      margin-bottom: 22px;
+    }
+
+    .head p {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .shell {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .box {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: var(--soft);
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .grid { display: grid; gap: 14px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .field {
+      min-height: 56px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #FBFCFE;
+      padding: 12px 14px;
+    }
+
+    .field label,
+    .label {
+      display: block;
+      color: #666;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .field strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 36px;
+      resize: vertical;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .status-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    .time-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .time-chip {
+      min-height: 32px;
+      border: 1px solid #C9DAEA;
+      border-radius: 999px;
+      background: #FFFFFF;
+      color: var(--ink);
+      padding: 0 14px;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .time-chip.active {
+      background: var(--blue);
+      color: #FFF;
+      border-color: var(--blue);
+    }
+
+    .time-chip.disabled {
+      background: #E3EAF0;
+      color: #8B98A4;
+      cursor: not-allowed;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 18px 0;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .left-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    button {
+      min-height: 42px;
+      border: none;
+      border-radius: 999px;
+      padding: 0 22px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .cancel { background: #EAF1F1; color: var(--ink); }
+    .save { background: var(--blue); color: #FFF; }
+    .delete { background: transparent; color: var(--danger); padding: 0; }
+    .message { min-height: 18px; margin-top: 12px; color: var(--muted); font-size: 13px; }
+    .message.error { color: var(--danger); }
+    .message.success { color: var(--green); }
+
+    @media (max-width: 860px) {
+      .page { width: calc(100% - 28px); }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .actions { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="head">
+      <h1>Alterar reserva</h1>
+      <p>Atualize os dados da sua reserva</p>
+    </div>
+
+    <section class="shell">
+      <div class="box">
+        <h2>Resumo da reserva atual</h2>
+        <div class="grid">
+          <div class="field"><span class="label">Sala</span><strong id="currentRoom">-</strong></div>
+          <div class="grid grid-2">
+            <div class="field"><span class="label">Data atual</span><strong id="currentDate">-</strong></div>
+            <div class="field"><span class="label">Horário atual</span><strong id="currentTime">-</strong></div>
+          </div>
+          <div class="grid grid-2">
+            <div class="field"><span class="label">Capacidade</span><strong id="currentCapacity">-</strong></div>
+            <div class="field">
+              <span class="label">Status</span>
+              <div class="status-line"><span class="dot"></span><strong id="currentStatus">-</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form id="editForm">
+        <h2>Formulário de alteração</h2>
+        <div class="grid">
+          <div class="field">
+            <label for="roomSelect">Seleção de sala</label>
+            <select id="roomSelect" required></select>
+          </div>
+          <div class="grid grid-3">
+            <div class="field"><label for="newDate">Nova data</label><input id="newDate" type="date" required /></div>
+            <div class="field"><label for="startTime">Horário inicial</label><input id="startTime" type="time" step="3600" required /></div>
+            <div class="field"><label for="endTime">Horário final</label><input id="endTime" type="time" step="3600" required /></div>
+          </div>
+          <div class="field">
+            <label for="statusSelect">Status da reserva</label>
+            <select id="statusSelect" required>
+              <option value="Confirmada">Confirmada</option>
+              <option value="Cancelada">Cancelada</option>
+            </select>
+          </div>
+          <div class="field"><label for="peopleCount">Quantidade de pessoas</label><input id="peopleCount" type="number" min="1" /></div>
+          <div class="field"><label for="notes">Observações (opcional)</label><textarea id="notes" placeholder="Projetor disponível? Preciso de uma sala próxima à entrada."></textarea></div>
+          <div class="box">
+            <h2>Horários disponíveis</h2>
+            <div class="time-options" id="timeOptions"></div>
+          </div>
+        </div>
+
+        <p class="note">Alterações estão sujeitas à disponibilidade da sala.</p>
+        <div class="actions">
+          <div class="left-actions">
+            <button class="cancel" type="button" id="cancelButton">Cancelar</button>
+            <button class="save" type="submit">Salvar alterações</button>
+          </div>
+          <button class="delete" type="button" id="deleteButton">Excluir reserva</button>
+        </div>
+        <div class="message" id="message"></div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const API_BASE_URL = 'http://127.0.0.1:8001/api';
+    const params = new URLSearchParams(window.location.search);
+    const reservaId = Number(params.get('id'));
+    const state = { reserva: null, salas: [] };
+
+    if (!reservaId) {
+      window.location.href = 'gerenciamento-conta.html#reservas';
+    }
+
+    function setMessage(text, type = '') {
+      const message = document.getElementById('message');
+      message.textContent = text;
+      message.className = `message ${type}`.trim();
+    }
+
+    async function request(path, options = {}) {
+      const response = await fetch(`${API_BASE_URL}${path}`, {
+        headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+        ...options,
+      });
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.detail || `Erro ${response.status}`);
+      }
+      if (response.status === 204) return null;
+      return response.json();
+    }
+
+    function datePart(value) {
+      return new Date(value).toISOString().slice(0, 10);
+    }
+
+    function timePart(value) {
+      return new Date(value).toTimeString().slice(0, 5);
+    }
+
+    function formatDate(value) {
+      return new Intl.DateTimeFormat('pt-BR').format(new Date(`${value}T00:00:00`));
+    }
+
+    function formatTimeRange(start, end) {
+      return `${timePart(start)} às ${timePart(end)}`;
+    }
+
+    function selectedSala() {
+      return state.salas.find((sala) => Number(sala.id_sala) === Number(document.getElementById('roomSelect').value));
+    }
+
+    function renderTimeOptions() {
+      const container = document.getElementById('timeOptions');
+      const start = document.getElementById('startTime').value;
+      const options = ['09:00', '10:00', '13:00', '15:00', '17:00'];
+      container.innerHTML = options.map((time) => `
+        <button class="time-chip ${time === start ? 'active' : ''}" type="button" data-time="${time}">${time}</button>
+      `).join('');
+
+      container.querySelectorAll('button').forEach((button) => {
+        button.addEventListener('click', () => {
+          document.getElementById('startTime').value = button.dataset.time;
+          renderTimeOptions();
+        });
+      });
+    }
+
+    function render() {
+      const sala = state.salas.find((item) => Number(item.id_sala) === Number(state.reserva.id_sala));
+      const finalizada = state.reserva.status === 'Finalizada';
+      document.getElementById('currentRoom').textContent = sala?.nome || 'Sala não informada';
+      document.getElementById('currentDate').textContent = formatDate(datePart(state.reserva.entrada));
+      document.getElementById('currentTime').textContent = formatTimeRange(state.reserva.entrada, state.reserva.saida);
+      document.getElementById('currentCapacity').textContent = sala?.capacidade ? `até ${sala.capacidade} pessoas` : '-';
+      document.getElementById('currentStatus').textContent = state.reserva.status;
+
+      document.getElementById('roomSelect').innerHTML = state.salas.map((item) => `
+        <option value="${item.id_sala}">${item.nome}</option>
+      `).join('');
+      document.getElementById('roomSelect').value = state.reserva.id_sala;
+      document.getElementById('newDate').value = datePart(state.reserva.entrada);
+      document.getElementById('startTime').value = timePart(state.reserva.entrada);
+      document.getElementById('endTime').value = timePart(state.reserva.saida);
+      document.getElementById('statusSelect').value = state.reserva.status;
+      document.getElementById('peopleCount').value = sala?.capacidade || '';
+      renderTimeOptions();
+
+      document.querySelectorAll('#editForm input, #editForm select, #editForm textarea, #editForm .save, #deleteButton').forEach((element) => {
+        element.disabled = finalizada;
+      });
+      if (finalizada) {
+        setMessage('Reservas finalizadas não podem ser alteradas.', 'error');
+      }
+    }
+
+    async function load() {
+      const [reserva, salas] = await Promise.all([
+        request(`/reservas/${reservaId}`),
+        request('/salas'),
+      ]);
+      state.reserva = reserva;
+      state.salas = salas;
+      render();
+    }
+
+    document.getElementById('editForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (state.reserva.status === 'Finalizada') {
+        setMessage('Reservas finalizadas não podem ser alteradas.', 'error');
+        return;
+      }
+      const date = document.getElementById('newDate').value;
+      const start = document.getElementById('startTime').value;
+      const end = document.getElementById('endTime').value;
+      const payload = {
+        id_cliente: state.reserva.id_cliente,
+        id_sala: Number(document.getElementById('roomSelect').value),
+        status: document.getElementById('statusSelect').value,
+        entrada: `${date}T${start}:00`,
+        saida: `${date}T${end}:00`,
+      };
+
+      try {
+        state.reserva = await request(`/reservas/${reservaId}`, {
+          method: 'PATCH',
+          body: JSON.stringify(payload),
+        });
+        setMessage('Reserva atualizada com sucesso.', 'success');
+        render();
+        window.location.href = 'gerenciamento-conta.html#reservas';
+      } catch (error) {
+        console.error(error);
+        setMessage(error.message || 'Não foi possível atualizar a reserva.', 'error');
+      }
+    });
+
+    document.getElementById('cancelButton').addEventListener('click', () => {
+      window.location.href = 'gerenciamento-conta.html#reservas';
+    });
+
+    document.getElementById('deleteButton').addEventListener('click', async () => {
+      try {
+        await request(`/reservas/${reservaId}`, { method: 'DELETE' });
+        window.location.href = 'gerenciamento-conta.html#reservas';
+      } catch (error) {
+        console.error(error);
+        setMessage('Não foi possível excluir a reserva.', 'error');
+      }
+    });
+
+    document.getElementById('startTime').addEventListener('change', renderTimeOptions);
+
+    load().catch((error) => {
+      console.error(error);
+      setMessage('Não foi possível carregar a reserva.', 'error');
+    });
+  </script>
+</body>
+</html>

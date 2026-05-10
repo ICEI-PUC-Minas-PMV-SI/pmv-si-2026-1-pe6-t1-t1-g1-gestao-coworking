@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -76,7 +76,7 @@ body {
     
     /* Imagem de fundo */
     background: linear-gradient(rgba(216, 226, 233, 0.78), rgba(216, 226, 233, 0.78)), 
-                url('img/anual.png'); 
+                url('../img/anual.png'); 
     background-size: cover;
     background-position: center;
 }

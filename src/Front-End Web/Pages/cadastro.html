@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axis Working - Cadastrar</title>
+  <style>
+    :root {
+      --navy: #0A2A47;
+      --blue: #5D7893;
+      --line: #E5E5E5;
+      --muted: #878787;
+      --ink: #101010;
+      --white: #FFFFFF;
+      --danger: #8A3A3A;
+      --success: #3F6B4D;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: var(--navy);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .top {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      padding-left: 9%;
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo { width: 72px; height: 46px; color: var(--navy); }
+
+    .stage {
+      min-height: calc(100vh - 74px);
+      display: grid;
+      place-items: center;
+      padding: 54px 20px;
+    }
+
+    .card {
+      width: min(490px, 100%);
+      min-height: 604px;
+      padding: 36px 34px 34px;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      margin-bottom: 28px;
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .field { margin-bottom: 12px; }
+
+    input {
+      width: 100%;
+      height: 58px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 0 24px;
+      background: var(--white);
+      color: var(--ink);
+      font: inherit;
+      font-size: 20px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
+      outline: none;
+    }
+
+    input::placeholder { color: #9A9A9A; }
+
+    input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(93, 120, 147, 0.16);
+    }
+
+    button {
+      width: 100%;
+      height: 56px;
+      margin-top: 16px;
+      border: none;
+      border-radius: 20px;
+      background: var(--navy);
+      color: var(--white);
+      font: inherit;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:disabled { opacity: .65; cursor: wait; }
+
+    .login {
+      margin-top: 28px;
+      text-align: center;
+      color: #333;
+      font-size: 20px;
+    }
+
+    .login a { color: inherit; text-decoration: none; font-weight: 700; }
+
+    .message {
+      min-height: 20px;
+      margin-top: 14px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .message.success { color: var(--success); }
+    .message.error { color: var(--danger); }
+
+    @media (max-width: 640px) {
+      .top { padding-left: 28px; }
+      .card { min-height: auto; padding: 34px 24px; }
+      h1 { margin-bottom: 24px; }
+      input, button { height: 52px; font-size: 16px; }
+      .login { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <svg class="logo" viewBox="0 0 64 50" aria-label="Axis Working">
+      <path d="M2 48 L18 4 L26 4 L32 22 L38 4 L46 4 L62 48 L52 48 L42 22 L36 38 L32 28 L28 38 L22 22 L12 48 Z" fill="currentColor"/>
+    </svg>
+  </header>
+
+  <main class="stage">
+    <section class="card" aria-labelledby="registerTitle">
+      <h1 id="registerTitle">Cadastrar</h1>
+      <form id="registerForm">
+        <div class="field">
+          <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Nome" maxlength="50" required />
+        </div>
+        <div class="field">
+          <input id="cpf" name="cpf" type="text" inputmode="numeric" autocomplete="username" placeholder="CPF" maxlength="14" required />
+        </div>
+        <div class="field">
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="Email" maxlength="100" required />
+        </div>
+        <div class="field">
+          <input id="telefone" name="telefone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Telefone" maxlength="15" />
+        </div>
+        <div class="field">
+          <input id="senha" name="senha" type="password" autocomplete="new-password" placeholder="Senha" maxlength="50" required />
+        </div>
+        <button id="registerButton" type="submit">Cadastrar</button>
+        <div id="message" class="message"></div>
+      </form>
+      <p class="login">Tem uma Conta? <a href="login.html">Entrar</a></p>
+    </section>
+  </main>
+
+  <script>
+    const API_BASE_URL = 'http://127.0.0.1:8001/api';
+    const form = document.getElementById('registerForm');
+    const button = document.getElementById('registerButton');
+    const message = document.getElementById('message');
+
+    function onlyNumbers(value) {
+      return value.replace(/\D/g, '');
+    }
+
+    function setMessage(text, type = '') {
+      message.textContent = text;
+      message.className = `message ${type}`.trim();
+    }
+
+    document.getElementById('cpf').addEventListener('input', (event) => {
+      event.target.value = onlyNumbers(event.target.value).slice(0, 11);
+    });
+
+    document.getElementById('telefone').addEventListener('input', (event) => {
+      event.target.value = onlyNumbers(event.target.value).slice(0, 11);
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const payload = {
+        nome: document.getElementById('nome').value.trim(),
+        cpf: onlyNumbers(document.getElementById('cpf').value),
+        email: document.getElementById('email').value.trim(),
+        telefone: onlyNumbers(document.getElementById('telefone').value) || null,
+        senha: document.getElementById('senha').value,
+      };
+
+      if (payload.cpf.length !== 11) {
+        setMessage('CPF deve conter 11 numeros.', 'error');
+        return;
+      }
+
+      if (payload.telefone && payload.telefone.length > 11) {
+        setMessage('Telefone deve conter ate 11 numeros.', 'error');
+        return;
+      }
+
+      button.disabled = true;
+      setMessage('Criando cadastro...');
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/clientes`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          setMessage(data.detail || 'Nao foi possivel cadastrar.', 'error');
+          return;
+        }
+
+        setMessage('Cadastro criado. Redirecionando...', 'success');
+        setTimeout(() => {
+          window.location.href = `login.html?cpf=${encodeURIComponent(data.cpf || payload.cpf)}`;
+        }, 900);
+      } catch (error) {
+        console.error(error);
+        setMessage('Erro ao conectar com o servidor.', 'error');
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

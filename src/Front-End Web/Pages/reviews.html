@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Axis Work — Painel Admin Coworking</title>
+<link rel="stylesheet" href="../css/admin-coworking.css" />
+</head>
+<body data-page="reviews">
+
+<!-- ICON SET (referenced via <use href="#icon-XYZ" />) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="icon-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="icon-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v8h4"/><path d="M18 9h2a2 2 0 0 1 2 2v11h-4"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></symbol>
+    <symbol id="icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42Z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="icon-star-fill" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></symbol>
+    <symbol id="icon-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+    <symbol id="icon-more" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></symbol>
+    <symbol id="icon-user-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></symbol>
+    <symbol id="icon-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></symbol>
+    <symbol id="icon-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></symbol>
+    <symbol id="icon-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></symbol>
+    <symbol id="icon-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="icon-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></symbol>
+    <symbol id="icon-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
+    <symbol id="icon-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></symbol>
+    <symbol id="icon-settings2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></symbol>
+    <symbol id="icon-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+    <symbol id="icon-trending-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol>
+    <symbol id="icon-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+  </defs>
+</svg>
+
+<div class="app">
+  <!-- ============================================== SIDEBAR ============================================== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-row">
+        <svg width="28" height="22" viewBox="0 0 64 50" aria-hidden="true">
+          <path d="M2 48 L18 4 L26 4 L32 22 L38 4 L46 4 L62 48 L52 48 L42 22 L36 38 L32 28 L28 38 L22 22 L12 48 Z" fill="#E8EEF2"/>
+        </svg>
+        <span>Axis Work</span>
+      </div>
+      <div class="brand-tag">Admin Coworking</div>
+    </div>
+
+    <div class="nav-label">MENU</div>
+        <nav class="nav">
+      <a href="../admin-coworking.html" data-page="dashboard"><svg width="16" height="16"><use href="#icon-dashboard"/></svg>Dashboard</a>
+      <a href="users.html" data-page="users"><svg width="16" height="16"><use href="#icon-users"/></svg>Usuários</a>
+      <a href="rooms.html" data-page="rooms"><svg width="16" height="16"><use href="#icon-building"/></svg>Salas</a>
+      <a href="plans.html" data-page="plans"><svg width="16" height="16"><use href="#icon-tag"/></svg>Planos</a>
+      <a href="reviews.html" data-page="reviews" class="is-active"><svg width="16" height="16"><use href="#icon-star"/></svg>Avaliações</a>
+    </nav>
+
+    <div class="nav-footer">
+      <a><svg width="16" height="16"><use href="#icon-settings"/></svg>Configurações</a>
+      <a><svg width="16" height="16"><use href="#icon-logout"/></svg>Sair</a>
+    </div>
+  </aside>
+
+  <!-- ============================================== MAIN ============================================== -->
+  <div class="main">
+    <!-- Topbar (shared) -->
+    <header class="topbar">
+      <div class="search">
+        <svg width="14" height="14" color="#6B7A8A"><use href="#icon-search"/></svg>
+        <input placeholder="Buscar usuários, salas, planos..." />
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn">
+          <svg width="15" height="15"><use href="#icon-bell"/></svg>
+          <span class="dot"></span>
+        </button>
+        <div class="user-pill">
+          <div class="avatar">MR</div>
+          <div class="meta">
+            <b>Marina Reis</b>
+            <small>Administradora</small>
+          </div>
+          <svg width="14" height="14" color="#6B7A8A"><use href="#icon-chevron-down"/></svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- ====================== DASHBOARD ====================== -->
+        <section class="page is-active" data-page="reviews">
+      <div class="page-header">
+        <div>
+          <h1>Avaliações dos usuários</h1>
+          <p class="sub">Monitore o feedback dos membros e gerencie avaliações pendentes</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn--ghost"><svg width="14" height="14"><use href="#icon-download"/></svg>Exportar relatório</button>
+        </div>
+      </div>
+
+      <div class="page-body">
+        <div class="grid-4 mb-16">
+          <div class="card">
+            <div class="stat-label" style="margin-top:0">Avaliação média</div>
+            <div style="display:flex;align-items:baseline;gap:6px;margin-top:8px">
+              <span style="font-size:28px;font-weight:700;color:#0A1F33">4,3</span>
+              <span style="font-size:11px;color:#6B7A8A">/ 5</span>
+            </div>
+            <div class="stars" style="margin-top:6px">
+              <svg width="12" height="12" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+              <svg width="12" height="12" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+              <svg width="12" height="12" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+              <svg width="12" height="12" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+              <svg width="12" height="12" color="#A9BDCB"><use href="#icon-star"/></svg>
+              <span class="num">4,3</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="stat-label" style="margin-top:0">Total de avaliações</div>
+            <div class="stat-value" style="margin-top:8px">154</div>
+            <div class="stat-delta" style="margin-top:4px">+18 nos últimos 30 dias</div>
+          </div>
+          <div class="card">
+            <div class="stat-label" style="margin-top:0">Em moderação</div>
+            <div class="stat-value" style="margin-top:8px">7</div>
+            <div class="stat-delta" style="margin-top:4px;color:#B58A3A">Aguardando aprovação</div>
+          </div>
+          <div class="card">
+            <div class="stat-label" style="margin-top:0">Salas sem avaliar</div>
+            <div class="stat-value" style="margin-top:8px">12</div>
+            <div class="stat-delta" style="margin-top:4px">de reservas recentes</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div class="card" style="padding:16px">
+              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                <div class="search-mini" style="flex:1;min-width:220px">
+                  <svg width="13" height="13" color="#6B7A8A"><use href="#icon-search"/></svg>
+                  <input placeholder="Buscar por usuário, sala ou comentário..." />
+                </div>
+                <button class="filter-chip">Estrelas: Todas</button>
+                <button class="filter-chip">Status: Todas</button>
+                <button class="icon-btn"><svg width="13" height="13"><use href="#icon-filter"/></svg></button>
+              </div>
+            </div>
+
+            <!-- Review 1 -->
+            <div class="card review-item">
+              <div class="review-head">
+                <div style="display:flex;gap:12px;align-items:center;min-width:0">
+                  <div class="avatar-sm" style="width:38px;height:38px;font-size:11px">CS</div>
+                  <div>
+                    <div style="font-size:13px;font-weight:700;color:#0A1F33">Camila Souza</div>
+                    <div class="review-meta">
+                      <span>avaliou</span><b>Sala Atlas</b>
+                      <span style="color:#A9BDCB">·</span>
+                      <span class="pill pill--ok">Sala de reunião</span>
+                      <span style="color:#A9BDCB">·</span><span>27/abr/2026</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="pill pill--ok">Publicada</span>
+              </div>
+              <div class="review-body">
+                <div class="stars">
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <span class="num">5,0</span>
+                </div>
+                <p class="review-comment">"Excelente acústica e iluminação natural. Monitor 4K funcionou perfeitamente para a apresentação do cliente. Voltarei com certeza."</p>
+              </div>
+              <div class="review-foot">
+                <button class="link-btn"><svg width="12" height="12"><use href="#icon-message"/></svg>Responder</button>
+                <div style="display:inline-flex;gap:6px">
+                  <button class="btn btn--ghost btn--sm"><svg width="11" height="11"><use href="#icon-pencil"/></svg>Editar</button>
+                  <button class="btn btn--sm" style="background:#FFF;color:#8A3A3A;border:1px solid #D9DEDC"><svg width="11" height="11"><use href="#icon-trash"/></svg>Excluir</button>
+                  <div class="row-actions"><button><svg width="13" height="13"><use href="#icon-more"/></svg></button></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="card review-item">
+              <div class="review-head">
+                <div style="display:flex;gap:12px;align-items:center;min-width:0">
+                  <div class="avatar-sm" style="width:38px;height:38px;font-size:11px">JM</div>
+                  <div>
+                    <div style="font-size:13px;font-weight:700;color:#0A1F33">João Mendes</div>
+                    <div class="review-meta">
+                      <span>avaliou</span><b>Privativa 02</b>
+                      <span style="color:#A9BDCB">·</span>
+                      <span class="pill pill--ok">Privativa</span>
+                      <span style="color:#A9BDCB">·</span><span>25/abr/2026</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="pill pill--ok">Publicada</span>
+              </div>
+              <div class="review-body">
+                <div class="stars">
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#A9BDCB"><use href="#icon-star"/></svg>
+                  <span class="num">4,0</span>
+                </div>
+                <p class="review-comment">"Espaço confortável e silencioso. Só achei que o ar-condicionado estava um pouco alto demais — talvez ajustar o termostato."</p>
+              </div>
+              <div class="review-foot">
+                <button class="link-btn"><svg width="12" height="12"><use href="#icon-message"/></svg>Responder</button>
+                <div style="display:inline-flex;gap:6px">
+                  <button class="btn btn--ghost btn--sm"><svg width="11" height="11"><use href="#icon-pencil"/></svg>Editar</button>
+                  <button class="btn btn--sm" style="background:#FFF;color:#8A3A3A;border:1px solid #D9DEDC"><svg width="11" height="11"><use href="#icon-trash"/></svg>Excluir</button>
+                  <div class="row-actions"><button><svg width="13" height="13"><use href="#icon-more"/></svg></button></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="card review-item">
+              <div class="review-head">
+                <div style="display:flex;gap:12px;align-items:center;min-width:0">
+                  <div class="avatar-sm" style="width:38px;height:38px;font-size:11px">RV</div>
+                  <div>
+                    <div style="font-size:13px;font-weight:700;color:#0A1F33">Estúdio Rota Verde</div>
+                    <div class="review-meta">
+                      <span>avaliou</span><b>Auditório Norte</b>
+                      <span style="color:#A9BDCB">·</span>
+                      <span class="pill pill--ok">Auditório</span>
+                      <span style="color:#A9BDCB">·</span><span>22/abr/2026</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="pill pill--ok">Publicada</span>
+              </div>
+              <div class="review-body">
+                <div class="stars">
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <span class="num">5,0</span>
+                </div>
+                <p class="review-comment">"Recebemos 48 pessoas para um workshop e tudo correu impecavelmente. A equipe de apoio foi atenciosa do início ao fim."</p>
+              </div>
+              <div class="review-foot">
+                <button class="link-btn"><svg width="12" height="12"><use href="#icon-message"/></svg>Responder</button>
+                <div style="display:inline-flex;gap:6px">
+                  <button class="btn btn--ghost btn--sm"><svg width="11" height="11"><use href="#icon-pencil"/></svg>Editar</button>
+                  <button class="btn btn--sm" style="background:#FFF;color:#8A3A3A;border:1px solid #D9DEDC"><svg width="11" height="11"><use href="#icon-trash"/></svg>Excluir</button>
+                  <div class="row-actions"><button><svg width="13" height="13"><use href="#icon-more"/></svg></button></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 4 (moderation) -->
+            <div class="card review-item">
+              <div class="review-head">
+                <div style="display:flex;gap:12px;align-items:center;min-width:0">
+                  <div class="avatar-sm" style="width:38px;height:38px;font-size:11px">PL</div>
+                  <div>
+                    <div style="font-size:13px;font-weight:700;color:#0A1F33">Pedro Lacerda</div>
+                    <div class="review-meta">
+                      <span>avaliou</span><b>Hot Desk Bloco A</b>
+                      <span style="color:#A9BDCB">·</span>
+                      <span class="pill pill--ok">Hot Desk</span>
+                      <span style="color:#A9BDCB">·</span><span>20/abr/2026</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="pill pill--warn">Em moderação</span>
+              </div>
+              <div class="review-body">
+                <div class="stars">
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#A9BDCB"><use href="#icon-star"/></svg>
+                  <svg width="14" height="14" color="#A9BDCB"><use href="#icon-star"/></svg>
+                  <span class="num">3,0</span>
+                </div>
+                <p class="review-comment">"Boa estrutura, mas a área estava bem cheia no início da tarde. Difícil encontrar mesa próxima às tomadas."</p>
+              </div>
+              <div class="review-foot">
+                <button class="link-btn"><svg width="12" height="12"><use href="#icon-message"/></svg>Responder</button>
+                <div style="display:inline-flex;gap:6px">
+                  <button class="btn btn--ghost btn--sm"><svg width="11" height="11"><use href="#icon-pencil"/></svg>Editar</button>
+                  <button class="btn btn--sm" style="background:#FFF;color:#8A3A3A;border:1px solid #D9DEDC"><svg width="11" height="11"><use href="#icon-trash"/></svg>Excluir</button>
+                  <div class="row-actions"><button><svg width="13" height="13"><use href="#icon-more"/></svg></button></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 5 -->
+            <div class="card review-item">
+              <div class="review-head">
+                <div style="display:flex;gap:12px;align-items:center;min-width:0">
+                  <div class="avatar-sm" style="width:38px;height:38px;font-size:11px">AV</div>
+                  <div>
+                    <div style="font-size:13px;font-weight:700;color:#0A1F33">Aline Vasques</div>
+                    <div class="review-meta">
+                      <span>avaliou</span><b>Sala Vértice</b>
+                      <span style="color:#A9BDCB">·</span>
+                      <span class="pill pill--ok">Sala de reunião</span>
+                      <span style="color:#A9BDCB">·</span><span>18/abr/2026</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="pill pill--ok">Publicada</span>
+              </div>
+              <div class="review-body">
+                <div class="stars">
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#0A1F33"><use href="#icon-star-fill"/></svg>
+                  <svg width="14" height="14" color="#A9BDCB"><use href="#icon-star"/></svg>
+                  <span class="num">4,0</span>
+                </div>
+                <p class="review-comment">"Ótima sala para brainstorm — quadros brancos amplos e ambiente bem iluminado."</p>
+              </div>
+              <div class="review-foot">
+                <button class="link-btn"><svg width="12" height="12"><use href="#icon-message"/></svg>Responder</button>
+                <div style="display:inline-flex;gap:6px">
+                  <button class="btn btn--ghost btn--sm"><svg width="11" height="11"><use href="#icon-pencil"/></svg>Editar</button>
+                  <button class="btn btn--sm" style="background:#FFF;color:#8A3A3A;border:1px solid #D9DEDC"><svg width="11" height="11"><use href="#icon-trash"/></svg>Excluir</button>
+                  <div class="row-actions"><button><svg width="13" height="13"><use href="#icon-more"/></svg></button></div>
+                </div>
+              </div>
+            </div>
+
+            <button class="load-more">Carregar mais avaliações</button>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <!-- Distribution -->
+            <div class="card">
+              <div style="font-size:13px;font-weight:700;color:#0A1F33">Distribuição</div>
+              <div style="font-size:11px;color:#6B7A8A;margin-top:2px">Avaliações por nº de estrelas</div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
+                <div class="row-bar">
+                  <span class="lbl">5 <svg width="10" height="10" color="#0A1F33"><use href="#icon-star-fill"/></svg></span>
+                  <div class="bar" style="flex:1"><span style="width:56%"></span></div>
+                  <span class="num">86</span>
+                </div>
+                <div class="row-bar">
+                  <span class="lbl">4 <svg width="10" height="10" color="#0A1F33"><use href="#icon-star-fill"/></svg></span>
+                  <div class="bar" style="flex:1"><span style="width:27%"></span></div>
+                  <span class="num">42</span>
+                </div>
+                <div class="row-bar">
+                  <span class="lbl">3 <svg width="10" height="10" color="#0A1F33"><use href="#icon-star-fill"/></svg></span>
+                  <div class="bar" style="flex:1"><span class="alt" style="width:12%"></span></div>
+                  <span class="num">18</span>
+                </div>
+                <div class="row-bar">
+                  <span class="lbl">2 <svg width="10" height="10" color="#0A1F33"><use href="#icon-star-fill"/></svg></span>
+                  <div class="bar" style="flex:1"><span class="alt2" style="width:3%"></span></div>
+                  <span class="num">5</span>
+                </div>
+                <div class="row-bar">
+                  <span class="lbl">1 <svg width="10" height="10" color="#0A1F33"><use href="#icon-star-fill"/></svg></span>
+                  <div class="bar" style="flex:1"><span class="alt2" style="width:2%"></span></div>
+                  <span class="num">3</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pending rooms -->
+            <div class="card card--flush">
+              <div class="section-head">
+                <div>
+                  <div class="title">Salas pendentes de avaliação</div>
+                  <div class="sub">Reservas recentes sem feedback</div>
+                </div>
+                <span class="badge-count">4</span>
+              </div>
+              <ul class="pending-list">
+                <li>
+                  <div>
+                    <div style="font-size:12px;font-weight:700;color:#0A1F33">Privativa 07</div>
+                    <div class="pending-meta">
+                      <span class="pill pill--ok">Privativa</span>
+                      <span style="display:inline-flex;align-items:center;gap:4px"><svg width="10" height="10"><use href="#icon-calendar"/></svg>26/abr/2026</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span class="days warn">3d atrás</span>
+                    <button class="btn btn--ghost btn--xs">Solicitar <svg width="11" height="11"><use href="#icon-chevron-right"/></svg></button>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <div style="font-size:12px;font-weight:700;color:#0A1F33">Auditório Norte</div>
+                    <div class="pending-meta">
+                      <span class="pill pill--ok">Auditório</span>
+                      <span style="display:inline-flex;align-items:center;gap:4px"><svg width="10" height="10"><use href="#icon-calendar"/></svg>24/abr/2026</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span class="days warn">5d atrás</span>
+                    <button class="btn btn--ghost btn--xs">Solicitar <svg width="11" height="11"><use href="#icon-chevron-right"/></svg></button>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <div style="font-size:12px;font-weight:700;color:#0A1F33">Hot Desk #14</div>
+                    <div class="pending-meta">
+                      <span class="pill pill--ok">Hot Desk</span>
+                      <span style="display:inline-flex;align-items:center;gap:4px"><svg width="10" height="10"><use href="#icon-calendar"/></svg>20/abr/2026</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span class="days bad">9d atrás</span>
+                    <button class="btn btn--ghost btn--xs">Solicitar <svg width="11" height="11"><use href="#icon-chevron-right"/></svg></button>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <div style="font-size:12px;font-weight:700;color:#0A1F33">Sala Cume</div>
+                    <div class="pending-meta">
+                      <span class="pill pill--ok">Sala de reunião</span>
+                      <span style="display:inline-flex;align-items:center;gap:4px"><svg width="10" height="10"><use href="#icon-calendar"/></svg>15/abr/2026</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span class="days bad">14d atrás</span>
+                    <button class="btn btn--ghost btn--xs">Solicitar <svg width="11" height="11"><use href="#icon-chevron-right"/></svg></button>
+                  </div>
+                </li>
+              </ul>
+              <div class="footer-link">
+                <a href="#">Ver todas as 12 salas pendentes</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="../js/admin-coworking.js"></script>
+
+</body>
+</html>

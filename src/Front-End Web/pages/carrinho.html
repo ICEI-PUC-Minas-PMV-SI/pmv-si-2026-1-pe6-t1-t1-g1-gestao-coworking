@@ -1,136 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Carrinho - Axis Working</title>
-
-  <link rel="stylesheet" href="carrinho.css">
-
+  <link rel="stylesheet" href="../css/carrinho.css">
 </head>
-
 <body>
-
-  <!-- NAVBAR -->
-
   <nav>
-
     <div class="logo">
-
-      <img src="img/logo.png">
-
+      <img src="../img/logo.png" alt="Axis Working">
       <h1>Axis Working</h1>
-
     </div>
 
     <div class="menu">
-
-      <a href="#">Salas</a>
+      <a href="index.html">Home</a>
       <a href="planos.html">Planos</a>
+      <a href="salas.html">Info Salas</a>
       <a href="sobrenos.html">Sobre Nós</a>
-      <a href="#">Contatos</a>
-
     </div>
 
-    <button class="btn-nav">
-      ENTRAR
-    </button>
-
+    <button class="btn-nav" onclick="location.href='login.html'">ENTRAR</button>
   </nav>
 
-  <!-- CARRINHO -->
-
   <section class="container">
-
     <div class="card-carrinho">
-
       <div class="imagem">
-
-        <img id="imagemPlano" src="">
-
+        <img id="imagemPlano" src="../img/diario.png" alt="Plano Axis Working">
       </div>
 
       <div class="info">
-
-        <h2 id="tituloPlano">
-          Plano
-        </h2>
-
-        <p id="descricaoPlano">
-          Descrição do plano
-        </p>
-
-        <div class="preco" id="precoPlano">
-          R$ 0,00
-        </div>
-
-        <button class="btn-finalizar">
-          Finalizar Compra
-        </button>
-
+        <h2 id="tituloPlano">Plano</h2>
+        <p id="descricaoPlano">Carregando dados do plano...</p>
+        <div class="preco" id="precoPlano">R$ 0,00</div>
+        <button class="btn-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
       </div>
-
     </div>
-
   </section>
 
-  <script>
-
-    const params = new URLSearchParams(window.location.search);
-
-    const plano = params.get("plano");
-
-    const imagem = document.getElementById("imagemPlano");
-    const titulo = document.getElementById("tituloPlano");
-    const descricao = document.getElementById("descricaoPlano");
-    const preco = document.getElementById("precoPlano");
-
-    if(plano === "diario"){
-
-      imagem.src = "img/diario.png";
-      titulo.innerHTML = "Plano Diário";
-      descricao.innerHTML = "Ideal para uso rápido e flexível do coworking.";
-      preco.innerHTML = "R$ 39,90";
-
-    }
-
-    if(plano === "semanal"){
-
-      imagem.src = "img/semanal.png";
-      titulo.innerHTML = "Plano Semanal";
-      descricao.innerHTML = "Perfeito para produtividade durante toda a semana.";
-      preco.innerHTML = "R$ 119,90";
-
-    }
-
-    if(plano === "mensal"){
-
-      imagem.src = "img/mensal.png";
-      titulo.innerHTML = "Plano Mensal";
-      descricao.innerHTML = "Espaço fixo para produtividade no mês inteiro.";
-      preco.innerHTML = "R$ 349,90";
-
-    }
-
-    if(plano === "anual"){
-
-      imagem.src = "img/anual.png";
-      titulo.innerHTML = "Plano Anual";
-      descricao.innerHTML = "Plano premium completo da Axis Working.";
-      preco.innerHTML = "R$ 2.999,90";
-
-    }
-
-  </script>
-
-</body>
-<!-- RODAPÉ -->
   <footer>
     <div class="footer-container">
       <div class="footer-logo">
-        <img src="img/logo.png" alt="Logo">
+        <img src="../img/logo.png" alt="Logo">
         <h2>Axis Working</h2>
         <p>Transformando seu jeito de trabalhar com foco e inovação.</p>
       </div>
@@ -145,4 +56,41 @@
       <p>&copy; 2026 Axis Working. Todos os direitos reservados.</p>
     </div>
   </footer>
+
+  <script>
+    const API_BASE_URL = 'http://127.0.0.1:8001/api';
+    const imagens = ['../img/diario.png', '../img/semanal.png', '../img/mensal.png', '../img/anual.png'];
+    const params = new URLSearchParams(window.location.search);
+    const idPlano = params.get('plano');
+
+    function preco(value) {
+      return Number(value || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function isLogged() {
+      return !!localStorage.getItem('axisAuth') || !!localStorage.getItem('token_acesso');
+    }
+
+    async function carregarPlano() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/planos/${encodeURIComponent(idPlano || 1)}`);
+        if (!response.ok) throw new Error(`Erro ${response.status}`);
+        const plano = await response.json();
+        document.getElementById('tituloPlano').textContent = plano.nome || 'Plano Axis';
+        document.getElementById('descricaoPlano').textContent = `Acesso: ${plano.acesso || 'Coworking Axis Working'}`;
+        document.getElementById('precoPlano').textContent = preco(plano.preco);
+        document.getElementById('imagemPlano').src = imagens[(Number(plano.id_plano || 1) - 1) % imagens.length];
+      } catch (error) {
+        console.error(error);
+        document.getElementById('descricaoPlano').textContent = 'Não foi possível carregar os dados do plano.';
+      }
+    }
+
+    function finalizarCompra() {
+      window.location.href = isLogged() ? 'gerenciamento-conta.html#plano' : 'login.html';
+    }
+
+    carregarPlano();
+  </script>
+</body>
 </html>

@@ -1,312 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Planos - Axis Working</title>
-
   <link rel="stylesheet" href="../css/planos.css">
-
 </head>
-
 <body>
-
-  <!-- NAVBAR -->
-
   <nav>
-
     <div class="logo">
-
-      <img src="../img/logo.png">
-
+      <img src="../img/logo.png" alt="Axis Working">
       <h1>Axis Working</h1>
-
     </div>
 
     <div class="menu">
-
-      <a href="#">Salas</a>
-      <a href="planos.css">Planos</a>
+      <a href="index.html">Home</a>
+      <a href="salas.html">Info Salas</a>
       <a href="sobrenos.html">Sobre nós</a>
-      <a href="#">Contatos</a>
-
     </div>
 
-    <button class="btn-nav">
-      ENTRAR
-    </button>
-
+    <button class="btn-nav" onclick="location.href='login.html'">ENTRAR</button>
   </nav>
 
-  <!-- TITULO -->
-
   <section class="titulo">
-
     <h2>PLANOS</h2>
-
   </section>
 
-  <!-- PLANOS -->
-
-  <section class="cards">
-
-    <!-- CARD 1 -->
-
-    <div class="card">
-
-      <div class="marca-fundo">
-        <img src="../img/logo.png">
-      </div>
-
-      <div class="carousel">
-
-        <img src="../img/diario.png" class="active">
-        <img src="../img/diario2.png">
-        <img src="../img/diario3.png">
-
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-
-      </div>
-
-      <div class="card-info">
-
-        <h3>Plano Diário</h3>
-
-        <p>
-          Ideal para quem precisa de flexibilidade e acesso rápido ao coworking.
-        </p>
-
-        <ul>
-          <li>Acesso por 1 dia</li>
-          <li>Internet de alta velocidade</li>
-          <li>Espaço compartilhado</li>
-        </ul>
-
-        <div class="preco">
-          R$ 39,90
-        </div>
-
-        <a href="carrinho.html?plano=diario">
-          <button class="btn">
-            Escolher Plano
-          </button>
-        </a>
-
-      </div>
-
-    </div>
-
-    <!-- CARD 2 -->
-
-    <div class="card">
-
-      <div class="marca-fundo">
-        <img src="../img/logo.png">
-      </div>
-
-      <div class="carousel">
-
-        <img src="../img/semanal.png" class="active">
-        <img src="../img/semanal2.png">
-        <img src="../img/semanal3.png">
-
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-
-      </div>
-
-      <div class="card-info">
-
-        <h3>Plano Semanal</h3>
-
-        <p>
-          Perfeito para produtividade durante toda a semana.
-        </p>
-
-        <ul>
-          <li>7 dias de acesso</li>
-          <li>Networking profissional</li>
-          <li>Maior economia</li>
-        </ul>
-
-        <div class="preco">
-          R$ 119,90
-        </div>
-
-        <a href="carrinho.html?plano=semanal">
-          <button class="btn">
-            Escolher Plano
-          </button>
-        </a>
-
-      </div>
-
-    </div>
-
-    <!-- CARD 3 -->
-
-    <div class="card">
-
-      <div class="marca-fundo">
-        <img src="../img/logo.png">
-      </div>
-
-      <div class="carousel">
-
-        <img src="../img/mensal.png" class="active">
-        <img src="../img/mensal2.png">
-        <img src="../img/mensal3.png">
-
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-
-      </div>
-
-      <div class="card-info">
-
-        <h3>Plano Mensal</h3>
-
-        <p>
-          Um espaço fixo para produtividade durante todo o mês.
-        </p>
-
-        <ul>
-          <li>Acesso ilimitado</li>
-          <li>Estação de trabalho</li>
-          <li>Ambiente climatizado</li>
-        </ul>
-
-        <div class="preco">
-          R$ 349,90
-        </div>
-
-        <a href="carrinho.html?plano=mensal">
-          <button class="btn">
-            Escolher Plano
-          </button>
-        </a>
-
-      </div>
-
-    </div>
-
-    <!-- CARD 4 -->
-
-    <div class="card">
-
-      <div class="marca-fundo">
-        <img src="../img/logo.png">
-      </div>
-
-      <div class="carousel">
-
-        <img src="../img/anual.png" class="active">
-        <img src="../img/anual3.png">
-        <img src="../img/anual2.png">
-
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-
-      </div>
-
-      <div class="card-info">
-
-        <h3>Plano Anual</h3>
-
-        <p>
-          O plano mais completo da Axis Working.
-        </p>
-
-        <ul>
-          <li>12 meses de acesso</li>
-          <li>Benefícios exclusivos</li>
-          <li>Reservas prioritárias</li>
-        </ul>
-
-        <div class="preco">
-          R$ 2.999,90
-        </div>
-
-        <a href="carrinho.html?plano=anual">
-          <button class="btn">
-            Escolher Plano
-          </button>
-        </a>
-
-      </div>
-
-    </div>
-
+  <section class="cards" id="planosList">
+    <p>Carregando planos...</p>
   </section>
 
-  <!-- SCRIPT -->
-
-  <script>
-
-    const carousels = document.querySelectorAll(".carousel");
-
-    carousels.forEach(carousel => {
-
-      const images = carousel.querySelectorAll("img");
-
-      const prev = carousel.querySelector(".prev");
-      const next = carousel.querySelector(".next");
-
-      let index = 0;
-
-      function showImage(i){
-
-        images.forEach(img => {
-          img.classList.remove("active");
-        });
-
-        images[i].classList.add("active");
-
-      }
-
-      next.addEventListener("click", () => {
-
-        index++;
-
-        if(index >= images.length){
-          index = 0;
-        }
-
-        showImage(index);
-
-      });
-
-      prev.addEventListener("click", () => {
-
-        index--;
-
-        if(index < 0){
-          index = images.length - 1;
-        }
-
-        showImage(index);
-
-      });
-
-      setInterval(() => {
-
-        index++;
-
-        if(index >= images.length){
-          index = 0;
-        }
-
-        showImage(index);
-
-      }, 4000);
-
-    });
-
-  </script>
-<footer>
+  <footer>
     <div class="footer-container">
       <div class="footer-logo">
         <img src="../img/logo.png" alt="Logo">
@@ -325,5 +49,64 @@
       <p>&copy; 2026 Axis Working. Todos os direitos reservados.</p>
     </div>
   </footer>
+
+  <script>
+    const API_BASE_URL = 'http://127.0.0.1:8001/api';
+    const imagens = ['../img/diario.png', '../img/semanal.png', '../img/mensal.png', '../img/anual.png'];
+
+    function preco(value) {
+      return Number(value || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function lista(data) {
+      if (Array.isArray(data)) return data;
+      if (Array.isArray(data?.value)) return data.value;
+      return [];
+    }
+
+    function escolherPlano(idPlano) {
+      if (!localStorage.getItem('axisAuth') && !localStorage.getItem('token_acesso')) {
+        window.location.href = 'login.html';
+        return;
+      }
+      window.location.href = `carrinho.html?plano=${encodeURIComponent(idPlano)}`;
+    }
+
+    async function carregarPlanos() {
+      const container = document.getElementById('planosList');
+      try {
+        const response = await fetch(`${API_BASE_URL}/planos`);
+        if (!response.ok) throw new Error(`Erro ${response.status}`);
+        const planos = lista(await response.json());
+
+        container.innerHTML = planos.map((plano, index) => `
+          <div class="card">
+            <div class="marca-fundo">
+              <img src="../img/logo.png" alt="">
+            </div>
+            <div class="carousel">
+              <img src="${imagens[index % imagens.length]}" class="active" alt="${plano.nome}">
+            </div>
+            <div class="card-info">
+              <h3>${plano.nome}</h3>
+              <p>Acesso: ${plano.acesso}</p>
+              <ul>
+                <li>Internet de alta velocidade</li>
+                <li>Ambiente climatizado</li>
+                <li>Suporte da equipe Axis Working</li>
+              </ul>
+              <div class="preco">${preco(plano.preco)}</div>
+              <button class="btn" onclick="escolherPlano(${plano.id_plano})">Escolher Plano</button>
+            </div>
+          </div>
+        `).join('') || '<p>Nenhum plano encontrado.</p>';
+      } catch (error) {
+        console.error(error);
+        container.innerHTML = '<p>Não foi possível carregar os planos no momento.</p>';
+      }
+    }
+
+    carregarPlanos();
+  </script>
 </body>
 </html>
