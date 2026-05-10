@@ -35,8 +35,28 @@ Os elementos gráficos seguem um padrão geométrico, com botões em formato de 
 
 
 ## Fluxo de Dados
-
 <!--[Diagrama ou descrição do fluxo de dados na aplicação.]-->
+
+&nbsp; &nbsp; &nbsp; No Userflow da Axis Work foi optada a utilização de uma padronização visual por cores e formas:
+
+Dessa forma, os pontos de Entrada e Saída são: 
+
+- Retângulo Verde: Simboliza a Entrada Inicial. Representa o ponto de partida do fluxo.
+
+- Retângulo Roxo: Simboliza a Saída Final. Indica a conclusão do objetivo do usuário ou o encerramento do processo atual.
+
+As cores e a forma que simbolizam a tomada de Decisão são:
+
+- Losango Amarelo: Representa uma Decisão do Usuário. Indica um ponto onde a pessoa precisa escolher entre caminhos diferentes.
+
+- Losango Laranja: Representa uma Decisão do Sistema. Indica uma verificação automática feita pela api.
+
+Já na interação e interface é o:
+
+- Retângulo Azul: Simboliza uma Ação do Usuário. Representa cliques em botões, preenchimento de campos de texto ou qualquer interação física com a interface.
+
+- Retângulo Branco: Indica o Tipo de Painel e Acesso. Diferencia visualmente qual ambiente está sendo visualizado, separando as permissões entre o Administrador e o Usuário Comum.
+
 <img src="img/userflow1.png" width="500" justify-self="center">
 <img src="img/userflow2.png" width="500" justify-self="center">
 <img src="img/userflow3.png" width="500" justify-self="center">
