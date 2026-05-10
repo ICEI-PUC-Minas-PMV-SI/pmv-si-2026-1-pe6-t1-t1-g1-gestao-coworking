@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Planos - Axis Working</title>
+
+  <link rel="stylesheet" href="planos.css">
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="logo">
+
+      <img src="img/logo.png">
+
+      <h1>Axis Working</h1>
+
+    </div>
+
+    <div class="menu">
+
+      <a href="#">Salas</a>
+      <a href="planos.css">Planos</a>
+      <a href="sobrenos.html">Sobre nós</a>
+      <a href="#">Contatos</a>
+
+    </div>
+
+    <button class="btn-nav">
+      ENTRAR
+    </button>
+
+  </nav>
+
+  <!-- TITULO -->
+
+  <section class="titulo">
+
+    <h2>PLANOS</h2>
+
+  </section>
+
+  <!-- PLANOS -->
+
+  <section class="cards">
+
+    <!-- CARD 1 -->
+
+    <div class="card">
+
+      <div class="marca-fundo">
+        <img src="img/logo.png">
+      </div>
+
+      <div class="carousel">
+
+        <img src="img/diario.png" class="active">
+        <img src="img/diario2.png">
+        <img src="img/diario3.png">
+
+        <button class="prev">‹</button>
+        <button class="next">›</button>
+
+      </div>
+
+      <div class="card-info">
+
+        <h3>Plano Diário</h3>
+
+        <p>
+          Ideal para quem precisa de flexibilidade e acesso rápido ao coworking.
+        </p>
+
+        <ul>
+          <li>Acesso por 1 dia</li>
+          <li>Internet de alta velocidade</li>
+          <li>Espaço compartilhado</li>
+        </ul>
+
+        <div class="preco">
+          R$ 39,90
+        </div>
+
+        <a href="carrinho.html?plano=diario">
+          <button class="btn">
+            Escolher Plano
+          </button>
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- CARD 2 -->
+
+    <div class="card">
+
+      <div class="marca-fundo">
+        <img src="img/logo.png">
+      </div>
+
+      <div class="carousel">
+
+        <img src="img/semanal.png" class="active">
+        <img src="img/semanal2.png">
+        <img src="img/semanal3.png">
+
+        <button class="prev">‹</button>
+        <button class="next">›</button>
+
+      </div>
+
+      <div class="card-info">
+
+        <h3>Plano Semanal</h3>
+
+        <p>
+          Perfeito para produtividade durante toda a semana.
+        </p>
+
+        <ul>
+          <li>7 dias de acesso</li>
+          <li>Networking profissional</li>
+          <li>Maior economia</li>
+        </ul>
+
+        <div class="preco">
+          R$ 119,90
+        </div>
+
+        <a href="carrinho.html?plano=semanal">
+          <button class="btn">
+            Escolher Plano
+          </button>
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- CARD 3 -->
+
+    <div class="card">
+
+      <div class="marca-fundo">
+        <img src="img/logo.png">
+      </div>
+
+      <div class="carousel">
+
+        <img src="img/mensal.png" class="active">
+        <img src="img/mensal2.png">
+        <img src="img/mensal3.png">
+
+        <button class="prev">‹</button>
+        <button class="next">›</button>
+
+      </div>
+
+      <div class="card-info">
+
+        <h3>Plano Mensal</h3>
+
+        <p>
+          Um espaço fixo para produtividade durante todo o mês.
+        </p>
+
+        <ul>
+          <li>Acesso ilimitado</li>
+          <li>Estação de trabalho</li>
+          <li>Ambiente climatizado</li>
+        </ul>
+
+        <div class="preco">
+          R$ 349,90
+        </div>
+
+        <a href="carrinho.html?plano=mensal">
+          <button class="btn">
+            Escolher Plano
+          </button>
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- CARD 4 -->
+
+    <div class="card">
+
+      <div class="marca-fundo">
+        <img src="img/logo.png">
+      </div>
+
+      <div class="carousel">
+
+        <img src="img/anual.png" class="active">
+        <img src="img/anual3.png">
+        <img src="img/anual2.png">
+
+        <button class="prev">‹</button>
+        <button class="next">›</button>
+
+      </div>
+
+      <div class="card-info">
+
+        <h3>Plano Anual</h3>
+
+        <p>
+          O plano mais completo da Axis Working.
+        </p>
+
+        <ul>
+          <li>12 meses de acesso</li>
+          <li>Benefícios exclusivos</li>
+          <li>Reservas prioritárias</li>
+        </ul>
+
+        <div class="preco">
+          R$ 2.999,90
+        </div>
+
+        <a href="carrinho.html?plano=anual">
+          <button class="btn">
+            Escolher Plano
+          </button>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SCRIPT -->
+
+  <script>
+
+    const carousels = document.querySelectorAll(".carousel");
+
+    carousels.forEach(carousel => {
+
+      const images = carousel.querySelectorAll("img");
+
+      const prev = carousel.querySelector(".prev");
+      const next = carousel.querySelector(".next");
+
+      let index = 0;
+
+      function showImage(i){
+
+        images.forEach(img => {
+          img.classList.remove("active");
+        });
+
+        images[i].classList.add("active");
+
+      }
+
+      next.addEventListener("click", () => {
+
+        index++;
+
+        if(index >= images.length){
+          index = 0;
+        }
+
+        showImage(index);
+
+      });
+
+      prev.addEventListener("click", () => {
+
+        index--;
+
+        if(index < 0){
+          index = images.length - 1;
+        }
+
+        showImage(index);
+
+      });
+
+      setInterval(() => {
+
+        index++;
+
+        if(index >= images.length){
+          index = 0;
+        }
+
+        showImage(index);
+
+      }, 4000);
+
+    });
+
+  </script>
+<footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="img/logo.png" alt="Logo">
+        <h2>Axis Working</h2>
+        <p>Transformando seu jeito de trabalhar com foco e inovação.</p>
+      </div>
+
+      <div class="footer-contato">
+        <h3>Contato</h3>
+        <p>Email: contato@axisworking.com</p>
+        <p>Telefone: (11) 9999-9999</p>
+        <p>Endereço: Av. Paulista, 1000 - SP</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Axis Working. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
