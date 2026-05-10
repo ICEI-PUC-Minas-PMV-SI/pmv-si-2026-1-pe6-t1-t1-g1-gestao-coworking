@@ -23,8 +23,8 @@
 
 <!--[Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.] -->
 
-<img src="img/Styles.png" width="200" align="center">
-![Identidade Visual](img/Styles.png)
+<img src="img/Styles.png" width="300" align="center">
+
 
 
 &nbsp; &nbsp; &nbsp; A identidade visual e a interface do sistema da Axis Work foi pensada para possuir uma estética minimalista e mais clean, seguindo as tendências do mercado. Por ser uma ferramenta de uso diário a escolha da família tipográfica proporcional Arial se tornou a melhor escolha, por essa ter um fluxo de leitura mais natural e rápido. Essa escolha tipográfica foi aplicada em diversas escalas de tamanho no site do coworking, para estabelecer uma hierarquia visual clara, variando desde títulos até botões e textos informativos, garantindo uma leitura precisa dos dados.
