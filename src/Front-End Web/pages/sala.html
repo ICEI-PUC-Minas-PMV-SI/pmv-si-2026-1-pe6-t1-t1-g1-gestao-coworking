@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Sala</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="..css/styles.css">
 </head>
 <body>
 <header>
@@ -19,19 +19,13 @@
 </header>
 <div class="container flex">
 <div class="left">
- 
-    
 <div class="box">
 <img src="https://picsum.photos/600/300">
-
 <p>Sala moderna com ótima estrutura.</p>
 </div>
-
 <div class="box">
 <h3>Disponibilidade</h3>
 <!--<div class="calendar" id="calendar"></div>-->
-
-
 <div class="availability-section">
   <div class="calendar-side">
     <div class="calendar-header">
@@ -64,97 +58,56 @@
 <div class="time" id="times"></div>
 <button class="btn" onclick="alertLogin()">Reservar</button>
 </div>
-
 <div class="reviews-section">
-
   <h2>Avaliações</h2>
-
   <div class="reviews-layout">
-
     <!-- ESQUERDA -->
-
     <div class="reviews-left">
-
       <div class="review-card">
-
         <div class="review-score-row">
-
           <h1 id="review-average">
             4.5
           </h1>
-
           <div class="review-stars">
             ★★★★★
           </div>
-
         </div>
-
         <p id="review-total">
           Baseado em 128 avaliações
         </p>
-
       </div>
-
       <div class="review-card">
-
         <h4>Distribuição de notas</h4>
-
         <div id="review-distribution"></div>
-
       </div>
-
       <div class="review-card">
-
         <h4>Deixe sua avaliação</h4>
-
         <textarea
           id="review-input"
           placeholder="Conte como foi sua experiência neste espaço..."
         ></textarea>
-
         <button
           class="btn review-submit"
           onclick="enviarAvaliacao()"
         >
           Enviar avaliação
         </button>
-
       </div>
-
     </div>
-
     <!-- DIREITA -->
-
     <div class="reviews-right">
-
       <h4>Avaliações recentes</h4>
-
       <div id="reviews-list"></div>
-
     </div>
-
   </div>
-
 </div>
-
-
-
-
-
-
 </div>
 <div class="right">
-
-
 <div class="right">
-
   <div class="rating-card">
-
     <div class="rating-top">
-
       <div>
         <h2 id="rating-title">Maravilhoso</h2>
-
         <p id="rating-count">
           300 avaliações
         </p>
@@ -187,24 +140,17 @@
         <span id="best-review-user">
           Bárbara
         </span>
-
       </div>
-
     </div>
-
   </div>
-
   <div class="box">
-
-
-
 <div class="box">
 <h3>Comodidades</h3>
 <p>Wi‑Fi, Projetor, Ar-condicionado</p>
 </div>
 </div>
 </div>
-<script src="script.js"></script>
+<script src="../scripts/script.js"></script>
 </body>
 </html>
 
