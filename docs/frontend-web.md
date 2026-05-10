@@ -23,6 +23,12 @@
 
 [Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
 
+&nbsp; &nbsp; &nbsp; A identidade visual e a interface do sistema da Axis Work foi pensada para possuir uma estética minimalista e mais clean, seguindo as tendências do mercado. Por ser uma ferramenta de uso diário a escolha da família tipográfica proporcional Arial se tornou a melhor escolha, por essa ter um fluxo de leitura mais natural e rápido. Essa escolha tipográfica foi aplicada em diversas escalas de tamanho no site do coworking, para estabelecer uma hierarquia visual clara, variando desde títulos até botões e textos informativos, garantindo uma leitura precisa dos dados.
+&nbsp; &nbsp; &nbsp; Já a paleta de cores é composta por uma escala de tons frios e neutros, onde o azul escuro atua como a cor de destaque para reforço de marca, seguindo o padrão já proposto do logo da mesma. Essas cores interagem com uma base de cinzas e variações de branco, assegurando alto contraste e conforto visual, além de serem cores que remetem ao profissionalismo, compromisso e confiança da marca.
+Os elementos gráficos seguem um padrão geométrico, com botões em formato de pílula e preenchimentos sólidos. A iconografia utiliza o estilo preenchido com formas simples e universais, facilitando o reconhecimento imediato do usuário. O logotipo, Axis Work, integra-se harmonicamente ao site através da manutenção da tipografia padrão.
+&nbsp; &nbsp; &nbsp; A organização do layout é estruturada por meio de sistemas de colunas que orientam o alinhamento de componentes. O uso estratégico do espaço em branco entre os componentes de navegação com o fundo azul claro, fazem uma transição entre os itens das páginas de maneira natural  o que evita a sobrecarga cognitiva, resultando em uma interface funcional que prioriza a clareza da informação e deixando mais fácil a visualização por parte do usuário.
+
+
 ## Fluxo de Dados
 
 [Diagrama ou descrição do fluxo de dados na aplicação.]
