@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Carrinho - Axis Working</title>
+
+  <link rel="stylesheet" href="carrinho.css">
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="logo">
+
+      <img src="img/logo.png">
+
+      <h1>Axis Working</h1>
+
+    </div>
+
+    <div class="menu">
+
+      <a href="#">Salas</a>
+      <a href="planos.html">Planos</a>
+      <a href="sobrenos.html">Sobre Nós</a>
+      <a href="#">Contatos</a>
+
+    </div>
+
+    <button class="btn-nav">
+      ENTRAR
+    </button>
+
+  </nav>
+
+  <!-- CARRINHO -->
+
+  <section class="container">
+
+    <div class="card-carrinho">
+
+      <div class="imagem">
+
+        <img id="imagemPlano" src="">
+
+      </div>
+
+      <div class="info">
+
+        <h2 id="tituloPlano">
+          Plano
+        </h2>
+
+        <p id="descricaoPlano">
+          Descrição do plano
+        </p>
+
+        <div class="preco" id="precoPlano">
+          R$ 0,00
+        </div>
+
+        <button class="btn-finalizar">
+          Finalizar Compra
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <script>
+
+    const params = new URLSearchParams(window.location.search);
+
+    const plano = params.get("plano");
+
+    const imagem = document.getElementById("imagemPlano");
+    const titulo = document.getElementById("tituloPlano");
+    const descricao = document.getElementById("descricaoPlano");
+    const preco = document.getElementById("precoPlano");
+
+    if(plano === "diario"){
+
+      imagem.src = "img/diario.png";
+      titulo.innerHTML = "Plano Diário";
+      descricao.innerHTML = "Ideal para uso rápido e flexível do coworking.";
+      preco.innerHTML = "R$ 39,90";
+
+    }
+
+    if(plano === "semanal"){
+
+      imagem.src = "img/semanal.png";
+      titulo.innerHTML = "Plano Semanal";
+      descricao.innerHTML = "Perfeito para produtividade durante toda a semana.";
+      preco.innerHTML = "R$ 119,90";
+
+    }
+
+    if(plano === "mensal"){
+
+      imagem.src = "img/mensal.png";
+      titulo.innerHTML = "Plano Mensal";
+      descricao.innerHTML = "Espaço fixo para produtividade no mês inteiro.";
+      preco.innerHTML = "R$ 349,90";
+
+    }
+
+    if(plano === "anual"){
+
+      imagem.src = "img/anual.png";
+      titulo.innerHTML = "Plano Anual";
+      descricao.innerHTML = "Plano premium completo da Axis Working.";
+      preco.innerHTML = "R$ 2.999,90";
+
+    }
+
+  </script>
+
+</body>
+<!-- RODAPÉ -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="img/logo.png" alt="Logo">
+        <h2>Axis Working</h2>
+        <p>Transformando seu jeito de trabalhar com foco e inovação.</p>
+      </div>
+      <div class="footer-contato">
+        <h3>Contato</h3>
+        <p>Email: contato@axisworking.com</p>
+        <p>Telefone: (11) 9999-9999</p>
+        <p>Endereço: Av. Paulista, 1000 - SP</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Axis Working. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</html>
