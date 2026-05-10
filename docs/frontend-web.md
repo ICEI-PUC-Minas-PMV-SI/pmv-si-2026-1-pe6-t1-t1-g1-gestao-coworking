@@ -23,6 +23,7 @@
 
 <!--[Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.] -->
 
+<img src="img/Styles.png" width="200" align="center">
 ![Identidade Visual](img/Styles.png)
 
 
