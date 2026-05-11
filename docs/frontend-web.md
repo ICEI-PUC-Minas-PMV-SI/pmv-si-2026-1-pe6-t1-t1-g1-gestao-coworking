@@ -98,8 +98,6 @@ Já na interação e interface é o:
 
 ## Considerações de Segurança
 
-# Seguranca
-
 ## Cenario da Aplicacao
 
 A Axis Working e uma aplicacao distribuida composta por:
@@ -327,8 +325,6 @@ Recomendacoes para PostgreSQL:
 - [ ] Rate limiting no login e em rotas sensiveis.
 
 ## Implantação
-
-# Implementação e Implantação
 
 ## Visão Geral
 Esta seção descreve como preparar, configurar e implantar a aplicação Axis Working em produção.
@@ -693,8 +689,6 @@ pg_dump "$DATABASE_URL" > backup-axis-$(date +%F).sql
 - [ ] Plano de rollback definido.
 
 ## Testes
-
-# Estratégia de Testes - Axis Working
 
 ## Objetivo
 Garantir que o fluxo principal do sistema funcione de ponta a ponta: navegação pública, cadastro/login, gerenciamento de conta, salas, planos, reservas, avaliações, notificações e painel administrativo.
