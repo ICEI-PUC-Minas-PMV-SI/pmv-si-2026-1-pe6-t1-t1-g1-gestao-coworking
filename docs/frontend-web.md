@@ -38,7 +38,9 @@
 
 &nbsp; &nbsp; &nbsp; Página inicial:
 
-<img src="img/index.jpg" width="300" justify-self="center">
+<div align="center">
+    <img src="img/index.jpg" width="300" justify-self="center">
+</div>
 
 &nbsp; &nbsp; &nbsp; Páginas informativas:
 
