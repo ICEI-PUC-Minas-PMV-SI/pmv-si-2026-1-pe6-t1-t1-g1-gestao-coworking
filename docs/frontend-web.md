@@ -39,7 +39,7 @@
 &nbsp; &nbsp; &nbsp; Página inicial:
 
 <div align="center">
-    <img src="img/index.jpg" width="300" justify-self="center">
+    <img src="img/index.jpg" width="500" justify-self="center">
 </div>
 
 &nbsp; &nbsp; &nbsp; Páginas informativas:
