@@ -1,0 +1,393 @@
+{
+  "info": {
+    "_postman_id": "3a3b785b-7732-4d82-bcff-bd2b766507b9-local-clean",
+    "name": "Notificacoes API Negative Tests Local Clean",
+    "description": "Collection de testes negativos da API de Notificacoes ajustada para a execucao local em http://127.0.0.1:8000.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Criar notificação sem corpo",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 422', function () {",
+              "    pm.response.to.have.status(422);",
+              "});",
+              "",
+              "pm.test('Retorna erro de validação para corpo obrigatório', function () {",
+              "    const body = pm.response.json();",
+              "    pm.expect(body).to.have.property('detail');",
+              "    pm.expect(JSON.stringify(body.detail)).to.include('corpo');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tipo\": \"Alerta\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/notificacoes",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "notificacoes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar notificação sem tipo",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 422', function () {",
+              "    pm.response.to.have.status(422);",
+              "});",
+              "",
+              "pm.test('Retorna erro de validação para tipo obrigatório', function () {",
+              "    const body = pm.response.json();",
+              "    pm.expect(body).to.have.property('detail');",
+              "    pm.expect(JSON.stringify(body.detail)).to.include('tipo');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"corpo\": \"Mensagem sem tipo\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/notificacoes",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "notificacoes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar notificação com tipo inválido",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 422', function () {",
+              "    pm.response.to.have.status(422);",
+              "});",
+              "",
+              "pm.test('Retorna erro de validação para tipo inválido', function () {",
+              "    const body = pm.response.json();",
+              "    pm.expect(body).to.have.property('detail');",
+              "    pm.expect(JSON.stringify(body.detail)).to.include('tipo');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"corpo\": \"Mensagem invalida\",\n  \"tipo\": \"Inexistente\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/notificacoes",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "notificacoes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar notificações com filtro de tipo inválido",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 422', function () {",
+              "    pm.response.to.have.status(422);",
+              "});",
+              "",
+              "pm.test('Retorna erro de validação para filtro inválido', function () {",
+              "    const body = pm.response.json();",
+              "    pm.expect(body).to.have.property('detail');",
+              "    pm.expect(JSON.stringify(body.detail)).to.include('tipo');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/notificacoes?tipo=Inexistente",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "notificacoes"
+          ],
+          "query": [
+            {
+              "key": "tipo",
+              "value": "Inexistente"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar notificação inexistente",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 404', function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test('Retorna erro padronizado de recurso não encontrado', function () {",
+              "    const body = pm.response.json();",
+              "    pm.expect(body).to.have.property('erro');",
+              "    pm.expect(body.erro).to.include('Notificacao');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/notificacoes/999999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "notificacoes",
+            "999999"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar notificação sem payload útil",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 422', function () {",
+              "    pm.response.to.have.status(422);",
+              "});",
+              "",
+              "pm.test('Retorna erro de validação no PUT', function () {",
+              "    const body = pm.response.json();",
+              "    pm.expect(body).to.have.property('detail');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/notificacoes/10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "notificacoes",
+            "10"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar notificação inexistente",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 404 ou 422', function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([404, 422]);",
+              "});",
+              "",
+              "pm.test('Retorna erro esperado para atualização inválida', function () {",
+              "    const body = pm.response.json();",
+              "    pm.expect(body).to.have.any.keys('erro', 'detail');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"corpo\": \"Mensagem atualizada\",\n  \"tipo\": \"Lembrete\",\n  \"lida\": true,\n  \"id_assinatura\": 11,\n  \"id_reserva\": 21\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/notificacoes/999999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "notificacoes",
+            "999999"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Marcar notificação inexistente como lida",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 404', function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test('Retorna erro padronizado no PATCH', function () {",
+              "    const body = pm.response.json();",
+              "    pm.expect(body).to.have.property('erro');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/notificacoes/999999/lida",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "notificacoes",
+            "999999",
+            "lida"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Deletar notificação inexistente",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 404', function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test('Retorna erro padronizado no DELETE', function () {",
+              "    const body = pm.response.json();",
+              "    pm.expect(body).to.have.property('erro');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/notificacoes/999999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "notificacoes",
+            "999999"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000"
+    }
+  ]
+}
