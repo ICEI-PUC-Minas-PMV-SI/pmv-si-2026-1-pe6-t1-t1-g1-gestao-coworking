@@ -1,6 +1,6 @@
 # 📊 Relatório de Contribuições do Projeto
 
-**Última atualização:** 11/05/2026 00:06
+**Última atualização:** 11/05/2026 00:11
 
 ---
 
@@ -13,26 +13,26 @@
 | LaPachec              |         3 |     10013 |     21245 |        545 |              0 |               0 |
 | LapucP                |        14 |       465 |       141 |          4 |             13 |               3 |
 | LauraLosque           |        16 |       439 |        31 |          8 |             12 |               3 |
-| Luana                 |         8 |     10856 |        61 |        278 |              2 |               0 |
+| Luana                 |         9 |     10856 |        61 |        296 |              3 |               0 |
 | Luana-Horta           |        68 |       566 |       196 |          6 |             68 |               6 |
 | Victor Samuel         |        13 |       419 |        57 |         11 |             12 |               3 |
 | Victor-477            |         8 |     24872 |     10453 |        787 |              0 |               0 |
 | Yan Oyama             |        30 |      2008 |       228 |         33 |             15 |               3 |
-| github-actions[bot]   |       168 |       896 |       880 |          3 |            168 |               1 |
+| github-actions[bot]   |       169 |       910 |       894 |          3 |            169 |               1 |
 | github-classroom[bot] |         1 |      2152 |         0 |         45 |              1 |              13 |
 
 
 ## 📅 Contribuições Semanais (Todo o Semestre)
 
-**2026-05-04**: Carlos Souza: 11, LaPachec: 3, LapucP: 1, Luana: 7, Luana-Horta: 18, Victor Samuel: 3, Victor-477: 8, Yan Oyama: 7, github-actions[bot]: 47
+**2026-05-04**: Carlos Souza: 11, LaPachec: 3, LapucP: 1, Luana: 8, Luana-Horta: 18, Victor Samuel: 3, Victor-477: 8, Yan Oyama: 7, github-actions[bot]: 48
 
 **2026-04-27**: Luana-Horta: 6, github-actions[bot]: 6
 
 **2026-04-20**: github-actions[bot]: 1
 
-**2026-04-13**: Carlos Souza: 4, LauraLosque: 1, Luana-Horta: 3, Victor Samuel: 5, Yan Oyama: 5, github-actions[bot]: 18
+**2026-04-13**: Carlos Souza: 4, LauraLosque: 1, Luana-Horta: 1, Victor Samuel: 5, Yan Oyama: 5, github-actions[bot]: 16
 
-**2026-04-06**: Carlos Souza: 16, LapucP: 6, LauraLosque: 8, Luana: 1, Luana-Horta: 17, Victor Samuel: 3, Yan Oyama: 12, github-actions[bot]: 56
+**2026-04-06**: Carlos Souza: 16, LapucP: 6, LauraLosque: 8, Luana: 1, Luana-Horta: 19, Victor Samuel: 3, Yan Oyama: 12, github-actions[bot]: 58
 
 **2026-03-30**: github-actions[bot]: 1
 
