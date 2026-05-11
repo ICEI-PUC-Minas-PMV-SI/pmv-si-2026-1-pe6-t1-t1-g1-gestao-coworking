@@ -34,7 +34,41 @@
 
 ### Wireframes
 
-[Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
+<!--[Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]-->
+
+&nbsp; &nbsp; &nbsp; Página inicial:
+
+<img src="img/index.jpg" width="300" justify-self="center">
+
+&nbsp; &nbsp; &nbsp; Páginas informativas:
+
+<img src="img/planos.jpg" width="300" justify-self="center">
+<img src="img/carrinho.jpg" width="300" justify-self="center">
+<img src="img/sobrenos.jpg" width="300" justify-self="center">
+<img src="img/salas.jpg" width="300" justify-self="center">
+<img src="img/sala.jpg" width="300" justify-self="center">
+
+&nbsp; &nbsp; &nbsp; Páginas de administrador:
+
+<img src="img/admin-coworking.jpg" width="300" justify-self="center">
+<img src="img/dashboard.jpg" width="300" justify-self="center">
+<img src="img/users.jpg" width="300" justify-self="center">
+<img src="img/rooms.jpg" width="300" justify-self="center">
+<img src="img/plans.jpg" width="300" justify-self="center">
+<img src="img/reviews.jpg" width="300" justify-self="center">
+
+
+
+&nbsp; &nbsp; &nbsp; Páginas de usuário:
+
+<img src="img/login.jpg" width="300" justify-self="center">
+<img src="img/cadastro.jpg" width="300" justify-self="center">
+<img src="img/gerenciamento-conta.jpg" width="300" justify-self="center">
+<img src="img/confirmar-reserva.jpg" width="300" justify-self="center">
+<img src="img/alterar-reserva.jpg" width="300" justify-self="center">
+
+
+
 
 ### Design Visual
 
