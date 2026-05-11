@@ -44,11 +44,13 @@
 
 &nbsp; &nbsp; &nbsp; Páginas informativas:
 
-<img src="img/planos.jpg" width="300" justify-self="center">
-<img src="img/carrinho.jpg" width="300" justify-self="center">
-<img src="img/sobrenos.jpg" width="300" justify-self="center">
-<img src="img/salas.jpg" width="300" justify-self="center">
-<img src="img/sala.jpg" width="300" justify-self="center">
+<div align="center">
+    <img src="img/planos.jpg" width="300" justify-self="center">
+    <img src="img/carrinho.jpg" width="300" justify-self="center">
+    <img src="img/sobrenos.jpg" width="300" justify-self="center">
+    <img src="img/salas.jpg" width="300" justify-self="center">
+    <img src="img/sala.jpg" width="300" justify-self="center">
+</div>
 
 &nbsp; &nbsp; &nbsp; Páginas de administrador:
 
