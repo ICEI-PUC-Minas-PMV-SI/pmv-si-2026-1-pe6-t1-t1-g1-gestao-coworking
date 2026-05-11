@@ -306,24 +306,6 @@ Recomendacoes para PostgreSQL:
 - Migracoes versionadas.
 - Revisao das tabelas duplicadas antigas e novas, principalmente notificacoes e avaliacoes, para evitar endpoints usando a tabela errada.
 
-## Checklist de Seguranca Para Este Projeto
-
-- [ ] API validando token nas rotas de cliente.
-- [ ] API validando perfil administrativo nas rotas de admin.
-- [ ] Cliente impedido de acessar dados de outro `id_cliente`.
-- [ ] Notificacoes usando a tabela `notificacoes` com `id_cliente`.
-- [ ] Avaliacoes usando a tabela `avaliacoes` com `id_cliente`.
-- [ ] Reserva impedida para data passada ou horario conflitante.
-- [ ] Usuario comum impedido de alterar reserva para `Em Andamento` ou `Finalizada`.
-- [ ] Senhas armazenadas com `bcrypt` ou `argon2`.
-- [ ] `SECRET_KEY` fora do codigo.
-- [ ] `DATABASE_URL` fora do codigo.
-- [ ] CORS restrito ao dominio oficial.
-- [ ] HTTPS habilitado em producao.
-- [ ] Logs sem senha, token ou CPF completo.
-- [ ] Backups automaticos do PostgreSQL.
-- [ ] Rate limiting no login e em rotas sensiveis.
-
 ## Implantação
 
 ## Visão Geral
