@@ -671,23 +671,6 @@ Exemplo:
 pg_dump "$DATABASE_URL" > backup-axis-$(date +%F).sql
 ```
 
-## Checklist de Implementação
-
-- [ ] Servidor provisionado.
-- [ ] PostgreSQL configurado.
-- [ ] Variáveis de ambiente configuradas.
-- [ ] Dependências instaladas.
-- [ ] API rodando em serviço systemd ou plataforma gerenciada.
-- [ ] Frontend publicado.
-- [ ] Nginx configurado.
-- [ ] HTTPS habilitado.
-- [ ] Testes unitários passando.
-- [ ] Testes de integração passando.
-- [ ] Teste de carga executado.
-- [ ] Monitoramento configurado.
-- [ ] Backup configurado.
-- [ ] Plano de rollback definido.
-
 ## Testes
 
 ## Objetivo
