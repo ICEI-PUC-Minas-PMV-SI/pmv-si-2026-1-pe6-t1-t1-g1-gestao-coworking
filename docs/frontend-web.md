@@ -45,34 +45,59 @@
 &nbsp; &nbsp; &nbsp; Páginas informativas:
 
 <div align="center">
-    <img src="img/planos.jpg" width="300" justify-self="center">
-    <img src="img/carrinho.jpg" width="300" justify-self="center">
-    <img src="img/sobrenos.jpg" width="300" justify-self="center">
-    <img src="img/salas.jpg" width="300" justify-self="center">
-    <img src="img/sala.jpg" width="300" justify-self="center">
+    <img src="img/planos.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/carrinho.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/sobrenos.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/salas.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/sala.jpg" width="500" justify-self="center">
 </div>
 
 &nbsp; &nbsp; &nbsp; Páginas de administrador:
 
-<img src="img/admin-coworking.jpg" width="300" justify-self="center">
-<img src="img/dashboard.jpg" width="300" justify-self="center">
-<img src="img/users.jpg" width="300" justify-self="center">
-<img src="img/rooms.jpg" width="300" justify-self="center">
-<img src="img/plans.jpg" width="300" justify-self="center">
-<img src="img/reviews.jpg" width="300" justify-self="center">
-
-
+<div align="center">
+    <img src="img/admin-coworking.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/dashboard.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/users.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/rooms.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/plans.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/reviews.jpg" width="500" justify-self="center">
+</div>
 
 &nbsp; &nbsp; &nbsp; Páginas de usuário:
 
-<img src="img/login.jpg" width="300" justify-self="center">
-<img src="img/cadastro.jpg" width="300" justify-self="center">
-<img src="img/gerenciamento-conta.jpg" width="300" justify-self="center">
-<img src="img/confirmar-reserva.jpg" width="300" justify-self="center">
-<img src="img/alterar-reserva.jpg" width="300" justify-self="center">
-
-
-
+<div align="center">
+    <img src="img/login.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/cadastro.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/gerenciamento-conta.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/confirmar-reserva.jpg" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/alterar-reserva.jpg" width="500" justify-self="center">
+</div>
 
 ### Design Visual
 
@@ -84,9 +109,9 @@ Os elementos gráficos seguem um padrão geométrico, com botões em formato de 
 
 &nbsp; &nbsp; &nbsp; A organização do layout é estruturada por meio de sistemas de colunas que orientam o alinhamento de componentes. O uso estratégico do espaço em branco entre os componentes de navegação com o fundo azul claro, fazem uma transição entre os itens das páginas de maneira natural  o que evita a sobrecarga cognitiva, resultando em uma interface funcional que prioriza a clareza da informação e deixando mais fácil a visualização por parte do usuário.
 
-
-<img src="img/Styles.png" width="300" justify-self="center">
-
+<div align="center">
+    <img src="img/Styles.png" width="500" justify-self="center">
+</div>
 
 ## Fluxo de Dados
 <!--[Diagrama ou descrição do fluxo de dados na aplicação.]-->
@@ -111,18 +136,40 @@ Já na interação e interface é o:
 
 - Retângulo Branco: Indica o Tipo de Painel e Acesso. Diferencia visualmente qual ambiente está sendo visualizado, separando as permissões entre o Administrador e o Usuário Comum.
 
-<img src="img/userflow1.png" width="500" justify-self="center">
-<img src="img/userflow2.png" width="500" justify-self="center">
-<img src="img/userflow3.png" width="500" justify-self="center">
-<img src="img/userflow4.png" width="500" justify-self="center">
-<img src="img/userflow5.png" width="500" justify-self="center">
-<img src="img/userflow6.png" width="500" justify-self="center">
-<img src="img/userflow7.png" width="500" justify-self="center">
-<img src="img/userflow8.png" width="500" justify-self="center">
-<img src="img/userflow9.png" width="500" justify-self="center">
-<img src="img/userflow11.png" width="500" justify-self="center">
-<img src="img/userflow10.png" width="200" justify-self="center">
-
+<div align="center">
+    <img src="img/userflow1.png" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/userflow2.png" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/userflow3.png" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/userflow4.png" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/userflow5.png" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/userflow6.png" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/userflow7.png" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/userflow8.png" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/userflow9.png" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/userflow11.png" width="500" justify-self="center">
+</div>
+<div align="center">
+    <img src="img/userflow10.png" width="200" justify-self="center">
+</div>
+    
 ## Tecnologias Utilizadas
 <!-- [Lista das tecnologias principais que serão utilizadas no projeto.] -->
 - HTML – Estruturação das páginas e organização do conteúdo;
