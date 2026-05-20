@@ -56,7 +56,7 @@ async function carregarSalas() {
     const container = document.querySelector('.salas');
     
     try {
-        const resposta = await fetch('http://127.0.0.1:8000//api/salas');
+        const resposta = await fetch('http://127.0.0.1:8001//api/salas');
         const objeto = await resposta.json();
         const dados = objeto.slice(0,4);
 
@@ -92,7 +92,7 @@ async function carregarPlanos() {
     const container = document.querySelector('.plano-grid');
     
     try {
-        const resposta = await fetch('http://127.0.0.1:8000//api/planos');
+        const resposta = await fetch('http://127.0.0.1:8001//api/planos');
         const objeto = await resposta.json();
         const dados = objeto.slice(0,3);
 

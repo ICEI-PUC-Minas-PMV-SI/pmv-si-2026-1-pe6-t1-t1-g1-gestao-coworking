@@ -182,3 +182,57 @@ p, button, h1, h2, h3, li, h4, span, a {
 a {
     font-size: 20px;
 }
+
+/* Estilo do botão de notificação pura */
+.bot-icon {
+  margin-left: 25px;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.bot-icon:hover {
+    background-color: #f0f4f8;
+}
+
+/* Pequena bolinha vermelha indicativa de nova notificação (Opcional) */
+.badge-notificacao {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: #ff4d4f;
+    border-radius: 50%;
+}
+
+/* Bloco do perfil do usuário */
+.user-profile {
+  margin: auto;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 1000px;
+    transition: background-color 0.2s;
+}
+
+.user-profile:hover {
+    background-color: #f0f4f8;
+}
+
+/* Texto ao lado do avatar */
+.user-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #0F2A44;
+}
