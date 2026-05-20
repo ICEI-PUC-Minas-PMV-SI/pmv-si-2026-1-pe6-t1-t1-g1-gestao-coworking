@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Planos - Axis Working</title>
   <link rel="stylesheet" href="../css/planos.css">
+  <link rel="stylesheet" href="../css/headerFooter.css">
 </head>
+
 <body>
-  <nav>
-    <div class="logo">
-      <img src="../img/logo.png" alt="Axis Working">
-      <h1>Axis Working</h1>
+  <header>
+    <div id="logo" onclick="window.location.href = 'index.html'">
+      <img src="../img/logoaxis.png" alt="">
+      <p>Axis Work</p>
     </div>
-
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="salas.html">Info Salas</a>
-      <a href="sobrenos.html">Sobre nós</a>
+    <div class="hyperlinks-header">
+      <a href="salas.html">Salas</a>
+      <a href="planos.html">Planos</a>
+      <a href="sobrenos.html">Sobre Nós</a>
     </div>
+    <div class="header-logado">
 
-    <button class="btn-nav" onclick="location.href='login.html'">ENTRAR</button>
-  </nav>
+    </div>
+  </header>
 
   <section class="titulo">
     <h2>PLANOS</h2>
@@ -34,22 +37,22 @@
     <div class="footer-container">
       <div class="footer-logo">
         <img src="../img/logo.png" alt="Logo">
-        <h2>Axis Working</h2>
-        <p>Transformando seu jeito de trabalhar com foco e inovação.</p>
+        <h2>Axis Work</h2>
+        <p>O centro estratégico do seu trabalho.</p>
       </div>
-
       <div class="footer-contato">
         <h3>Contato</h3>
-        <p>Email: contato@axisworking.com</p>
-        <p>Telefone: (11) 9999-9999</p>
-        <p>Endereço: Av. Paulista, 1000 - SP</p>
+        <p>Email: contato@axiswork.com</p>
+        <p>Telefone: (31) 9999-9999</p>
+        <p>Endereço: Av. do Contorno, 1000 - MG</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 Axis Working. Todos os direitos reservados.</p>
+      <p>&copy; 2026 Axis Work. Todos os direitos reservados.</p>
     </div>
   </footer>
 
+  <script src="../scripts/header.js"></script>
   <script>
     const API_BASE_URL = 'http://127.0.0.1:8001/api';
     const imagens = ['../img/diario.png', '../img/semanal.png', '../img/mensal.png', '../img/anual.png'];
@@ -109,4 +112,5 @@
     carregarPlanos();
   </script>
 </body>
+
 </html>

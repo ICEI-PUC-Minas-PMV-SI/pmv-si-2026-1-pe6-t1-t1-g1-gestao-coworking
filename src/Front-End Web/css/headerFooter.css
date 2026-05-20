@@ -183,9 +183,46 @@ a {
     font-size: 20px;
 }
 
-/* Estilo do botão de notificação pura */
+/* Container pai que alinha todo mundo na horizontal ao centro */
+.header-logado-user {
+    display: flex;
+    align-items: center;       /* Centralização vertical perfeita */
+    justify-content: flex-end;  /* Alinha os blocos na direita */
+    gap: 12px;                 /* Espaçamento elegante entre os elementos */
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Bloco do perfil clicável */
+.user-profile {
+  margin: auto;
+  height: 50%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 1000px;
+    transition: background-color 0.2s;
+    color: #0F2A44;
+    font-family: Arial, sans-serif;
+    user-select: none;
+}
+
+/* Feedback visual de que o avatar é um botão de conta */
+.user-profile:hover {
+    background-color: #f0f4f8;
+}
+
+.user-profile img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Ícone de Notificação */
 .bot-icon {
-  margin-left: 25px;
     background: none;
     border: none;
     padding: 8px;
@@ -202,7 +239,6 @@ a {
     background-color: #f0f4f8;
 }
 
-/* Pequena bolinha vermelha indicativa de nova notificação (Opcional) */
 .badge-notificacao {
     position: absolute;
     top: 6px;
@@ -213,26 +249,24 @@ a {
     border-radius: 50%;
 }
 
-/* Bloco do perfil do usuário */
-.user-profile {
-  margin: auto;
-    height: 50%;
+/* Botão Sair minimalista */
+.btn-header-logout {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    background: none;
+    border: none;
     cursor: pointer;
-    padding: 6px 12px;
-    border-radius: 1000px;
+    border-radius: 6px;
     transition: background-color 0.2s;
+    color: #d9383a;
+    font-weight: 550;
+    box-sizing: border-box;
 }
 
-.user-profile:hover {
-    background-color: #f0f4f8;
-}
-
-/* Texto ao lado do avatar */
-.user-name {
-    font-size: 16px;
-    font-weight: 500;
-    color: #0F2A44;
+.btn-header-logout:hover {
+    background-color: #fff5f5;
 }
