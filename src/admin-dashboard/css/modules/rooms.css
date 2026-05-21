@@ -1,0 +1,59 @@
+/* Cards, filtros e fotos das salas */
+
+  /* ---------- ROOMS ---------- */
+  .room-media {
+    height: 110px;
+    background: linear-gradient(135deg, #C9D6DF 0%, #6E89A0 100%);
+    background-size: cover; background-position: center;
+    border-radius: 12px; position: relative; overflow: hidden; margin-bottom: 14px;
+  }
+  .room-media::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10, 31, 51, 0.05), rgba(10, 31, 51, 0.38));
+  }
+  .room-media .badge { position: absolute; top: 10px; right: 10px; }
+  .photo-count {
+    position: absolute; left: 10px; bottom: 10px;
+    background: rgba(10, 31, 51, 0.78); color: #FFF;
+    border-radius: 999px; padding: 4px 9px; font-size: 10px; font-weight: 700;
+  }
+  .room-title { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .room-title b { font-size: 14px; color: #0A1F33; }
+  .room-title small { font-size: 10px; color: #6B7A8A; letter-spacing: 0.5px; }
+  .room-price { font-size: 12px; font-weight: 700; color: #1F3A57; }
+  .room-description { margin: 10px 0 0; font-size: 11px; color: #6B7A8A; line-height: 1.45; min-height: 32px; }
+  .room-meta { display: flex; gap: 14px; margin-top: 12px; font-size: 11px; color: #1F3A57; }
+  .room-meta span { display: inline-flex; align-items: center; gap: 5px; }
+  .amenities { display: flex; gap: 8px; margin-top: 12px; }
+  .amenity {
+    width: 26px; height: 26px; border-radius: 999px;
+    border: 1px solid #D9DEDC; background: #F4F8F5;
+    display: inline-grid; place-items: center; color: #1F3A57;
+  }
+  .room-actions {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 16px; padding-top: 14px; border-top: 1px dashed #D9DEDC;
+  }
+  .view-toggle {
+    display: inline-flex; border: 1px solid #D9DEDC; border-radius: 999px;
+    padding: 3px; background: #FFF;
+  }
+  .view-toggle button {
+    width: 30px; height: 28px; border-radius: 999px; border: none;
+    background: transparent; color: #1F3A57; display: grid; place-items: center; cursor: pointer;
+  }
+  .view-toggle button.is-active { background: #0A1F33; color: #E8EEF2; }
+  .type-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+  .type-tab {
+    padding: 8px 14px; border-radius: 999px;
+    border: 1px solid #D9DEDC; background: #FFF; color: #1F3A57;
+    font-size: 11px; font-weight: 700; font-family: inherit; cursor: pointer;
+    letter-spacing: 0.3px;
+  }
+  .type-tab.is-active { background: #0A1F33; color: #E8EEF2; border-color: #0A1F33; }
+
+  .photo-preview { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+  .photo-preview img {
+    width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+    border-radius: 10px; border: 1px solid #D9DEDC; background: #F8FAFB;
+  }

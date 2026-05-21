@@ -1,0 +1,22 @@
+/* Design tokens globais do painel */
+
+:root {
+    --aw-bg: #E8F0EA;
+    --aw-surface: #FFFFFF;
+    --aw-card: #FFFFFF;
+    --aw-ink: #0A1F33;
+    --aw-ink-soft: #1F3A57;
+    --aw-muted: #6B7A8A;
+    --aw-border: #D9DEDC;
+    --aw-border-strong: #B8C2C4;
+    --aw-blue-50: #E8EEF2;
+    --aw-blue-100: #C9D6DF;
+    --aw-blue-200: #A9BDCB;
+    --aw-blue-300: #6E89A0;
+    --aw-blue-400: #466380;
+    --aw-blue-500: #1F3A57;
+    --aw-navy: #0A1F33;
+    --aw-success: #4A7A57;
+    --aw-warn: #B58A3A;
+    --aw-danger: #8A3A3A;
+  }

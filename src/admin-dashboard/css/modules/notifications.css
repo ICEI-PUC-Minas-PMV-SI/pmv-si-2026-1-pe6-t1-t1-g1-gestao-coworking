@@ -1,0 +1,16 @@
+/* Lista e detalhes das notificacoes */
+
+  .notification-list { display: grid; gap: 10px; }
+  .notification-item {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+    border: 1px solid #D9DEDC; border-radius: 12px; padding: 12px;
+    background: #FFF;
+  }
+  .notification-item.is-unread { border-color: #A9BDCB; background: #F4F8F5; }
+  .notification-title { font-size: 12px; font-weight: 700; color: #0A1F33; }
+  .notification-meta { font-size: 10px; color: #6B7A8A; margin-top: 3px; line-height: 1.5; }
+  .notification-item p {
+    margin: 8px 0 0; color: #1F3A57; font-size: 12px; line-height: 1.5;
+  }
+  .notification-item .row-actions { flex-shrink: 0; }
+  .notification-users-select { min-height: 130px; }

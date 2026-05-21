@@ -3,7 +3,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.db import get_db
-from app.models import Notificacao, TipoNotificacao, UsuarioCliente
+from app.models import Cliente, Notificacao, TipoNotificacao
 from app.schemas import MessageRead, NotificacaoCreate, NotificacaoRead, NotificacaoUpdate
 
 
@@ -27,7 +27,7 @@ def _notificacao_or_404(db: Session, id_notificacao: int) -> dict:
 
 
 def _validar_cliente(db: Session, id_cliente: int) -> None:
-    if db.get(UsuarioCliente, id_cliente) is None:
+    if db.get(Cliente, id_cliente) is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cliente nao encontrado")
 
 

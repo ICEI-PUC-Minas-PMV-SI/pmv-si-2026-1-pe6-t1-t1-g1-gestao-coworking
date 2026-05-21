@@ -142,7 +142,7 @@ class Notificacao(Base):
     __tablename__ = "notificacoes"
 
     id_notificacao: Mapped[int] = mapped_column(Integer, primary_key=True)
-    id_cliente: Mapped[int] = mapped_column(ForeignKey("usuario_cliente.id_cliente"), nullable=False)
+    id_cliente: Mapped[int] = mapped_column(ForeignKey("cliente.id_cliente", ondelete="CASCADE"), nullable=False)
     corpo: Mapped[str] = mapped_column(Text, nullable=False)
     tipo: Mapped[TipoNotificacao] = mapped_column(tipo_notificacao_enum, nullable=False)
     lida: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
