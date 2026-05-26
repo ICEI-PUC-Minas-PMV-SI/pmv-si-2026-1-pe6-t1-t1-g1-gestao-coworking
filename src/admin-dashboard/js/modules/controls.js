@@ -2,6 +2,8 @@
 // Arquivo extraido de admin-coworking.js para organizar o painel por dominio.
 
 function bindStaticControls() {
+  bindMobileSidebar();
+
   document.querySelectorAll('.nav a[data-page]').forEach((link) => {
     link.classList.toggle('is-active', link.dataset.page === currentPage);
   });
@@ -30,6 +32,62 @@ function bindStaticControls() {
         item.classList.toggle('is-active', item === button);
       });
     });
+  });
+}
+
+function bindMobileSidebar() {
+  const topbar = document.querySelector('.topbar');
+  const sidebar = document.querySelector('.sidebar');
+  if (!topbar || !sidebar || document.querySelector('[data-mobile-menu-toggle]')) return;
+
+  const menuButton = document.createElement('button');
+  menuButton.className = 'icon-btn mobile-menu-btn';
+  menuButton.type = 'button';
+  menuButton.dataset.mobileMenuToggle = 'true';
+  menuButton.setAttribute('aria-label', 'Abrir menu de navegação');
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.innerHTML = icon('icon-list', 16);
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'mobile-menu-backdrop';
+  backdrop.dataset.mobileMenuBackdrop = 'true';
+
+  topbar.insertBefore(menuButton, topbar.firstElementChild);
+  document.body.appendChild(backdrop);
+
+  const closeMenu = () => {
+    sidebar.classList.remove('is-mobile-open');
+    backdrop.classList.remove('is-visible');
+    document.body.classList.remove('mobile-menu-open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', 'Abrir menu de navegação');
+  };
+
+  const openMenu = () => {
+    sidebar.classList.add('is-mobile-open');
+    backdrop.classList.add('is-visible');
+    document.body.classList.add('mobile-menu-open');
+    menuButton.setAttribute('aria-expanded', 'true');
+    menuButton.setAttribute('aria-label', 'Fechar menu de navegação');
+  };
+
+  menuButton.addEventListener('click', () => {
+    if (sidebar.classList.contains('is-mobile-open')) {
+      closeMenu();
+      return;
+    }
+    openMenu();
+  });
+
+  backdrop.addEventListener('click', closeMenu);
+  sidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
+  window.matchMedia('(min-width: 861px)').addEventListener('change', (event) => {
+    if (event.matches) closeMenu();
   });
 }
 
