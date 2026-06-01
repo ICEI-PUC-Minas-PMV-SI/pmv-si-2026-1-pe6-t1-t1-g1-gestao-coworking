@@ -45,6 +45,18 @@ python -m pip install -r requirements.txt
 python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
+Para acesso pelo aplicativo mobile em emulador ou celular fisico, a API precisa escutar na rede:
+
+```bash
+python -m uvicorn main:app --host 0.0.0.0 --port 8000
+```
+
+No Windows, tambem e possivel executar:
+
+```powershell
+.\run-mobile-api.ps1
+```
+
 Swagger:
 
 ```text
