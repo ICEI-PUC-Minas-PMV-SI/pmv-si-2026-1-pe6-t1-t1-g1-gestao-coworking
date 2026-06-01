@@ -17,9 +17,9 @@
 | 20/04 - 26/04 | Computação Ubíqua e Pervasiva e IoT - Unidade 2 | ✅ | Criar a página estatica para o painel administrativo | Criei a pagina estatica utilizando HTML e CSS puro, faltando realizar as integrações com o sistema na semana seguinte |
 | 27/04 - 03/05 | Desenvolvimento de Aplicações Móveis - Unidade 1 | ✅ | Criar um unico sistema para o endpoint do sistema | Criei uma aplicação para que funcionasse todos os endpoints criados na etapa anterior |
 | 04/05 - 10/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ✅ | Criar o script de Javascript para com a pagina estatica e integrar o codigo realizado nas semanas anteriores com o banco de dados | Juntei os endpoints na pagina estatica para que possa funcionar corretamente e funcionar com o banco de dados. |
-| 11/05 - 17/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ⬜ |  |  |
-| 18/05 - 24/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 1 | ⬜ |  |  |
-| 25/05 - 31/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 2 | ⬜ |  |  |
+| 11/05 - 17/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ✅ | Realizar o ajuste para o painel administrativo e realizar as mudanças que forem nescessarias para que o sistema possa funcionar corretamente | Realizei as alterações que foram nescessarias para o funcionamento do painel administrativo como também realizei uma reetruturação no banco de dados para que o mesmo pudesse funcionar corretamente, otimizando a conexão com a API e a utilização no sistema |
+| 18/05 - 24/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 1 | ✅ | Criar o escopo do aplicativo móvel do painel administrativo e inserir as funcionalidades existente na versão de desktop | Ajustei a estilização da versão desktop do site para se caso for acessada por um dispositivo móvel sem ser por aplicativo as funcionalidades se mantenham as mesmas e ainda funcionais. |
+| 25/05 - 31/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 2 | ✅ | Criar o escopo do aplicativo móvel do painel administrativo e inserir as funcionalidades existente na versão de desktop  | Criei o aplicativo mobile utilizando react native e realizei a implementação na API do backend, também criei a pagina de login para o painel administrativo e deixei todo o sistema do painel administrativo mais otimizado e responsivo para melhor utilização |
 | 01/06 - 07/06 |  | ⬜ |  |  |
 | 08/06 - 14/06 |  | ⬜ |  |  |
 
