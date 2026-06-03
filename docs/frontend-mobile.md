@@ -1,6 +1,16 @@
 # Front-end Móvel
 
-[Inclua uma breve descrição do projeto e seus objetivos.]
+<!--[Inclua uma breve descrição do projeto e seus objetivos.]-->
+No desenvolvimento do front-end mobile do projeto do Axis Work Coworking, será feito utilizado o React Native em conjunto com o Expo. A proposta é criar um aplicativo moderno, minimalista e com bom desempenho, o qual permita aos usuários o acesso fácil a informações sobre os serviços oferecidos, salas disponíveis e planos de contratação. Além disso, o aplicativo possibilitará a realização de reservas, alterações e cancelamentos de forma rápida e prática, proporcionando uma experiência de uso fluida e acessível em dispositivos móveis. O foco está na usabilidade, organização das informações e aproveitamento dos recursos nativos dos smartphones para oferecer uma navegação eficiente.
+
+Objetivos:
+
+- Desenvolver uma aplicação mobile compatível com dispositivos Android;
+- Utilizar React Native para construção da interface de usuário;
+- Empregar o Expo para facilitar o desenvolvimento, testes e implantação do aplicativo;
+- Proporcionar uma navegação simples e eficiente;
+- Integrar o aplicativo à API do sistema para consulta de salas, planos e gerenciamento de reservas;
+- Simular funcionalidades reais de um aplicativo de coworking, como visualização de espaços, reservas e gerenciamento de agendamentos.
 
 ## Projeto da Interface
 [Descreva o projeto da interface móvel da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
