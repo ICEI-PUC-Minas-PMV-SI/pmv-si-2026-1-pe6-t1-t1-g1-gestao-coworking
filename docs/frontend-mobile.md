@@ -29,7 +29,14 @@ Objetivos:
 
 ## Tecnologias Utilizadas
 
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+- React Native – Framework para a construção da aplicação mobile;
+- Expo – Conjunto de ferramentas para facilitar a inicialização, testes e execução do aplicativo;
+- React Native Paper – Biblioteca de componentes visuais prontos para a interface do usuário;
+- React Navigation – Gerenciamento de rotas e fluxos de navegação entre telas (abas e pilhas);
+- JavaScript – Implementação da lógica do aplicativo, requisições à API e gerenciamento de estados;
+- Local Tunnel – Ferramenta para expor o servidor backend local e permitir o consumo da API pelo aplicativo mobile;
+- Visual Studio Code – Editor de código utilizado para o desenvolvimento do projeto.
+- GitHub – Controle de versão e armazenamento do código-fonte do projeto.
 
 ## Considerações de Segurança
 
