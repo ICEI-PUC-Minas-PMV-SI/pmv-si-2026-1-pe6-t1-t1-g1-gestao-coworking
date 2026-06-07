@@ -50,6 +50,9 @@ Wireframe da Tela Minhas Reservas
 Wireframe da Tela de Planos
 
 
+Wireframe da Tela do Scrollbar
+
+
 
 ### Design Visual
 
