@@ -1,6 +1,6 @@
 # 📊 Relatório de Contribuições do Projeto
 
-**Última atualização:** 07/06/2026 16:51
+**Última atualização:** 07/06/2026 17:01
 
 ---
 
@@ -8,7 +8,7 @@
 
 | Aluno                 |   Commits |   Linhas+ |   Linhas- |   Arquivos |   Docs Commits |   Docs Arquivos |
 |-----------------------|-----------|-----------|-----------|------------|----------------|-----------------|
-| Carlos Souza          |        45 |      3200 |      1507 |        119 |             29 |              15 |
+| Carlos Souza          |        46 |      3208 |      1508 |        120 |             30 |              16 |
 | CarlosSouzaPUCSI      |         9 |       107 |        56 |          5 |              9 |               5 |
 | LaPachec              |         3 |     10013 |     21245 |        545 |              0 |               0 |
 | LapucP                |        18 |      1197 |       196 |          5 |             17 |               4 |
@@ -18,13 +18,13 @@
 | Victor Samuel         |        14 |       422 |        60 |         11 |             13 |               3 |
 | Victor-477            |        13 |     64465 |     13906 |       1380 |              0 |               0 |
 | Yan Oyama             |        30 |      2008 |       228 |         33 |             15 |               3 |
-| github-actions[bot]   |       191 |      1118 |      1094 |          3 |            191 |               1 |
+| github-actions[bot]   |       192 |      1136 |      1112 |          3 |            192 |               1 |
 | github-classroom[bot] |         1 |      2152 |         0 |         45 |              1 |              13 |
 
 
 ## 📅 Contribuições Semanais (Todo o Semestre)
 
-**2026-05-31**: Carlos Souza: 1, Luana-Horta: 1, Victor Samuel: 1, Victor-477: 1, github-actions[bot]: 4
+**2026-05-31**: Carlos Souza: 2, Luana-Horta: 1, Victor Samuel: 1, Victor-477: 1, github-actions[bot]: 5
 
 **2026-05-24**: Victor-477: 1, github-actions[bot]: 2
 
