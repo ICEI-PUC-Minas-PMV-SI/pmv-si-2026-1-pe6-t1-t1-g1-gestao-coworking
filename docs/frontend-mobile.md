@@ -28,7 +28,28 @@ De modo geral, a interface móvel foi projetada com foco na usabilidade, acessib
 
 ### Wireframes
 
-[Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
+<!-- [Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.] -->
+
+&nbsp; &nbsp; &nbsp; Para auxiliar no planejamento e desenvolvimento da interface móvel, foram elaborados wireframes representando a estrutura e a disposição dos elementos das principais telas da aplicação. Esses wireframes serviram como guia para a implementação da interface, permitindo visualizar a organização das informações e a navegação entre as funcionalidades do sistema.
+
+Wireframe da Tela Inicial
+
+
+Wireframe da Tela Buscar Espaços
+
+
+Wireframe da Tela de Login
+
+
+Wireframe da Tela de Cadastro
+
+
+Wireframe da Tela Minhas Reservas
+
+
+Wireframe da Tela de Planos
+
+
 
 ### Design Visual
 
