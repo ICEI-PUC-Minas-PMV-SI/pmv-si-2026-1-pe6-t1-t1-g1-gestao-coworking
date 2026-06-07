@@ -13,7 +13,18 @@ Objetivos:
 - Simular funcionalidades reais de um aplicativo de coworking, como visualização de espaços, reservas e gerenciamento de agendamentos.
 
 ## Projeto da Interface
-[Descreva o projeto da interface móvel da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
+<!-- [Descreva o projeto da interface móvel da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.] -->
+
+A interface móvel da aplicação Axis Working foi desenvolvida usando o React Native e o Expo Snack, com o objetivo de oferecer uma experiência moderna para os usuários do app. O design visual segue uma identidade minimalista, utilizando cores sóbrias, uma interface mais simples e componentes organizados de forma clara para facilitar a navegação e o acesso às funcionalidades do sistema.
+A navegação principal da aplicação é realizada por meio de um menu lateral que permite aos usuários o acesso rápido às principais funções do aplicativo, como página inicial, busca de espaços, planos, perfil e reservas. O layout foi organizado em seções bem definidas, utilizando cartões para destacar informações importantes e melhorar a legibilidade.
+
+A funcionalidade de busca de espaços permite ao usuário visualizar e filtrar diferentes categorias de ambientes disponíveis, como salas de reunião, espaços privativos, mesas compartilhadas e estações fixas. Cada espaço é apresentado em um card contendo imagem, nome, capacidade e botão para visualizar mais detalhes e disponibilidade. A tela de detalhes da sala reúne todas as informações necessárias para a realização de uma reserva. Nela, o usuário pode visualizar fotos do ambiente, consultar a disponibilidade através de um calendário interativo, selecionar horários disponíveis, além de ter acesso a avaliações de outros usuários e poder registrar sua própria avaliação. O botão de reserva realiza a conclusão da reserva ou em caso de usuário não logado direciona o mesmo para a autenticação.
+
+O sistema de autenticação é composto pelas telas de login e cadastro, desenvolvidas com formulários simples e objetivos. Após a autenticação, o usuário passa a ter acesso às funcionalidades que exigem identificação, como a realização e gerenciamento de reservas. A página "Minhas Reservas" foi desenvolvida para exibir todas as reservas realizadas pelo usuário, apresentando informações como nome do espaço reservado, data e horário selecionados. Essa funcionalidade facilita o acompanhamento e a organização das reservas efetuadas.
+
+A aplicação também possui uma seção dedicada aos planos oferecidos pelo coworking. Nessa página, os planos Day Pass, Flex, Dedicated e Office são apresentados em cartões individuais contendo informações sobre período de contratação, benefícios e valores, permitindo que os usuários conheçam facilmente as opções disponíveis.
+De modo geral, a interface móvel foi projetada com foco na usabilidade, acessibilidade e experiência do usuário, proporcionando uma navegação fluida, organização eficiente das informações e uma interação simples para consulta de espaços, contratação de planos e realização de reservas.
+
 
 ### Wireframes
 
