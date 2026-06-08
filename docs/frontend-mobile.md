@@ -103,7 +103,24 @@ Wireframe da Tela do Scrollbar
 
 ## Fluxo de Dados
 
-[Diagrama ou descrição do fluxo de dados na aplicação.]
+<!--[Diagrama ou descrição do fluxo de dados na aplicação.]-->
+
+
+<div align="center">
+    <img src="img/fluxocadastromobile.png" width="300" justify-self="center">
+</div>
+
+<div align="center">
+    <img src="img/fluxologinmobile.png" width="300" justify-self="center">
+</div>
+
+<div align="center">
+    <img src="img/fluxosalamobile.png" width="300" justify-self="center">
+</div>
+
+<div align="center">
+    <img src="img/fluxoreservamobile.png" width="300" justify-self="center">
+</div>
 
 ## Tecnologias Utilizadas
 
