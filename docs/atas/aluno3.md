@@ -19,7 +19,7 @@
 | 04/05 - 10/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ✅ | Atualizar o código. Fazer alterações no design para ficar mais user friendly. Corrigir problemas no código. Atualizar a documentação. | Atualizei as informações no frontend para elas funcionarem com a api. Fiz alterações no design do frontend. Corrigi problemas no código. Escrevi parte da documentação. |
 | 11/05 - 17/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ✅ | Começar a fazer o design do Front-end da APP. | Fiz o design do Front-End. |
 | 18/05 - 24/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 1 | ✅ |  Começar a fazer o código do Front-end do APP. Integrar com a API. | Comecei a fazer o código. |
-| 25/05 - 31/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 2 | ✅ | Fazer os testes da API. Fazer a documentação.  | Fiz os testes. Fiz a documentação. |
+| 25/05 - 31/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 2 | ✅ | Fazer os testes da parte de salas. Fazer a documentação.  | Fiz os testes. Fiz a documentação. |
 | 01/06 - 07/06 |  | ⬜ | Fazer ultimos ajustes. Preparar a aparesentação. |  |
 | 08/06 - 14/06 |  | ⬜ | Corrigir problemas. Terminar os microfundamentos. Finalizar o projeto. |  |
 
