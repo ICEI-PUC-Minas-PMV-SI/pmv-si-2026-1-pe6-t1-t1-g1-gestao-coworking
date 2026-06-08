@@ -153,6 +153,10 @@ Wireframe da Tela do Scrollbar
 4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
 5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
 
+<div align="center">
+    <img src="img/gif1.gif" width="300" justify-self="center">
+</div>
+
 
 
 # Referências
