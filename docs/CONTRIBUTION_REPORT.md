@@ -1,6 +1,6 @@
 # 📊 Relatório de Contribuições do Projeto
 
-**Última atualização:** 07/06/2026 23:55
+**Última atualização:** 08/06/2026 00:10
 
 ---
 
@@ -14,45 +14,45 @@
 | LapucP                |        18 |      1197 |       196 |          5 |             17 |               4 |
 | LauraLosque           |        16 |       439 |        31 |          8 |             12 |               3 |
 | Luana                 |        10 |     10856 |        61 |        303 |              4 |               0 |
-| Luana-Horta           |        74 |       654 |       205 |          7 |             74 |               7 |
+| Luana-Horta           |        75 |       668 |       206 |          7 |             75 |               7 |
 | Victor Samuel         |        14 |       422 |        60 |         11 |             13 |               3 |
 | Victor-477            |        13 |     64465 |     13906 |       1380 |              0 |               0 |
 | Yan Oyama             |        30 |      2008 |       228 |         33 |             15 |               3 |
-| github-actions[bot]   |       197 |      1168 |      1144 |          3 |            197 |               1 |
+| github-actions[bot]   |       198 |      1174 |      1150 |          3 |            198 |               1 |
 | github-classroom[bot] |         1 |      2152 |         0 |         45 |              1 |              13 |
 
 
 ## 📅 Contribuições Semanais (Todo o Semestre)
 
-**2026-05-31**: Carlos Souza: 2, Luana: 1, Luana-Horta: 5, Victor Samuel: 1, Victor-477: 1, github-actions[bot]: 10
+**2026-06-01**: Carlos Souza: 2, Luana: 1, Luana-Horta: 6, Victor Samuel: 1, Victor-477: 1, github-actions[bot]: 11
 
-**2026-05-24**: Victor-477: 1, github-actions[bot]: 2
+**2026-05-25**: Victor-477: 1, github-actions[bot]: 2
 
-**2026-05-17**: Carlos Souza: 2, Victor-477: 2, github-actions[bot]: 4
+**2026-05-18**: Carlos Souza: 2, Victor-477: 2, github-actions[bot]: 4
 
-**2026-05-10**: Carlos Souza: 1, CarlosSouzaPUCSI: 4, LapucP: 4, Luana: 1, Luana-Horta: 3, Victor-477: 1, github-actions[bot]: 13
+**2026-05-11**: Carlos Souza: 1, CarlosSouzaPUCSI: 4, LapucP: 4, Luana: 1, Luana-Horta: 1, Victor-477: 1, github-actions[bot]: 12
 
-**2026-05-03**: Carlos Souza: 11, LaPachec: 3, LapucP: 1, Luana: 7, Luana-Horta: 16, Victor Samuel: 3, Victor-477: 8, Yan Oyama: 7, github-actions[bot]: 47
+**2026-05-04**: Carlos Souza: 11, LaPachec: 3, LapucP: 1, Luana: 7, Luana-Horta: 18, Victor Samuel: 3, Victor-477: 8, Yan Oyama: 7, github-actions[bot]: 48
 
-**2026-04-26**: Luana-Horta: 6, github-actions[bot]: 6
+**2026-04-27**: Luana-Horta: 6, github-actions[bot]: 6
 
-**2026-04-19**: github-actions[bot]: 1
+**2026-04-20**: github-actions[bot]: 1
 
-**2026-04-12**: Carlos Souza: 4, LauraLosque: 4, Luana-Horta: 3, Victor Samuel: 5, Yan Oyama: 5, github-actions[bot]: 21
+**2026-04-13**: Carlos Souza: 4, LauraLosque: 1, Luana-Horta: 2, Victor Samuel: 5, Yan Oyama: 5, github-actions[bot]: 17
 
-**2026-04-05**: Carlos Souza: 16, LapucP: 6, LauraLosque: 5, Luana: 1, Luana-Horta: 17, Victor Samuel: 3, Yan Oyama: 12, github-actions[bot]: 53
+**2026-04-06**: Carlos Souza: 16, LapucP: 6, LauraLosque: 8, Luana: 1, Luana-Horta: 18, Victor Samuel: 3, Yan Oyama: 12, github-actions[bot]: 57
 
-**2026-03-29**: github-actions[bot]: 1
+**2026-03-30**: github-actions[bot]: 1
 
-**2026-03-22**: Carlos Souza: 1, LauraLosque: 1, Luana-Horta: 1, github-actions[bot]: 4
+**2026-03-23**: Carlos Souza: 1, LauraLosque: 1, Luana-Horta: 1, github-actions[bot]: 4
 
-**2026-03-15**: Carlos Souza: 1, github-actions[bot]: 2
+**2026-03-16**: Carlos Souza: 1, github-actions[bot]: 2
 
-**2026-03-08**: Luana-Horta: 2, Yan Oyama: 3, github-actions[bot]: 4
+**2026-03-09**: Luana-Horta: 2, Yan Oyama: 3, github-actions[bot]: 4
 
-**2026-03-01**: Carlos Souza: 8, CarlosSouzaPUCSI: 5, LapucP: 7, LauraLosque: 6, Luana-Horta: 21, Victor Samuel: 2, Yan Oyama: 3, github-actions[bot]: 29
+**2026-03-02**: Carlos Souza: 8, CarlosSouzaPUCSI: 5, LapucP: 7, LauraLosque: 6, Luana-Horta: 21, Victor Samuel: 2, Yan Oyama: 3, github-actions[bot]: 29
 
-**2026-02-15**: github-classroom[bot]: 1
+**2026-02-16**: github-classroom[bot]: 1
 
 
 
