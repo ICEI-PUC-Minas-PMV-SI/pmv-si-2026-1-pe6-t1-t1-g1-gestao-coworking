@@ -118,7 +118,19 @@ Wireframe da Tela do Scrollbar
 
 ## Considerações de Segurança
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+<!--[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]-->
+
+&nbsp; &nbsp; &nbsp; Por se tratar de uma aplicação distribuída composta por interface móvel, API e banco de dados, diversos mecanismos de segurança foram considerados para garantir a proteção das informações dos usuários e a integridade dos dados armazenados.
+
+&nbsp; &nbsp; &nbsp; A autenticação é uma das principais camadas de segurança da aplicação. Para acessar funcionalidades restritas, como realização e gerenciamento de reservas, o usuário deve possuir uma conta válida e realizar login utilizando suas credenciais. Após a autenticação, o sistema identifica o usuário e permite o acesso apenas às funcionalidades compatíveis com seu perfil.
+
+&nbsp; &nbsp; &nbsp; A autorização é utilizada para controlar o acesso aos recursos do sistema. Dessa forma, apenas usuários autenticados podem realizar reservas, visualizar suas próprias reservas e alterar informações relacionadas à sua conta. Além disso, funcionalidades administrativas podem ser disponibilizadas apenas para usuários com permissões específicas, evitando acessos indevidos a dados sensíveis.
+&nbsp; &nbsp; &nbsp; A aplicação também realiza validações tanto no lado cliente quanto no servidor. Embora a interface móvel realize verificações básicas de preenchimento dos campos, todas as informações recebidas pela API devem ser novamente validadas antes do processamento, impedindo o envio de dados inválidos ou maliciosos.
+
+&nbsp; &nbsp; &nbsp; Além disso, a aplicação deve seguir o princípio do menor privilégio, concedendo aos usuários apenas as permissões estritamente necessárias para execução de suas atividades. Essa abordagem reduz os impactos de possíveis falhas de segurança e limita o acesso indevido a recursos do sistema.
+
+&nbsp; &nbsp; &nbsp; Por fim, é importante manter registros de atividades relevantes, como autenticações, reservas realizadas e alterações de dados, permitindo auditoria e rastreabilidade das ações executadas pelos usuários. Essas medidas contribuem para aumentar a confiabilidade da aplicação e proteger os dados armazenados no ambiente distribuído.
+
 
 ## Implantação
 
