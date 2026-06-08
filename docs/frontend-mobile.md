@@ -125,6 +125,7 @@ Wireframe da Tela do Scrollbar
 &nbsp; &nbsp; &nbsp; A autenticação é uma das principais camadas de segurança da aplicação. Para acessar funcionalidades restritas, como realização e gerenciamento de reservas, o usuário deve possuir uma conta válida e realizar login utilizando suas credenciais. Após a autenticação, o sistema identifica o usuário e permite o acesso apenas às funcionalidades compatíveis com seu perfil.
 
 &nbsp; &nbsp; &nbsp; A autorização é utilizada para controlar o acesso aos recursos do sistema. Dessa forma, apenas usuários autenticados podem realizar reservas, visualizar suas próprias reservas e alterar informações relacionadas à sua conta. Além disso, funcionalidades administrativas podem ser disponibilizadas apenas para usuários com permissões específicas, evitando acessos indevidos a dados sensíveis.
+
 &nbsp; &nbsp; &nbsp; A aplicação também realiza validações tanto no lado cliente quanto no servidor. Embora a interface móvel realize verificações básicas de preenchimento dos campos, todas as informações recebidas pela API devem ser novamente validadas antes do processamento, impedindo o envio de dados inválidos ou maliciosos.
 
 &nbsp; &nbsp; &nbsp; Além disso, a aplicação deve seguir o princípio do menor privilégio, concedendo aos usuários apenas as permissões estritamente necessárias para execução de suas atividades. Essa abordagem reduz os impactos de possíveis falhas de segurança e limita o acesso indevido a recursos do sistema.
@@ -151,6 +152,8 @@ Wireframe da Tela do Scrollbar
 3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
 4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
 5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+
+
 
 # Referências
 
