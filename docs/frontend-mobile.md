@@ -107,19 +107,19 @@ Wireframe da Tela do Scrollbar
 
 
 <div align="center">
-    <img src="img/fluxocadastromobile.png" width="300" justify-self="center">
+    <img src="img/fluxocadastromobile.png" width="500" justify-self="center">
 </div>
 
 <div align="center">
-    <img src="img/fluxologinmobile.png" width="300" justify-self="center">
+    <img src="img/fluxologinmobile.png" width="500" justify-self="center">
 </div>
 
 <div align="center">
-    <img src="img/fluxosalamobile.png" width="300" justify-self="center">
+    <img src="img/fluxosalamobile.png" width="500" justify-self="center">
 </div>
 
 <div align="center">
-    <img src="img/fluxoreservamobile.png" width="300" justify-self="center">
+    <img src="img/fluxoreservamobile.png" width="500" justify-self="center">
 </div>
 
 ## Tecnologias Utilizadas
