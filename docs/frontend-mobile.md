@@ -133,69 +133,152 @@ Wireframe da Tela do Scrollbar
 &nbsp; &nbsp; &nbsp; Por fim, é importante manter registros de atividades relevantes, como autenticações, reservas realizadas e alterações de dados, permitindo auditoria e rastreabilidade das ações executadas pelos usuários. Essas medidas contribuem para aumentar a confiabilidade da aplicação e proteger os dados armazenados no ambiente distribuído.
 
 
-## Implantação
+## Implantação da Aplicação Distribuída em Ambiente de Produção
 
-[Instruções para implantar a aplicação distribuída em um ambiente de produção.]
+###Requisitos de Hardware e Software
 
-1. Defina os requisitos de hardware e software necessários para implantar a aplicação em um ambiente de produção.
-2. Escolha uma plataforma de hospedagem adequada, como um provedor de nuvem ou um servidor dedicado.
-3. Configure o ambiente de implantação, incluindo a instalação de dependências e configuração de variáveis de ambiente.
-4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
-5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
+&nbsp; &nbsp; &nbsp; Para a implantação da aplicação Axis Working em ambiente de produção, é necessário disponibilizar uma infraestrutura capaz de suportar o acesso simultâneo dos usuários, o processamento das requisições da API e o armazenamento das informações no banco de dados.
+
+#### Hardware
+
+&nbsp; &nbsp; &nbsp; Servidor de Aplicação
+
+- Processador: 2 vCPUs ou superior
+- Memória RAM: 4 GB ou superior
+- Armazenamento SSD: 50 GB ou superior
+- Conexão estável com a internet
+  
+#### Software
+
+&nbsp; &nbsp; &nbsp; Back-end
+
+- Python
+- Visual Studio Code
+- Local Tunnel
+
+&nbsp; &nbsp; &nbsp; Banco de Dados
+
+- PostgreSQL
+- pgAdmin4
+
+&nbsp; &nbsp; &nbsp; Front-end Mobile
+
+- React Native
+- Expo Go Snacks
+
+&nbsp; &nbsp; &nbsp; Ferramentas Complementares
+
+- Git
+- GitHub
+- NodeJS
+
+### Deploy da Aplicação
+
+&nbsp; &nbsp; &nbsp; Para este projeto foi escolhida uma infraestrutura local e publicação utilizando o Local Tunnel, devido à facilidade de disponibilidade.
+
+#### Back-end
+
+##### 1. Rodando a API localmente
+
+&nbsp; &nbsp; &nbsp; Pelo cmd na pasta que está o código da api
+
+``` python -m uvicorn main:app --reload --host 127.0.0.1 --port 8001 ```
+
+##### 2. Expondo a API publicamente com o Local Tunnel
+
+&nbsp; &nbsp; &nbsp; Tendo o NodeJS no computador, instalamos o localtunnel
+
+``` npm install -g localtunnel ```
+
+&nbsp; &nbsp; &nbsp; Após isso é só solicitar a publicação, escolhendo a porta que sua API está rodando localmente e podendo solicitar um subdomínio personalizado
+
+``` lt --port 8001 --subdomain axis-work ```
+
+#### Aplicativo Mobile
+
+&nbsp; &nbsp; &nbsp; Abra o snack da aplicação no Expo e configure a URL da API para a recebida pelo Local Tunnel. E então faça o uso pelo navegador, emulador ou no seu dispositivo usando o aplicativo Expo Go.
 
 ## Testes
 
-[Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
+### Testes Funcionais
 
-1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
-2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
-3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
-4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+- Cadastro de usuários
+- Login e autenticação
+- Consulta de salas
+- Consulta de planos
+- Criação de reservas
+- Visualização de reservas
+- Cadastro de avaliações
+- Navegação entre telas
 
-Tela Inicial
+#### Casos de Teste Funcionais
+
+| ID | Requisito | Caso | Resultado esperado |
+| --- | --- | --- | --- |
+| CT-001 | Cadastro | Criar cliente com nome, CPF, email, telefone e senha | Cliente criado com `id_cliente` |
+| CT-002 | Login | Login com CPF e senha válidos | Token retornado |
+| CT-003 | Login inválido | Login com senha errada | HTTP 401 |
+| CT-004 | Conta | Atualizar nome/email/telefone | Dados atualizados, CPF preservado |
+| CT-005 | Salas | Listar salas ativas | Lista retornada |
+| CT-006 | Salas | Abrir detalhe de sala | Dados da sala carregados |
+| CT-007 | Planos | Listar planos | Lista retornada |
+| CT-008 | Carrinho | Escolher plano logado | Carrinho carrega dados do plano |
+| CT-009 | Carrinho | Escolher plano sem login | Redireciona para Login |
+| CT-010 | Reservas | Criar reserva futura | Reserva confirmada |
+| CT-011 | Reservas | Alterar reserva | Dados atualizados |
+| CT-012 | Reservas | Cancelar reserva | Status `Cancelada` |
+| CT-013 | Reservas | Alterar reserva finalizada | Botão desabilitado no front |
+| CT-014 | Avaliações | Buscar por cliente | Retorna apenas avaliações do cliente |
+| CT-015 | Avaliações | Editar nota/texto | Avaliação atualizada |
+| CT-016 | Notificações | Buscar por cliente | Retorna apenas notificações do cliente |
+| CT-017 | Notificações | Marcar como lida | `lida=true` |
+| CT-018 | Notificações | Apagar notificação | Notificação removida |
+| CT-019 | Admin | Dashboard carrega dados da API | Cards e tabelas preenchidos |
+| CT-020 | Navegação | Sobre Nós/Planos/Info Salas | Links funcionam |
+
+##### Tela Inicial
 
 <div align="center">
     <img src="img/gif1.gif" width="300" justify-self="center">
 </div>
 
-Tela Buscar Espaços
+##### Tela Buscar Espaços
 
 <div align="center">
     <img src="img/gif2.gif" width="300" justify-self="center">
 </div>
 
-Tela Minhas Reservas
+##### Tela Minhas Reservas
 
 <div align="center">
     <img src="img/gif4.gif" width="300" justify-self="center">
 </div>
 
-Tela do Avaliação
+##### Tela do Avaliação
 
 <div align="center">
     <img src="img/gif3.gif" width="300" justify-self="center">
 </div>
 
-Tela de Login
+##### Tela de Login
 
 <div align="center">
     <img src="img/gif5.gif" width="300" justify-self="center">
 </div>
 
-Tela de Meus Cadastros
+##### Tela de Meus Cadastros
 
 <div align="center">
     <img src="img/gif6.gif" width="300" justify-self="center">
 </div>
 
-Tela de Cadastro
+##### Tela de Cadastro
 
 <div align="center">
     <img src="img/gif8.gif" width="300" justify-self="center">
 </div>
 
-Tela de Planos
+##### Tela de Planos
 
 <div align="center">
     <img src="img/gif7.gif" width="300" justify-self="center">
