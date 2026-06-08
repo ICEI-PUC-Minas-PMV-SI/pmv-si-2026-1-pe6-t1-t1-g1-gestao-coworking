@@ -34,6 +34,18 @@ De modo geral, a interface móvel foi projetada com foco na usabilidade, acessib
 
 Wireframe da Tela Inicial
 
+<div align="center">
+    <img src="img/home1.png" width="500" justify-self="center">
+</div>
+
+<div align="center">
+    <img src="img/home2.png" width="500" justify-self="center">
+</div>
+
+<div align="center">
+    <img src="img/home3.png" width="500" justify-self="center">
+</div>
+
 
 Wireframe da Tela Buscar Espaços
 
