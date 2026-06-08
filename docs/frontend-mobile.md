@@ -135,7 +135,7 @@ Wireframe da Tela do Scrollbar
 
 ## Implantação da Aplicação Distribuída em Ambiente de Produção
 
-###Requisitos de Hardware e Software
+### Requisitos de Hardware e Software
 
 &nbsp; &nbsp; &nbsp; Para a implantação da aplicação Axis Working em ambiente de produção, é necessário disponibilizar uma infraestrutura capaz de suportar o acesso simultâneo dos usuários, o processamento das requisições da API e o armazenamento das informações no banco de dados.
 
