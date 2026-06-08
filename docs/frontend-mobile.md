@@ -35,36 +35,56 @@ De modo geral, a interface móvel foi projetada com foco na usabilidade, acessib
 Wireframe da Tela Inicial
 
 <div align="center">
-    <img src="img/home1.png" width="500" justify-self="center">
+    <img src="img/home1.png" width="300" justify-self="center">
 </div>
 
 <div align="center">
-    <img src="img/home2.png" width="500" justify-self="center">
+    <img src="img/home2.png" width="300" justify-self="center">
 </div>
 
 <div align="center">
-    <img src="img/home3.png" width="500" justify-self="center">
+    <img src="img/home3.png" width="300" justify-self="center">
 </div>
-
 
 Wireframe da Tela Buscar Espaços
 
+<div align="center">
+    <img src="img/buscasalasmobile.png" width="300" justify-self="center">
+</div>
 
 Wireframe da Tela de Login
 
+<div align="center">
+    <img src="img/contamobile.png" width="300" justify-self="center">
+</div>
 
 Wireframe da Tela de Cadastro
 
+<div align="center">
+    <img src="img/cadatromobile.png" width="300" justify-self="center">
+</div>
 
 Wireframe da Tela Minhas Reservas
 
+<div align="center">
+    <img src="img/pag1reservamobile.png" width="300" justify-self="center">
+</div>
+
+<div align="center">
+    <img src="img/pag2reservamobile.png" width="300" justify-self="center">
+</div>
 
 Wireframe da Tela de Planos
 
+<div align="center">
+    <img src="img/planosmobile.png" width="300" justify-self="center">
+</div>
 
 Wireframe da Tela do Scrollbar
 
-
+<div align="center">
+    <img src="img/scrollmobile.png" width="300" justify-self="center">
+</div>
 
 ### Design Visual
 
