@@ -51,8 +51,10 @@
     </div>
   </footer>
 
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
   <script>
-    const API_BASE_URL = 'http://127.0.0.1:8001/api';
+    const API_BASE_URL = window.API_BASE_URL || 'http://127.0.0.1:8000/api';
     const imagens = ['../img/diario.png', '../img/semanal.png', '../img/mensal.png', '../img/anual.png'];
 
     function preco(value) {
@@ -66,7 +68,7 @@
     }
 
     function escolherPlano(idPlano) {
-      if (!localStorage.getItem('axisAuth') && !localStorage.getItem('token_acesso')) {
+      if (!localStorage.getItem('axisWork.auth') && !localStorage.getItem('token_acesso')) {
         window.location.href = 'login.html';
         return;
       }

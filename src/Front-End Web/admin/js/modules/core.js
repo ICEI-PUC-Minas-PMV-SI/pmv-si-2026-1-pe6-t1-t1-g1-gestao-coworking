@@ -4,7 +4,16 @@
 const API_BASE_URL = window.API_BASE_URL || 'http://127.0.0.1:8000/api';
 const currentPage = document.body.dataset.page;
 const PLAN_DRAFT_STORAGE_KEY = 'axisWork.planDraft';
-const ADMIN_AUTH_STORAGE_KEY = 'axisWork.adminAuth';
+// Sessão ÚNICA, compartilhada com o site público (ver Front-End Web/js/auth.js).
+const ADMIN_AUTH_STORAGE_KEY = 'axisWork.auth';
+
+// Caminho do site (index público) a partir do painel — funciona tanto na raiz
+// do admin (admin-coworking.html) quanto nas subpáginas (pages/*.html).
+function siteIndexPath() {
+  return window.location.pathname.includes('/pages/')
+    ? '../../Pages/index.html'
+    : '../Pages/index.html';
+}
 const pageState = {
   clientes: [],
   salas: [],
@@ -196,7 +205,13 @@ async function findAdminProfile(cpf) {
 }
 
 function ensureAdminSession() {
-  if (getAdminAuth()?.token) {
+  const existing = getAdminAuth();
+  if (existing?.token) {
+    // Sessão de usuário comum não acessa o painel → volta ao site.
+    if (existing.user && existing.user.is_admin === false) {
+      window.location.href = siteIndexPath();
+      return Promise.resolve(false);
+    }
     updateAdminProfileUi();
     return Promise.resolve(true);
   }
@@ -249,11 +264,23 @@ function ensureAdminSession() {
           method: 'POST',
           body: JSON.stringify({ cpf, senha }),
         });
+        const profile = await findAdminProfile(cpf);
+
+        // Apenas administradores acessam o painel.
+        if (profile && profile.is_admin === false) {
+          clearAdminAuth();
+          errorBox.textContent = 'Esta conta nao tem acesso administrativo.';
+          errorBox.hidden = false;
+          submitButton.disabled = false;
+          submitButton.textContent = 'Entrar';
+          return;
+        }
+
         setAdminAuth({
           token: login.access_token,
           tokenType: login.token_type || 'bearer',
           cpf,
-          user: await findAdminProfile(cpf),
+          user: profile,
           loggedAt: new Date().toISOString(),
         });
         updateAdminProfileUi();
@@ -296,6 +323,7 @@ function openAdminProfileModal() {
       </div>
     `,
     actions: `
+      <button class="btn btn--ghost" type="button" data-go-site>Ir para o site</button>
       <button class="btn btn--ghost" type="button" data-edit-admin-profile>Editar perfil</button>
       <button class="btn btn--ghost" type="button" data-change-admin-password>Alterar senha</button>
       <button class="btn btn--ghost" type="button" data-modal-close>Fechar</button>
@@ -303,6 +331,9 @@ function openAdminProfileModal() {
     `,
   });
 
+  modal.querySelector('[data-go-site]')?.addEventListener('click', () => {
+    window.location.href = siteIndexPath();
+  });
   modal.querySelector('[data-edit-admin-profile]')?.addEventListener('click', openAdminEditProfileModal);
   modal.querySelector('[data-change-admin-password]')?.addEventListener('click', openAdminPasswordModal);
   modal.querySelector('[data-admin-logout]')?.addEventListener('click', () => {

@@ -295,11 +295,17 @@
     </div>
   </main>
 
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
   <script>
-    /* ── Configuração ────────────────────────────────── */
-    const API_BASE = 'http://127.0.0.1:8000';   // API Usuário (auth + admin)
-
     const form     = document.getElementById('loginForm');
+
+    /* Se já houver sessão, vai direto para a área correspondente */
+    if (window.AxisAuth && AxisAuth.isLogged()) {
+      window.location.href = AxisAuth.isAdmin()
+        ? '../admin/admin-coworking.html'
+        : 'gerenciamento-conta.html';
+    }
     const feedback = document.getElementById('feedback');
     const btn      = document.getElementById('loginBtn');
 
@@ -332,43 +338,16 @@
       setFeedback('Verificando credenciais…');
 
       try {
-        const res  = await fetch(`${API_BASE}/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ cpf, senha }),
-        });
-        const data = await res.json();
-
-        /* Trata erros retornados pelo servidor */
-        if (data.erro) {
-          setFeedback(data.erro, 'error');
-          return;
-        }
-        if (!res.ok) {
-          setFeedback(data.detail || 'CPF ou senha inválidos.', 'error');
-          return;
-        }
-
-        /* Salva sessão no localStorage */
-        const auth = {
-          token:     data.access_token,
-          tokenType: data.token_type || 'bearer',
-          cliente:   data.cliente,          // inclui is_admin
-        };
-        localStorage.setItem('axisAuth', JSON.stringify(auth));
-
+        const session = await AxisAuth.login(cpf, senha);
         setFeedback('Login realizado. Redirecionando…', 'success');
-
-        /* Redireciona conforme o papel */
         setTimeout(() => {
-          window.location.href = data.cliente?.is_admin
-            ? '../admin-dashboard/admin-coworking.html'
+          window.location.href = session.user?.is_admin
+            ? '../admin/admin-coworking.html'
             : 'gerenciamento-conta.html';
-        }, 600);
-
+        }, 500);
       } catch (err) {
         console.error(err);
-        setFeedback('Erro ao conectar com o servidor. Verifique se a API está rodando.', 'error');
+        setFeedback(err?.message || 'Erro ao conectar com o servidor. Verifique se a API está rodando.', 'error');
       } finally {
         btn.disabled = false;
       }

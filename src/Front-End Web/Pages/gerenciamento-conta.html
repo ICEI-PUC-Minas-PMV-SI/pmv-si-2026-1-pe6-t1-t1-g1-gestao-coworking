@@ -763,15 +763,15 @@
         <div id="adminNav" style="display:none">
           <div class="nav-divider"></div>
           <div class="nav-section-label">Administração</div>
-          <a href="../admin-dashboard/admin-coworking.html" class="admin-link">
+          <a href="../admin/admin-coworking.html" class="admin-link">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
             Painel Admin
           </a>
-          <a href="../admin-dashboard/pages/users.html" class="admin-link">
+          <a href="../admin/pages/users.html" class="admin-link">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             Gerenciar Usuários
           </a>
-          <a href="../admin-dashboard/pages/rooms.html" class="admin-link">
+          <a href="../admin/pages/rooms.html" class="admin-link">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
             Gerenciar Salas
           </a>
@@ -840,17 +840,17 @@
 
         <!-- Ações rápidas de admin -->
         <div class="quick-actions" id="adminQuickActions" style="display:none">
-          <a href="../admin-dashboard/admin-coworking.html" class="quick-action-card">
+          <a href="../admin/admin-coworking.html" class="quick-action-card">
             <span class="qa-icon">📊</span>
             <strong>Dashboard</strong>
             Métricas e visão geral
           </a>
-          <a href="../admin-dashboard/pages/users.html" class="quick-action-card">
+          <a href="../admin/pages/users.html" class="quick-action-card">
             <span class="qa-icon">👥</span>
             <strong>Usuários</strong>
             Gerenciar membros
           </a>
-          <a href="../admin-dashboard/pages/rooms.html" class="quick-action-card">
+          <a href="../admin/pages/rooms.html" class="quick-action-card">
             <span class="qa-icon">🏢</span>
             <strong>Salas</strong>
             Gerenciar espaços
@@ -933,15 +933,19 @@
     </main>
   </div>
 
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
   <script>
     /* ======================================================
        Axis Working — Gerenciamento de Conta
        Suporte a usuário comum e administrador
     ====================================================== */
 
-    const API_BASE_URL  = 'http://127.0.0.1:8001/api';
-    const API_ROOT_URL  = API_BASE_URL.replace(/\/api$/, '');
-    const auth          = JSON.parse(localStorage.getItem('axisAuth') || 'null');
+    const API_BASE_URL  = window.API_BASE_URL || 'http://127.0.0.1:8000/api';
+    const API_ROOT_URL  = window.API_ROOT_URL || API_BASE_URL.replace(/\/api$/, '');
+    // Sessão única compartilhada com o site e o painel admin (shape: { token, user }).
+    const session       = window.AxisAuth ? AxisAuth.getSession() : null;
+    const auth          = session ? { ...session, cliente: session.user } : null;
 
     if (!auth?.cliente?.id_cliente) {
       window.location.href = 'login.html';
@@ -1436,7 +1440,8 @@
 
     /* ── Eventos ────────────────────────────────────── */
     function logout() {
-      localStorage.removeItem('axisAuth');
+      if (window.AxisAuth) AxisAuth.clear();
+      else localStorage.removeItem('axisWork.auth');
       window.location.href = 'login.html';
     }
 
@@ -1455,7 +1460,7 @@
       send(`/clientes/${state.cliente.id_cliente}`, { method: 'PATCH', body: JSON.stringify(payload) })
         .then(cliente => {
           state.cliente = cliente;
-          localStorage.setItem('axisAuth', JSON.stringify({ ...auth, cliente }));
+          localStorage.setItem('axisWork.auth', JSON.stringify({ ...(window.AxisAuth ? AxisAuth.getSession() : {}), user: cliente }));
           renderProfile();
           applyRoleUI();
           msg.textContent = '✓ Dados atualizados com sucesso.';

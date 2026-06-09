@@ -1,7 +1,7 @@
-const API_BASE_URL = 'http://127.0.0.1:8001/api';
+const API_BASE_URL = (typeof window !== 'undefined' && window.API_BASE_URL) || 'http://127.0.0.1:8000/api';
 
 function check_login() {
-    return !!localStorage.getItem('axisAuth') || !!localStorage.getItem('token_acesso');
+    return !!localStorage.getItem('axisWork.auth') || !!localStorage.getItem('token_acesso');
 }
 
 function direcionar_marcar() {
