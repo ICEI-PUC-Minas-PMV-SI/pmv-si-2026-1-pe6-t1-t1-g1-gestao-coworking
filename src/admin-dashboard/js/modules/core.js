@@ -4,6 +4,7 @@
 const API_BASE_URL = window.API_BASE_URL || 'http://127.0.0.1:8000/api';
 const currentPage = document.body.dataset.page;
 const PLAN_DRAFT_STORAGE_KEY = 'axisWork.planDraft';
+const ADMIN_AUTH_STORAGE_KEY = 'axisWork.adminAuth';
 const pageState = {
   clientes: [],
   salas: [],
@@ -70,8 +71,32 @@ function apiUrl(path) {
   return `${API_BASE_URL}${path}`;
 }
 
+function getAdminAuth() {
+  try {
+    return JSON.parse(localStorage.getItem(ADMIN_AUTH_STORAGE_KEY) || 'null');
+  } catch {
+    clearAdminAuth();
+    return null;
+  }
+}
+
+function setAdminAuth(auth) {
+  localStorage.setItem(ADMIN_AUTH_STORAGE_KEY, JSON.stringify(auth));
+}
+
+function clearAdminAuth() {
+  localStorage.removeItem(ADMIN_AUTH_STORAGE_KEY);
+}
+
+function adminAuthHeader() {
+  const auth = getAdminAuth();
+  return auth?.token ? { Authorization: `Bearer ${auth.token}` } : {};
+}
+
 async function apiGet(path) {
-  const response = await fetch(apiUrl(path));
+  const response = await fetch(apiUrl(path), {
+    headers: adminAuthHeader(),
+  });
 
   if (!response.ok) {
     throw new Error(`Falha ao carregar ${path}: ${response.status}`);
@@ -81,9 +106,10 @@ async function apiGet(path) {
 }
 
 async function apiSend(path, options = {}) {
+  const { headers = {}, ...requestOptions } = options;
   const response = await fetch(apiUrl(path), {
-    headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
-    ...options,
+    ...requestOptions,
+    headers: { 'Content-Type': 'application/json', ...adminAuthHeader(), ...headers },
   });
 
   if (!response.ok) {
@@ -124,6 +150,305 @@ function initials(name = '') {
     .map((part) => part[0])
     .join('')
     .toUpperCase();
+}
+
+function fallbackAdminUser(cpf = '33333333333') {
+  return {
+    nome: 'Marina Reis',
+    cpf,
+    email: 'marina@axis.work',
+    telefone: '(11) 4002-8922',
+  };
+}
+
+function currentAdminUser() {
+  return getAdminAuth()?.user || fallbackAdminUser();
+}
+
+function updateStoredAdminUser(user) {
+  const auth = getAdminAuth();
+  if (!auth) return;
+  setAdminAuth({ ...auth, user: { ...(auth.user || {}), ...user } });
+  updateAdminProfileUi();
+}
+
+function updateAdminProfileUi() {
+  const user = currentAdminUser();
+  document.querySelectorAll('.user-pill').forEach((pill) => {
+    pill.setAttribute('role', 'button');
+    pill.setAttribute('tabindex', '0');
+    pill.setAttribute('aria-label', 'Abrir perfil do administrador');
+    pill.querySelector('.avatar')?.replaceChildren(document.createTextNode(initials(user.nome) || 'AD'));
+    const name = pill.querySelector('.meta b');
+    const role = pill.querySelector('.meta small');
+    if (name) name.textContent = user.nome || 'Administrador';
+    if (role) role.textContent = 'Administrador';
+  });
+}
+
+async function findAdminProfile(cpf) {
+  try {
+    const clientes = await apiGet('/clientes');
+    return clientes.find((cliente) => cliente.cpf === cpf) || fallbackAdminUser(cpf);
+  } catch {
+    return fallbackAdminUser(cpf);
+  }
+}
+
+function ensureAdminSession() {
+  if (getAdminAuth()?.token) {
+    updateAdminProfileUi();
+    return Promise.resolve(true);
+  }
+
+  return new Promise((resolve) => {
+    const screen = document.createElement('div');
+    screen.className = 'login-screen';
+    screen.innerHTML = `
+      <div class="login-brand">
+        <div class="logo">AW</div>
+        <div>
+          <strong>Axis Work</strong>
+          <span>Painel administrativo</span>
+        </div>
+      </div>
+      <form class="login-panel" id="admin-login-form">
+        <div>
+          <p class="login-eyebrow">Acesso administrativo</p>
+          <h1>Entrar no painel</h1>
+          <p class="login-copy">Use as credenciais do administrador para gerenciar reservas, usuarios, salas, planos e notificacoes.</p>
+        </div>
+        <label>
+          CPF
+          <input name="cpf" inputmode="numeric" autocomplete="username" placeholder="33333333333" required>
+        </label>
+        <label>
+          Senha
+          <input name="senha" type="password" autocomplete="current-password" placeholder="Digite sua senha" required>
+        </label>
+        <div class="login-error" data-login-error hidden></div>
+        <button class="btn btn--primary" type="submit">Entrar</button>
+      </form>
+    `;
+
+    document.body.appendChild(screen);
+
+    const form = screen.querySelector('#admin-login-form');
+    const errorBox = screen.querySelector('[data-login-error]');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const submitButton = form.querySelector('button[type="submit"]');
+      const cpf = form.cpf.value.trim().replace(/\D/g, '');
+      const senha = form.senha.value;
+      errorBox.hidden = true;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Entrando...';
+
+      try {
+        const login = await apiSend('/login', {
+          method: 'POST',
+          body: JSON.stringify({ cpf, senha }),
+        });
+        setAdminAuth({
+          token: login.access_token,
+          tokenType: login.token_type || 'bearer',
+          cpf,
+          user: await findAdminProfile(cpf),
+          loggedAt: new Date().toISOString(),
+        });
+        updateAdminProfileUi();
+        screen.remove();
+        resolve(true);
+      } catch (error) {
+        errorBox.textContent = 'CPF ou senha invalidos. Verifique os dados e tente novamente.';
+        errorBox.hidden = false;
+        submitButton.disabled = false;
+        submitButton.textContent = 'Entrar';
+        console.error(error);
+      }
+    });
+  });
+}
+
+function openAdminProfileModal() {
+  const user = currentAdminUser();
+  const auth = getAdminAuth();
+  const loggedAt = auth?.loggedAt
+    ? new Date(auth.loggedAt).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })
+    : '-';
+
+  const modal = openModal({
+    title: 'Perfil do administrador',
+    subtitle: 'Informacoes da sessao atual',
+    body: `
+      <div class="profile-popup">
+        <div class="profile-avatar">${escapeHtml(initials(user.nome) || 'AD')}</div>
+        <div class="profile-info">
+          <strong>${escapeHtml(user.nome || 'Administrador')}</strong>
+          <span>${escapeHtml(user.email || 'Sem e-mail')}</span>
+        </div>
+      </div>
+      <div class="profile-grid">
+        <div><span>CPF</span><strong>${escapeHtml(user.cpf || '-')}</strong></div>
+        <div><span>Telefone</span><strong>${escapeHtml(user.telefone || '-')}</strong></div>
+        <div><span>Perfil</span><strong>Administrador</strong></div>
+        <div><span>Ultimo acesso</span><strong>${escapeHtml(loggedAt)}</strong></div>
+      </div>
+    `,
+    actions: `
+      <button class="btn btn--ghost" type="button" data-edit-admin-profile>Editar perfil</button>
+      <button class="btn btn--ghost" type="button" data-change-admin-password>Alterar senha</button>
+      <button class="btn btn--ghost" type="button" data-modal-close>Fechar</button>
+      <button class="btn btn--danger" type="button" data-admin-logout>Sair da conta</button>
+    `,
+  });
+
+  modal.querySelector('[data-edit-admin-profile]')?.addEventListener('click', openAdminEditProfileModal);
+  modal.querySelector('[data-change-admin-password]')?.addEventListener('click', openAdminPasswordModal);
+  modal.querySelector('[data-admin-logout]')?.addEventListener('click', () => {
+    clearAdminAuth();
+    closeModal();
+    window.location.reload();
+  });
+}
+
+function openAdminEditProfileModal() {
+  const user = currentAdminUser();
+  const modal = openModal({
+    title: 'Editar perfil',
+    subtitle: 'Atualize os dados do administrador exibidos no painel.',
+    body: `
+      <form id="admin-profile-form" class="modal-body">
+        <label>
+          <div class="field-label">Nome</div>
+          <input class="field-input" name="nome" value="${escapeHtml(user.nome || '')}" maxlength="50" required />
+        </label>
+        <label>
+          <div class="field-label">E-mail</div>
+          <input class="field-input" name="email" type="email" value="${escapeHtml(user.email || '')}" maxlength="100" required />
+        </label>
+        <label>
+          <div class="field-label">Telefone</div>
+          <input class="field-input" name="telefone" value="${escapeHtml(user.telefone || '')}" maxlength="11" placeholder="11999999999" />
+        </label>
+        <div class="login-error" data-form-error hidden></div>
+      </form>
+    `,
+    actions: `
+      <button class="btn btn--ghost" type="button" data-back-profile>Voltar</button>
+      <button class="btn btn--primary" type="submit" form="admin-profile-form">Salvar perfil</button>
+    `,
+  });
+
+  modal.querySelector('[data-back-profile]').addEventListener('click', openAdminProfileModal);
+  modal.querySelector('#admin-profile-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const errorBox = event.currentTarget.querySelector('[data-form-error]');
+    const form = new FormData(event.currentTarget);
+    const payload = {
+      nome: String(form.get('nome') || '').trim(),
+      email: String(form.get('email') || '').trim(),
+      telefone: String(form.get('telefone') || '').replace(/\D/g, '') || null,
+    };
+
+    if (!user.id_cliente) {
+      updateStoredAdminUser(payload);
+      showActionMessage('Perfil atualizado localmente.');
+      openAdminProfileModal();
+      return;
+    }
+
+    try {
+      const updated = await apiSend(`/clientes/${user.id_cliente}`, {
+        method: 'PATCH',
+        body: JSON.stringify(payload),
+      });
+      updateStoredAdminUser(updated);
+      showActionMessage('Perfil atualizado com sucesso.');
+      openAdminProfileModal();
+    } catch (error) {
+      console.error(error);
+      errorBox.textContent = 'Nao foi possivel atualizar o perfil. Verifique e-mail e telefone.';
+      errorBox.hidden = false;
+    }
+  });
+}
+
+function openAdminPasswordModal() {
+  const user = currentAdminUser();
+  const modal = openModal({
+    title: 'Alterar senha',
+    subtitle: 'A nova senha sera usada no proximo login do painel.',
+    body: `
+      <form id="admin-password-form" class="modal-body">
+        <label>
+          <div class="field-label">Senha atual</div>
+          <input class="field-input" name="senha_atual" type="password" autocomplete="current-password" required />
+        </label>
+        <label>
+          <div class="field-label">Nova senha</div>
+          <input class="field-input" name="nova_senha" type="password" autocomplete="new-password" maxlength="50" required />
+        </label>
+        <label>
+          <div class="field-label">Confirmar nova senha</div>
+          <input class="field-input" name="confirmar_senha" type="password" autocomplete="new-password" maxlength="50" required />
+        </label>
+        <div class="login-error" data-form-error hidden></div>
+      </form>
+    `,
+    actions: `
+      <button class="btn btn--ghost" type="button" data-back-profile>Voltar</button>
+      <button class="btn btn--primary" type="submit" form="admin-password-form">Salvar senha</button>
+    `,
+  });
+
+  modal.querySelector('[data-back-profile]').addEventListener('click', openAdminProfileModal);
+  modal.querySelector('#admin-password-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const errorBox = event.currentTarget.querySelector('[data-form-error]');
+    const form = new FormData(event.currentTarget);
+    const senhaAtual = String(form.get('senha_atual') || '');
+    const novaSenha = String(form.get('nova_senha') || '');
+    const confirmarSenha = String(form.get('confirmar_senha') || '');
+
+    if (novaSenha !== confirmarSenha) {
+      errorBox.textContent = 'A confirmacao da senha nao confere.';
+      errorBox.hidden = false;
+      return;
+    }
+
+    if (!user.id_cliente) {
+      errorBox.textContent = 'Nao foi possivel identificar o usuario para alterar a senha.';
+      errorBox.hidden = false;
+      return;
+    }
+
+    try {
+      await apiSend(`/clientes/${user.id_cliente}/senha`, {
+        method: 'PATCH',
+        body: JSON.stringify({ senha_atual: senhaAtual, nova_senha: novaSenha }),
+      });
+      showActionMessage('Senha atualizada com sucesso.');
+      openAdminProfileModal();
+    } catch (error) {
+      console.error(error);
+      errorBox.textContent = 'Nao foi possivel alterar a senha. Verifique a senha atual.';
+      errorBox.hidden = false;
+    }
+  });
+}
+
+function bindAdminProfile() {
+  updateAdminProfileUi();
+  document.querySelectorAll('.user-pill').forEach((pill) => {
+    pill.addEventListener('click', openAdminProfileModal);
+    pill.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openAdminProfileModal();
+      }
+    });
+  });
 }
 
 function formatDate(value) {

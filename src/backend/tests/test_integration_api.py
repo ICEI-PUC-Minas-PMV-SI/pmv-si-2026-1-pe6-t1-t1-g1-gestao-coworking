@@ -139,6 +139,9 @@ class ApiIntegrationTests(unittest.TestCase):
         self.assertEqual(atualizada["status"], "Cancelada")
 
     def test_03_reserva_avaliacao_notificacao(self):
+        # A reserva usa id_cliente=1 e id_sala=1 intencionalmente: a tabela
+        # `avaliacoes` tem FK para `usuario_cliente` e `salas` (tabelas de seed),
+        # nao para os recursos criados dinamicamente nesta suite.
         reserva, _ = request(
             "POST",
             "/api/reservas",
@@ -166,16 +169,22 @@ class ApiIntegrationTests(unittest.TestCase):
         avaliacoes_cliente, _ = request("GET", "/api/avaliacoes/cliente/1")
         self.assertTrue(any(item["id_avaliacao"] == avaliacao["id_avaliacao"] for item in avaliacoes_cliente))
 
+        # Notificacao usa o cliente criado dinamicamente nesta suite (FK -> tabela `cliente`)
+        id_cliente_teste = self.created["cliente"]
         notificacao, _ = request(
             "POST",
             "/notificacoes",
-            {"id_cliente": 1, "corpo": "Teste de integracao", "tipo": "Alerta", "lida": False},
+            {"id_cliente": id_cliente_teste, "corpo": "Teste de integracao", "tipo": "Alerta", "lida": False},
             expected=(201,),
         )
         self.created["notificacao"] = notificacao["id_notificacao"]
 
         lida, _ = request("PATCH", f"/notificacoes/{notificacao['id_notificacao']}/lida")
         self.assertTrue(lida["lida"])
+
+        # Verifica listagem de notificacoes do cliente
+        lista, _ = request("GET", f"/notificacoes/cliente/{id_cliente_teste}")
+        self.assertTrue(any(item["id_notificacao"] == notificacao["id_notificacao"] for item in lista))
 
 
 if __name__ == "__main__":

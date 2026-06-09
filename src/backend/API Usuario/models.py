@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean
 from database import Base
 
 class Cliente(Base):
@@ -10,3 +10,4 @@ class Cliente(Base):
     email = Column(String)
     telefone = Column(String)
     senha = Column(String)
+    is_admin = Column(Boolean, default=False, nullable=False, server_default="0")

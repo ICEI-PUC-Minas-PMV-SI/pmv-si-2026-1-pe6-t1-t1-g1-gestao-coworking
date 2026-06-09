@@ -35,14 +35,18 @@ function notificationItem(notificacao) {
   const status = notificacao.lida ? 'Lida' : 'Não lida';
   return `
     <div class="notification-item${notificacao.lida ? '' : ' is-unread'}" data-notification-id="${notificacao.id_notificacao}">
-      <div>
-        <div class="notification-title">${escapeHtml(notificacao.tipo)}</div>
-        <div class="notification-meta">${escapeHtml(notificationUserName(notificacao.id_cliente))} · ${formatDate(notificacao.criado_em)} · ${status}</div>
+      <div class="notification-marker">${notificacao.lida ? icon('icon-more', 12) : icon('icon-bell', 12)}</div>
+      <div class="notification-content">
+        <div class="notification-topline">
+          <div class="notification-title">${escapeHtml(notificacao.tipo)}</div>
+          <span class="notification-status${notificacao.lida ? '' : ' is-active'}">${status}</span>
+        </div>
+        <div class="notification-meta">${escapeHtml(notificationUserName(notificacao.id_cliente))} · ${formatDate(notificacao.criado_em)}</div>
         <p>${escapeHtml(notificacao.corpo)}</p>
       </div>
       <div class="row-actions">
-        ${notificacao.lida ? '' : `<button title="Marcar como lida" data-action="read-notification" data-id="${notificacao.id_notificacao}">${icon('icon-user-check')}</button>`}
-        <button title="Detalhes" data-action="view-notification" data-id="${notificacao.id_notificacao}">${icon('icon-more')}</button>
+        ${notificacao.lida ? '' : `<button title="Marcar como lida" data-action="read-notification" data-id="${notificacao.id_notificacao}">${icon('icon-user-check', 14)}</button>`}
+        <button title="Detalhes" data-action="view-notification" data-id="${notificacao.id_notificacao}">${icon('icon-more', 14)}</button>
       </div>
     </div>
   `;
@@ -60,16 +64,38 @@ function bindNotificationActions() {
   document.querySelectorAll('[data-action="view-notification"]').forEach((button) => {
     button.addEventListener('click', () => openNotificationDetailModal(button.dataset.id));
   });
+
+  document.querySelector('[data-read-all-notifications]')?.addEventListener('click', async () => {
+    const unread = pageState.notificacoes.filter((item) => !item.lida);
+    await Promise.all(unread.map((item) => apiSend(`/notificacoes/${item.id_notificacao}/lida`, { method: 'PATCH' })));
+    await refreshNotificationBadge();
+    openNotificationsModal();
+  });
 }
 
 async function openNotificationsModal() {
   try {
     await loadNotificationData();
     const unread = pageState.notificacoes.filter((item) => !item.lida).length;
+    const read = pageState.notificacoes.length - unread;
     const modal = openModal({
       title: 'Notificações',
       subtitle: `${unread} não lidas de ${pageState.notificacoes.length} notificações.`,
       body: `
+        <div class="notification-center-head">
+          <div class="notification-stat">
+            <span>Total</span>
+            <strong>${pageState.notificacoes.length}</strong>
+          </div>
+          <div class="notification-stat is-hot">
+            <span>Não lidas</span>
+            <strong>${unread}</strong>
+          </div>
+          <div class="notification-stat">
+            <span>Lidas</span>
+            <strong>${read}</strong>
+          </div>
+        </div>
         <div class="notification-list">
           ${pageState.notificacoes.length
             ? pageState.notificacoes.map(notificationItem).join('')
@@ -77,6 +103,7 @@ async function openNotificationsModal() {
         </div>
       `,
       actions: `
+        ${unread ? '<button class="btn btn--ghost" type="button" data-read-all-notifications>Marcar todas como lidas</button>' : ''}
         <button class="btn btn--ghost" type="button" data-create-notification>Criar gatilho</button>
         <button class="btn btn--primary" type="button" data-modal-close>Fechar</button>
       `,

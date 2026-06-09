@@ -1,469 +1,454 @@
-body{margin:0;font-family:'Arial',sans-serif;background:#eef2f5;color:#1e293b}
-.logo{font-weight:700;font-size:20px;cursor:pointer}
-nav a{margin:0 14px;color:#0F2A44;text-decoration:none;font-weight:500}
-.btn{background:#0f172a;color:#fff;padding:10px 18px;border-radius:999px;border:none;cursor:pointer;font-weight:500}
-.container{padding:40px 60px}
-h2{margin-bottom:20px}
-main{margin-top: 50px;}
+/* =====================================================
+   Axis Working — Salas / Sala individual
+   Depende de: variables.css, headerFooter.css
+   ===================================================== */
 
-/* TOP MENU CARDS */
-.top-cards{display:flex;gap:16px;margin-bottom:32px;}
-.top-card{flex:1;border-radius:16px;overflow:hidden;background:#d1d5db;cursor:pointer;opacity:.6;transition:.3s}
-.top-card img{width:100%;height:90px;object-fit:cover}
-.top-card p{padding:10px;text-align:center;font-weight:500}
-.top-card.active{border:3px solid #0f172a;opacity:1}
-
-/* GRID */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-.card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.05);cursor:pointer}
-.card img{width:100%;height:200px;object-fit:cover}
-.card-content{padding:16px}
-.card-content p{margin:6px 0;color:#64748b}
-
-/* SALA */
-.flex{display:flex;gap:32px}
-.left{flex:2}
-.right{flex:1}
-.box{background:#fff;border-radius:20px;padding:20px;margin-bottom:24px;box-shadow:0 4px 20px rgba(0,0,0,0.05)}
-.box img{width:100%;border-radius:16px;margin-bottom:10px}
-
-/* CALENDARIO */
-
-.availability-section{
-  display:flex;
-  gap:20px;
-  margin-top:30px;
-  align-items:flex-start;
+body {
+  margin: 0;
+  font-family: var(--aw-font);
+  background: var(--aw-bg);
+  color: var(--aw-ink);
 }
 
-.calendar-side{
-  width:520px;
-
-  background:#fff;
-
-  padding:18px;
-
-  border-radius:18px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
+/* ── Cabeçalho da página ──────────────────────────── */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 48px;
+  background: var(--aw-surface);
+  border-bottom: 1px solid var(--aw-border);
 }
 
-.times-side{
-  width:220px;
-
-  background:#fff;
-
-  padding:18px;
-
-  border-radius:18px;
-
-  display:flex;
-
-  flex-direction:column;
+.logo {
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--aw-navy);
 }
 
-.calendar-header{
-  width:320px;
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  margin-bottom:18px;
+nav a {
+  margin: 0 14px;
+  color: var(--aw-navy);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: color var(--aw-transition);
 }
 
-.calendar-header h3{
-  font-size:18px;
-  margin:0;
+nav a:hover { color: var(--aw-blue); }
+
+.btn {
+  background: var(--aw-navy);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: var(--aw-radius-pill);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  font-family: var(--aw-font);
+  transition: background var(--aw-transition);
 }
 
-.month-btn{
-  width:30px;
-  height:30px;
-  border:none;
-  border-radius:8px;
-  background:#f1f5f9;
-  cursor:pointer;
-  font-size:16px;
+.btn:hover { background: var(--aw-navy-soft); }
+
+.container { padding: 32px 48px; }
+h2 { margin-bottom: 20px; color: var(--aw-ink); }
+
+/* ── Cards de categoria (top menu) ───────────────── */
+.top-cards {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
-.week-days{
-  width:320px;
-
-  display:grid;
-
-  grid-template-columns:repeat(7,1fr);
-
-  justify-items:center;
-
-  margin-bottom:10px;
-
-  color:#94a3b8;
-
-  font-size:12px;
+.top-card {
+  flex: 1;
+  border-radius: var(--aw-radius-md);
+  overflow: hidden;
+  background: var(--aw-blue-pale);
+  cursor: pointer;
+  opacity: .6;
+  transition: opacity var(--aw-transition), border var(--aw-transition);
 }
 
-.calendar-grid{
-  width:320px;
+.top-card img { width: 100%; height: 90px; object-fit: cover; }
+.top-card p { padding: 10px; text-align: center; font-weight: 500; font-size: 14px; }
 
-  display:grid;
-
-  grid-template-columns:repeat(7,1fr);
-
-  justify-items:center;
-
-  gap:6px;
+.top-card.active {
+  border: 3px solid var(--aw-navy);
+  opacity: 1;
 }
 
-.calendar-day{
-  width:32px;
-  height:32px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  cursor:pointer;
-  transition:.2s;
-  font-size:13px;
+/* ── Grid de salas ────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 }
 
-.calendar-day:hover{
-  background:#e2e8f0;
+.card {
+  background: var(--aw-surface);
+  border-radius: var(--aw-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--aw-shadow-sm);
+  cursor: pointer;
+  transition: transform var(--aw-transition), box-shadow var(--aw-transition);
 }
 
-.calendar-day.selected{
-  background:#2563eb;
-  color:#fff;
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--aw-shadow-md);
 }
 
-.calendar-day.disabled{
-  background:#f8fafc;
-  color:#cbd5e1;
-  cursor:not-allowed;
+.card img { width: 100%; height: 200px; object-fit: cover; }
+
+.card-content { padding: 18px; }
+.card-content h3 { font-size: 18px; margin-bottom: 8px; color: var(--aw-ink); }
+.card-content p  { margin: 6px 0; color: var(--aw-muted); font-size: 14px; }
+
+/* ── Página de sala individual ────────────────────── */
+.flex { display: flex; gap: 32px; }
+.left { flex: 2; }
+.right { flex: 1; }
+
+.box {
+  background: var(--aw-surface);
+  border-radius: var(--aw-radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--aw-shadow-sm);
 }
 
-.times-side h4{
-  margin-top:0;
-  margin-bottom:16px;
-  font-size:16px;
+.box img {
+  width: 100%;
+  border-radius: var(--aw-radius-md);
+  margin-bottom: 12px;
 }
 
-.times-list{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  margin-bottom:18px;
-  max-height:200px;
-  overflow-y:auto;
+/* ── Calendário ───────────────────────────────────── */
+.availability-section {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+  align-items: flex-start;
 }
 
-.time-slot{
-  padding:10px 12px;
-  border-radius:12px;
-  background:#f8fafc;
-  cursor:pointer;
-  transition:.2s;
-  border:1px solid transparent;
-  font-size:14px;
+.calendar-side {
+  width: 520px;
+  background: var(--aw-surface);
+  padding: 20px;
+  border-radius: var(--aw-radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--aw-shadow-sm);
 }
 
-.time-slot:hover{
-  border-color:#2563eb;
+.times-side {
+  width: 220px;
+  background: var(--aw-surface);
+  padding: 20px;
+  border-radius: var(--aw-radius-md);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--aw-shadow-sm);
 }
 
-.time-slot.selected{
-  background:#2563eb;
-  color:#fff;
+.calendar-header {
+  width: 320px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
 }
 
-.time-slot.disabled{
-  background:#f1f5f9;
-  color:#cbd5e1;
-  cursor:not-allowed;
+.calendar-header h3 { font-size: 17px; margin: 0; color: var(--aw-ink); }
+
+.month-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--aw-radius-sm);
+  background: var(--aw-blue-ghost);
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--aw-ink);
+  transition: background var(--aw-transition);
 }
 
-.reserve-btn{
+.month-btn:hover { background: var(--aw-blue-pale); }
 
-  padding:12px 24px;
-
-  margin-top:auto;
-
-  margin-left:auto;
+.week-days {
+  width: 320px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+  margin-bottom: 10px;
+  color: var(--aw-muted);
+  font-size: 12px;
 }
 
-
-/* HORARIOS */
-.time{margin-top:12px}
-.time button{margin:6px;padding:10px 14px;border-radius:10px;border:none;background:#e2e8f0;cursor:pointer}
-.time button.selected{background:#0f172a;color:#fff}
-
-textarea{width:100%;margin-top:10px;padding:10px;border-radius:10px;border:1px solid #cbd5f5}
-
-
-
-
-/* Avaliação Sala */
-.rating-card{
-  background:#fff;
-
-  border-radius:20px;
-
-  padding:20px;
-
-  margin-bottom:24px;
-
-  box-shadow:0 4px 20px rgba(0,0,0,0.05);
+.calendar-grid {
+  width: 320px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+  gap: 6px;
 }
 
-.rating-top{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:flex-start;
-
-  margin-bottom:18px;
+.calendar-day {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background var(--aw-transition);
 }
 
-.rating-top h2{
-  margin:0;
+.calendar-day:hover { background: var(--aw-blue-pale); }
 
-  font-size:28px;
-
-  font-weight:700;
+.calendar-day.selected {
+  background: var(--aw-navy);
+  color: #fff;
 }
 
-.rating-top p{
-  margin:4px 0 0 0;
-
-  color:#64748b;
-
-  font-size:13px;
+.calendar-day.disabled {
+  background: var(--aw-panel);
+  color: var(--aw-blue-pale);
+  cursor: not-allowed;
 }
 
-.rating-score{
-  width:52px;
-  height:52px;
-
-  border-radius:14px;
-
-  background:#0f172a;
-
-  color:#fff;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:22px;
-
-  font-weight:700;
+/* ── Horários ─────────────────────────────────────── */
+.times-side h4 {
+  margin: 0 0 16px;
+  font-size: 15px;
+  color: var(--aw-ink);
 }
 
-.rating-divider{
-  height:1px;
-
-  background:#e2e8f0;
-
-  margin-bottom:18px;
+.times-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+  max-height: 220px;
+  overflow-y: auto;
 }
 
-.rating-subtitle{
-  font-size:14px;
-
-  color:#334155;
-
-  margin-bottom:24px;
+.time-slot {
+  padding: 10px 14px;
+  border-radius: var(--aw-radius-sm);
+  background: var(--aw-panel);
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid transparent;
+  transition: border-color var(--aw-transition), background var(--aw-transition);
+  font-family: var(--aw-font);
 }
 
-.best-review p{
-  font-size:15px;
+.time-slot:hover { border-color: var(--aw-navy); }
 
-  line-height:1.6;
-
-  margin-bottom:28px;
+.time-slot.selected {
+  background: var(--aw-navy);
+  color: #fff;
+  border-color: var(--aw-navy);
 }
 
-.review-user{
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
+.time-slot.disabled {
+  background: var(--aw-blue-ghost);
+  color: var(--aw-blue-pale);
+  cursor: not-allowed;
 }
 
-.review-avatar{
-  width:42px;
-  height:42px;
-
-  border-radius:50%;
-
-  background:#3b82f6;
-
-  color:#fff;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-weight:700;
+.reserve-btn {
+  padding: 12px 24px;
+  margin-top: auto;
+  margin-left: auto;
 }
 
-
-
-
-
-
-/* Avaliações */
-
-.reviews-section{
-  margin-top:40px;
+.time { margin-top: 14px; }
+.time button {
+  margin: 6px;
+  padding: 10px 16px;
+  border-radius: var(--aw-radius-sm);
+  border: none;
+  background: var(--aw-blue-ghost);
+  cursor: pointer;
+  font-family: var(--aw-font);
+  color: var(--aw-ink);
+  transition: background var(--aw-transition);
 }
 
-.reviews-layout{
-  display:flex;
-  gap:24px;
-  margin-top:20px;
+.time button.selected {
+  background: var(--aw-navy);
+  color: #fff;
 }
 
-.reviews-left{
-  width:260px;
+textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: var(--aw-radius-sm);
+  border: 1px solid var(--aw-border);
+  font-family: var(--aw-font);
+  font-size: 14px;
+  resize: vertical;
+  outline: none;
+  transition: border-color var(--aw-transition);
 }
 
-.review-card{
-  background:#fff;
+textarea:focus { border-color: var(--aw-blue); }
 
-  border-radius:18px;
-
-  padding:20px;
-
-  margin-bottom:20px;
-
-  box-shadow:0 4px 20px rgba(0,0,0,0.05);
+/* ── Card de avaliação da sala ────────────────────── */
+.rating-card {
+  background: var(--aw-surface);
+  border-radius: var(--aw-radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--aw-shadow-sm);
 }
 
-.review-score-row{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.rating-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
 }
 
-.review-score-row h1{
-  margin:0;
-  font-size:42px;
+.rating-top h2 { margin: 0; font-size: 26px; font-weight: 700; }
+.rating-top p  { margin: 4px 0 0; color: var(--aw-muted); font-size: 13px; }
+
+.rating-score {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--aw-radius-sm);
+  background: var(--aw-navy);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
 }
 
-.review-stars{
-  color:#f59e0b;
-  font-size:18px;
+.rating-divider {
+  height: 1px;
+  background: var(--aw-border);
+  margin-bottom: 18px;
 }
 
-.review-card p{
-  color:#64748b;
-  font-size:14px;
+.rating-subtitle { font-size: 14px; color: var(--aw-ink-soft); margin-bottom: 24px; }
+.best-review p   { font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
+
+.review-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.distribution-row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:10px;
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--aw-blue);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
 }
 
-.distribution-bar{
-  flex:1;
-  height:8px;
-  background:#e2e8f0;
-  border-radius:999px;
-  overflow:hidden;
+/* ── Seção de avaliações ──────────────────────────── */
+.reviews-section { margin-top: 40px; }
+
+.reviews-layout {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
 }
 
-.distribution-fill{
-  height:100%;
-  background:#64748b;
+.reviews-left { width: 260px; }
+
+.review-card {
+  background: var(--aw-surface);
+  border-radius: var(--aw-radius-md);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--aw-shadow-sm);
 }
 
-.reviews-right{
-  flex:1;
+.review-score-row { display: flex; align-items: center; gap: 12px; }
+.review-score-row h1 { margin: 0; font-size: 40px; color: var(--aw-navy); }
 
-  background:#fff;
+.review-stars { color: var(--aw-warn); font-size: 18px; }
+.review-card p { color: var(--aw-muted); font-size: 14px; }
 
-  border-radius:18px;
-
-  padding:20px;
-
-  box-shadow:0 4px 20px rgba(0,0,0,0.05);
+.distribution-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-.review-item{
-  padding:18px;
-
-  border:1px solid #e2e8f0;
-
-  border-radius:16px;
-
-  margin-bottom:16px;
+.distribution-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--aw-border);
+  border-radius: var(--aw-radius-pill);
+  overflow: hidden;
 }
 
-.review-item-top{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:10px;
+.distribution-fill {
+  height: 100%;
+  background: var(--aw-navy-soft);
+  border-radius: var(--aw-radius-pill);
 }
 
-.review-user{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.reviews-right {
+  flex: 1;
+  background: var(--aw-surface);
+  border-radius: var(--aw-radius-md);
+  padding: 20px;
+  box-shadow: var(--aw-shadow-sm);
 }
 
-.review-avatar{
-  width:36px;
-  height:36px;
-
-  border-radius:50%;
-
-  background:#cbd5e1;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:12px;
-
-  font-weight:700;
+.review-item {
+  padding: 18px;
+  border: 1px solid var(--aw-border);
+  border-radius: var(--aw-radius-md);
+  margin-bottom: 16px;
+  background: var(--aw-surface);
+  transition: box-shadow var(--aw-transition);
 }
 
-.review-submit{
-  margin-top:16px;
+.review-item:hover { box-shadow: var(--aw-shadow-sm); }
+
+.review-item-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-#review-input{
-  width:100%;
+.review-submit { margin-top: 16px; }
 
-  min-height:100px;
-
-  margin-top:14px;
-
-  padding:14px;
-
-  border-radius:14px;
-
-  border:1px solid #e2e8f0;
-
-  resize:none;
-
-  box-sizing:border-box;
+#review-input {
+  width: 100%;
+  min-height: 100px;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: var(--aw-radius-sm);
+  border: 1px solid var(--aw-border);
+  resize: none;
+  box-sizing: border-box;
+  font-family: var(--aw-font);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--aw-transition);
 }
+
+#review-input:focus { border-color: var(--aw-blue); }

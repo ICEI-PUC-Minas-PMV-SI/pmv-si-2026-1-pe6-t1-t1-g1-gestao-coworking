@@ -50,6 +50,7 @@ class Cliente(Base):
     email: Mapped[str] = mapped_column(String, nullable=False, unique=True)
     telefone: Mapped[str | None] = mapped_column(String, nullable=True)
     senha: Mapped[str] = mapped_column(String, nullable=False)
+    is_admin: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False, server_default="false")
 
     reservas: Mapped[list["Reserva"]] = relationship(back_populates="cliente")
     assinaturas: Mapped[list["Assinatura"]] = relationship(back_populates="cliente")

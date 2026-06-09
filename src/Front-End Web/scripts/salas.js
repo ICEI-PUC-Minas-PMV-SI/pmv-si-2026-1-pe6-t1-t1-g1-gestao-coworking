@@ -43,7 +43,7 @@ async function carregarSalas(){
       localStorage.getItem("tipo");
 
     const url =
-      "http://localhost:8001/salas?ativas=true";
+      "http://localhost:8000/salas?ativas=true";
 
     const response =
       await fetch(url);
@@ -376,7 +376,7 @@ async function carregarDisponibilidadeDia(inicio, fim){
 
     const response =
       await fetch(
-        `http://localhost:8001/api/reserva?id_sala=${salaId}?inicio=${inicio}?fim=${fim}`
+        `http://localhost:8000/api/reserva?id_sala=${salaId}?inicio=${inicio}?fim=${fim}`
       );
 
     const reservas =
@@ -422,7 +422,7 @@ async function carregarDisponibilidadeHora(data){
 
     const response =
       await fetch(
-        `http://localhost:8001/api/reserva?id_sala=${salaId}?inicio=${data}?fim=${data}`
+        `http://localhost:8000/api/reserva?id_sala=${salaId}?inicio=${data}?fim=${data}`
       );
 
     const reservas =
@@ -485,7 +485,7 @@ async function carregarAvaliacaoSala(){
 
     /* ALTERE PARA A URL */
     const response =
-      await fetch("https://localhost:8001/api/avaliacoes/1");
+      await fetch("https://localhost:8000/api/avaliacoes/1");
 
     if(!response.ok){
       throw new Error("Erro ao carregar avaliações");
@@ -567,7 +567,7 @@ async function carregarReviews(){
   try{
 
     const response =
-      await fetch("https://localhost:8001/api/reviews/1");
+      await fetch("https://localhost:8000/api/reviews/1");
 
     const data = await response.json();
 
@@ -693,7 +693,7 @@ async function enviarAvaliacao(){
   try{
 
     await fetch(
-      "https://localhost:8001/api/reviews",
+      "https://localhost:8000/api/reviews",
       {
         method:"POST",
 
@@ -734,7 +734,7 @@ async function carregarSala(){
 
     const response =
       await fetch(
-        `https://localhost:8001/api/salas/${salaId}`
+        `https://localhost:8000/api/salas/${salaId}`
       );
 
     const sala =

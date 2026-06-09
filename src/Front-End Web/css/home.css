@@ -1,225 +1,245 @@
+/* =====================================================
+   Axis Working — Home (index.html)
+   Depende de: variables.css, headerFooter.css
+   ===================================================== */
+
 body {
-    padding: 0;
-    margin: 0;
-    background-color: #fff;
+  margin: 0;
+  padding: 0;
+  background: var(--aw-surface);
+  color: var(--aw-ink);
+  font-family: var(--aw-font);
 }
 
 .fundo-claro {
-    background-color: #CAD6E233;
+  background: var(--aw-blue-ghost);
 }
 
-p, button, h1, h2, h3, li, h4, span, a {
-    font-family: Arial, Helvetica, sans-serif;
+/* ── Tipografia base ──────────────────────────────── */
+h1 { font-size: 56px; line-height: 1.1; }
+h2 { font-size: 38px; line-height: 1.2; }
+h3 { font-size: 22px; line-height: 1.3; }
+p  { font-size: 17px; line-height: 1.7; }
+li { font-size: 16px; }
+
+@media (max-width: 768px) {
+  h1 { font-size: 36px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 18px; }
 }
 
-h1 {
-    font-size: 60px;
-}
-
-h2 {
-    font-size: 40px;
-}
-
-h3 {
-    font-size: 24px;
-}
-
-a {
-    font-size: 20px;
-}
-
-p {
-    font-size: 18px;
-}
-
-li {
-    font-size: 16px;
-}
-
+/* ── Banner ───────────────────────────────────────── */
 .banner {
-    height: 70vh;
-    background: linear-gradient(#0F2A44B3, #0F2A44B3), url('../img/fundo-escritorio.jpg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
+  height: 70vh;
+  background:
+    linear-gradient(rgba(10, 42, 68, .72), rgba(10, 42, 68, .72)),
+    url('../img/fundo-escritorio.jpg') center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 0 24px;
 }
 
 .banner-bot {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 1fr 150px 30px 150px 1fr;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 160px 24px 160px 1fr;
+  gap: 0 8px;
+  margin-top: 24px;
 }
 
-.banner-bot :first-child {
-    grid-column: 2;
-}
+.banner-bot :first-child { grid-column: 2; }
+.banner-bot :last-child  { grid-column: 4; }
 
-.banner-bot :last-child {
-    grid-column: 4;
-}
-
+/* ── Seção genérica ───────────────────────────────── */
 .sessao {
-    padding: 40px 0;
-    justify-items: center;
+  padding: 64px 24px;
+  display: grid;
+  justify-items: center;
 }
 
 .section-titulo {
-    max-width: 1200px;
-    text-align: center;
+  max-width: 700px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
+/* ── Cards de features ────────────────────────────── */
 .features {
-    max-width: 1200px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
 }
 
 .feature-card {
-    padding: 10px 20px;
-    border: 2px solid #CAD6E2;
-    border-radius: 20px;
-    transition: 0.3s;
+  padding: 24px 28px;
+  border: 2px solid var(--aw-blue-pale);
+  border-radius: var(--aw-radius-lg);
+  background: var(--aw-surface);
+  transition: transform var(--aw-transition), border-color var(--aw-transition), box-shadow var(--aw-transition);
 }
 
 .feature-card:hover {
-    transform: translateY(-5px); 
-    border-color: #0F2A44;
-    box-shadow: 0 10px 20px #5B748C; 
+  transform: translateY(-5px);
+  border-color: var(--aw-navy);
+  box-shadow: var(--aw-shadow-md);
 }
 
 .feature-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 16px;
 }
 
+/* ── Grid de salas ────────────────────────────────── */
 .salas {
-    max-width: 1200px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
 
 .salas-card {
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: #fff;
+  border-radius: var(--aw-radius-md);
+  overflow: hidden;
+  background: var(--aw-surface);
+  box-shadow: var(--aw-shadow-sm);
+  transition: transform var(--aw-transition), box-shadow var(--aw-transition);
 }
 
-.salas-card img { 
-    width: 100%; 
-    height: 220px; 
-    object-fit: cover; 
+.salas-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--aw-shadow-md);
 }
 
-.salas-info {
-    padding: 0 20px;
+.salas-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
-.salas-info p {
-    min-height: 150px;
-}
+.salas-info { padding: 0 20px 20px; }
+.salas-info p { min-height: 80px; }
 
 .lista {
-    border-top: 1px solid #CAD6E2;
-    padding-top: 15px;
-    text-align: left;
+  border-top: 1px solid var(--aw-border);
+  padding-top: 14px;
+  text-align: left;
 }
 
 .salas > .bot {
-    width: 300px;
-    grid-column: span 2;
-    justify-self: center;
+  width: 300px;
+  grid-column: span 2;
+  justify-self: center;
 }
 
+/* ── Planos ───────────────────────────────────────── */
 .plano-grid {
-    max-width: 1200px;
-    margin: 40px auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 30px;
+  max-width: 1100px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
 }
 
-.plano-grid .lista {
-    border: none;
-}
-
-.plano-grid .bot {
-    grid-column: 2;
-}
+.plano-grid .lista { border: none; }
+.plano-grid .bot { grid-column: 2; }
 
 .plano-card {
-    padding: 30px 60px;
-    border: 3px solid #0F2A44;
-    border-radius: 20px;
-    text-align: center;
+  padding: 36px 48px;
+  border: 2px solid var(--aw-navy);
+  border-radius: var(--aw-radius-lg);
+  text-align: center;
+  background: var(--aw-surface);
+  transition: box-shadow var(--aw-transition), transform var(--aw-transition);
+}
+
+.plano-card:hover {
+  box-shadow: var(--aw-shadow-md);
+  transform: translateY(-4px);
 }
 
 .preco {
-    margin: 30px 0;
-    font-size: 45px;
-    font-weight: 800;
-
+  margin: 28px 0;
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--aw-navy);
 }
 
 .preco > span {
-    font-size: 26px;
-    font-weight: 400;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--aw-muted);
 }
 
+/* ── Avaliações ───────────────────────────────────── */
 .aval-grid {
-    max-width: 1200px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 30px;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
 }
 
 .aval-grid img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 20px;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: var(--aw-radius-md);
 }
 
 .aval-card {
-    padding: 30px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 10px #CAD6E233;
-
+  padding: 28px;
+  background: var(--aw-surface);
+  border-radius: var(--aw-radius-md);
+  box-shadow: var(--aw-shadow-sm);
 }
 
-.user-profile { 
-    display: flex; 
-    align-items: center; 
-    gap: 15px;
-    margin-bottom: 20px; 
+/* ── Perfil de usuário (inline nos reviews) ────────── */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
 }
 
-.user-profile img { 
-    width: 50px; 
-    height: 50px; 
-    border-radius: 50%;
-    object-fit: cover; 
+.user-profile img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--aw-blue-pale);
 }
 
-.user-profile h4 { 
-    margin: 0; 
-}
+.user-profile h4 { margin: 0; font-size: 16px; }
 
+/* ── Placeholder ──────────────────────────────────── */
 .placeholder {
-    width: 200px;
-    height: 300px;
-    background-color: #CAD6E2;
-    border-radius: 20px;
+  width: 200px;
+  height: 280px;
+  background: var(--aw-blue-pale);
+  border-radius: var(--aw-radius-md);
+}
+
+/* ── Responsivo ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  .salas { grid-template-columns: repeat(2, 1fr); }
+  .features { grid-template-columns: repeat(2, 1fr); }
+  .plano-grid { grid-template-columns: 1fr; }
+  .plano-grid .bot { grid-column: 1; }
+  .aval-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .salas { grid-template-columns: 1fr; }
+  .features { grid-template-columns: 1fr; }
+  .banner { height: 50vh; }
 }

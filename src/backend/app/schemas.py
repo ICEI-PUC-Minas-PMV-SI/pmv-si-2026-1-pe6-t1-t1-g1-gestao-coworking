@@ -35,12 +35,18 @@ class ClientePatch(BaseModel):
     telefone: str | None = Field(default=None, max_length=11)
 
 
+class ClienteSenhaPatch(BaseModel):
+    senha_atual: str = Field(min_length=1, max_length=50)
+    nova_senha: str = Field(min_length=1, max_length=50)
+
+
 class ClienteRead(BaseModel):
     id_cliente: int
     nome: str
     cpf: str
     email: str
     telefone: str | None
+    is_admin: bool = False
 
     model_config = ConfigDict(from_attributes=True)
 

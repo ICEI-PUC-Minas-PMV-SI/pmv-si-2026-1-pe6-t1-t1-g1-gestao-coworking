@@ -2,6 +2,9 @@
 // Arquivo extraido de admin-coworking.js para organizar o painel por dominio.
 
 async function boot() {
+  const authenticated = await ensureAdminSession();
+  if (!authenticated) return;
+
   if (typeof readPlanDraft === 'function') {
     pageState.planDraft = readPlanDraft();
   }

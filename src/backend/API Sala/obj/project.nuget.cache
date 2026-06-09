@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AvWHGBaphSY=",
+  "dgSpecHash": "QYcqHD90Vm4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\senai\\Desktop\\Projetos\\PUC-Eixo6\\backend\\API Sala\\coworking-salas.csproj",
+  "projectFilePath": "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\backend\\API Sala\\coworking-salas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\senai\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\senai\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

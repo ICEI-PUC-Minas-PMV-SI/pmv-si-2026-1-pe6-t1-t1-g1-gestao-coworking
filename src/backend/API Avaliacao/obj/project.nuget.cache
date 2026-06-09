@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "K3cB4BpPNOE=",
+  "dgSpecHash": "ir8clpVLVhM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\senai\\Desktop\\Projetos\\PUC-Eixo6\\backend\\API Avaliacao\\AvaliacaoApi.csproj",
+  "projectFilePath": "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\backend\\API Avaliacao\\AvaliacaoApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\senai\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\senai\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

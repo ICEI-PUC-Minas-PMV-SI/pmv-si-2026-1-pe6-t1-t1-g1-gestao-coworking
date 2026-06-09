@@ -1,0 +1,62 @@
+/* =====================================================
+   Axis Working — Design Tokens Globais
+   Inclua este arquivo primeiro em todas as páginas
+   ===================================================== */
+
+:root {
+  /* ── Paleta principal ─────────────────────────────── */
+  --aw-navy:        #0A2A44;   /* azul-marinho principal */
+  --aw-navy-soft:   #1F3A57;   /* azul mais claro p/ hover */
+  --aw-blue:        #5B7A99;   /* azul médio / ícones */
+  --aw-blue-light:  #8FADC8;   /* azul claro */
+  --aw-blue-pale:   #CAD6E2;   /* azul pálido / bordas / backgrounds */
+  --aw-blue-ghost:  #EBF1F6;   /* fundo levíssimo */
+
+  /* ── Superfícies ──────────────────────────────────── */
+  --aw-bg:          #F4F7FA;   /* fundo geral da página */
+  --aw-surface:     #FFFFFF;   /* cards e superfícies */
+  --aw-panel:       #F8FAFB;   /* painéis internos */
+
+  /* ── Texto ────────────────────────────────────────── */
+  --aw-ink:         #111827;   /* texto principal */
+  --aw-ink-soft:    #374151;   /* texto secundário */
+  --aw-muted:       #6B7A8A;   /* texto apagado */
+  --aw-placeholder: #9CA3AF;   /* placeholder de input */
+
+  /* ── Bordas ───────────────────────────────────────── */
+  --aw-border:      #DDE3EA;   /* borda padrão */
+  --aw-border-strong: #B8C6D4; /* borda de ênfase */
+
+  /* ── Feedback ─────────────────────────────────────── */
+  --aw-success:     #4A7A57;
+  --aw-success-bg:  #EBF4EE;
+  --aw-warn:        #B58A3A;
+  --aw-warn-bg:     #FDF5E6;
+  --aw-danger:      #8A3A3A;
+  --aw-danger-bg:   #FAF0F0;
+
+  /* ── Papéis / Roles ───────────────────────────────── */
+  --aw-admin-color: #5B3A8A;   /* roxo para badge de admin */
+  --aw-admin-bg:    #F3EEFB;
+
+  /* ── Sombras ──────────────────────────────────────── */
+  --aw-shadow-sm:   0 2px 8px rgba(10, 42, 68, .06);
+  --aw-shadow-md:   0 4px 20px rgba(10, 42, 68, .09);
+  --aw-shadow-lg:   0 10px 30px rgba(10, 42, 68, .12);
+
+  /* ── Raios de borda ───────────────────────────────── */
+  --aw-radius-sm:   10px;
+  --aw-radius-md:   16px;
+  --aw-radius-lg:   24px;
+  --aw-radius-pill: 9999px;
+
+  /* ── Tipografia ───────────────────────────────────── */
+  --aw-font:        Arial, Helvetica, sans-serif;
+
+  /* ── Transições ───────────────────────────────────── */
+  --aw-transition:  0.25s ease;
+
+  /* ── Compat: aliases curtos usados em alguns arquivos */
+  --primary:        var(--aw-navy);
+  --primary-light:  var(--aw-navy-soft);
+}

@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from app.db import get_db
 from app.models import Cliente
-from app.schemas import ClienteCreate, ClientePatch, ClienteRead, ClienteUpdate, LoginInput, TokenRead
+from app.schemas import ClienteCreate, ClientePatch, ClienteRead, ClienteSenhaPatch, ClienteUpdate, LoginInput, MessageRead, TokenRead
 from app.security import criar_token, hash_senha, verificar_senha, verificar_token
 
 
@@ -86,6 +86,16 @@ def atualizar_dados_cliente(id_cliente: int, payload: ClientePatch, db: Session 
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email ja cadastrado") from exc
     db.refresh(cliente)
     return cliente
+
+
+@router.patch("/clientes/{id_cliente}/senha", response_model=MessageRead)
+def atualizar_senha_cliente(id_cliente: int, payload: ClienteSenhaPatch, db: Session = Depends(get_db)) -> MessageRead:
+    cliente = _cliente_or_404(db, id_cliente)
+    if not verificar_senha(payload.senha_atual, cliente.senha):
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Senha atual incorreta")
+    cliente.senha = hash_senha(payload.nova_senha)
+    db.commit()
+    return MessageRead(mensagem="Senha atualizada")
 
 
 @router.delete("/clientes/{id_cliente}", status_code=status.HTTP_204_NO_CONTENT)

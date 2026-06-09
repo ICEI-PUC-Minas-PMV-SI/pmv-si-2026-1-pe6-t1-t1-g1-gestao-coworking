@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\senai\\Desktop\\Projetos\\PUC-Eixo6\\backend\\API Sala\\coworking-salas.csproj": {}
+    "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\backend\\API Sala\\coworking-salas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\senai\\Desktop\\Projetos\\PUC-Eixo6\\backend\\API Sala\\coworking-salas.csproj": {
+    "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\backend\\API Sala\\coworking-salas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\senai\\Desktop\\Projetos\\PUC-Eixo6\\backend\\API Sala\\coworking-salas.csproj",
+        "projectUniqueName": "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\backend\\API Sala\\coworking-salas.csproj",
         "projectName": "coworking-salas",
-        "projectPath": "C:\\Users\\senai\\Desktop\\Projetos\\PUC-Eixo6\\backend\\API Sala\\coworking-salas.csproj",
+        "projectPath": "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\backend\\API Sala\\coworking-salas.csproj",
         "packagesPath": "C:\\Users\\senai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\senai\\Desktop\\Projetos\\PUC-Eixo6\\backend\\API Sala\\obj\\",
+        "outputPath": "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\backend\\API Sala\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\senai\\AppData\\Roaming\\NuGet\\NuGet.Config"

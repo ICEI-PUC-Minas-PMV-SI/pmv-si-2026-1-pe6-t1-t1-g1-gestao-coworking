@@ -3,213 +3,374 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Axis Working - Entrar</title>
+  <title>Axis Work — Entrar</title>
   <style>
+    /* ── Design tokens ─────────────────────────────── */
     :root {
-      --navy: #0A2A47;
-      --blue: #5D7893;
-      --line: #E5E5E5;
-      --muted: #878787;
-      --ink: #101010;
-      --white: #FFFFFF;
-      --danger: #8A3A3A;
-      --success: #3F6B4D;
+      --aw-navy:        #0A2A44;
+      --aw-navy-soft:   #1F3A57;
+      --aw-blue:        #5B7A99;
+      --aw-blue-light:  #8FADC8;
+      --aw-blue-pale:   #CAD6E2;
+      --aw-blue-ghost:  #EBF1F6;
+      --aw-bg:          #F4F7FA;
+      --aw-surface:     #FFFFFF;
+      --aw-ink:         #111827;
+      --aw-muted:       #6B7A8A;
+      --aw-border:      #DDE3EA;
+      --aw-success:     #4A7A57;
+      --aw-success-bg:  #EBF4EE;
+      --aw-danger:      #8A3A3A;
+      --aw-danger-bg:   #FAF0F0;
+      --aw-admin-color: #5B3A8A;
+      --aw-admin-bg:    #F3EEFB;
+      --aw-shadow-sm:   0 2px 8px rgba(10, 42, 68, .06);
+      --aw-shadow-lg:   0 10px 30px rgba(10, 42, 68, .12);
+      --aw-radius-md:   16px;
+      --aw-radius-lg:   24px;
+      --aw-radius-pill: 9999px;
+      --aw-font:        Arial, Helvetica, sans-serif;
+      --aw-transition:  0.25s ease;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100vh;
-      background: var(--navy);
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
+      background: var(--aw-navy);
+      color: var(--aw-ink);
+      font-family: var(--aw-font);
+      display: flex;
+      flex-direction: column;
     }
 
-    .top {
-      height: 74px;
+    /* ── Barra superior ──────────────────────────────── */
+    .topbar {
+      height: 68px;
+      background: var(--aw-surface);
+      border-bottom: 1px solid var(--aw-border);
       display: flex;
       align-items: center;
-      padding-left: 9%;
-      background: var(--white);
-      border-bottom: 1px solid var(--line);
+      padding: 0 9%;
+      gap: 12px;
+      flex-shrink: 0;
     }
 
-    .logo { width: 72px; height: 46px; color: var(--navy); }
-
-    .stage {
-      min-height: calc(100vh - 74px);
-      display: grid;
-      place-items: center;
-      padding: 46px 20px;
+    .topbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
     }
 
-    .card {
-      width: min(490px, 100%);
-      min-height: 548px;
-      padding: 48px 34px 40px;
-      background: var(--white);
-      border-radius: 18px;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
-    }
+    .logo-svg { width: 40px; height: 26px; color: var(--aw-navy); }
 
-    h1 {
-      margin-bottom: 42px;
-      font-size: 28px;
-      line-height: 1;
-      font-weight: 700;
-    }
-
-    .field { margin-bottom: 32px; }
-
-    input {
-      width: 100%;
-      height: 58px;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 0 24px;
-      background: var(--white);
-      color: var(--ink);
-      font: inherit;
-      font-size: 20px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
-      outline: none;
-    }
-
-    input::placeholder { color: #9A9A9A; }
-
-    input:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(93, 120, 147, 0.16);
-    }
-
-    button {
-      width: 100%;
-      height: 58px;
-      margin-top: 14px;
-      border: none;
-      border-radius: 20px;
-      background: var(--navy);
-      color: var(--white);
-      font: inherit;
+    .logo-name {
       font-size: 18px;
       font-weight: 700;
-      letter-spacing: 0;
-      cursor: pointer;
+      color: var(--aw-navy);
     }
 
-    button:disabled { opacity: .65; cursor: wait; }
-
-    .register {
-      margin-top: 54px;
-      text-align: center;
-      color: #333;
-      font-size: 20px;
+    /* ── Área principal ──────────────────────────────── */
+    .stage {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      padding: 48px 20px;
     }
 
-    .register a { color: inherit; text-decoration: none; font-weight: 700; }
+    .wrapper {
+      width: min(440px, 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
 
-    .message {
-      min-height: 20px;
-      margin-top: 18px;
-      text-align: center;
-      color: var(--muted);
+    /* ── Cabeçalho da marca (acima do card) ─────────── */
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--aw-blue-ghost);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--aw-navy);
+      font-size: 18px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .brand-title { color: var(--aw-blue-ghost); font-size: 22px; font-weight: 800; }
+    .brand-sub   { color: var(--aw-blue-pale);  font-size: 13px; margin-top: 3px; }
+
+    /* ── Card de login ───────────────────────────────── */
+    .card {
+      background: var(--aw-surface);
+      border-radius: var(--aw-radius-lg);
+      padding: 40px 36px 36px;
+      box-shadow: var(--aw-shadow-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .card-head { display: flex; flex-direction: column; gap: 6px; }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--aw-muted);
+    }
+
+    .card h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--aw-ink);
+      line-height: 1.15;
+    }
+
+    .card-copy {
       font-size: 14px;
-      font-weight: 700;
+      color: var(--aw-muted);
+      line-height: 1.6;
     }
 
-    .message.success { color: var(--success); }
-    .message.error { color: var(--danger); }
+    /* ── Campos ──────────────────────────────────────── */
+    .fields { display: flex; flex-direction: column; gap: 16px; }
 
-    @media (max-width: 640px) {
-      .top { padding-left: 28px; }
-      .card { min-height: auto; padding: 34px 24px; }
-      h1 { margin-bottom: 30px; }
-      input, button { height: 52px; font-size: 16px; }
-      .register { font-size: 16px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+
+    .field label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--aw-navy-soft);
+    }
+
+    .field input {
+      height: 52px;
+      border: 1.5px solid var(--aw-border);
+      border-radius: var(--aw-radius-md);
+      padding: 0 18px;
+      background: var(--aw-surface);
+      color: var(--aw-ink);
+      font: inherit;
+      font-size: 15px;
+      outline: none;
+      transition: border-color var(--aw-transition), box-shadow var(--aw-transition);
+    }
+
+    .field input::placeholder { color: var(--aw-muted); }
+
+    .field input:focus {
+      border-color: var(--aw-blue);
+      box-shadow: 0 0 0 3px rgba(91, 122, 153, 0.16);
+    }
+
+    /* ── Botão principal ─────────────────────────────── */
+    .btn-submit {
+      height: 52px;
+      border: none;
+      border-radius: var(--aw-radius-pill);
+      background: var(--aw-navy);
+      color: #fff;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--aw-transition), opacity var(--aw-transition);
+    }
+
+    .btn-submit:hover    { background: var(--aw-navy-soft); }
+    .btn-submit:disabled { opacity: 0.6; cursor: wait; }
+
+    /* ── Mensagem de feedback ────────────────────────── */
+    .feedback {
+      min-height: 18px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--aw-muted);
+      border-radius: var(--aw-radius-md);
+      padding: 0;
+      transition: all var(--aw-transition);
+    }
+
+    .feedback.error {
+      color: var(--aw-danger);
+      background: var(--aw-danger-bg);
+      padding: 10px 14px;
+      border: 1px solid #D9A0A0;
+    }
+
+    .feedback.success {
+      color: var(--aw-success);
+      background: var(--aw-success-bg);
+      padding: 10px 14px;
+    }
+
+    /* ── Link de cadastro ────────────────────────────── */
+    .footer-link {
+      text-align: center;
+      font-size: 14px;
+      color: var(--aw-blue-pale);
+    }
+
+    .footer-link a {
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer-link a:hover { text-decoration: underline; }
+
+    /* ── Responsivo ──────────────────────────────────── */
+    @media (max-width: 540px) {
+      .topbar    { padding: 0 20px; }
+      .card      { padding: 30px 22px; }
+      .card h1   { font-size: 22px; }
     }
   </style>
 </head>
 <body>
-  <header class="top">
-    <svg class="logo" viewBox="0 0 64 50" aria-label="Axis Working">
-      <path d="M2 48 L18 4 L26 4 L32 22 L38 4 L46 4 L62 48 L52 48 L42 22 L36 38 L32 28 L28 38 L22 22 L12 48 Z" fill="currentColor"/>
-    </svg>
+
+  <!-- Barra superior -->
+  <header class="topbar">
+    <a class="topbar-logo" href="index.html">
+      <svg class="logo-svg" viewBox="0 0 64 50" aria-hidden="true">
+        <path d="M2 48 L18 4 L26 4 L32 22 L38 4 L46 4 L62 48 L52 48 L42 22 L36 38 L32 28 L28 38 L22 22 L12 48 Z" fill="currentColor"/>
+      </svg>
+      <span class="logo-name">Axis Work</span>
+    </a>
   </header>
 
+  <!-- Área principal -->
   <main class="stage">
-    <section class="card" aria-labelledby="loginTitle">
-      <h1 id="loginTitle">Entrar</h1>
-      <form id="loginForm">
-        <div class="field">
-          <input id="cpf" name="cpf" type="text" inputmode="numeric" autocomplete="username" placeholder="Usuário" required />
+    <div class="wrapper">
+
+      <!-- Marca -->
+      <div class="brand-header">
+        <div class="brand-icon">AW</div>
+        <div>
+          <div class="brand-title">Axis Work</div>
+          <div class="brand-sub">Espaço de trabalho inteligente</div>
         </div>
-        <div class="field">
-          <input id="senha" name="senha" type="password" autocomplete="current-password" placeholder="Senha" required />
+      </div>
+
+      <!-- Card -->
+      <section class="card" aria-labelledby="loginTitle">
+        <div class="card-head">
+          <span class="eyebrow">Acesso à plataforma</span>
+          <h1 id="loginTitle">Entrar</h1>
+          <p class="card-copy">Use seu CPF e senha para acessar. Administradores são redirecionados automaticamente ao painel de controle.</p>
         </div>
-        <button id="loginButton" type="submit">ENTRAR</button>
-        <div id="message" class="message"></div>
-      </form>
-      <p class="register">Novo na Axis Working? <a href="cadastro.html">Cadastrar</a></p>
-    </section>
+
+        <form id="loginForm" class="fields" novalidate>
+          <div class="field">
+            <label for="cpf">CPF</label>
+            <input id="cpf" name="cpf" type="text" inputmode="numeric" autocomplete="username" placeholder="00000000000" maxlength="11" required />
+          </div>
+          <div class="field">
+            <label for="senha">Senha</label>
+            <input id="senha" name="senha" type="password" autocomplete="current-password" placeholder="Digite sua senha" required />
+          </div>
+
+          <div id="feedback" class="feedback" role="alert" aria-live="polite"></div>
+
+          <button id="loginBtn" class="btn-submit" type="submit">Entrar</button>
+        </form>
+      </section>
+
+      <p class="footer-link">Novo na Axis Work? <a href="cadastro.html">Criar conta</a></p>
+    </div>
   </main>
 
   <script>
-    const API_BASE_URL = 'http://127.0.0.1:8001/api';
-    const form = document.getElementById('loginForm');
-    const message = document.getElementById('message');
-    const button = document.getElementById('loginButton');
+    /* ── Configuração ────────────────────────────────── */
+    const API_BASE = 'http://127.0.0.1:8000';   // API Usuário (auth + admin)
 
-    function setMessage(text, type = '') {
-      message.textContent = text;
-      message.className = `message ${type}`.trim();
+    const form     = document.getElementById('loginForm');
+    const feedback = document.getElementById('feedback');
+    const btn      = document.getElementById('loginBtn');
+
+    /* Preenche CPF a partir da query string (vindo do cadastro) */
+    const params = new URLSearchParams(location.search);
+    if (params.get('cpf')) document.getElementById('cpf').value = params.get('cpf');
+
+    /* Máscara CPF — só números */
+    document.getElementById('cpf').addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 11);
+    });
+
+    function setFeedback(text, type = '') {
+      feedback.textContent = text;
+      feedback.className = `feedback ${type}`.trim();
     }
 
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-      const cpf = document.getElementById('cpf').value.replace(/\D/g, '');
+      const cpf   = document.getElementById('cpf').value.replace(/\D/g, '');
       const senha = document.getElementById('senha').value;
 
-      button.disabled = true;
-      setMessage('Realizando login...');
+      if (!cpf || !senha) {
+        setFeedback('Informe CPF e senha.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      setFeedback('Verificando credenciais…');
 
       try {
-        const response = await fetch(`${API_BASE_URL}/login`, {
+        const res  = await fetch(`${API_BASE}/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ cpf, senha }),
         });
-        const data = await response.json();
+        const data = await res.json();
 
-        if (!response.ok) {
-          setMessage(data.detail || 'CPF ou senha inválidos.', 'error');
+        /* Trata erros retornados pelo servidor */
+        if (data.erro) {
+          setFeedback(data.erro, 'error');
+          return;
+        }
+        if (!res.ok) {
+          setFeedback(data.detail || 'CPF ou senha inválidos.', 'error');
           return;
         }
 
-        const clientesResponse = await fetch(`${API_BASE_URL}/clientes`, {
-          headers: { Authorization: `${data.token_type || 'bearer'} ${data.access_token}` },
-        });
-        const clientes = clientesResponse.ok ? await clientesResponse.json() : [];
-        const cliente = clientes.find((item) => item.cpf === cpf);
-
-        if (!cliente) {
-          setMessage('Login feito, mas o cliente não foi localizado.', 'error');
-          return;
-        }
-
-        localStorage.setItem('axisAuth', JSON.stringify({
-          token: data.access_token,
+        /* Salva sessão no localStorage */
+        const auth = {
+          token:     data.access_token,
           tokenType: data.token_type || 'bearer',
-          cliente,
-        }));
+          cliente:   data.cliente,          // inclui is_admin
+        };
+        localStorage.setItem('axisAuth', JSON.stringify(auth));
 
-        setMessage('Login realizado. Redirecionando...', 'success');
-        window.location.href = 'gerenciamento-conta.html';
-      } catch (error) {
-        console.error(error);
-        setMessage('Erro ao conectar com o servidor.', 'error');
+        setFeedback('Login realizado. Redirecionando…', 'success');
+
+        /* Redireciona conforme o papel */
+        setTimeout(() => {
+          window.location.href = data.cliente?.is_admin
+            ? '../admin-dashboard/admin-coworking.html'
+            : 'gerenciamento-conta.html';
+        }, 600);
+
+      } catch (err) {
+        console.error(err);
+        setFeedback('Erro ao conectar com o servidor. Verifique se a API está rodando.', 'error');
       } finally {
-        button.disabled = false;
+        btn.disabled = false;
       }
     });
   </script>

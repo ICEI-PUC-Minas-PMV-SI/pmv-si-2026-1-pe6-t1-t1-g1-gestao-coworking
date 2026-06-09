@@ -2703,11 +2703,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\senai\\Desktop\\Projetos\\PUC-Eixo6\\backend\\API Avaliacao\\AvaliacaoApi.csproj",
+      "projectUniqueName": "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\backend\\API Avaliacao\\AvaliacaoApi.csproj",
       "projectName": "AvaliacaoApi",
-      "projectPath": "C:\\Users\\senai\\Desktop\\Projetos\\PUC-Eixo6\\backend\\API Avaliacao\\AvaliacaoApi.csproj",
+      "projectPath": "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\backend\\API Avaliacao\\AvaliacaoApi.csproj",
       "packagesPath": "C:\\Users\\senai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\senai\\Desktop\\Projetos\\PUC-Eixo6\\backend\\API Avaliacao\\obj\\",
+      "outputPath": "C:\\Users\\senai\\Documents\\GitHub\\pmv-si-2026-1-pe6-t1-t1-g1-gestao-coworking\\src\\backend\\API Avaliacao\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\senai\\AppData\\Roaming\\NuGet\\NuGet.Config"

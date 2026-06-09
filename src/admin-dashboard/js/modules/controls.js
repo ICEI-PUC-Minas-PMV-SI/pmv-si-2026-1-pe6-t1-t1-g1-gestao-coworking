@@ -3,6 +3,7 @@
 
 function bindStaticControls() {
   bindMobileSidebar();
+  bindAdminProfile();
 
   document.querySelectorAll('.nav a[data-page]').forEach((link) => {
     link.classList.toggle('is-active', link.dataset.page === currentPage);

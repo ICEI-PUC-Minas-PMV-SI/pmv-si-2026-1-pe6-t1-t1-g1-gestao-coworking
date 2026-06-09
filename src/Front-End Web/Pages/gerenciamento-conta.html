@@ -4,138 +4,207 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Axis Working - Minha conta</title>
+  <link rel="stylesheet" href="../css/variables.css" />
   <style>
-    :root {
-      --navy: #0A2A47;
-      --blue: #607D99;
-      --blue-soft: #C9D7E2;
-      --line: #E8E8E8;
-      --muted: #838383;
-      --ink: #111111;
-      --white: #FFFFFF;
-      --panel: #F7F7F7;
-      --danger: #8A3A3A;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ── Reset ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     body {
       min-height: 100vh;
-      background: var(--white);
-      color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
+      background: var(--aw-bg);
+      color: var(--aw-ink);
+      font-family: var(--aw-font);
     }
 
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
 
+    /* ── Layout ─────────────────────────────────────── */
     .app {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 284px 1fr;
-      grid-template-rows: 74px 1fr;
+      grid-template-columns: 268px 1fr;
+      grid-template-rows: 72px 1fr;
     }
 
+    /* ── Sidebar ─────────────────────────────────────── */
     .sidebar {
       grid-row: 1 / -1;
-      border-right: 1px solid var(--line);
-      background: var(--white);
-      padding: 24px 22px;
+      background: var(--aw-surface);
+      border-right: 1px solid var(--aw-border);
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
     }
 
     .logo {
-      width: 76px;
-      height: 48px;
-      margin: 0 auto 70px;
+      width: 72px;
+      height: 46px;
+      margin: 0 auto 32px;
       display: block;
-      color: var(--navy);
+      color: var(--aw-navy);
     }
+
+    /* ── Badge de papel ─────────────────────────────── */
+    .role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: var(--aw-radius-pill);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin: 0 auto 28px;
+    }
+
+    .role-badge.admin {
+      background: var(--aw-admin-bg);
+      color: var(--aw-admin-color);
+    }
+
+    .role-badge.user {
+      background: var(--aw-blue-ghost);
+      color: var(--aw-blue);
+    }
+
+    .role-badge svg { flex-shrink: 0; }
 
     .side-nav {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      font-size: 22px;
+      gap: 4px;
+      font-size: 15px;
     }
 
     .side-nav a,
     .side-nav button {
       width: 100%;
-      min-height: 46px;
+      min-height: 44px;
       display: flex;
       align-items: center;
-      padding: 0 36px;
+      gap: 10px;
+      padding: 0 18px;
       border: none;
-      border-radius: 18px;
+      border-radius: var(--aw-radius-md);
       background: transparent;
-      color: var(--ink);
+      color: var(--aw-ink-soft);
       font: inherit;
+      font-size: 15px;
       text-align: left;
       cursor: pointer;
+      transition: background var(--aw-transition), color var(--aw-transition);
+    }
+
+    .side-nav a:hover,
+    .side-nav button:hover {
+      background: var(--aw-blue-ghost);
+      color: var(--aw-navy);
     }
 
     .side-nav a.active,
     .side-nav button.active {
-      background: var(--navy);
-      color: var(--white);
+      background: var(--aw-navy);
+      color: #fff;
+      font-weight: 600;
     }
 
+    .nav-divider {
+      height: 1px;
+      background: var(--aw-border);
+      margin: 12px 4px;
+    }
+
+    .nav-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--aw-muted);
+      padding: 4px 18px 6px;
+    }
+
+    /* Link do painel admin (visível só para admins) */
+    .admin-link {
+      color: var(--aw-admin-color) !important;
+    }
+
+    .admin-link:hover {
+      background: var(--aw-admin-bg) !important;
+    }
+
+    .sidebar-bottom {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--aw-border);
+    }
+
+    /* ── Topbar ──────────────────────────────────────── */
     .topbar {
       grid-column: 2;
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: 14px;
-      padding: 0 48px;
-      border-bottom: 1px solid var(--line);
-      background: var(--white);
+      gap: 12px;
+      padding: 0 40px;
+      border-bottom: 1px solid var(--aw-border);
+      background: var(--aw-surface);
       position: sticky;
       top: 0;
       z-index: 20;
     }
 
+    .topbar-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--aw-ink-soft);
+    }
+
     .icon-btn,
     .profile-btn {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
       border: none;
-      border-radius: 999px;
+      border-radius: var(--aw-radius-pill);
       background: transparent;
-      color: var(--navy);
+      color: var(--aw-navy);
       cursor: pointer;
       position: relative;
+      transition: background var(--aw-transition);
     }
+
+    .icon-btn:hover, .profile-btn:hover { background: var(--aw-blue-ghost); }
 
     .notification-count {
       position: absolute;
-      top: 0;
-      right: 0;
-      min-width: 18px;
-      height: 18px;
+      top: 0; right: 0;
+      min-width: 18px; height: 18px;
       display: none;
       place-items: center;
       padding: 0 5px;
-      border-radius: 999px;
-      background: var(--danger);
-      color: var(--white);
-      font-size: 11px;
+      border-radius: var(--aw-radius-pill);
+      background: var(--aw-danger);
+      color: #fff;
+      font-size: 10px;
       font-weight: 700;
     }
 
     .notification-panel {
       position: absolute;
-      top: 64px;
-      right: 48px;
+      top: 66px; right: 40px;
       width: 360px;
       display: none;
       overflow: hidden;
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      box-shadow: 0 16px 34px rgba(10, 42, 71, .14);
+      background: var(--aw-surface);
+      border: 1px solid var(--aw-border);
+      border-radius: var(--aw-radius-md);
+      box-shadow: var(--aw-shadow-lg);
       z-index: 40;
     }
 
@@ -145,174 +214,279 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 22px;
-      border-bottom: 1px solid var(--line);
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--aw-border);
       font-weight: 700;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .notification-close {
       border: none;
       background: transparent;
-      color: #6B7A8A;
-      font: inherit;
-      font-size: 28px;
+      color: var(--aw-muted);
+      font-size: 26px;
       cursor: pointer;
+      line-height: 1;
     }
 
     .notification-actions {
       display: flex;
       gap: 8px;
-      padding: 12px 18px;
-      border-bottom: 1px solid var(--line);
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--aw-border);
     }
 
     .notification-actions button,
     .notification-actions a {
-      min-height: 34px;
+      min-height: 32px;
       display: inline-flex;
       align-items: center;
       border: none;
-      border-radius: 14px;
+      border-radius: var(--aw-radius-sm);
       padding: 0 12px;
-      background: var(--blue);
-      color: var(--white);
+      background: var(--aw-blue);
+      color: #fff;
       font: inherit;
       font-size: 13px;
       cursor: pointer;
+      transition: background var(--aw-transition);
     }
 
+    .notification-actions button:hover,
+    .notification-actions a:hover { background: var(--aw-navy); }
+
+    /* ── Área principal ──────────────────────────────── */
     .page {
       grid-column: 2;
-      width: min(960px, calc(100% - 84px));
-      padding: 24px 0 60px 34px;
+      width: min(1000px, calc(100% - 64px));
+      padding: 32px 0 72px 40px;
     }
 
     .view { display: none; }
     .view.active { display: block; }
 
-    .page-head {
-      margin: 0 0 24px;
-    }
+    .page-head { margin: 0 0 28px; }
 
     .page-head h1 {
-      font-size: 28px;
+      font-size: 26px;
       line-height: 1.2;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      color: var(--aw-navy);
     }
 
     .page-head p {
-      color: #4A4A4A;
-      font-size: 18px;
-      line-height: 1.3;
-      max-width: 760px;
+      color: var(--aw-muted);
+      font-size: 15px;
+      max-width: 680px;
     }
 
+    /* ── Cards ────────────────────────────────────────── */
     .form-card,
     .plan-card,
     .reserve-card,
-    .simple-card {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: var(--white);
-      box-shadow: 0 2px 7px rgba(0, 0, 0, .04);
+    .simple-card,
+    .info-card {
+      border: 1px solid var(--aw-border);
+      border-radius: var(--aw-radius-md);
+      background: var(--aw-surface);
+      box-shadow: var(--aw-shadow-sm);
     }
 
     .form-card {
       overflow: hidden;
-      padding: 30px 26px 0;
+      padding: 28px 26px 0;
+      margin-bottom: 20px;
     }
 
     .form-card h2,
     .simple-card h2 {
-      font-size: 20px;
-      font-weight: 400;
-      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--aw-navy);
+      margin-bottom: 6px;
     }
 
     .form-card p,
     .simple-card p {
-      color: #565656;
-      font-size: 18px;
-      margin-bottom: 32px;
+      color: var(--aw-muted);
+      font-size: 14px;
+      margin-bottom: 28px;
     }
 
+    /* ── Card de admin ────────────────────────────────── */
+    .admin-info-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      background: var(--aw-admin-bg);
+      border: 1px solid rgba(91, 58, 138, .2);
+      border-radius: var(--aw-radius-md);
+    }
+
+    .admin-info-card .admin-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: var(--aw-radius-sm);
+      background: var(--aw-admin-color);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+    }
+
+    .admin-info-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--aw-admin-color);
+      margin-bottom: 4px;
+    }
+
+    .admin-info-card p { font-size: 14px; color: var(--aw-ink-soft); }
+
+    /* ── Ações rápidas de admin ───────────────────────── */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .quick-action-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 18px 20px;
+      border: 1px solid var(--aw-border);
+      border-radius: var(--aw-radius-md);
+      background: var(--aw-surface);
+      color: var(--aw-ink-soft);
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color var(--aw-transition), box-shadow var(--aw-transition), transform var(--aw-transition);
+    }
+
+    .quick-action-card:hover {
+      border-color: var(--aw-navy);
+      box-shadow: var(--aw-shadow-sm);
+      transform: translateY(-2px);
+      color: var(--aw-navy);
+    }
+
+    .quick-action-card .qa-icon {
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .quick-action-card strong {
+      display: block;
+      font-size: 15px;
+      color: var(--aw-navy);
+      margin-bottom: 2px;
+    }
+
+    /* ── Grade de perfil ──────────────────────────────── */
     .profile-grid {
       display: grid;
-      grid-template-columns: 180px minmax(260px, 444px);
-      gap: 48px 28px;
+      grid-template-columns: 160px minmax(240px, 420px);
+      gap: 24px 28px;
       align-items: center;
-      padding-bottom: 46px;
+      padding-bottom: 44px;
     }
 
-    label {
-      color: var(--muted);
-      font-size: 18px;
-    }
+    label { color: var(--aw-muted); font-size: 14px; }
 
     input {
       width: 100%;
-      height: 48px;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: var(--white);
-      color: var(--ink);
+      height: 46px;
+      border: 1px solid var(--aw-border);
+      border-radius: var(--aw-radius-pill);
+      background: var(--aw-surface);
+      color: var(--aw-ink);
       font: inherit;
-      font-size: 17px;
-      padding: 0 20px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, .05);
+      font-size: 16px;
+      padding: 0 18px;
+      box-shadow: 0 2px 6px rgba(10,42,68,.04);
       outline: none;
+      transition: border-color var(--aw-transition), box-shadow var(--aw-transition);
     }
 
     input:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(96, 125, 153, .14);
+      border-color: var(--aw-blue);
+      box-shadow: 0 0 0 3px rgba(91, 122, 153, .14);
     }
 
+    input:disabled {
+      background: var(--aw-panel);
+      color: var(--aw-muted);
+      cursor: not-allowed;
+    }
+
+    /* ── Rodapé do card ───────────────────────────────── */
     .card-foot {
       margin: 0 -26px;
-      min-height: 66px;
+      min-height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 12px 28px 12px 52px;
-      background: var(--blue-soft);
-      color: #4A4A4A;
-      font-size: 15px;
+      padding: 12px 26px;
+      background: var(--aw-blue-ghost);
+      color: var(--aw-muted);
+      font-size: 14px;
+      border-top: 1px solid var(--aw-border);
     }
 
+    /* ── Botões ───────────────────────────────────────── */
     .primary-btn,
     .muted-btn,
     .danger-btn,
+    .ghost-btn,
     .logout {
-      min-height: 44px;
+      min-height: 42px;
       border: none;
-      border-radius: 18px;
-      padding: 0 28px;
-      color: var(--white);
-      background: var(--navy);
+      border-radius: var(--aw-radius-pill);
+      padding: 0 24px;
+      color: #fff;
+      background: var(--aw-navy);
       font: inherit;
-      font-size: 19px;
+      font-size: 15px;
+      font-weight: 500;
       cursor: pointer;
+      transition: background var(--aw-transition), transform var(--aw-transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
     }
 
-    .muted-btn { background: var(--blue); }
+    .primary-btn:hover { background: var(--aw-navy-soft); }
+    .muted-btn  { background: var(--aw-blue); }
+    .muted-btn:hover { background: var(--aw-navy); }
     .danger-btn { background: #969696; }
-    .logout { background: var(--danger); }
+    .ghost-btn  { background: transparent; color: var(--aw-navy); border: 1px solid var(--aw-border); }
+    .ghost-btn:hover { background: var(--aw-blue-ghost); }
+    .logout     { background: var(--aw-danger); }
+    .logout:hover { background: #7a2f2f; }
 
+    /* ── Card de plano ────────────────────────────────── */
     .plan-card {
       display: grid;
-      grid-template-columns: 304px 1fr;
+      grid-template-columns: 280px 1fr;
       overflow: hidden;
-      margin-top: 36px;
+      margin-top: 24px;
     }
 
     .plan-main {
-      min-height: 315px;
-      padding: 40px 32px 16px;
-      background: var(--navy);
-      color: var(--white);
+      min-height: 300px;
+      padding: 36px 28px 20px;
+      background: var(--aw-navy);
+      color: #fff;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -320,27 +494,20 @@
 
     .plan-main small {
       display: block;
-      margin-bottom: 42px;
-      font-size: 16px;
+      margin-bottom: 38px;
+      font-size: 11px;
       font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .7;
     }
 
-    .plan-main h2 {
-      font-size: 22px;
-      margin-bottom: 14px;
-    }
-
-    .plan-main p {
-      font-size: 18px;
-    }
-
-    .plan-price {
-      font-size: 24px;
-      font-weight: 700;
-    }
+    .plan-main h2 { font-size: 20px; margin-bottom: 10px; }
+    .plan-main p  { font-size: 15px; opacity: .85; }
+    .plan-price   { font-size: 22px; font-weight: 700; margin-top: 24px; }
 
     .plan-detail {
-      padding: 26px 30px 26px;
+      padding: 24px 28px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -349,48 +516,51 @@
     .detail-row {
       display: flex;
       justify-content: space-between;
-      gap: 28px;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 18px;
+      gap: 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--aw-border);
+      color: var(--aw-muted);
+      font-size: 14px;
     }
+
+    .detail-row strong { color: var(--aw-ink); }
 
     .benefit {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 14px 0 26px;
-      padding: 9px 22px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      color: var(--muted);
-      font-size: 16px;
-      box-shadow: 0 2px 7px rgba(0, 0, 0, .04);
+      margin: 16px 0 24px;
+      padding: 10px 20px;
+      border: 1px solid var(--aw-border);
+      border-radius: var(--aw-radius-md);
+      color: var(--aw-muted);
+      font-size: 14px;
+      box-shadow: var(--aw-shadow-sm);
     }
 
+    /* ── Reservas ─────────────────────────────────────── */
     .reserve-list,
     .review-list,
     .full-notification-list {
       display: flex;
       flex-direction: column;
       gap: 16px;
-      margin-top: 44px;
+      margin-top: 28px;
     }
 
     .reserve-card {
-      min-height: 184px;
+      min-height: 170px;
       display: grid;
-      grid-template-columns: 154px 1fr auto;
-      gap: 20px;
+      grid-template-columns: 140px 1fr auto;
+      gap: 18px;
       align-items: center;
-      padding: 20px 22px 20px 14px;
+      padding: 18px 20px 18px 14px;
     }
 
     .room-thumb {
-      width: 154px;
-      height: 154px;
-      border-radius: 16px;
+      width: 140px;
+      height: 140px;
+      border-radius: var(--aw-radius-md);
       overflow: hidden;
       background:
         linear-gradient(90deg, rgba(255,255,255,.5) 0 1px, transparent 1px 18px),
@@ -402,37 +572,25 @@
     .room-thumb::before {
       content: "";
       position: absolute;
-      left: 24px;
-      right: 18px;
-      bottom: 40px;
-      height: 34px;
+      left: 22px; right: 16px; bottom: 36px;
+      height: 30px;
       background: #2D302F;
       border-radius: 3px;
-      box-shadow: 0 18px 0 #1E2322;
+      box-shadow: 0 16px 0 #1E2322;
       transform: perspective(120px) rotateX(18deg);
     }
 
     .room-thumb::after {
       content: "";
       position: absolute;
-      left: 28px;
-      right: 22px;
-      top: 24px;
-      height: 68px;
+      left: 26px; right: 20px; top: 22px;
+      height: 60px;
       background: repeating-linear-gradient(90deg, #DBDED7 0 8px, #6F7F72 8px 10px);
       opacity: .9;
     }
 
-    .reserve-info h2 {
-      font-size: 20px;
-      margin-bottom: 14px;
-    }
-
-    .reserve-info p {
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.7;
-    }
+    .reserve-info h2 { font-size: 18px; margin-bottom: 10px; color: var(--aw-navy); }
+    .reserve-info p  { color: var(--aw-muted); font-size: 14px; line-height: 1.7; }
 
     .reserve-actions {
       height: 100%;
@@ -440,175 +598,216 @@
       flex-direction: column;
       align-items: flex-end;
       justify-content: space-between;
-      padding: 12px 0 0;
+      padding: 8px 0;
     }
 
     .status {
       display: inline-flex;
       align-items: center;
-      min-height: 38px;
-      padding: 0 16px;
-      border-radius: 18px;
-      background: var(--blue);
-      color: var(--white);
-      font-size: 17px;
+      min-height: 34px;
+      padding: 0 14px;
+      border-radius: var(--aw-radius-pill);
+      background: var(--aw-blue);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
     }
 
+    .status.finalizada  { background: var(--aw-muted); }
+    .status.confirmada  { background: var(--aw-success); }
+    .status.cancelada   { background: var(--aw-danger); }
+
+    /* ── Notificações & avaliações ──────────────────── */
     .notification-item,
     .review-item {
       display: flex;
-      gap: 16px;
-      padding: 18px 22px;
-      border-bottom: 1px solid var(--line);
+      gap: 14px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--aw-border);
     }
 
     .full-notification-list .notification-item,
     .review-list .review-item {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      box-shadow: 0 2px 7px rgba(0, 0, 0, .04);
+      border: 1px solid var(--aw-border);
+      border-radius: var(--aw-radius-md);
+      box-shadow: var(--aw-shadow-sm);
     }
 
     .section-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .section-actions .logout {
-      margin-top: 0;
+      gap: 10px;
+      margin-top: 16px;
     }
 
     .notification-marker {
-      width: 12px;
-      height: 12px;
+      width: 10px; height: 10px;
       flex: 0 0 auto;
       margin-top: 6px;
-      border-radius: 999px;
-      background: var(--navy);
+      border-radius: var(--aw-radius-pill);
+      background: var(--aw-navy);
     }
 
-    .notification-marker.read { background: #A9BDCB; }
+    .notification-marker.read { background: var(--aw-blue-pale); }
 
     .notification-item strong,
-    .review-item strong {
-      display: block;
-      font-size: 17px;
-      margin-bottom: 6px;
-    }
+    .review-item strong { display: block; font-size: 15px; margin-bottom: 4px; color: var(--aw-ink); }
 
     .notification-item span,
-    .review-item span {
-      display: block;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.4;
-    }
+    .review-item span { display: block; color: var(--aw-muted); font-size: 13px; line-height: 1.4; }
 
-    .stars {
-      color: var(--navy);
-      white-space: nowrap;
-      font-size: 18px;
-    }
+    .stars { color: var(--aw-navy); white-space: nowrap; font-size: 18px; }
 
-    .review-item {
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .review-content {
-      flex: 1;
-    }
+    .review-item { justify-content: space-between; align-items: flex-start; }
+    .review-content { flex: 1; }
 
     .review-edit {
       display: grid;
-      grid-template-columns: 120px minmax(180px, 1fr) auto auto;
-      gap: 10px;
+      grid-template-columns: 110px minmax(160px, 1fr) auto auto;
+      gap: 8px;
       width: 100%;
-      margin-top: 12px;
+      margin-top: 10px;
       align-items: end;
     }
 
     .review-edit select,
     .review-edit textarea {
       width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 10px 12px;
-      background: var(--white);
-      color: var(--ink);
+      border: 1px solid var(--aw-border);
+      border-radius: var(--aw-radius-sm);
+      padding: 8px 12px;
+      background: var(--aw-surface);
+      color: var(--aw-ink);
       font: inherit;
-      font-size: 14px;
+      font-size: 13px;
+      outline: none;
     }
 
-    .review-edit textarea {
-      min-height: 44px;
-      resize: vertical;
-    }
+    .review-edit textarea { min-height: 44px; resize: vertical; }
 
+    /* ── Empty state ──────────────────────────────────── */
     .empty {
       padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      color: var(--muted);
-      background: var(--white);
-      font-size: 17px;
-      box-shadow: 0 2px 7px rgba(0, 0, 0, .04);
+      border: 1px solid var(--aw-border);
+      border-radius: var(--aw-radius-md);
+      color: var(--aw-muted);
+      background: var(--aw-surface);
+      font-size: 15px;
+      box-shadow: var(--aw-shadow-sm);
     }
 
-    .logout {
-      margin-top: 44px;
-      font-size: 19px;
-    }
-
-    @media (max-width: 920px) {
+    /* ── Responsivo ───────────────────────────────────── */
+    @media (max-width: 960px) {
       .app { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; }
-      .sidebar {
-        grid-row: auto;
-        padding: 18px;
-        border-right: none;
-        border-bottom: 1px solid var(--line);
-      }
-      .logo { margin: 0 0 18px; }
-      .side-nav { flex-direction: row; overflow-x: auto; font-size: 16px; }
-      .side-nav a, .side-nav button { white-space: nowrap; padding: 0 18px; }
-      .topbar { grid-column: 1; padding: 14px 22px; }
+      .sidebar { grid-row: auto; padding: 18px; border-right: none; border-bottom: 1px solid var(--aw-border); }
+      .logo { margin: 0 0 12px; }
+      .side-nav { flex-direction: row; overflow-x: auto; font-size: 14px; }
+      .side-nav a, .side-nav button { white-space: nowrap; padding: 0 14px; min-height: 38px; }
+      .nav-divider, .nav-section-label { display: none; }
+      .sidebar-bottom { display: none; }
+      .topbar { grid-column: 1; padding: 12px 20px; }
       .page { grid-column: 1; width: calc(100% - 32px); padding: 24px 0 40px; margin: 0 auto; }
       .profile-grid, .plan-card, .reserve-card { grid-template-columns: 1fr; }
-      .reserve-actions { align-items: flex-start; gap: 18px; }
-      .notification-panel { right: 16px; width: min(360px, calc(100vw - 32px)); }
+      .reserve-actions { align-items: flex-start; gap: 12px; }
+      .notification-panel { right: 14px; width: min(360px, calc(100vw - 28px)); }
+      .quick-actions { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .quick-actions { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <div class="app">
+
+    <!-- ═══════════════════════════════════════════════
+         SIDEBAR
+    ═══════════════════════════════════════════════ -->
     <aside class="sidebar">
-      <svg class="logo" viewBox="0 0 64 50" aria-label="Axis Working" onclick="window.location.href = 'index.html'">
-        <path d="M2 48 L18 4 L26 4 L32 22 L38 4 L46 4 L62 48 L52 48 L42 22 L36 38 L32 28 L28 38 L22 22 L12 48 Z" fill="currentColor"/>
-      </svg>
+      <a href="index.html" aria-label="Voltar para o início">
+        <svg class="logo" viewBox="0 0 64 50" aria-label="Axis Working">
+          <path d="M2 48 L18 4 L26 4 L32 22 L38 4 L46 4 L62 48 L52 48 L42 22 L36 38 L32 28 L28 38 L22 22 L12 48 Z" fill="currentColor"/>
+        </svg>
+      </a>
+
+      <!-- Badge de papel — preenchido via JS -->
+      <div id="roleBadge" class="role-badge user" style="display:none">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-7 18a7 7 0 0 1 14 0H5Z"/></svg>
+        <span id="roleBadgeText">Usuário</span>
+      </div>
 
       <nav class="side-nav" aria-label="Menu da conta">
-        <a class="active" href="#conta" data-view-link="conta">Minha Conta</a>
-        <a href="#plano" data-view-link="plano">Meu Plano</a>
-        <a href="#reservas" data-view-link="reservas">Reservas</a>
-        <a href="#notificacoes" data-view-link="notificacoes">Notificação</a>
-        <a href="#avaliacoes" data-view-link="avaliacoes">Avaliações</a>
+        <a class="active" href="#conta" data-view-link="conta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>
+          Minha Conta
+        </a>
+        <a href="#plano" data-view-link="plano">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M8 8h4"/></svg>
+          Meu Plano
+        </a>
+        <a href="#reservas" data-view-link="reservas">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Reservas
+        </a>
+        <a href="#notificacoes" data-view-link="notificacoes">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          Notificações
+        </a>
+        <a href="#avaliacoes" data-view-link="avaliacoes">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Avaliações
+        </a>
+
+        <!-- Seção exclusiva de admin — visível só para admins -->
+        <div id="adminNav" style="display:none">
+          <div class="nav-divider"></div>
+          <div class="nav-section-label">Administração</div>
+          <a href="../admin-dashboard/admin-coworking.html" class="admin-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
+            Painel Admin
+          </a>
+          <a href="../admin-dashboard/pages/users.html" class="admin-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Gerenciar Usuários
+          </a>
+          <a href="../admin-dashboard/pages/rooms.html" class="admin-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Gerenciar Salas
+          </a>
+        </div>
       </nav>
+
+      <div class="sidebar-bottom">
+        <button class="logout" id="logoutButton" type="button" style="width:100%; justify-content:center;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sair
+        </button>
+      </div>
     </aside>
 
+    <!-- ═══════════════════════════════════════════════
+         TOPBAR
+    ═══════════════════════════════════════════════ -->
     <header class="topbar">
-      <button class="icon-btn" id="notificationToggle" type="button" aria-label="Abrir notificações" aria-expanded="false" aria-controls="notificationPanel">
-        <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+      <div class="topbar-user">
+        <span id="topbarUserName" style="font-weight:600;color:var(--aw-navy)"></span>
+        <span id="topbarRoleLabel" style="font-size:12px;background:var(--aw-blue-ghost);color:var(--aw-blue);padding:2px 10px;border-radius:999px;font-weight:700;display:none"></span>
+      </div>
+
+      <button class="icon-btn" id="notificationToggle" type="button"
+              aria-label="Abrir notificações" aria-expanded="false" aria-controls="notificationPanel">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
         <span class="notification-count" id="notificationCount">0</span>
       </button>
       <button class="profile-btn" type="button" aria-label="Perfil">
-        <svg width="42" height="42" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 4.2a3.1 3.1 0 1 1 0 6.2 3.1 3.1 0 0 1 0-6.2Zm0 13.1a7.3 7.3 0 0 1-5.5-2.5c.9-1.7 3-2.8 5.5-2.8s4.6 1.1 5.5 2.8a7.3 7.3 0 0 1-5.5 2.5Z"/></svg>
+        <svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 4.2a3.1 3.1 0 1 1 0 6.2 3.1 3.1 0 0 1 0-6.2Zm0 13.1a7.3 7.3 0 0 1-5.5-2.5c.9-1.7 3-2.8 5.5-2.8s4.6 1.1 5.5 2.8a7.3 7.3 0 0 1-5.5 2.5Z"/></svg>
       </button>
+
       <div class="notification-panel" id="notificationPanel">
         <div class="notification-head">
           <span>Notificações</span>
-          <button class="notification-close" id="notificationClose" type="button" aria-label="Fechar notificações">&times;</button>
+          <button class="notification-close" id="notificationClose" type="button" aria-label="Fechar">&times;</button>
         </div>
         <div class="notification-actions">
           <a href="#notificacoes" id="viewAllNotifications">Ver todas</a>
@@ -618,43 +817,83 @@
       </div>
     </header>
 
+    <!-- ═══════════════════════════════════════════════
+         CONTEÚDO PRINCIPAL
+    ═══════════════════════════════════════════════ -->
     <main class="page">
+
+      <!-- ── Minha Conta ─────────────────────────────── -->
       <section class="view active" id="conta" data-view="conta">
         <div class="page-head">
           <h1>Minha conta</h1>
           <p>Gerencie suas informações pessoais.</p>
         </div>
 
+        <!-- Banner de admin (visível só para admins) -->
+        <div class="admin-info-card" id="adminInfoCard" style="display:none">
+          <div class="admin-icon">🛡</div>
+          <div>
+            <h3>Conta de Administrador</h3>
+            <p>Você tem acesso privilegiado ao sistema. Use o menu lateral para acessar o painel de administração, gerenciar usuários, salas e planos.</p>
+          </div>
+        </div>
+
+        <!-- Ações rápidas de admin -->
+        <div class="quick-actions" id="adminQuickActions" style="display:none">
+          <a href="../admin-dashboard/admin-coworking.html" class="quick-action-card">
+            <span class="qa-icon">📊</span>
+            <strong>Dashboard</strong>
+            Métricas e visão geral
+          </a>
+          <a href="../admin-dashboard/pages/users.html" class="quick-action-card">
+            <span class="qa-icon">👥</span>
+            <strong>Usuários</strong>
+            Gerenciar membros
+          </a>
+          <a href="../admin-dashboard/pages/rooms.html" class="quick-action-card">
+            <span class="qa-icon">🏢</span>
+            <strong>Salas</strong>
+            Gerenciar espaços
+          </a>
+        </div>
+
         <form class="form-card" id="profileForm">
           <h2>Informações pessoais</h2>
-          <p>Atualize seus dados pessoais abaixo.</p>
+          <p>Atualize seus dados cadastrais abaixo.</p>
           <div class="profile-grid">
             <label for="clienteNome">Nome completo</label>
-            <input id="clienteNome" type="text" />
+            <input id="clienteNome" type="text" placeholder="Seu nome completo" />
             <label for="clienteCpf">CPF</label>
-            <input id="clienteCpf" type="text" disabled />
+            <input id="clienteCpf" type="text" disabled title="CPF não pode ser alterado" />
             <label for="clienteEmail">E-mail</label>
-            <input id="clienteEmail" type="email" />
+            <input id="clienteEmail" type="email" placeholder="seu@email.com" />
             <label for="clienteTelefone">Telefone</label>
-            <input id="clienteTelefone" type="text" />
+            <input id="clienteTelefone" type="text" placeholder="(11) 99999-9999" />
           </div>
           <div class="card-foot">
-            <span id="profileMessage">Mantenha seus dados sempre atualizados para uma melhor experiência.</span>
+            <span id="profileMessage">Mantenha seus dados sempre atualizados.</span>
             <button class="muted-btn" type="submit">Salvar Alterações</button>
           </div>
         </form>
+
+        <button class="logout" id="logoutButtonInline" type="button" style="margin-top:8px">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sair da conta
+        </button>
       </section>
 
+      <!-- ── Meu Plano ───────────────────────────────── -->
       <section class="view" id="plano" data-view="plano">
         <div class="page-head">
           <h1>Meu Plano</h1>
-          <p>Aqui você acompanha os detalhes do seu plano atual, pode alterar para outro plano ou cancelar sua assinatura.</p>
+          <p>Acompanhe os detalhes do seu plano atual, altere ou cancele sua assinatura.</p>
         </div>
         <div id="planoCard">
           <div class="empty">Carregando plano...</div>
         </div>
       </section>
 
+      <!-- ── Reservas ────────────────────────────────── -->
       <section class="view" id="reservas" data-view="reservas">
         <div class="page-head">
           <h1>Minhas Reservas</h1>
@@ -665,10 +904,11 @@
         </div>
       </section>
 
+      <!-- ── Notificações ────────────────────────────── -->
       <section class="view" id="notificacoes" data-view="notificacoes">
         <div class="page-head">
           <h1>Notificações</h1>
-          <p>Acompanhe seus avisos, lembretes e confirmações.</p>
+          <p>Avisos, lembretes e confirmações do sistema.</p>
         </div>
         <div class="section-actions">
           <button class="muted-btn" type="button" id="readAllNotificationsPage">Ler todas</button>
@@ -679,29 +919,44 @@
         </div>
       </section>
 
+      <!-- ── Avaliações ──────────────────────────────── -->
       <section class="view" id="avaliacoes" data-view="avaliacoes">
         <div class="page-head">
           <h1>Avaliações</h1>
-          <p>Veja suas avaliações realizadas nas reservas.</p>
+          <p>Veja e edite suas avaliações de espaços reservados.</p>
         </div>
         <div class="review-list" id="avaliacoesList">
           <div class="empty">Carregando avaliações...</div>
         </div>
       </section>
 
-      <button class="logout" id="logoutButton" type="button">Sair</button>
     </main>
   </div>
 
   <script>
-    const API_BASE_URL = 'http://127.0.0.1:8001/api';
-    const API_ROOT_URL = API_BASE_URL.replace(/\/api$/, '');
-    const auth = JSON.parse(localStorage.getItem('axisAuth') || 'null');
+    /* ======================================================
+       Axis Working — Gerenciamento de Conta
+       Suporte a usuário comum e administrador
+    ====================================================== */
+
+    const API_BASE_URL  = 'http://127.0.0.1:8001/api';
+    const API_ROOT_URL  = API_BASE_URL.replace(/\/api$/, '');
+    const auth          = JSON.parse(localStorage.getItem('axisAuth') || 'null');
 
     if (!auth?.cliente?.id_cliente) {
       window.location.href = 'login.html';
     }
 
+    /* ── Detectar papel ─────────────────────────────── */
+    const isAdmin = Boolean(
+      auth?.cliente?.is_admin ||
+      auth?.cliente?.admin ||
+      auth?.cliente?.perfil === 'admin' ||
+      auth?.cliente?.role === 'admin' ||
+      auth?.admin === true
+    );
+
+    /* ── Estado global ──────────────────────────────── */
     const state = {
       cliente: auth?.cliente,
       planos: [],
@@ -713,6 +968,7 @@
       editingReviews: new Set(),
     };
 
+    /* ── Helpers ────────────────────────────────────── */
     const byId = (items, key) => new Map(items.map((item) => [Number(item[key]), item]));
 
     function money(value) {
@@ -743,26 +999,32 @@
       return `${'★'.repeat(total)}${'☆'.repeat(Math.max(0, 5 - total))}`;
     }
 
+    function statusClass(status) {
+      const map = { 'Finalizada': 'finalizada', 'Confirmada': 'confirmada', 'Cancelada': 'cancelada' };
+      return map[status] || '';
+    }
+
+    /* ── API ────────────────────────────────────────── */
     async function request(path) {
-      const response = await fetch(`${API_BASE_URL}${path}`);
-      if (!response.ok) throw new Error(`Erro ${response.status} em ${path}`);
-      return response.json();
+      const res = await fetch(`${API_BASE_URL}${path}`);
+      if (!res.ok) throw new Error(`Erro ${res.status} em ${path}`);
+      return res.json();
     }
 
     async function send(path, options = {}) {
-      const response = await fetch(`${API_BASE_URL}${path}`, {
+      const res = await fetch(`${API_BASE_URL}${path}`, {
         headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
         ...options,
       });
-      if (!response.ok) throw new Error(`Erro ${response.status} em ${path}`);
-      if (response.status === 204) return null;
-      return response.json();
+      if (!res.ok) throw new Error(`Erro ${res.status} em ${path}`);
+      if (res.status === 204) return null;
+      return res.json();
     }
 
     async function requestFromRoot(path) {
-      const response = await fetch(`${API_ROOT_URL}${path}`);
-      if (!response.ok) throw new Error(`Erro ${response.status} em ${path}`);
-      return response.json();
+      const res = await fetch(`${API_ROOT_URL}${path}`);
+      if (!res.ok) throw new Error(`Erro ${res.status} em ${path}`);
+      return res.json();
     }
 
     async function requestNotifications(id) {
@@ -772,35 +1034,33 @@
         () => requestFromRoot(`/notificacoes/cliente/${id}`),
         () => requestFromRoot(`/notificacoes?id_cliente=${id}`),
       ];
-      let fallbackNotificacoes = [];
-
+      let fallback = [];
       for (const load of loaders) {
         try {
-          const notificacoes = await load();
-          const notificacoesDoCliente = notificacoes.filter((notificacao) => (
-            Number(notificacao.id_cliente) === Number(id)
-          ));
-
-          if (!notificacoes.length || notificacoesDoCliente.length) {
-            return notificacoesDoCliente;
-          }
-
-          fallbackNotificacoes = notificacoes;
-        } catch (error) {
-          console.warn(error);
-        }
+          const items = await load();
+          const filtered = items.filter(n => Number(n.id_cliente) === Number(id));
+          if (!items.length || filtered.length) return filtered;
+          fallback = items;
+        } catch (e) { console.warn(e); }
       }
-
-      return fallbackNotificacoes;
+      return fallback;
     }
 
-    function showView(viewName) {
-      document.querySelectorAll('[data-view-link]').forEach((link) => {
-        link.classList.toggle('active', link.dataset.viewLink === viewName);
-      });
-      document.querySelectorAll('[data-view]').forEach((view) => {
-        view.classList.toggle('active', view.dataset.view === viewName);
-      });
+    function normalizeReview(a) {
+      return {
+        id_avaliacao:   a.id_avaliacao   ?? a.idAvaliacao,
+        id_cliente:     a.id_cliente     ?? a.idCliente,
+        id_sala:        a.id_sala        ?? a.idSala,
+        id_reserva:     a.id_reserva     ?? a.idReserva,
+        nota:           a.nota,
+        corpo:          a.corpo,
+        criado_em:      a.criado_em      ?? a.criadoEm,
+        resposta_admin: a.resposta_admin ?? a.respostaAdmin,
+        respondido_em:  a.respondido_em  ?? a.respondidoEm,
+        nome_usuario:   a.nome_usuario   ?? a.nomeUsuario,
+        nome_sala:      a.nome_sala      ?? a.nomeSala,
+        tipo_sala:      a.tipo_sala      ?? a.tipoSala,
+      };
     }
 
     async function requestReviews(id) {
@@ -812,85 +1072,96 @@
         () => request('/avaliacoes'),
         () => requestFromRoot('/avaliacoes'),
       ];
-      let fallbackAvaliacoes = [];
-
+      let fallback = [];
       for (const load of loaders) {
         try {
-          const avaliacoes = (await load()).map(normalizeReview);
-          const avaliacoesDoCliente = avaliacoes.filter((avaliacao) => (
-            Number(avaliacao.id_cliente) === Number(id)
-          ));
-
-          if (!avaliacoes.length || avaliacoesDoCliente.length) {
-            return avaliacoesDoCliente;
-          }
-
-          fallbackAvaliacoes = avaliacoes;
-        } catch (error) {
-          console.warn(error);
-        }
+          const items = (await load()).map(normalizeReview);
+          const filtered = items.filter(a => Number(a.id_cliente) === Number(id));
+          if (!items.length || filtered.length) return filtered;
+          fallback = items;
+        } catch (e) { console.warn(e); }
       }
-
-      return fallbackAvaliacoes;
+      return fallback;
     }
 
-    function normalizeReview(avaliacao) {
-      return {
-        id_avaliacao: avaliacao.id_avaliacao ?? avaliacao.idAvaliacao,
-        id_cliente: avaliacao.id_cliente ?? avaliacao.idCliente,
-        id_sala: avaliacao.id_sala ?? avaliacao.idSala,
-        id_reserva: avaliacao.id_reserva ?? avaliacao.idReserva,
-        nota: avaliacao.nota,
-        corpo: avaliacao.corpo,
-        criado_em: avaliacao.criado_em ?? avaliacao.criadoEm,
-        resposta_admin: avaliacao.resposta_admin ?? avaliacao.respostaAdmin,
-        respondido_em: avaliacao.respondido_em ?? avaliacao.respondidoEm,
-        nome_usuario: avaliacao.nome_usuario ?? avaliacao.nomeUsuario,
-        nome_sala: avaliacao.nome_sala ?? avaliacao.nomeSala,
-        tipo_sala: avaliacao.tipo_sala ?? avaliacao.tipoSala,
-      };
+    /* ── Navegação por views ────────────────────────── */
+    function showView(viewName) {
+      document.querySelectorAll('[data-view-link]').forEach(l =>
+        l.classList.toggle('active', l.dataset.viewLink === viewName)
+      );
+      document.querySelectorAll('[data-view]').forEach(v =>
+        v.classList.toggle('active', v.dataset.view === viewName)
+      );
     }
 
     function setupViews() {
-      const links = document.querySelectorAll('[data-view-link]');
-
-      links.forEach((link) => {
-        link.addEventListener('click', (event) => {
-          event.preventDefault();
+      document.querySelectorAll('[data-view-link]').forEach(link => {
+        link.addEventListener('click', e => {
+          if (link.tagName === 'A' && !link.href.includes('#')) return; // links externos passam
+          e.preventDefault();
           showView(link.dataset.viewLink);
           history.replaceState(null, '', `#${link.dataset.viewLink}`);
         });
       });
-
       const initial = location.hash.replace('#', '') || 'conta';
       if (document.querySelector(`[data-view="${initial}"]`)) showView(initial);
     }
 
+    /* ── Notificações (painel) ──────────────────────── */
     function setupNotifications() {
       const toggle = document.getElementById('notificationToggle');
-      const panel = document.getElementById('notificationPanel');
-      const close = document.getElementById('notificationClose');
+      const panel  = document.getElementById('notificationPanel');
+      const close  = document.getElementById('notificationClose');
 
-      const setOpen = (isOpen) => {
-        panel.classList.toggle('is-open', isOpen);
-        toggle.setAttribute('aria-expanded', String(isOpen));
+      const setOpen = open => {
+        panel.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
       };
 
-      toggle.addEventListener('click', (event) => {
-        event.stopPropagation();
-        setOpen(!panel.classList.contains('is-open'));
-      });
-      close.addEventListener('click', (event) => {
-        event.stopPropagation();
-        setOpen(false);
-      });
-      panel.addEventListener('click', (event) => event.stopPropagation());
+      toggle.addEventListener('click', e => { e.stopPropagation(); setOpen(!panel.classList.contains('is-open')); });
+      close.addEventListener('click',  e => { e.stopPropagation(); setOpen(false); });
+      panel.addEventListener('click',  e => e.stopPropagation());
       document.addEventListener('click', () => setOpen(false));
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') setOpen(false);
-      });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
     }
 
+    /* ── Interface baseada em papel ─────────────────── */
+    function applyRoleUI() {
+      const badge     = document.getElementById('roleBadge');
+      const badgeText = document.getElementById('roleBadgeText');
+      const adminNav  = document.getElementById('adminNav');
+      const adminCard = document.getElementById('adminInfoCard');
+      const adminQA   = document.getElementById('adminQuickActions');
+      const topRole   = document.getElementById('topbarRoleLabel');
+      const name      = document.getElementById('topbarUserName');
+
+      if (name) name.textContent = state.cliente.nome?.split(' ')[0] || '';
+
+      if (isAdmin) {
+        badge.className  = 'role-badge admin';
+        badgeText.textContent = 'Administrador';
+        badge.style.display   = 'inline-flex';
+        if (adminNav)  adminNav.style.display  = 'block';
+        if (adminCard) adminCard.style.display = 'flex';
+        if (adminQA)   adminQA.style.display   = 'grid';
+        if (topRole) {
+          topRole.textContent = 'Admin';
+          topRole.style.background = 'var(--aw-admin-bg)';
+          topRole.style.color      = 'var(--aw-admin-color)';
+          topRole.style.display    = 'inline';
+        }
+      } else {
+        badge.className  = 'role-badge user';
+        badgeText.textContent = 'Usuário';
+        badge.style.display   = 'inline-flex';
+        if (topRole) {
+          topRole.textContent = 'Membro';
+          topRole.style.display = 'inline';
+        }
+      }
+    }
+
+    /* ── Carregar dados ─────────────────────────────── */
     async function loadData() {
       const id = state.cliente.id_cliente;
       const results = await Promise.allSettled([
@@ -903,50 +1174,57 @@
         requestNotifications(id),
       ]);
 
-      if (results[0].status === 'fulfilled') state.cliente = results[0].value;
+      if (results[0].status === 'fulfilled') state.cliente     = results[0].value;
       if (results[1].status === 'fulfilled') state.assinaturas = results[1].value;
-      if (results[2].status === 'fulfilled') state.planos = results[2].value;
-      if (results[3].status === 'fulfilled') state.reservas = results[3].value;
-      if (results[4].status === 'fulfilled') state.salas = results[4].value;
+      if (results[2].status === 'fulfilled') state.planos      = results[2].value;
+      if (results[3].status === 'fulfilled') state.reservas    = results[3].value;
+      if (results[4].status === 'fulfilled') state.salas       = results[4].value;
+
       if (results[5].status === 'fulfilled') {
-        const avaliacoes = results[5].value;
-        state.avaliacoes = avaliacoes.filter((avaliacao) => Number(avaliacao.id_cliente) === Number(id));
-
+        const avs = results[5].value;
+        state.avaliacoes = avs.filter(a => Number(a.id_cliente) === Number(id));
         if (!state.avaliacoes.length) {
-          const reservasDoCliente = new Set(state.reservas.map((reserva) => Number(reserva.id_reserva)));
-          state.avaliacoes = avaliacoes.filter((avaliacao) => reservasDoCliente.has(Number(avaliacao.id_reserva)));
+          const reservaIds = new Set(state.reservas.map(r => Number(r.id_reserva)));
+          state.avaliacoes = avs.filter(a => reservaIds.has(Number(a.id_reserva)));
         }
       }
+
       if (results[6].status === 'fulfilled') {
-        const notificacoes = results[6].value;
-        state.notificacoes = notificacoes.filter((notificacao) => Number(notificacao.id_cliente) === Number(id));
-
+        const nots = results[6].value;
+        state.notificacoes = nots.filter(n => Number(n.id_cliente) === Number(id));
         if (!state.notificacoes.length) {
-          const reservasDoCliente = new Set(state.reservas.map((reserva) => Number(reserva.id_reserva)));
-          const assinaturasDoCliente = new Set(state.assinaturas.map((assinatura) => Number(assinatura.id_assinatura)));
-
-          state.notificacoes = notificacoes.filter((notificacao) => (
-            reservasDoCliente.has(Number(notificacao.id_reserva)) ||
-            assinaturasDoCliente.has(Number(notificacao.id_assinatura))
-          ));
+          const reservaIds  = new Set(state.reservas.map(r => Number(r.id_reserva)));
+          const assIds      = new Set(state.assinaturas.map(a => Number(a.id_assinatura)));
+          state.notificacoes = nots.filter(n =>
+            reservaIds.has(Number(n.id_reserva)) || assIds.has(Number(n.id_assinatura))
+          );
         }
       }
     }
 
+    /* ── Render: Perfil ─────────────────────────────── */
     function renderProfile() {
-      document.getElementById('clienteNome').value = state.cliente.nome || '';
-      document.getElementById('clienteCpf').value = state.cliente.cpf || '';
-      document.getElementById('clienteEmail').value = state.cliente.email || '';
+      document.getElementById('clienteNome').value     = state.cliente.nome     || '';
+      document.getElementById('clienteCpf').value      = state.cliente.cpf      || '';
+      document.getElementById('clienteEmail').value    = state.cliente.email    || '';
       document.getElementById('clienteTelefone').value = state.cliente.telefone || '';
+
+      const nameEl = document.getElementById('topbarUserName');
+      if (nameEl) nameEl.textContent = state.cliente.nome?.split(' ')[0] || '';
     }
 
+    /* ── Render: Plano ──────────────────────────────── */
     function renderPlan() {
-      const card = document.getElementById('planoCard');
-      const active = state.assinaturas.find((item) => item.status === 'Ativa') || state.assinaturas[0];
-      const plano = state.planos.find((item) => Number(item.id_plano) === Number(active?.id_plano));
+      const card    = document.getElementById('planoCard');
+      const active  = state.assinaturas.find(a => a.status === 'Ativa') || state.assinaturas[0];
+      const plano   = state.planos.find(p => Number(p.id_plano) === Number(active?.id_plano));
 
       if (!active || !plano) {
-        card.innerHTML = '<div class="empty">Nenhum plano encontrado para esta conta.</div>';
+        card.innerHTML = `
+          <div class="empty">Nenhum plano ativo encontrado.</div>
+          <div style="margin-top:16px">
+            <a href="planos.html" class="primary-btn">Ver planos disponíveis</a>
+          </div>`;
         return;
       }
 
@@ -954,31 +1232,33 @@
         <div class="plan-card">
           <div class="plan-main">
             <div>
-              <small>PLANO ATUAL</small>
+              <small>Plano atual</small>
               <h2>${plano.nome}</h2>
-              <p>Plano mensal</p>
+              <p>Assinatura mensal</p>
             </div>
             <div class="plan-price">${money(plano.preco)} /mês</div>
           </div>
           <div class="plan-detail">
             <div>
-              <div class="detail-row"><span>Status da assinatura</span><strong>${active.status}</strong></div>
-              <div class="detail-row"><span>Valor da mensalidade</span><strong>${money(plano.preco)}</strong></div>
-              <div class="detail-row"><span>Ciclo de cobrança</span><strong>Mensal</strong></div>
+              <div class="detail-row"><span>Status</span><strong>${active.status}</strong></div>
+              <div class="detail-row"><span>Mensalidade</span><strong>${money(plano.preco)}</strong></div>
+              <div class="detail-row"><span>Ciclo</span><strong>Mensal</strong></div>
+              ${active.validade ? `<div class="detail-row"><span>Válido até</span><strong>${shortDate(dateOnly(active.validade))}</strong></div>` : ''}
             </div>
-            <button class="danger-btn" type="button">Cancelar assinatura</button>
+            <button class="danger-btn" type="button" style="margin-top:16px">Cancelar assinatura</button>
           </div>
         </div>
         <div class="benefit">
           <span aria-hidden="true">★</span>
-          <span>Você tem acesso aos benefícios do ${plano.nome}.</span>
+          <span>Você tem acesso aos benefícios do plano <strong>${plano.nome}</strong>.</span>
         </div>
-        <button class="muted-btn" type="button">Alterar Plano</button>
+        <a href="planos.html" class="muted-btn" style="display:inline-flex;margin-top:4px">Alterar Plano</a>
       `;
     }
 
+    /* ── Render: Reservas ───────────────────────────── */
     function renderReservations() {
-      const list = document.getElementById('reservasList');
+      const list  = document.getElementById('reservasList');
       const salas = byId(state.salas, 'id_sala');
 
       if (!state.reservas.length) {
@@ -986,54 +1266,56 @@
         return;
       }
 
-      list.innerHTML = state.reservas.map((reserva) => {
-        const sala = salas.get(Number(reserva.id_sala));
+      list.innerHTML = state.reservas.map(reserva => {
+        const sala       = salas.get(Number(reserva.id_sala));
         const finalizada = reserva.status === 'Finalizada';
         return `
           <article class="reserve-card">
             <div class="room-thumb" aria-hidden="true"></div>
             <div class="reserve-info">
               <h2>${sala?.nome || 'Sala de Reunião'}</h2>
-              <p>${shortDate(dateOnly(reserva.entrada))}<br>${timeRange(reserva.entrada, reserva.saida)}<br>${sala?.capacidade || '-'} pessoas</p>
+              <p>
+                ${shortDate(dateOnly(reserva.entrada))}<br>
+                ${timeRange(reserva.entrada, reserva.saida)}<br>
+                ${sala?.capacidade ? `${sala.capacidade} pessoas` : ''}
+              </p>
             </div>
             <div class="reserve-actions">
-              <span class="status">${reserva.status}</span>
-              ${finalizada ? '<button class="danger-btn" type="button" disabled>Reserva finalizada</button>' : `<button class="primary-btn" type="button" onclick="window.location.href='alterar-reserva.html?id=${reserva.id_reserva}'">Alterar Reserva</button>`}
+              <span class="status ${statusClass(reserva.status)}">${reserva.status}</span>
+              ${finalizada
+                ? '<button class="danger-btn" type="button" disabled>Finalizada</button>'
+                : `<a class="primary-btn" href="alterar-reserva.html?id=${reserva.id_reserva}">Alterar</a>`
+              }
             </div>
           </article>
         `;
       }).join('');
     }
 
-    async function markNotificationAsRead(notificacao) {
+    /* ── Notificações ───────────────────────────────── */
+    async function markNotificationAsRead(n) {
       try {
-        await send(`/notificacoes/${notificacao.id_notificacao}/lida`, { method: 'PATCH' });
-      } catch (error) {
+        await send(`/notificacoes/${n.id_notificacao}/lida`, { method: 'PATCH' });
+      } catch {
         try {
-          const response = await fetch(`${API_ROOT_URL}/notificacoes/${notificacao.id_notificacao}/lida`, { method: 'PATCH' });
-          if (!response.ok) throw new Error(`Erro ${response.status}`);
-        } catch {
-          console.warn(error);
-        }
+          await fetch(`${API_ROOT_URL}/notificacoes/${n.id_notificacao}/lida`, { method: 'PATCH' });
+        } catch (e) { console.warn(e); }
       }
-      notificacao.lida = true;
+      n.lida = true;
     }
 
     async function readAllNotifications() {
-      await Promise.all(state.notificacoes.filter((item) => !item.lida).map(markNotificationAsRead));
+      await Promise.all(state.notificacoes.filter(n => !n.lida).map(markNotificationAsRead));
       renderNotifications();
     }
 
-    async function deleteNotification(notificacao) {
+    async function deleteNotification(n) {
       try {
-        await send(`/notificacoes/${notificacao.id_notificacao}`, { method: 'DELETE' });
-      } catch (error) {
+        await send(`/notificacoes/${n.id_notificacao}`, { method: 'DELETE' });
+      } catch {
         try {
-          const response = await fetch(`${API_ROOT_URL}/notificacoes/${notificacao.id_notificacao}`, { method: 'DELETE' });
-          if (!response.ok) throw new Error(`Erro ${response.status}`);
-        } catch {
-          console.warn(error);
-        }
+          await fetch(`${API_ROOT_URL}/notificacoes/${n.id_notificacao}`, { method: 'DELETE' });
+        } catch (e) { console.warn(e); }
       }
     }
 
@@ -1043,154 +1325,151 @@
       renderNotifications();
     }
 
-    function renderReviews() {
-      const list = document.getElementById('avaliacoesList');
-
-      if (!state.avaliacoes.length) {
-        list.innerHTML = '<div class="empty">Nenhuma avaliação encontrada.</div>';
-        return;
-      }
-
-      list.innerHTML = state.avaliacoes.map((avaliacao) => {
-        const isEditing = state.editingReviews.has(Number(avaliacao.id_avaliacao));
-        return `
-          <article class="review-item">
-            <div class="review-content">
-              <strong>${avaliacao.nome_sala || 'Sala não informada'}</strong>
-              <span>${avaliacao.corpo || 'Sem comentário'}<br>${shortDate(avaliacao.criado_em)}</span>
-              ${isEditing ? `
-                <div class="review-edit">
-                  <label>
-                    <span>Nota</span>
-                    <select id="reviewNota-${avaliacao.id_avaliacao}">
-                      ${[1, 2, 3, 4, 5].map((nota) => `<option value="${nota}" ${Number(avaliacao.nota) === nota ? 'selected' : ''}>${nota}</option>`).join('')}
-                    </select>
-                  </label>
-                  <label>
-                    <span>Texto</span>
-                    <textarea id="reviewCorpo-${avaliacao.id_avaliacao}" maxlength="255">${avaliacao.corpo || ''}</textarea>
-                  </label>
-                  <button class="muted-btn" type="button" onclick="saveReview(${avaliacao.id_avaliacao})">Salvar</button>
-                  <button class="muted-btn" type="button" onclick="cancelReviewEdit(${avaliacao.id_avaliacao})">Cancelar</button>
-                </div>
-              ` : `
-                <div class="section-actions">
-                  <button class="muted-btn" type="button" onclick="editReview(${avaliacao.id_avaliacao})">Editar</button>
-                </div>
-              `}
-            </div>
-            <div class="stars" aria-label="${avaliacao.nota} de 5">${stars(avaliacao.nota)}</div>
-          </article>
-        `;
-      }).join('');
-    }
-
-    function editReview(idAvaliacao) {
-      state.editingReviews.add(Number(idAvaliacao));
-      renderReviews();
-    }
-
-    function cancelReviewEdit(idAvaliacao) {
-      state.editingReviews.delete(Number(idAvaliacao));
-      renderReviews();
-    }
-
-    async function saveReview(idAvaliacao) {
-      const avaliacao = state.avaliacoes.find((item) => Number(item.id_avaliacao) === Number(idAvaliacao));
-      if (!avaliacao) return;
-
-      const payload = {
-        id_reserva: avaliacao.id_reserva,
-        nota: Number(document.getElementById(`reviewNota-${idAvaliacao}`).value),
-        corpo: document.getElementById(`reviewCorpo-${idAvaliacao}`).value.trim() || null,
-        criado_em: avaliacao.criado_em,
-      };
-
-      try {
-        const atualizada = normalizeReview(await send(`/avaliacoes/${idAvaliacao}`, {
-          method: 'PUT',
-          body: JSON.stringify(payload),
-        }));
-        state.avaliacoes = state.avaliacoes.map((item) => (
-          Number(item.id_avaliacao) === Number(idAvaliacao) ? atualizada : item
-        ));
-        state.editingReviews.delete(Number(idAvaliacao));
-        renderReviews();
-      } catch (error) {
-        console.error(error);
-        alert('Não foi possível atualizar a avaliação.');
-      }
-    }
-
-    function notificationMarkup(notificacao) {
+    function notificationMarkup(n) {
       return `
         <li class="notification-item">
-          <span class="notification-marker ${notificacao.lida ? 'read' : ''}"></span>
-          <div><strong>${notificacao.tipo}</strong><span>${notificacao.corpo}</span></div>
+          <span class="notification-marker ${n.lida ? 'read' : ''}"></span>
+          <div>
+            <strong>${n.tipo || 'Notificação'}</strong>
+            <span>${n.corpo || ''}</span>
+          </div>
         </li>
       `;
     }
 
     function renderNotifications() {
-      const count = document.getElementById('notificationCount');
-      const list = document.getElementById('notificationList');
+      const count    = document.getElementById('notificationCount');
+      const list     = document.getElementById('notificationList');
       const fullList = document.getElementById('fullNotificationList');
-      const unread = state.notificacoes.filter((item) => !item.lida);
+      const unread   = state.notificacoes.filter(n => !n.lida);
 
-      count.textContent = String(unread.length);
-      count.style.display = unread.length ? 'grid' : 'none';
+      count.textContent    = String(unread.length);
+      count.style.display  = unread.length ? 'grid' : 'none';
 
       if (!state.notificacoes.length) {
-        const empty = '<div class="empty">Você não possui notificações.</div>';
-        list.innerHTML = '<li class="notification-item"><span class="notification-marker read"></span><div><strong>Nenhuma notificação</strong><span>Você não possui notificações.</span></div></li>';
-        fullList.innerHTML = empty;
+        list.innerHTML     = '<li class="notification-item"><span class="notification-marker read"></span><div><strong>Nenhuma notificação</strong><span>Você não possui notificações.</span></div></li>';
+        fullList.innerHTML = '<div class="empty">Você não possui notificações.</div>';
         return;
       }
 
       const html = state.notificacoes.map(notificationMarkup).join('');
-      list.innerHTML = html;
+      list.innerHTML     = html;
       fullList.innerHTML = html;
     }
 
+    /* ── Render: Avaliações ─────────────────────────── */
+    function renderReviews() {
+      const list = document.getElementById('avaliacoesList');
+      if (!state.avaliacoes.length) {
+        list.innerHTML = '<div class="empty">Nenhuma avaliação encontrada.</div>';
+        return;
+      }
+
+      list.innerHTML = state.avaliacoes.map(av => {
+        const isEditing = state.editingReviews.has(Number(av.id_avaliacao));
+        return `
+          <article class="review-item">
+            <div class="review-content">
+              <strong>${av.nome_sala || 'Sala não informada'}</strong>
+              <span>${av.corpo || 'Sem comentário'} — ${shortDate(av.criado_em)}</span>
+              ${isEditing ? `
+                <div class="review-edit">
+                  <label>
+                    <span style="font-size:12px;color:var(--aw-muted)">Nota</span>
+                    <select id="reviewNota-${av.id_avaliacao}">
+                      ${[1,2,3,4,5].map(n => `<option value="${n}"${Number(av.nota)===n?' selected':''}>${n}</option>`).join('')}
+                    </select>
+                  </label>
+                  <label>
+                    <span style="font-size:12px;color:var(--aw-muted)">Texto</span>
+                    <textarea id="reviewCorpo-${av.id_avaliacao}" maxlength="255">${av.corpo || ''}</textarea>
+                  </label>
+                  <button class="muted-btn" type="button" style="font-size:13px;padding:0 14px" onclick="saveReview(${av.id_avaliacao})">Salvar</button>
+                  <button class="ghost-btn"  type="button" style="font-size:13px;padding:0 14px" onclick="cancelReviewEdit(${av.id_avaliacao})">Cancelar</button>
+                </div>
+              ` : `
+                <div class="section-actions">
+                  <button class="muted-btn" type="button" style="font-size:13px;padding:0 16px" onclick="editReview(${av.id_avaliacao})">Editar avaliação</button>
+                </div>
+              `}
+            </div>
+            <div class="stars" aria-label="${av.nota} de 5">${stars(av.nota)}</div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function editReview(id) { state.editingReviews.add(Number(id)); renderReviews(); }
+    function cancelReviewEdit(id) { state.editingReviews.delete(Number(id)); renderReviews(); }
+
+    async function saveReview(id) {
+      const av = state.avaliacoes.find(a => Number(a.id_avaliacao) === Number(id));
+      if (!av) return;
+      const payload = {
+        id_reserva: av.id_reserva,
+        nota:       Number(document.getElementById(`reviewNota-${id}`).value),
+        corpo:      document.getElementById(`reviewCorpo-${id}`).value.trim() || null,
+        criado_em:  av.criado_em,
+      };
+      try {
+        const updated = normalizeReview(await send(`/avaliacoes/${id}`, {
+          method: 'PUT', body: JSON.stringify(payload),
+        }));
+        state.avaliacoes = state.avaliacoes.map(a => Number(a.id_avaliacao) === Number(id) ? updated : a);
+        state.editingReviews.delete(Number(id));
+        renderReviews();
+      } catch (e) {
+        console.error(e);
+        alert('Não foi possível atualizar a avaliação.');
+      }
+    }
+
+    /* ── Render: tudo ───────────────────────────────── */
     function renderAll() {
       renderProfile();
+      applyRoleUI();
       renderPlan();
       renderReservations();
       renderReviews();
       renderNotifications();
     }
 
-    document.getElementById('logoutButton').addEventListener('click', () => {
+    /* ── Eventos ────────────────────────────────────── */
+    function logout() {
       localStorage.removeItem('axisAuth');
       window.location.href = 'login.html';
-    });
+    }
 
-    document.getElementById('profileForm').addEventListener('submit', (event) => {
-      event.preventDefault();
+    document.getElementById('logoutButton').addEventListener('click', logout);
+    document.getElementById('logoutButtonInline').addEventListener('click', logout);
+
+    document.getElementById('profileForm').addEventListener('submit', e => {
+      e.preventDefault();
       const payload = {
-        nome: document.getElementById('clienteNome').value.trim(),
-        email: document.getElementById('clienteEmail').value.trim(),
+        nome:     document.getElementById('clienteNome').value.trim(),
+        email:    document.getElementById('clienteEmail').value.trim(),
         telefone: document.getElementById('clienteTelefone').value.replace(/\D/g, '') || null,
       };
+      const msg = document.getElementById('profileMessage');
 
-      send(`/clientes/${state.cliente.id_cliente}`, {
-        method: 'PATCH',
-        body: JSON.stringify(payload),
-      })
-        .then((cliente) => {
+      send(`/clientes/${state.cliente.id_cliente}`, { method: 'PATCH', body: JSON.stringify(payload) })
+        .then(cliente => {
           state.cliente = cliente;
           localStorage.setItem('axisAuth', JSON.stringify({ ...auth, cliente }));
           renderProfile();
-          document.getElementById('profileMessage').textContent = 'Dados atualizados com sucesso.';
+          applyRoleUI();
+          msg.textContent = '✓ Dados atualizados com sucesso.';
+          msg.style.color = 'var(--aw-success)';
         })
-        .catch((error) => {
-          console.error(error);
-          document.getElementById('profileMessage').textContent = 'Não foi possível atualizar os dados.';
+        .catch(err => {
+          console.error(err);
+          msg.textContent = '✗ Não foi possível atualizar os dados.';
+          msg.style.color = 'var(--aw-danger)';
         });
     });
 
-    document.getElementById('viewAllNotifications').addEventListener('click', (event) => {
-      event.preventDefault();
+    document.getElementById('viewAllNotifications').addEventListener('click', e => {
+      e.preventDefault();
       showView('notificacoes');
       history.replaceState(null, '', '#notificacoes');
       document.getElementById('notificationPanel').classList.remove('is-open');
@@ -1200,16 +1479,20 @@
     document.getElementById('readAllNotificationsPage').addEventListener('click', readAllNotifications);
     document.getElementById('deleteAllNotifications').addEventListener('click', deleteAllNotifications);
 
+    /* ── Init ───────────────────────────────────────── */
     setupViews();
     setupNotifications();
+    applyRoleUI(); // aplica antes dos dados para evitar flash
+
     loadData()
       .then(renderAll)
-      .catch((error) => {
-        console.error(error);
+      .catch(err => {
+        console.error(err);
         renderProfile();
-        document.getElementById('planoCard').innerHTML = '<div class="empty">Não foi possível carregar o plano.</div>';
-        document.getElementById('reservasList').innerHTML = '<div class="empty">Não foi possível carregar reservas.</div>';
-        document.getElementById('avaliacoesList').innerHTML = '<div class="empty">Não foi possível carregar avaliações.</div>';
+        applyRoleUI();
+        document.getElementById('planoCard').innerHTML          = '<div class="empty">Não foi possível carregar o plano.</div>';
+        document.getElementById('reservasList').innerHTML       = '<div class="empty">Não foi possível carregar reservas.</div>';
+        document.getElementById('avaliacoesList').innerHTML     = '<div class="empty">Não foi possível carregar avaliações.</div>';
         renderNotifications();
       });
   </script>

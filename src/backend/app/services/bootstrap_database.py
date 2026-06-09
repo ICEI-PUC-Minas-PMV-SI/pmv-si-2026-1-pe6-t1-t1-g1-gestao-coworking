@@ -48,7 +48,8 @@ CREATE TABLE cliente (
   cpf varchar NOT NULL UNIQUE,
   email varchar NOT NULL UNIQUE,
   telefone varchar NULL,
-  senha varchar NOT NULL
+  senha varchar NOT NULL,
+  is_admin boolean NOT NULL DEFAULT false
 );
 
 CREATE TABLE usuario_cliente (
