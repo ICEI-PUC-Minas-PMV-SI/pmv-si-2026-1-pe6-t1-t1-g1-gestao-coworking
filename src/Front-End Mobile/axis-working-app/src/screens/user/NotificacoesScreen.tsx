@@ -5,8 +5,9 @@
  * permite marcar uma ou todas como lidas (PATCH /notificacoes/{id}/lida).
  */
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { useAuth } from '../../context/AuthContext';
 import { userApi } from '../../api/client';
 import { Card, Header, LoadingState, PrimaryButton } from '../../components/shared';
@@ -14,7 +15,7 @@ import { colors, spacing } from '../../theme';
 import { formatDate } from '../../utils/format';
 import type { Notificacao } from '../../types';
 
-export function NotificacoesScreen() {
+export function NotificacoesScreen({ navigation }: { navigation: any }) {
   const { user } = useAuth();
   const [items, setItems] = useState<Notificacao[]>([]);
   const [loading, setLoading] = useState(true);
@@ -38,7 +39,9 @@ export function NotificacoesScreen() {
     }
   }, [user?.id_cliente]);
 
-  useEffect(() => { load(); }, [load]);
+  // Recarrega sempre que a tela entra em foco (reflete notificações criadas
+  // em outras telas e o estado de leitura ao voltar).
+  useFocusEffect(useCallback(() => { load(); }, [load]));
 
   async function marcarLida(n: Notificacao) {
     try {
@@ -63,7 +66,12 @@ export function NotificacoesScreen() {
 
   return (
     <>
-      <Header title="Notificações" subtitle={naoLidas ? `${naoLidas} não lida(s)` : 'Tudo em dia'} />
+      <Header
+        title="Notificações"
+        subtitle={naoLidas ? `${naoLidas} não lida(s)` : 'Tudo em dia'}
+        notifications={false}
+        onBack={() => navigation.goBack()}
+      />
       <ScrollView
         style={styles.scroll}
         contentContainerStyle={styles.content}

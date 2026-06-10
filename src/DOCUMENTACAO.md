@@ -72,19 +72,32 @@ Host=localhost;Port=5432;Database=eixo6;Username=postgres;Password=admin
 cd backend
 python -m pip install -r requirements.txt
 
-# Local (só este PC):
-python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
+# Recomendado (PC + celular/emulador na mesma rede):
+python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+#  (no Windows: dê duplo clique em "iniciar backend.bat" ou rode .\run-mobile-api.ps1)
 
-# Acesso por celular/emulador (escuta na rede):
-python -m uvicorn main:app --host 0.0.0.0 --port 8000
-#  (no Windows: .\run-mobile-api.ps1)
+# Apenas este PC (loopback):
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
+> **Atenção (dispositivos não acessam a API):** use **`--host 0.0.0.0`**. Com
+> `--host 127.0.0.1` a API só responde no próprio PC, e o celular/emulador fica
+> sem acesso (notificações, planos e tudo mais deixam de carregar no app). O
+> `iniciar backend.bat` já usa `0.0.0.0`. No Windows, libere a porta 8000 no
+> firewall: `New-NetFirewallRule -DisplayName "Axis API 8000" -Direction Inbound -Protocol TCP -LocalPort 8000 -Action Allow` (PowerShell como Administrador).
+
 - Swagger / documentação interativa: `http://127.0.0.1:8000/docs`
 - Se o banco estiver vazio, há um seed: `POST /api/admin/bootstrap?confirmar=true`
   (o front também dispara isso automaticamente quando necessário).
 
 ### 3.3. Criar um usuário administrador
-O painel admin só libera para clientes com `is_admin = true`:
+O painel admin só libera para clientes com `is_admin = true`.
+
+> O **seed já cria o admin padrão** (`CPF 00000000000 / senha admin`,
+> `id_cliente = 9`), então após o bootstrap o painel já está acessível. Sem ele,
+> o `TRUNCATE ... cliente` do seed deixaria o banco **sem nenhum admin** (causa
+> comum de "o admin não loga no app").
+
+Para criar um admin personalizado ou **promover** um cliente existente:
 ```bash
 cd backend
 python scripts/criar_admin.py
@@ -93,6 +106,8 @@ python scripts/criar_admin.py
 python scripts/criar_admin.py --cpf 12345678900 --senha 1234 --nome "Maria" --email maria@axis.com
 ```
 O script garante a coluna `is_admin` (em bancos antigos) e faz upsert do admin.
+**Rode-o novamente sempre que reexecutar o bootstrap com um seed antigo** (sem o
+admin), ou atualize o seed.
 
 ### 3.4. Endpoints (resumo)
 Tudo sob o prefixo **`/api`** (há aliases legados sem `/api` apenas para
@@ -108,6 +123,21 @@ Tudo sob o prefixo **`/api`** (há aliases legados sem `/api` apenas para
 > **Importante sobre o login:** `/api/login` devolve **apenas** `access_token`.
 > O `is_admin` vem de `GET /api/clientes` (campo exposto em `ClienteRead`). Tanto o
 > web quanto o mobile fazem login → buscam o cliente pelo CPF → leem `is_admin`.
+
+### 3.5. Testes
+```bash
+cd backend
+# 1) suba a API em outra janela na porta de teste:
+set AXIS_API_BASE_URL=http://127.0.0.1:8001   &&  python -m uvicorn main:app --port 8001
+# 2) rode a suíte:
+python run_tests.py            # unit + integração   (usa AXIS_API_BASE_URL, padrão :8001)
+python run_tests.py --unit     # só unit (não precisa de API nem banco)
+python run_tests.py --all      # unit + integração + carga
+```
+- **Unit** (`tests/test_unit_core.py`): segurança (hash/token) e schemas — sem API/banco.
+- **Integração** (`tests/test_integration_api.py`): fluxo real cliente→plano→assinatura→reserva→**notificação** (criar, marcar como lida, listar por cliente).
+- **Carga** (`tests/load_test_api.py`): GET concorrente em endpoints, incluindo `/notificacoes/cliente/{id}`.
+- O runner já força saída UTF-8, funcionando no console do Windows.
 
 ---
 
@@ -183,12 +213,46 @@ axis-working-app/
 ├── src/
 │   ├── context/AuthContext.tsx   # login, logout, viewMode (painel/app)
 │   ├── api/client.ts             # base ÚNICA :8000 + prefixo /api automático
-│   ├── theme.ts  components/     # design system (base do app)
+│   ├── theme.ts                  # design tokens
+│   ├── components/
+│   │   ├── shared.tsx            # Header (com sino de notificações), Card, botões…
+│   │   ├── pickers.tsx           # DateField (calendário) e TimeField (lista de horas)
+│   │   └── ui.tsx  TopBar.tsx  Drawer.tsx  Screen.tsx
 │   └── screens/
 │       ├── LoginScreen.tsx
-│       ├── user/  (Home, Salas, ReservarSala, Reservas, EditarReserva, Perfil, Plano, SobreNos)
+│       ├── user/  (Home, Salas, ReservarSala, Reservas, EditarReserva, Perfil,
+│       │          Plano, MeuPlano, Notificacoes, SobreNos)
 │       └── admin/ (Dashboard, Users, Rooms, Plans, Reviews, Notifications)
 ```
+
+**Navegação do usuário (tabs):** Home · Salas · Reservas · Perfil.
+- **Sino de notificações:** o `Header` (`components/shared.tsx`) exibe o sino
+  **automaticamente em todas as telas do usuário** (com badge de não lidas) —
+  **exceto na tela de Perfil** (que tem cabeçalho próprio) e na própria tela de
+  Notificações. O contador vem do hook `useUnreadCount` e recarrega ao focar.
+- **Rota `Notificacoes`** fica no **stack raiz do usuário** (`App.tsx`), então o
+  sino navega para ela a partir de qualquer aba; a tela é empilhada sobre as tabs
+  e tem botão **voltar** (`Header onBack`).
+- **Perfil** abre **Meu Plano** (assinatura atual: status, validade, trocar/cancelar)
+  e **Notificações** (lista, marcar uma/todas como lidas).
+- As telas de notificação/contador recarregam **ao ganhar foco** (`useFocusEffect`),
+  então o badge e a lista refletem leituras e novas notificações sem reabrir o app.
+- **Geração de notificações:** o app cria uma notificação (`POST /notificacoes`,
+  best-effort) ao **criar** uma reserva (`ReservarSala`) e ao **alterar/cancelar**
+  uma reserva (`EditarReserva` → tipo *Confirmação de Reserva* ou *Alerta*).
+  Notificações criadas pelo **administrador** também aparecem para o usuário pelo
+  sino. No painel admin → "Criar gatilho" é possível escolher **usuários
+  específicos** ou marcar **"Enviar para todos os usuários"** (broadcast) — tanto
+  na web quanto no mobile.
+- **Reserva** (criar/editar): dia escolhido em **calendário** (`DateField`) e horários
+  de início/término em **seletor de lista** 07h–21h (`TimeField`) — sem digitação.
+- **Planos:** "Assinar"/"Trocar" cria a assinatura; a troca é livre (a anterior é
+  cancelada automaticamente no backend). Se houver reserva ativa de sala de
+  categoria superior ao **nível** do novo plano, o app avisa para cancelar a
+  reserva antes. O **nível** (`planos.nivel`, 1–4) é configurado pelo admin
+  (form de plano, web e mobile) e **não é exibido ao usuário comum** — ele
+  desempata planos com o mesmo `acesso` (ex.: Day Pass=1, Flex=2, Dedicated=3,
+  Office=4). Fallback: se o plano não tiver nível, usa o tier derivado do `acesso`.
 
 ### 5.3. Conexão com a API
 - `src/api/client.ts` detecta o **IP do Expo Dev Server** e usa `http://SEU_IP:8000`,
@@ -250,8 +314,13 @@ Visitante  ──Entrar──►  POST /api/login  ──►  token
 
 | Sintoma | Causa provável | Solução |
 |---------|----------------|---------|
-| "Não consigo acessar a API" | backend só em `localhost`, ou celular em outra rede | rode `--host 0.0.0.0 --port 8000`; mesmo Wi‑Fi; libere a porta no firewall |
+| "Não consigo acessar a API" / no celular nada carrega | backend só em `localhost` (`127.0.0.1`), celular em outra rede, ou porta bloqueada | rode `--host 0.0.0.0 --port 8000` (o `iniciar backend.bat` já faz isso); mesmo Wi‑Fi; libere a porta 8000 no firewall |
+| Notificações/planos "não aparecem" no app | API inacessível ao dispositivo (ver acima) — **não** é bug de tela | confirme `http://IP_DA_MAQUINA:8000/health` pelo celular |
+| Badge do sino não atualiza / notificação nova não aparece | tela aberta antes da mudança | as telas recarregam ao focar; puxe para atualizar (pull‑to‑refresh) ou volte à tela |
+| `run_tests.py` quebra com `UnicodeEncodeError` | console Windows em cp1252 | já corrigido (runner força UTF‑8); atualize o arquivo se estiver antigo |
+| `GET /planos` falha: *column "nivel" does not exist* | banco criado antes do campo `nivel` | rebootstrap (`POST /api/admin/bootstrap?confirmar=true`) **ou** `ALTER TABLE planos ADD COLUMN IF NOT EXISTS nivel integer NOT NULL DEFAULT 1` |
 | Admin entra como usuário comum | banco sem `is_admin` / backend desatualizado | rode `scripts/criar_admin.py` e **reinicie** o backend |
+| Admin **não loga** no app (mobile/web) | banco **sem admin** (seed faz `TRUNCATE cliente`; bootstrap antigo não criava admin) | use o seed atualizado (admin `id 9`) **ou** rode `scripts/criar_admin.py` (CPF `00000000000` / senha `admin`) |
 | Expo Go não conecta | SDK incompatível | o app está no **SDK 56**; atualize o Expo Go |
 | Painel admin pede login de novo após logar no site | sessões diferentes | confirme que ambos usam `localStorage['axisWork.auth']` (via `js/auth.js`) |
 | Página web "trava" sem dados | aberta via `file://` | sirva por HTTP (`npx serve .`) |

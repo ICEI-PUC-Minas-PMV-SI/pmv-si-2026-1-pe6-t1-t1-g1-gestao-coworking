@@ -35,6 +35,8 @@ export type Plano = {
   nome: string;
   acesso: string;
   preco: number | string;
+  /** Nível hierárquico (admin configura; não exibido ao usuário comum). */
+  nivel?: number;
   descricao?: string;
   beneficios?: string[] | string;
 };

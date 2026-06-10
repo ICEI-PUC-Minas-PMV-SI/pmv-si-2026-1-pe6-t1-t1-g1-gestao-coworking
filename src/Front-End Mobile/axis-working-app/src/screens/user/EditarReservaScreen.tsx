@@ -94,6 +94,22 @@ export function EditarReservaScreen({ route, navigation }: { route: any; navigat
         entrada: `${form.data}T${form.inicio}:00`,
         saida: `${form.data}T${form.fim}:00`,
       });
+
+      // Notificação da alteração/cancelamento (best-effort — não bloqueia a ação).
+      if (reserva.id_cliente) {
+        const nomeSala = salaSelecionada?.nome ?? salaAtual?.nome ?? `Sala #${form.id_sala}`;
+        try {
+          await userApi.send('/notificacoes', 'POST', {
+            id_cliente: reserva.id_cliente,
+            corpo: novoStatus === 'Cancelada'
+              ? `Sua reserva da ${nomeSala} foi cancelada.`
+              : `Sua reserva da ${nomeSala} foi atualizada para ${formatDate(form.data)} às ${form.inicio}.`,
+            tipo: novoStatus === 'Cancelada' ? 'Alerta' : 'Confirmação de Reserva',
+            lida: false,
+          });
+        } catch { /* ignora falha de notificação */ }
+      }
+
       Alert.alert('Reserva', novoStatus === 'Cancelada' ? 'Reserva cancelada.' : 'Reserva atualizada.');
       navigation.goBack();
     } catch (err) {

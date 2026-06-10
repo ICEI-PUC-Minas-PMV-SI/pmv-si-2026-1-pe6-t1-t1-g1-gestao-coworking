@@ -95,6 +95,7 @@ function PlanForm({
   const [nome, setNome] = useState(plano?.nome || '');
   const [acesso, setAcesso] = useState(plano?.acesso || data.roomTypes[0] || '1 Mesa de Trabalho');
   const [preco, setPreco] = useState(String(plano?.preco || ''));
+  const [nivel, setNivel] = useState(String(plano?.nivel ?? 1));
   const [descricao, setDescricao] = useState(plano?.descricao || '');
   const [beneficios, setBeneficios] = useState<string[]>([]);
 
@@ -102,6 +103,7 @@ function PlanForm({
     setNome(plano?.nome || '');
     setAcesso(plano?.acesso || data.roomTypes[0] || '1 Mesa de Trabalho');
     setPreco(String(plano?.preco || ''));
+    setNivel(String(plano?.nivel ?? 1));
     setDescricao(plano?.descricao || '');
     setBeneficios(Array.isArray(plano?.beneficios) ? plano.beneficios : []);
   }, [plano, data.roomTypes]);
@@ -116,7 +118,7 @@ function PlanForm({
       return;
     }
     try {
-      const payload = { nome, acesso, preco: Number(preco), descricao, beneficios };
+      const payload = { nome, acesso, preco: Number(preco), nivel: Number(nivel) || 1, descricao, beneficios };
       if (plano?.id_plano) {
         await api.send(`/planos/${plano.id_plano}`, 'PUT', payload);
       } else {
@@ -133,6 +135,7 @@ function PlanForm({
       <Field label="Nome" value={nome} onChangeText={setNome} />
       <ChoiceGroup label="Acesso" value={acesso} onChange={setAcesso} options={data.roomTypes.length ? data.roomTypes : [acesso]} />
       <Field label="Preco" value={preco} onChangeText={setPreco} keyboardType="numeric" />
+      <ChoiceGroup label="Nivel (hierarquia — nao visivel ao usuario)" value={nivel} onChange={setNivel} options={['1', '2', '3', '4']} />
       <Field label="Descricao" value={descricao} onChangeText={setDescricao} multiline />
       <Text style={uiStyles.fieldLabel}>Beneficios</Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: spacing.xs }}>

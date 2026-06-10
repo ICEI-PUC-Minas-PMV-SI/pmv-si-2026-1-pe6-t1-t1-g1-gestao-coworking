@@ -150,9 +150,13 @@ function openCreateNotificationModal() {
     subtitle: 'Selecione os usuários que receberão a notificação.',
     body: `
       <form id="notification-form" class="modal-body">
+        <label style="display:flex;align-items:center;gap:8px;flex-direction:row">
+          <input type="checkbox" name="todos" />
+          <span class="field-label" style="margin:0">Enviar para todos os usuários</span>
+        </label>
         <label>
           <div class="field-label">Usuários</div>
-          <select class="field-select notification-users-select" name="id_clientes" multiple required>
+          <select class="field-select notification-users-select" name="id_clientes" multiple>
             ${pageState.clientes.map((cliente) => `<option value="${cliente.id_cliente}">${escapeHtml(cliente.nome)} · ${escapeHtml(cliente.email || '')}</option>`).join('')}
           </select>
         </label>
@@ -179,13 +183,23 @@ function openCreateNotificationModal() {
   });
 
   modal.querySelector('[data-back-notifications]').addEventListener('click', openNotificationsModal);
+
+  // "Todos os usuários": desabilita a seleção individual quando marcado.
+  const usersSelect = modal.querySelector('select[name="id_clientes"]');
+  const todosCheckbox = modal.querySelector('input[name="todos"]');
+  todosCheckbox.addEventListener('change', () => {
+    usersSelect.disabled = todosCheckbox.checked;
+  });
+
   modal.querySelector('#notification-form').addEventListener('submit', async (event) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    const ids = [...event.currentTarget.querySelector('select[name="id_clientes"]').selectedOptions].map((option) => Number(option.value));
+    const ids = todosCheckbox.checked
+      ? pageState.clientes.map((cliente) => Number(cliente.id_cliente))
+      : [...usersSelect.selectedOptions].map((option) => Number(option.value));
     const corpo = String(form.get('corpo') || '').trim();
     if (!ids.length || !corpo) {
-      showActionMessage('Selecione ao menos um usuário e informe a mensagem.');
+      showActionMessage('Selecione ao menos um usuário (ou marque "todos") e informe a mensagem.');
       return;
     }
 

@@ -26,6 +26,12 @@ INSERT INTO cliente (id_cliente, nome, cpf, email, telefone, senha) VALUES
   (7, 'Ricardo Barros', '77777777777', 'ricardo@barrosadv.com', '11981000007', 'senha123'),
   (8, 'Studio Cinco', '88888888888', 'ops@studiocinco.cc', '11981000008', 'senha123');
 
+-- Conta de administrador padrão (acesso ao painel). A senha em texto puro é
+-- aceita pelo verificador (fallback), como os demais clientes do seed.
+-- Sem este registro, o bootstrap deixaria o sistema sem nenhum admin.
+INSERT INTO cliente (id_cliente, nome, cpf, email, telefone, senha, is_admin) VALUES
+  (9, 'Administrador', '00000000000', 'admin@axiswork.com', NULL, 'admin', true);
+
 INSERT INTO usuario_cliente (id_cliente, nome, cpf, email, telefone, senha) VALUES
   (1, 'Camila Souza', '11111111111', 'camila.souza@axis.work', '11981000001', 'senha123'),
   (2, 'João Mendes', '22222222222', 'joao.mendes@studiomesh.com', '11981000002', 'senha123'),
@@ -54,11 +60,11 @@ INSERT INTO salas (id_sala, nome, capacidade, tipo, descricao, recursos, criado_
   (6, 'Privativa 07', 6, '2 Sala Individual', 'Sala privativa no 2º andar. R$ 2.400/mês. Status no painel: ocupada.', 'Mesa fixa, armários, endereço fiscal, estacionamento', '2026-04-06'),
   (7, 'Sala Cume', 10, '4 Sala de Reunião', 'Sala pendente de avaliação exibida no painel.', 'TV, quadro branco, videoconferência', '2026-04-15');
 
-INSERT INTO planos (id_plano, nome, acesso, preco) VALUES
-  (1, 'Day Pass', '1 Mesa de Trabalho', 60.00),
-  (2, 'Flex', '1 Mesa de Trabalho', 480.00),
-  (3, 'Dedicated', '1 Mesa de Trabalho', 1180.00),
-  (4, 'Office', '2 Sala Individual', 3200.00);
+INSERT INTO planos (id_plano, nome, acesso, preco, nivel) VALUES
+  (1, 'Day Pass', '1 Mesa de Trabalho', 60.00, 1),
+  (2, 'Flex', '1 Mesa de Trabalho', 480.00, 2),
+  (3, 'Dedicated', '1 Mesa de Trabalho', 1180.00, 3),
+  (4, 'Office', '2 Sala Individual', 3200.00, 4);
 
 INSERT INTO assinaturas (id_assinatura, id_cliente, id_plano, status, validade, feita_em) VALUES
   (1, 1, 3, 'Ativa', '2026-05-31', '2026-02-02'),

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,17 +7,8 @@
   <link rel="stylesheet" href="../css/variables.css" />
   <style>
     /* ── Reset ─────────────────────────────────────── */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       min-height: 100vh;
@@ -27,14 +17,8 @@
       font-family: var(--aw-font);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    ul {
-      list-style: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
 
     /* ── Layout ─────────────────────────────────────── */
     .app {
@@ -86,9 +70,7 @@
       color: var(--aw-blue);
     }
 
-    .role-badge svg {
-      flex-shrink: 0;
-    }
+    .role-badge svg { flex-shrink: 0; }
 
     .side-nav {
       display: flex;
@@ -197,17 +179,12 @@
       transition: background var(--aw-transition);
     }
 
-    .icon-btn:hover,
-    .profile-btn:hover {
-      background: var(--aw-blue-ghost);
-    }
+    .icon-btn:hover, .profile-btn:hover { background: var(--aw-blue-ghost); }
 
     .notification-count {
       position: absolute;
-      top: 0;
-      right: 0;
-      min-width: 18px;
-      height: 18px;
+      top: 0; right: 0;
+      min-width: 18px; height: 18px;
       display: none;
       place-items: center;
       padding: 0 5px;
@@ -220,8 +197,7 @@
 
     .notification-panel {
       position: absolute;
-      top: 66px;
-      right: 40px;
+      top: 66px; right: 40px;
       width: 360px;
       display: none;
       overflow: hidden;
@@ -232,9 +208,7 @@
       z-index: 40;
     }
 
-    .notification-panel.is-open {
-      display: block;
-    }
+    .notification-panel.is-open { display: block; }
 
     .notification-head {
       display: flex;
@@ -279,9 +253,7 @@
     }
 
     .notification-actions button:hover,
-    .notification-actions a:hover {
-      background: var(--aw-navy);
-    }
+    .notification-actions a:hover { background: var(--aw-navy); }
 
     /* ── Área principal ──────────────────────────────── */
     .page {
@@ -290,17 +262,10 @@
       padding: 32px 0 72px 40px;
     }
 
-    .view {
-      display: none;
-    }
+    .view { display: none; }
+    .view.active { display: block; }
 
-    .view.active {
-      display: block;
-    }
-
-    .page-head {
-      margin: 0 0 28px;
-    }
+    .page-head { margin: 0 0 28px; }
 
     .page-head h1 {
       font-size: 26px;
@@ -379,10 +344,7 @@
       margin-bottom: 4px;
     }
 
-    .admin-info-card p {
-      font-size: 14px;
-      color: var(--aw-ink-soft);
-    }
+    .admin-info-card p { font-size: 14px; color: var(--aw-ink-soft); }
 
     /* ── Ações rápidas de admin ───────────────────────── */
     .quick-actions {
@@ -437,10 +399,7 @@
       padding-bottom: 44px;
     }
 
-    label {
-      color: var(--aw-muted);
-      font-size: 14px;
-    }
+    label { color: var(--aw-muted); font-size: 14px; }
 
     input {
       width: 100%;
@@ -452,7 +411,7 @@
       font: inherit;
       font-size: 16px;
       padding: 0 18px;
-      box-shadow: 0 2px 6px rgba(10, 42, 68, .04);
+      box-shadow: 0 2px 6px rgba(10,42,68,.04);
       outline: none;
       transition: border-color var(--aw-transition), box-shadow var(--aw-transition);
     }
@@ -506,39 +465,14 @@
       text-decoration: none;
     }
 
-    .primary-btn:hover {
-      background: var(--aw-navy-soft);
-    }
-
-    .muted-btn {
-      background: var(--aw-blue);
-    }
-
-    .muted-btn:hover {
-      background: var(--aw-navy);
-    }
-
-    .danger-btn {
-      background: #969696;
-    }
-
-    .ghost-btn {
-      background: transparent;
-      color: var(--aw-navy);
-      border: 1px solid var(--aw-border);
-    }
-
-    .ghost-btn:hover {
-      background: var(--aw-blue-ghost);
-    }
-
-    .logout {
-      background: var(--aw-danger);
-    }
-
-    .logout:hover {
-      background: #7a2f2f;
-    }
+    .primary-btn:hover { background: var(--aw-navy-soft); }
+    .muted-btn  { background: var(--aw-blue); }
+    .muted-btn:hover { background: var(--aw-navy); }
+    .danger-btn { background: #969696; }
+    .ghost-btn  { background: transparent; color: var(--aw-navy); border: 1px solid var(--aw-border); }
+    .ghost-btn:hover { background: var(--aw-blue-ghost); }
+    .logout     { background: var(--aw-danger); }
+    .logout:hover { background: #7a2f2f; }
 
     /* ── Card de plano ────────────────────────────────── */
     .plan-card {
@@ -568,21 +502,9 @@
       opacity: .7;
     }
 
-    .plan-main h2 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .plan-main p {
-      font-size: 15px;
-      opacity: .85;
-    }
-
-    .plan-price {
-      font-size: 22px;
-      font-weight: 700;
-      margin-top: 24px;
-    }
+    .plan-main h2 { font-size: 20px; margin-bottom: 10px; }
+    .plan-main p  { font-size: 15px; opacity: .85; }
+    .plan-price   { font-size: 22px; font-weight: 700; margin-top: 24px; }
 
     .plan-detail {
       padding: 24px 28px;
@@ -601,9 +523,7 @@
       font-size: 14px;
     }
 
-    .detail-row strong {
-      color: var(--aw-ink);
-    }
+    .detail-row strong { color: var(--aw-ink); }
 
     .benefit {
       display: flex;
@@ -643,7 +563,7 @@
       border-radius: var(--aw-radius-md);
       overflow: hidden;
       background:
-        linear-gradient(90deg, rgba(255, 255, 255, .5) 0 1px, transparent 1px 18px),
+        linear-gradient(90deg, rgba(255,255,255,.5) 0 1px, transparent 1px 18px),
         linear-gradient(0deg, #3A3A31 0 24px, transparent 24px),
         linear-gradient(120deg, #BBA88E 0 45%, #7E8E79 45% 70%, #F4F4F1 70%);
       position: relative;
@@ -652,9 +572,7 @@
     .room-thumb::before {
       content: "";
       position: absolute;
-      left: 22px;
-      right: 16px;
-      bottom: 36px;
+      left: 22px; right: 16px; bottom: 36px;
       height: 30px;
       background: #2D302F;
       border-radius: 3px;
@@ -665,25 +583,14 @@
     .room-thumb::after {
       content: "";
       position: absolute;
-      left: 26px;
-      right: 20px;
-      top: 22px;
+      left: 26px; right: 20px; top: 22px;
       height: 60px;
       background: repeating-linear-gradient(90deg, #DBDED7 0 8px, #6F7F72 8px 10px);
       opacity: .9;
     }
 
-    .reserve-info h2 {
-      font-size: 18px;
-      margin-bottom: 10px;
-      color: var(--aw-navy);
-    }
-
-    .reserve-info p {
-      color: var(--aw-muted);
-      font-size: 14px;
-      line-height: 1.7;
-    }
+    .reserve-info h2 { font-size: 18px; margin-bottom: 10px; color: var(--aw-navy); }
+    .reserve-info p  { color: var(--aw-muted); font-size: 14px; line-height: 1.7; }
 
     .reserve-actions {
       height: 100%;
@@ -706,17 +613,9 @@
       font-weight: 600;
     }
 
-    .status.finalizada {
-      background: var(--aw-muted);
-    }
-
-    .status.confirmada {
-      background: var(--aw-success);
-    }
-
-    .status.cancelada {
-      background: var(--aw-danger);
-    }
+    .status.finalizada  { background: var(--aw-muted); }
+    .status.confirmada  { background: var(--aw-success); }
+    .status.cancelada   { background: var(--aw-danger); }
 
     /* ── Notificações & avaliações ──────────────────── */
     .notification-item,
@@ -742,48 +641,25 @@
     }
 
     .notification-marker {
-      width: 10px;
-      height: 10px;
+      width: 10px; height: 10px;
       flex: 0 0 auto;
       margin-top: 6px;
       border-radius: var(--aw-radius-pill);
       background: var(--aw-navy);
     }
 
-    .notification-marker.read {
-      background: var(--aw-blue-pale);
-    }
+    .notification-marker.read { background: var(--aw-blue-pale); }
 
     .notification-item strong,
-    .review-item strong {
-      display: block;
-      font-size: 15px;
-      margin-bottom: 4px;
-      color: var(--aw-ink);
-    }
+    .review-item strong { display: block; font-size: 15px; margin-bottom: 4px; color: var(--aw-ink); }
 
     .notification-item span,
-    .review-item span {
-      display: block;
-      color: var(--aw-muted);
-      font-size: 13px;
-      line-height: 1.4;
-    }
+    .review-item span { display: block; color: var(--aw-muted); font-size: 13px; line-height: 1.4; }
 
-    .stars {
-      color: var(--aw-navy);
-      white-space: nowrap;
-      font-size: 18px;
-    }
+    .stars { color: var(--aw-navy); white-space: nowrap; font-size: 18px; }
 
-    .review-item {
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .review-content {
-      flex: 1;
-    }
+    .review-item { justify-content: space-between; align-items: flex-start; }
+    .review-content { flex: 1; }
 
     .review-edit {
       display: grid;
@@ -807,10 +683,7 @@
       outline: none;
     }
 
-    .review-edit textarea {
-      min-height: 44px;
-      resize: vertical;
-    }
+    .review-edit textarea { min-height: 44px; resize: vertical; }
 
     /* ── Empty state ──────────────────────────────────── */
     .empty {
@@ -825,85 +698,26 @@
 
     /* ── Responsivo ───────────────────────────────────── */
     @media (max-width: 960px) {
-      .app {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto 1fr;
-      }
-
-      .sidebar {
-        grid-row: auto;
-        padding: 18px;
-        border-right: none;
-        border-bottom: 1px solid var(--aw-border);
-      }
-
-      .logo {
-        margin: 0 0 12px;
-      }
-
-      .side-nav {
-        flex-direction: row;
-        overflow-x: auto;
-        font-size: 14px;
-      }
-
-      .side-nav a,
-      .side-nav button {
-        white-space: nowrap;
-        padding: 0 14px;
-        min-height: 38px;
-      }
-
-      .nav-divider,
-      .nav-section-label {
-        display: none;
-      }
-
-      .sidebar-bottom {
-        display: none;
-      }
-
-      .topbar {
-        grid-column: 1;
-        padding: 12px 20px;
-      }
-
-      .page {
-        grid-column: 1;
-        width: calc(100% - 32px);
-        padding: 24px 0 40px;
-        margin: 0 auto;
-      }
-
-      .profile-grid,
-      .plan-card,
-      .reserve-card {
-        grid-template-columns: 1fr;
-      }
-
-      .reserve-actions {
-        align-items: flex-start;
-        gap: 12px;
-      }
-
-      .notification-panel {
-        right: 14px;
-        width: min(360px, calc(100vw - 28px));
-      }
-
-      .quick-actions {
-        grid-template-columns: 1fr 1fr;
-      }
+      .app { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr; }
+      .sidebar { grid-row: auto; padding: 18px; border-right: none; border-bottom: 1px solid var(--aw-border); }
+      .logo { margin: 0 0 12px; }
+      .side-nav { flex-direction: row; overflow-x: auto; font-size: 14px; }
+      .side-nav a, .side-nav button { white-space: nowrap; padding: 0 14px; min-height: 38px; }
+      .nav-divider, .nav-section-label { display: none; }
+      .sidebar-bottom { display: none; }
+      .topbar { grid-column: 1; padding: 12px 20px; }
+      .page { grid-column: 1; width: calc(100% - 32px); padding: 24px 0 40px; margin: 0 auto; }
+      .profile-grid, .plan-card, .reserve-card { grid-template-columns: 1fr; }
+      .reserve-actions { align-items: flex-start; gap: 12px; }
+      .notification-panel { right: 14px; width: min(360px, calc(100vw - 28px)); }
+      .quick-actions { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 480px) {
-      .quick-actions {
-        grid-template-columns: 1fr;
-      }
+      .quick-actions { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
   <div class="app">
 
@@ -913,52 +727,35 @@
     <aside class="sidebar">
       <a href="index.html" aria-label="Voltar para o início">
         <svg class="logo" viewBox="0 0 64 50" aria-label="Axis Working">
-          <path d="M2 48 L18 4 L26 4 L32 22 L38 4 L46 4 L62 48 L52 48 L42 22 L36 38 L32 28 L28 38 L22 22 L12 48 Z"
-            fill="currentColor" />
+          <path d="M2 48 L18 4 L26 4 L32 22 L38 4 L46 4 L62 48 L52 48 L42 22 L36 38 L32 28 L28 38 L22 22 L12 48 Z" fill="currentColor"/>
         </svg>
       </a>
 
       <!-- Badge de papel — preenchido via JS -->
       <div id="roleBadge" class="role-badge user" style="display:none">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-7 18a7 7 0 0 1 14 0H5Z" />
-        </svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-7 18a7 7 0 0 1 14 0H5Z"/></svg>
         <span id="roleBadgeText">Usuário</span>
       </div>
 
       <nav class="side-nav" aria-label="Menu da conta">
         <a class="active" href="#conta" data-view-link="conta">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="8" r="4" />
-            <path d="M4 20a8 8 0 0 1 16 0" />
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>
           Minha Conta
         </a>
         <a href="#plano" data-view-link="plano">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="18" height="18" rx="3" />
-            <path d="M8 12h8M8 8h4" />
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M8 8h4"/></svg>
           Meu Plano
         </a>
         <a href="#reservas" data-view-link="reservas">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
           Reservas
         </a>
         <a href="#notificacoes" data-view-link="notificacoes">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
           Notificações
         </a>
         <a href="#avaliacoes" data-view-link="avaliacoes">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           Avaliações
         </a>
 
@@ -967,24 +764,15 @@
           <div class="nav-divider"></div>
           <div class="nav-section-label">Administração</div>
           <a href="../admin/admin-coworking.html" class="admin-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
             Painel Admin
           </a>
           <a href="../admin/pages/users.html" class="admin-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             Gerenciar Usuários
           </a>
           <a href="../admin/pages/rooms.html" class="admin-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="7" width="20" height="14" rx="2" />
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
             Gerenciar Salas
           </a>
         </div>
@@ -992,11 +780,7 @@
 
       <div class="sidebar-bottom">
         <button class="logout" id="logoutButton" type="button" style="width:100%; justify-content:center;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-            <polyline points="16 17 21 12 16 7" />
-            <line x1="21" y1="12" x2="9" y2="12" />
-          </svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
           Sair
         </button>
       </div>
@@ -1008,24 +792,16 @@
     <header class="topbar">
       <div class="topbar-user">
         <span id="topbarUserName" style="font-weight:600;color:var(--aw-navy)"></span>
-        <span id="topbarRoleLabel"
-          style="font-size:12px;background:var(--aw-blue-ghost);color:var(--aw-blue);padding:2px 10px;border-radius:999px;font-weight:700;display:none"></span>
+        <span id="topbarRoleLabel" style="font-size:12px;background:var(--aw-blue-ghost);color:var(--aw-blue);padding:2px 10px;border-radius:999px;font-weight:700;display:none"></span>
       </div>
 
-      <button class="icon-btn" id="notificationToggle" type="button" aria-label="Abrir notificações"
-        aria-expanded="false" aria-controls="notificationPanel">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-          <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-        </svg>
+      <button class="icon-btn" id="notificationToggle" type="button"
+              aria-label="Abrir notificações" aria-expanded="false" aria-controls="notificationPanel">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
         <span class="notification-count" id="notificationCount">0</span>
       </button>
       <button class="profile-btn" type="button" aria-label="Perfil">
-        <svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="currentColor"
-            d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 4.2a3.1 3.1 0 1 1 0 6.2 3.1 3.1 0 0 1 0-6.2Zm0 13.1a7.3 7.3 0 0 1-5.5-2.5c.9-1.7 3-2.8 5.5-2.8s4.6 1.1 5.5 2.8a7.3 7.3 0 0 1-5.5 2.5Z" />
-        </svg>
+        <svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 4.2a3.1 3.1 0 1 1 0 6.2 3.1 3.1 0 0 1 0-6.2Zm0 13.1a7.3 7.3 0 0 1-5.5-2.5c.9-1.7 3-2.8 5.5-2.8s4.6 1.1 5.5 2.8a7.3 7.3 0 0 1-5.5 2.5Z"/></svg>
       </button>
 
       <div class="notification-panel" id="notificationPanel">
@@ -1058,8 +834,7 @@
           <div class="admin-icon">🛡</div>
           <div>
             <h3>Conta de Administrador</h3>
-            <p>Você tem acesso privilegiado ao sistema. Use o menu lateral para acessar o painel de administração,
-              gerenciar usuários, salas e planos.</p>
+            <p>Você tem acesso privilegiado ao sistema. Use o menu lateral para acessar o painel de administração, gerenciar usuários, salas e planos.</p>
           </div>
         </div>
 
@@ -1102,11 +877,7 @@
         </form>
 
         <button class="logout" id="logoutButtonInline" type="button" style="margin-top:8px">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-            <polyline points="16 17 21 12 16 7" />
-            <line x1="21" y1="12" x2="9" y2="12" />
-          </svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
           Sair da conta
         </button>
       </section>
@@ -1170,11 +941,11 @@
        Suporte a usuário comum e administrador
     ====================================================== */
 
-    const API_BASE_URL = window.API_BASE_URL || 'http://127.0.0.1:8000/api';
-    const API_ROOT_URL = window.API_ROOT_URL || API_BASE_URL.replace(/\/api$/, '');
+    const API_BASE_URL  = window.API_BASE_URL || 'http://127.0.0.1:8000/api';
+    const API_ROOT_URL  = window.API_ROOT_URL || API_BASE_URL.replace(/\/api$/, '');
     // Sessão única compartilhada com o site e o painel admin (shape: { token, user }).
-    const session = window.AxisAuth ? AxisAuth.getSession() : null;
-    const auth = session ? { ...session, cliente: session.user } : null;
+    const session       = window.AxisAuth ? AxisAuth.getSession() : null;
+    const auth          = session ? { ...session, cliente: session.user } : null;
 
     if (!auth?.cliente?.id_cliente) {
       window.location.href = 'login.html';
@@ -1281,18 +1052,18 @@
 
     function normalizeReview(a) {
       return {
-        id_avaliacao: a.id_avaliacao ?? a.idAvaliacao,
-        id_cliente: a.id_cliente ?? a.idCliente,
-        id_sala: a.id_sala ?? a.idSala,
-        id_reserva: a.id_reserva ?? a.idReserva,
-        nota: a.nota,
-        corpo: a.corpo,
-        criado_em: a.criado_em ?? a.criadoEm,
+        id_avaliacao:   a.id_avaliacao   ?? a.idAvaliacao,
+        id_cliente:     a.id_cliente     ?? a.idCliente,
+        id_sala:        a.id_sala        ?? a.idSala,
+        id_reserva:     a.id_reserva     ?? a.idReserva,
+        nota:           a.nota,
+        corpo:          a.corpo,
+        criado_em:      a.criado_em      ?? a.criadoEm,
         resposta_admin: a.resposta_admin ?? a.respostaAdmin,
-        respondido_em: a.respondido_em ?? a.respondidoEm,
-        nome_usuario: a.nome_usuario ?? a.nomeUsuario,
-        nome_sala: a.nome_sala ?? a.nomeSala,
-        tipo_sala: a.tipo_sala ?? a.tipoSala,
+        respondido_em:  a.respondido_em  ?? a.respondidoEm,
+        nome_usuario:   a.nome_usuario   ?? a.nomeUsuario,
+        nome_sala:      a.nome_sala      ?? a.nomeSala,
+        tipo_sala:      a.tipo_sala      ?? a.tipoSala,
       };
     }
 
@@ -1343,8 +1114,8 @@
     /* ── Notificações (painel) ──────────────────────── */
     function setupNotifications() {
       const toggle = document.getElementById('notificationToggle');
-      const panel = document.getElementById('notificationPanel');
-      const close = document.getElementById('notificationClose');
+      const panel  = document.getElementById('notificationPanel');
+      const close  = document.getElementById('notificationClose');
 
       const setOpen = open => {
         panel.classList.toggle('is-open', open);
@@ -1352,41 +1123,41 @@
       };
 
       toggle.addEventListener('click', e => { e.stopPropagation(); setOpen(!panel.classList.contains('is-open')); });
-      close.addEventListener('click', e => { e.stopPropagation(); setOpen(false); });
-      panel.addEventListener('click', e => e.stopPropagation());
+      close.addEventListener('click',  e => { e.stopPropagation(); setOpen(false); });
+      panel.addEventListener('click',  e => e.stopPropagation());
       document.addEventListener('click', () => setOpen(false));
       document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
     }
 
     /* ── Interface baseada em papel ─────────────────── */
     function applyRoleUI() {
-      const badge = document.getElementById('roleBadge');
+      const badge     = document.getElementById('roleBadge');
       const badgeText = document.getElementById('roleBadgeText');
-      const adminNav = document.getElementById('adminNav');
+      const adminNav  = document.getElementById('adminNav');
       const adminCard = document.getElementById('adminInfoCard');
-      const adminQA = document.getElementById('adminQuickActions');
-      const topRole = document.getElementById('topbarRoleLabel');
-      const name = document.getElementById('topbarUserName');
+      const adminQA   = document.getElementById('adminQuickActions');
+      const topRole   = document.getElementById('topbarRoleLabel');
+      const name      = document.getElementById('topbarUserName');
 
       if (name) name.textContent = state.cliente.nome?.split(' ')[0] || '';
 
       if (isAdmin) {
-        badge.className = 'role-badge admin';
+        badge.className  = 'role-badge admin';
         badgeText.textContent = 'Administrador';
-        badge.style.display = 'inline-flex';
-        if (adminNav) adminNav.style.display = 'block';
+        badge.style.display   = 'inline-flex';
+        if (adminNav)  adminNav.style.display  = 'block';
         if (adminCard) adminCard.style.display = 'flex';
-        if (adminQA) adminQA.style.display = 'grid';
+        if (adminQA)   adminQA.style.display   = 'grid';
         if (topRole) {
           topRole.textContent = 'Admin';
           topRole.style.background = 'var(--aw-admin-bg)';
-          topRole.style.color = 'var(--aw-admin-color)';
-          topRole.style.display = 'inline';
+          topRole.style.color      = 'var(--aw-admin-color)';
+          topRole.style.display    = 'inline';
         }
       } else {
-        badge.className = 'role-badge user';
+        badge.className  = 'role-badge user';
         badgeText.textContent = 'Usuário';
-        badge.style.display = 'inline-flex';
+        badge.style.display   = 'inline-flex';
         if (topRole) {
           topRole.textContent = 'Membro';
           topRole.style.display = 'inline';
@@ -1407,11 +1178,11 @@
         requestNotifications(id),
       ]);
 
-      if (results[0].status === 'fulfilled') state.cliente = results[0].value;
+      if (results[0].status === 'fulfilled') state.cliente     = results[0].value;
       if (results[1].status === 'fulfilled') state.assinaturas = results[1].value;
-      if (results[2].status === 'fulfilled') state.planos = results[2].value;
-      if (results[3].status === 'fulfilled') state.reservas = results[3].value;
-      if (results[4].status === 'fulfilled') state.salas = results[4].value;
+      if (results[2].status === 'fulfilled') state.planos      = results[2].value;
+      if (results[3].status === 'fulfilled') state.reservas    = results[3].value;
+      if (results[4].status === 'fulfilled') state.salas       = results[4].value;
 
       if (results[5].status === 'fulfilled') {
         const avs = results[5].value;
@@ -1426,8 +1197,8 @@
         const nots = results[6].value;
         state.notificacoes = nots.filter(n => Number(n.id_cliente) === Number(id));
         if (!state.notificacoes.length) {
-          const reservaIds = new Set(state.reservas.map(r => Number(r.id_reserva)));
-          const assIds = new Set(state.assinaturas.map(a => Number(a.id_assinatura)));
+          const reservaIds  = new Set(state.reservas.map(r => Number(r.id_reserva)));
+          const assIds      = new Set(state.assinaturas.map(a => Number(a.id_assinatura)));
           state.notificacoes = nots.filter(n =>
             reservaIds.has(Number(n.id_reserva)) || assIds.has(Number(n.id_assinatura))
           );
@@ -1437,9 +1208,9 @@
 
     /* ── Render: Perfil ─────────────────────────────── */
     function renderProfile() {
-      document.getElementById('clienteNome').value = state.cliente.nome || '';
-      document.getElementById('clienteCpf').value = state.cliente.cpf || '';
-      document.getElementById('clienteEmail').value = state.cliente.email || '';
+      document.getElementById('clienteNome').value     = state.cliente.nome     || '';
+      document.getElementById('clienteCpf').value      = state.cliente.cpf      || '';
+      document.getElementById('clienteEmail').value    = state.cliente.email    || '';
       document.getElementById('clienteTelefone').value = state.cliente.telefone || '';
 
       const nameEl = document.getElementById('topbarUserName');
@@ -1448,9 +1219,9 @@
 
     /* ── Render: Plano ──────────────────────────────── */
     function renderPlan() {
-      const card = document.getElementById('planoCard');
-      const active = state.assinaturas.find(a => a.status === 'Ativa') || state.assinaturas[0];
-      const plano = state.planos.find(p => Number(p.id_plano) === Number(active?.id_plano));
+      const card    = document.getElementById('planoCard');
+      const active  = state.assinaturas.find(a => a.status === 'Ativa') || state.assinaturas[0];
+      const plano   = state.planos.find(p => Number(p.id_plano) === Number(active?.id_plano));
 
       if (!active || !plano) {
         card.innerHTML = `
@@ -1491,7 +1262,7 @@
 
     /* ── Render: Reservas ───────────────────────────── */
     function renderReservations() {
-      const list = document.getElementById('reservasList');
+      const list  = document.getElementById('reservasList');
       const salas = byId(state.salas, 'id_sala');
 
       if (!state.reservas.length) {
@@ -1500,7 +1271,7 @@
       }
 
       list.innerHTML = state.reservas.map(reserva => {
-        const sala = salas.get(Number(reserva.id_sala));
+        const sala       = salas.get(Number(reserva.id_sala));
         const finalizada = reserva.status === 'Finalizada';
         return `
           <article class="reserve-card">
@@ -1516,9 +1287,9 @@
             <div class="reserve-actions">
               <span class="status ${statusClass(reserva.status)}">${reserva.status}</span>
               ${finalizada
-            ? '<button class="danger-btn" type="button" disabled>Finalizada</button>'
-            : `<a class="primary-btn" href="alterar-reserva.html?id=${reserva.id_reserva}">Alterar</a>`
-          }
+                ? '<button class="danger-btn" type="button" disabled>Finalizada</button>'
+                : `<a class="primary-btn" href="alterar-reserva.html?id=${reserva.id_reserva}">Alterar</a>`
+              }
             </div>
           </article>
         `;
@@ -1571,25 +1342,22 @@
     }
 
     function renderNotifications() {
-      const count = document.getElementById('notificationCount');
-      const list = document.getElementById('notificationList');
+      const count    = document.getElementById('notificationCount');
+      const list     = document.getElementById('notificationList');
       const fullList = document.getElementById('fullNotificationList');
+      const unread   = state.notificacoes.filter(n => !n.lida);
 
-      if (!count || !list || !fullList) return;
-
-      const unread = state.notificacoes.filter(n => !n.lida);
-
-      count.textContent = String(unread.length);
-      count.style.display = unread.length ? 'grid' : 'none';
+      count.textContent    = String(unread.length);
+      count.style.display  = unread.length ? 'grid' : 'none';
 
       if (!state.notificacoes.length) {
-        list.innerHTML = '<li class="notification-item"><span class="notification-marker read"></span><div><strong>Nenhuma notificação</strong><span>Você não possui notificações.</span></div></li>';
+        list.innerHTML     = '<li class="notification-item"><span class="notification-marker read"></span><div><strong>Nenhuma notificação</strong><span>Você não possui notificações.</span></div></li>';
         fullList.innerHTML = '<div class="empty">Você não possui notificações.</div>';
         return;
       }
 
       const html = state.notificacoes.map(notificationMarkup).join('');
-      list.innerHTML = html;
+      list.innerHTML     = html;
       fullList.innerHTML = html;
     }
 
@@ -1613,7 +1381,7 @@
                   <label>
                     <span style="font-size:12px;color:var(--aw-muted)">Nota</span>
                     <select id="reviewNota-${av.id_avaliacao}">
-                      ${[1, 2, 3, 4, 5].map(n => `<option value="${n}"${Number(av.nota) === n ? ' selected' : ''}>${n}</option>`).join('')}
+                      ${[1,2,3,4,5].map(n => `<option value="${n}"${Number(av.nota)===n?' selected':''}>${n}</option>`).join('')}
                     </select>
                   </label>
                   <label>
@@ -1643,9 +1411,9 @@
       if (!av) return;
       const payload = {
         id_reserva: av.id_reserva,
-        nota: Number(document.getElementById(`reviewNota-${id}`).value),
-        corpo: document.getElementById(`reviewCorpo-${id}`).value.trim() || null,
-        criado_em: av.criado_em,
+        nota:       Number(document.getElementById(`reviewNota-${id}`).value),
+        corpo:      document.getElementById(`reviewCorpo-${id}`).value.trim() || null,
+        criado_em:  av.criado_em,
       };
       try {
         const updated = normalizeReview(await send(`/avaliacoes/${id}`, {
@@ -1683,8 +1451,8 @@
     document.getElementById('profileForm').addEventListener('submit', e => {
       e.preventDefault();
       const payload = {
-        nome: document.getElementById('clienteNome').value.trim(),
-        email: document.getElementById('clienteEmail').value.trim(),
+        nome:     document.getElementById('clienteNome').value.trim(),
+        email:    document.getElementById('clienteEmail').value.trim(),
         telefone: document.getElementById('clienteTelefone').value.replace(/\D/g, '') || null,
       };
       const msg = document.getElementById('profileMessage');
@@ -1727,12 +1495,11 @@
         console.error(err);
         renderProfile();
         applyRoleUI();
-        document.getElementById('planoCard').innerHTML = '<div class="empty">Não foi possível carregar o plano.</div>';
-        document.getElementById('reservasList').innerHTML = '<div class="empty">Não foi possível carregar reservas.</div>';
-        document.getElementById('avaliacoesList').innerHTML = '<div class="empty">Não foi possível carregar avaliações.</div>';
+        document.getElementById('planoCard').innerHTML          = '<div class="empty">Não foi possível carregar o plano.</div>';
+        document.getElementById('reservasList').innerHTML       = '<div class="empty">Não foi possível carregar reservas.</div>';
+        document.getElementById('avaliacoesList').innerHTML     = '<div class="empty">Não foi possível carregar avaliações.</div>';
         renderNotifications();
       });
   </script>
 </body>
-
 </html>

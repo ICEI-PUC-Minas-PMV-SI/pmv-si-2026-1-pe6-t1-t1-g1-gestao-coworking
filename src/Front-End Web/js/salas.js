@@ -19,10 +19,8 @@ const monthNames = [
   'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
 ];
 
-const _hoje = new Date();
-let currentMonth = _hoje.getMonth();
-let currentYear  = _hoje.getFullYear();
-let selectedDay  = null;
+let currentMonth = 4;
+let currentYear = 2026;
 let reservasDaSala = [];
 
 function apiList(data) {
@@ -131,37 +129,24 @@ async function carregarDisponibilidade() {
     reservasDaSala = [];
   }
 
-  selectedDay = null;
   renderCalendar();
-  renderTimes(null); // horários ficam ocultos até o usuário clicar num dia
+  renderTimes();
 }
 
 function diasOcupados() {
-  // Retorna Set com os dias que têm TODOS os horários tomados (dia inteiro bloqueado)
-  // Para simplificar: marca o dia como "parcialmente ocupado" só na cor, não bloqueado
-  const diasDoMes = reservasDaSala
+  return reservasDaSala
     .filter((reserva) => {
       const entrada = new Date(reserva.entrada);
       return entrada.getMonth() === currentMonth && entrada.getFullYear() === currentYear;
     })
     .map((reserva) => new Date(reserva.entrada).getDate());
-  return diasDoMes; // dias que têm ao menos 1 reserva
 }
 
-function horariosOcupadosNoDia(dia) {
-  // Retorna array de strings "HH:MM" das reservas no dia/mês/ano atual
-  return reservasDaSala
-    .filter((reserva) => {
-      const entrada = new Date(reserva.entrada);
-      return (
-        entrada.getDate()     === dia &&
-        entrada.getMonth()    === currentMonth &&
-        entrada.getFullYear() === currentYear
-      );
-    })
-    .map((reserva) =>
-      new Date(reserva.entrada).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
-    );
+function horariosOcupados() {
+  return reservasDaSala.map((reserva) => new Date(reserva.entrada).toLocaleTimeString('pt-BR', {
+    hour: '2-digit',
+    minute: '2-digit',
+  }));
 }
 
 function renderCalendar() {
@@ -169,84 +154,33 @@ function renderCalendar() {
   if (!calendar) return;
 
   document.getElementById('monthTitle').textContent = `${monthNames[currentMonth]} ${currentYear}`;
-
-  const diasComReserva = new Set(diasOcupados());
-  const daysInMonth    = new Date(currentYear, currentMonth + 1, 0).getDate();
-  const firstWeekDay   = new Date(currentYear, currentMonth, 1).getDay(); // 0=Dom
-  const hoje           = new Date();
-  const ehMesAtual     = hoje.getMonth() === currentMonth && hoje.getFullYear() === currentYear;
+  const disabledDays = diasOcupados();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
   calendar.innerHTML = '';
-
-  // Células vazias para alinhar o dia 1 na coluna certa
-  for (let i = 0; i < firstWeekDay; i++) {
-    const empty = document.createElement('div');
-    empty.className = 'calendar-day empty';
-    calendar.appendChild(empty);
-  }
-
-  for (let day = 1; day <= daysInMonth; day++) {
+  for (let day = 1; day <= daysInMonth; day += 1) {
     const div = document.createElement('div');
     div.className = 'calendar-day';
     div.textContent = day;
-
-    // Dia no passado → desabilitado
-    const dataDia = new Date(currentYear, currentMonth, day);
-    const hoje0   = new Date(); hoje0.setHours(0,0,0,0);
-    if (dataDia < hoje0) {
-      div.classList.add('disabled');
-      calendar.appendChild(div);
-      continue;
-    }
-
-    // Hoje → destaque visual extra
-    if (ehMesAtual && day === hoje.getDate()) {
-      div.classList.add('today');
-    }
-
-    // Tem ao menos uma reserva → pontinho indicador, mas ainda clicável
-    if (diasComReserva.has(day)) {
-      div.classList.add('has-reserva');
-    }
-
-    // Restaurar seleção ao trocar de mês (se mesmo dia ainda existir)
-    if (selectedDay === day) {
-      div.classList.add('selected');
-    }
-
+    if (disabledDays.includes(day)) div.classList.add('disabled');
     div.addEventListener('click', () => {
+      if (div.classList.contains('disabled')) return;
       document.querySelectorAll('.calendar-day').forEach((item) => item.classList.remove('selected'));
       div.classList.add('selected');
-      selectedDay = day;
-      renderTimes(day);
     });
-
     calendar.appendChild(div);
   }
 }
 
-function renderTimes(dia) {
+function renderTimes() {
   const timesList = document.getElementById('times-list');
   if (!timesList) return;
 
-  // Sem dia selecionado: mostra mensagem orientativa
-  if (dia == null) {
-    timesList.innerHTML = '<p class="times-hint">Selecione um dia no calendário para ver os horários disponíveis.</p>';
-    return;
-  }
+  const disabledTimes = horariosOcupados();
+  const times = ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
 
-  const ocupados = new Set(horariosOcupadosNoDia(dia));
-  const times = ['07:00','08:00','09:00','10:00','11:00','12:00',
-                  '13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
-  const disponiveis = times.filter((t) => !ocupados.has(t));
-
-  if (!disponiveis.length) {
-    timesList.innerHTML = '<p class="times-hint">Nenhum horário disponível neste dia.</p>';
-    return;
-  }
-
-  timesList.innerHTML = disponiveis.map((time) => `
-    <div class="time-slot" onclick="selecionarHorario(this)" data-time="${time}">${time}</div>
+  timesList.innerHTML = times.map((time) => `
+    <div class="time-slot ${disabledTimes.includes(time) ? 'disabled' : ''}" onclick="selecionarHorario(this)">${time}</div>
   `).join('');
 }
 
@@ -258,11 +192,16 @@ function selecionarHorario(element) {
 
 function mudarMes(delta) {
   currentMonth += delta;
-  if (currentMonth < 0)  { currentMonth = 11; currentYear -= 1; }
-  if (currentMonth > 11) { currentMonth = 0;  currentYear += 1; }
-  selectedDay = null;
+  if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear -= 1;
+  }
+  if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear += 1;
+  }
   renderCalendar();
-  renderTimes(null); // limpa os horários ao trocar de mês
+  renderTimes();
 }
 
 async function carregarAvaliacoes() {
@@ -313,31 +252,7 @@ function reservarSala() {
     window.location.href = 'login.html';
     return;
   }
-
-  if (!selectedDay) {
-    alert('Selecione um dia no calendário antes de reservar.');
-    return;
-  }
-
-  const slotSelecionado = document.querySelector('.time-slot.selected');
-  if (!slotSelecionado) {
-    alert('Selecione um horário antes de reservar.');
-    return;
-  }
-
-  const horario = slotSelecionado.dataset.time; // "HH:MM"
-  const mes     = String(currentMonth + 1).padStart(2, '0');
-  const dia     = String(selectedDay).padStart(2, '0');
-  const data    = `${currentYear}-${mes}-${dia}`; // "YYYY-MM-DD"
-  const salaId  = getSalaId();
-
-  const params = new URLSearchParams({
-    sala:    salaId,
-    data:    data,
-    horario: horario,
-  });
-
-  window.location.href = `confirmar-reserva.html?${params.toString()}`;
+  window.location.href = `confirmar-reserva.html?sala=${encodeURIComponent(getSalaId())}`;
 }
 
 document.getElementById('prevMonth')?.addEventListener('click', () => mudarMes(-1));

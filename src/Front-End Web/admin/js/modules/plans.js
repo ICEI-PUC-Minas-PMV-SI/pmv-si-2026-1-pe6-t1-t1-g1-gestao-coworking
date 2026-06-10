@@ -77,6 +77,7 @@ function planPayloadFromForm(formElement) {
     nome: String(form.get('nome') || '').trim(),
     acesso: form.get('acesso'),
     preco: Number(form.get('preco')),
+    nivel: Number(form.get('nivel')) || 1,
     descricao: String(form.get('descricao') || '').trim(),
     beneficios: uniqueBenefits([...selectedBenefits, ...customBenefits]),
   };
@@ -97,6 +98,7 @@ function normalizePlanDraftPayload(plano = {}) {
     nome: String(plano.nome || '').trim(),
     acesso: plano.acesso || '1 Mesa de Trabalho',
     preco: Number(plano.preco || 0),
+    nivel: Number(plano.nivel || 1),
     descricao: String(plano.descricao || planDescription(plano.nome || '') || '').trim(),
     beneficios: uniqueBenefits(normalizePlanBenefits(plano.beneficios || planFeatures(plano.nome || ''))),
   };
@@ -190,6 +192,12 @@ function planFormBody(plano) {
     <label>
       <div class="field-label">Preco</div>
       <input class="field-input" name="preco" type="number" min="1" step="0.01" value="${Number(plano?.preco || 0)}" required />
+    </label>
+    <label>
+      <div class="field-label">Nível do plano (hierarquia — não visível ao usuário)</div>
+      <select class="field-select" name="nivel">
+        ${[1, 2, 3, 4].map((n) => `<option value="${n}"${Number(plano?.nivel || 1) === n ? ' selected' : ''}>${n}</option>`).join('')}
+      </select>
     </label>
     <label>
       <div class="field-label">Descricao</div>
@@ -317,6 +325,7 @@ function openPlanSettingsModal(plano) {
     subtitle: 'Acoes rapidas para o plano selecionado.',
     body: `
       <div class="report-card"><span>Acesso</span><b>${escapeHtml(plano.acesso)}</b></div>
+      <div class="report-card"><span>Nível</span><b>${Number(plano.nivel || 1)}</b></div>
       <div class="report-card"><span>Preco</span><b>${money.format(Number(plano.preco || 0))}</b></div>
       <div class="report-card"><span>Receita atual</span><b>${money.format(row?.receita || 0)}</b></div>
       <div class="report-card"><span>Descricao</span><b>${escapeHtml(plano.descricao || planDescription(plano.nome))}</b></div>

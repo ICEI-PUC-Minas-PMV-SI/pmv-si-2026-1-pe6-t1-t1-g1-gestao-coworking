@@ -49,12 +49,13 @@ export function PlanoScreen({ navigation }: { navigation: any }) {
     }
 
     // Troca de plano é livre, mas se houver uma reserva ativa de sala de
-    // categoria SUPERIOR à do novo plano, o usuário precisa cancelá-la antes.
-    const novoTier = tierFromAccess(plano.acesso);
+    // categoria SUPERIOR ao nível do novo plano, o usuário precisa cancelá-la
+    // antes. O nível é configurado pelo admin (fallback: derivado do acesso).
+    const novoNivel = plano.nivel ?? tierFromAccess(plano.acesso);
     const reservasAtivas = reservas.filter((r) => r.status === 'Confirmada' || r.status === 'Em Andamento');
     const conflito = reservasAtivas
       .map((r) => salas.find((s) => Number(s.id_sala) === Number(r.id_sala)))
-      .find((s): s is Sala => Boolean(s) && tierFromAccess(s!.tipo) > novoTier);
+      .find((s): s is Sala => Boolean(s) && tierFromAccess(s!.tipo) > novoNivel);
 
     if (conflito) {
       Alert.alert(

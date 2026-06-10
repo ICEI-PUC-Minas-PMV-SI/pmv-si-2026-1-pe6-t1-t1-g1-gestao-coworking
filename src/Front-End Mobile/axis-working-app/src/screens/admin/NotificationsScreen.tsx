@@ -180,6 +180,7 @@ function CreateNotificationForm({
   onSaved: () => void;
 }) {
   const [clienteIds, setClienteIds] = useState<number[]>([]);
+  const [todos, setTodos] = useState(false);
   const [tipo, setTipo] = useState(data.notificationTypes[0] || 'Alerta');
   const [corpo, setCorpo] = useState('');
 
@@ -188,12 +189,13 @@ function CreateNotificationForm({
   }
 
   async function save() {
-    if (!clienteIds.length || !corpo.trim()) {
-      Alert.alert('Notificacoes', 'Selecione usuarios e informe a mensagem.');
+    const alvo = todos ? data.clientes.map((cliente) => cliente.id_cliente) : clienteIds;
+    if (!alvo.length || !corpo.trim()) {
+      Alert.alert('Notificacoes', 'Selecione usuarios (ou marque "todos") e informe a mensagem.');
       return;
     }
     try {
-      await Promise.all(clienteIds.map((id_cliente) => api.send('/notificacoes', 'POST', {
+      await Promise.all(alvo.map((id_cliente) => api.send('/notificacoes', 'POST', {
         id_cliente,
         tipo,
         corpo,
@@ -208,17 +210,26 @@ function CreateNotificationForm({
 
   return (
     <Sheet visible={visible} title="Criar gatilho" onClose={onClose}>
-      <Text style={uiStyles.fieldLabel}>Usuarios</Text>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: spacing.xs }}>
-        {data.clientes.map((cliente) => (
-          <AppButton
-            key={cliente.id_cliente}
-            label={cliente.nome}
-            variant={clienteIds.includes(cliente.id_cliente) ? 'primary' : 'ghost'}
-            onPress={() => toggleCliente(cliente.id_cliente)}
-          />
-        ))}
-      </View>
+      <AppButton
+        label={todos ? '✓ Todos os usuários' : 'Enviar para todos os usuários'}
+        variant={todos ? 'primary' : 'ghost'}
+        onPress={() => setTodos((value) => !value)}
+      />
+      {!todos ? (
+        <>
+          <Text style={uiStyles.fieldLabel}>Usuarios</Text>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: spacing.xs }}>
+            {data.clientes.map((cliente) => (
+              <AppButton
+                key={cliente.id_cliente}
+                label={cliente.nome}
+                variant={clienteIds.includes(cliente.id_cliente) ? 'primary' : 'ghost'}
+                onPress={() => toggleCliente(cliente.id_cliente)}
+              />
+            ))}
+          </View>
+        </>
+      ) : null}
       <ChoiceGroup label="Tipo" value={tipo} onChange={setTipo} options={data.notificationTypes.length ? data.notificationTypes : [tipo]} />
       <Field label="Mensagem" value={corpo} onChangeText={setCorpo} multiline />
       <AppButton label="Enviar notificacao" onPress={save} />

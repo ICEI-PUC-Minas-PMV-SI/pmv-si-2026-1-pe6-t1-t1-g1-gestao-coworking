@@ -469,3 +469,10 @@
 {"_e":"metro:bundling:started","_t":1781100590596,"id":"9","platform":"android","environment":null,"entry":"index.ts"}
 {"_e":"metro:bundling:progress","_t":1781100590597,"id":"9","progress":0,"total":1,"current":0}
 {"_e":"metro:bundling:done","_t":1781100590714,"id":"9","total":1,"ms":117.7414}
+{"_e":"metro:bundling:started","_t":1781112902770,"id":"d","platform":"android","environment":null,"entry":"index.ts"}
+{"_e":"metro:bundling:progress","_t":1781112902770,"id":"d","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781112903447,"id":"d","total":1,"ms":677.1712}
+{"_e":"metro:client_log","_t":1781113920025,"level":"error","data":["[ReferenceError: Property 'naoLidas' doesn't exist]"]}
+{"_e":"metro:bundling:started","_t":1781113928292,"id":"g","platform":"android","environment":null,"entry":"index.ts"}
+{"_e":"metro:bundling:progress","_t":1781113928293,"id":"g","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781113928396,"id":"g","total":1,"ms":102.8561}

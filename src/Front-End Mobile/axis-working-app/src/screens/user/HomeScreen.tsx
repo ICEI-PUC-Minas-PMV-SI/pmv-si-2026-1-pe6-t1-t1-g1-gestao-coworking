@@ -13,14 +13,12 @@ import type { Plano } from '../../types';
 
 type Sala = { id_sala: number; nome: string; tipo: string; capacidade: number; recursos: string };
 type Reserva = { id_reserva: number; id_sala: number; status: string; entrada: string; saida: string };
-type Notificacao = { id_notificacao: number; lida: boolean };
 
 export function HomeScreen({ navigation }: { navigation: any }) {
   const { user } = useAuth();
   const [salas, setSalas] = useState<Sala[]>([]);
   const [proximaReserva, setProximaReserva] = useState<(Reserva & { nome_sala: string }) | null>(null);
   const [planos, setPlanos] = useState<Plano[]>([]);
-  const [naoLidas, setNaoLidas] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -54,12 +52,6 @@ export function HomeScreen({ navigation }: { navigation: any }) {
           const salaInfo = dadosSalas.find((s) => s.id_sala === prox.id_sala);
           setProximaReserva({ ...prox, nome_sala: salaInfo?.nome ?? 'Sala Desconhecida' });
         }
-
-        // Contador de notificações não lidas (best-effort, alimenta o sino).
-        try {
-          const nots = await userApi.get<Notificacao[]>(`/notificacoes/cliente/${user.id_cliente}`);
-          setNaoLidas(nots.filter((n) => !n.lida).length);
-        } catch { /* ignora falha do contador */ }
       }
     } catch (err) {
       console.error('Erro ao carregar home:', err);
@@ -79,12 +71,7 @@ export function HomeScreen({ navigation }: { navigation: any }) {
 
   return (
     <>
-      <Header
-        title="Axis Work"
-        subtitle="Espaço de trabalho inteligente"
-        onNotifications={user ? () => navigation.navigate('Notificacoes') : undefined}
-        unread={naoLidas}
-      />
+      <Header title="Axis Work" subtitle="Espaço de trabalho inteligente" />
       <Container>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Olá, {user?.nome?.split(' ')[0] ?? 'bem-vindo'}!</Text>

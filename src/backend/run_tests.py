@@ -24,6 +24,15 @@ import time
 from pathlib import Path
 
 
+# Garante saida UTF-8 mesmo em consoles Windows (cp1252), evitando
+# UnicodeEncodeError ao imprimir caracteres de caixa (─) e icones (✓/✗).
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
+    except (AttributeError, ValueError):
+        pass
+
+
 BASE_DIR = Path(__file__).resolve().parent
 TESTS_DIR = BASE_DIR / "tests"
 

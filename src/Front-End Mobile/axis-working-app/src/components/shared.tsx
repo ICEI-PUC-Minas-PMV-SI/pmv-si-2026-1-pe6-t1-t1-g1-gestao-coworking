@@ -20,7 +20,10 @@ import {
   View,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import { colors, radius, spacing } from '../theme';
+import { useAuth } from '../context/AuthContext';
+import { useUnreadCount } from '../hooks/useUnreadCount';
 
 // ── Container scrollável ─────────────────────────────────────
 export function Container({ children }: { children: React.ReactNode }) {
@@ -32,29 +35,41 @@ export function Container({ children }: { children: React.ReactNode }) {
 }
 
 // ── Cabeçalho (estilo do painel admin: título + subtítulo à esquerda) ──
-// Opcionalmente exibe um sino de notificações à direita (com contador de não
-// lidas) quando `onNotifications` é informado.
+// Exibe automaticamente o sino de notificações (com contador de não lidas)
+// em todas as telas do usuário logado. Passe `notifications={false}` para
+// ocultá-lo (ex.: na própria tela de Notificações). `onBack` adiciona uma
+// seta de voltar à esquerda (telas empilhadas, como Notificações).
 export function Header({
   title = 'Axis Work',
   subtitle,
-  onNotifications,
-  unread = 0,
+  notifications = true,
+  onBack,
 }: {
   title?: string;
   subtitle?: string;
-  onNotifications?: () => void;
-  unread?: number;
+  notifications?: boolean;
+  onBack?: () => void;
 }) {
+  const { user } = useAuth();
+  const navigation = useNavigation<any>();
+  const unread = useUnreadCount();
+  const showBell = notifications && Boolean(user);
+
   return (
     <View style={styles.header}>
+      {onBack ? (
+        <TouchableOpacity style={styles.backBtn} onPress={onBack} accessibilityLabel="Voltar" activeOpacity={0.7}>
+          <Ionicons name="chevron-back" size={24} color={colors.navy} />
+        </TouchableOpacity>
+      ) : null}
       <View style={styles.headerTextBlock}>
         <Text style={styles.headerTitle}>{title}</Text>
         {subtitle ? <Text style={styles.headerSubtitle}>{subtitle}</Text> : null}
       </View>
-      {onNotifications ? (
+      {showBell ? (
         <TouchableOpacity
           style={styles.bell}
-          onPress={onNotifications}
+          onPress={() => navigation.navigate('Notificacoes')}
           accessibilityLabel="Abrir notificações"
           activeOpacity={0.7}
         >
@@ -158,6 +173,14 @@ const styles = StyleSheet.create({
   headerTextBlock: {
     flex: 1,
     gap: 4,
+  },
+  backBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: radius.pill,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: -8,
   },
   headerTitle: {
     fontSize: 24,

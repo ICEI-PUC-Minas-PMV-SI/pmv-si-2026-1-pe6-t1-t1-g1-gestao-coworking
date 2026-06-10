@@ -76,7 +76,6 @@ function HomeStack() {
       <Stack.Screen name="HomePrincipal" component={HomeScreen} />
       <Stack.Screen name="Planos"        component={PlanoScreen} />
       <Stack.Screen name="SobreNos"      component={SobreNosScreen} />
-      <Stack.Screen name="Notificacoes"  component={NotificacoesScreen} />
     </Stack.Navigator>
   );
 }
@@ -107,7 +106,6 @@ function PerfilStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="PerfilPrincipal" component={PerfilScreen} />
       <Stack.Screen name="MeuPlano"        component={MeuPlanoScreen} />
-      <Stack.Screen name="Notificacoes"    component={NotificacoesScreen} />
       <Stack.Screen name="Planos"          component={PlanoScreen} />
     </Stack.Navigator>
   );
@@ -391,6 +389,9 @@ function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="UserTabs" component={UserTabs} />
+      {/* Notificações no nível raiz: o sino do cabeçalho navega para cá de
+          qualquer aba (a tela é empilhada sobre as tabs, com botão voltar). */}
+      <Stack.Screen name="Notificacoes" component={NotificacoesScreen} />
     </Stack.Navigator>
   );
 }

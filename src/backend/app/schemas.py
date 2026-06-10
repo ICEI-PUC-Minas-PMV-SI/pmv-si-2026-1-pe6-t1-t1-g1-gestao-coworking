@@ -169,6 +169,8 @@ class PlanoCreate(BaseModel):
     nome: str = Field(min_length=1, max_length=50)
     acesso: TipoSala
     preco: Decimal = Field(gt=0)
+    # Nível hierárquico (1 = mais básico). Admin configura; usuário não vê.
+    nivel: int = Field(default=1, ge=1)
 
 
 class PlanoUpdate(PlanoCreate):

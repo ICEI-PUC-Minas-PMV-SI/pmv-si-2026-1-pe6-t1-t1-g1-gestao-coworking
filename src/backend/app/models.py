@@ -121,6 +121,9 @@ class Plano(Base):
     nome: Mapped[str] = mapped_column(String, nullable=False)
     acesso: Mapped[TipoSala] = mapped_column(tipo_sala_enum, nullable=False)
     preco: Mapped[Decimal] = mapped_column(Numeric, nullable=False)
+    # Nível hierárquico do plano (1 = mais básico). Configurado pelo admin e
+    # usado na regra de troca de planos; não é exposto ao usuário comum.
+    nivel: Mapped[int] = mapped_column(Integer, nullable=False, default=1, server_default="1")
 
     assinaturas: Mapped[list["Assinatura"]] = relationship(back_populates="plano")
 
