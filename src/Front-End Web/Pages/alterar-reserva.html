@@ -32,16 +32,8 @@
       padding: 34px 0 32px;
     }
 
-    .head h1 {
-      font-size: 26px;
-      margin-bottom: 22px;
-    }
-
-    .head p {
-      color: #555;
-      font-size: 14px;
-      margin-bottom: 22px;
-    }
+    .head h1 { font-size: 26px; margin-bottom: 6px; }
+    .head p   { color: #555; font-size: 14px; margin-bottom: 22px; }
 
     .shell {
       background: var(--card);
@@ -58,12 +50,9 @@
       margin-bottom: 20px;
     }
 
-    h2 {
-      font-size: 14px;
-      margin-bottom: 16px;
-    }
+    h2 { font-size: 14px; margin-bottom: 16px; }
 
-    .grid { display: grid; gap: 14px; }
+    .grid   { display: grid; gap: 14px; }
     .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
@@ -83,10 +72,7 @@
       margin-bottom: 7px;
     }
 
-    .field strong {
-      display: block;
-      font-size: 14px;
-    }
+    .field strong { display: block; font-size: 14px; }
 
     input, select, textarea {
       width: 100%;
@@ -115,48 +101,116 @@
     }
 
     .dot {
-      width: 10px;
-      height: 10px;
+      width: 10px; height: 10px;
       border-radius: 999px;
       background: var(--green);
     }
 
+    /* ── Chips de horário ─────────────────────── */
+    .slots-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .slots-legend {
+      display: flex;
+      gap: 14px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .slots-legend span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .legend-dot.free     { background: #FFFFFF; border: 1px solid #C9DAEA; }
+    .legend-dot.taken    { background: #E3EAF0; }
+    .legend-dot.selected { background: var(--blue); }
+
     .time-options {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 12px;
+      gap: 10px;
     }
 
     .time-chip {
-      min-height: 32px;
+      min-height: 34px;
       border: 1px solid #C9DAEA;
       border-radius: 999px;
       background: #FFFFFF;
       color: var(--ink);
-      padding: 0 14px;
+      padding: 0 16px;
       font: inherit;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .time-chip.active {
+    .time-chip:hover:not(.disabled):not(.active) {
+      border-color: var(--blue);
+    }
+
+    /* Entrada selecionada */
+    .time-chip.active-start {
       background: var(--blue);
       color: #FFF;
       border-color: var(--blue);
     }
 
+    /* Saída calculada automaticamente */
+    .time-chip.active-end {
+      background: #cfe0f0;
+      color: var(--ink);
+      border-color: var(--blue);
+    }
+
+    /* Ocupado por outra reserva */
     .time-chip.disabled {
       background: #E3EAF0;
       color: #8B98A4;
       cursor: not-allowed;
+      border-color: transparent;
     }
 
-    .note {
-      color: var(--muted);
-      font-size: 13px;
-      margin: 18px 0;
+    /* Chip da saída que coincide com a entrada → highlight único */
+    .time-chip.active-both {
+      background: var(--blue);
+      color: #FFF;
+      border-color: var(--blue);
     }
+
+    .slots-hint {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 4px 0;
+    }
+
+    /* ── Resumo de horário selecionado ────────── */
+    .selected-range {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--ink);
+      font-weight: 700;
+      min-height: 20px;
+    }
+
+    .selected-range span { color: var(--muted); font-weight: 400; }
+
+    /* ── Rodapé do form ───────────────────────── */
+    .note { color: var(--muted); font-size: 13px; margin: 18px 0; }
 
     .actions {
       display: flex;
@@ -165,10 +219,7 @@
       gap: 16px;
     }
 
-    .left-actions {
-      display: flex;
-      gap: 12px;
-    }
+    .left-actions { display: flex; gap: 12px; }
 
     button {
       min-height: 42px;
@@ -178,14 +229,39 @@
       font: inherit;
       font-weight: 700;
       cursor: pointer;
+      transition: opacity 0.15s;
     }
 
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+
     .cancel { background: #EAF1F1; color: var(--ink); }
-    .save { background: var(--blue); color: #FFF; }
+    .save   { background: var(--blue); color: #FFF; }
     .delete { background: transparent; color: var(--danger); padding: 0; }
-    .message { min-height: 18px; margin-top: 12px; color: var(--muted); font-size: 13px; }
-    .message.error { color: var(--danger); }
-    .message.success { color: var(--green); }
+
+    .message           { min-height: 18px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+    .message.error     { color: var(--danger); }
+    .message.success   { color: var(--green); }
+
+    /* ── Spinner de carregamento dos slots ─────── */
+    .slots-loading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 4px 0;
+    }
+
+    .mini-spinner {
+      width: 16px; height: 16px;
+      border: 2px solid var(--line);
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     @media (max-width: 860px) {
       .page { width: calc(100% - 28px); }
@@ -202,6 +278,8 @@
     </div>
 
     <section class="shell">
+
+      <!-- Resumo da reserva atual -->
       <div class="box">
         <h2>Resumo da reserva atual</h2>
         <div class="grid">
@@ -220,18 +298,37 @@
         </div>
       </div>
 
+      <!-- Formulário de alteração -->
       <form id="editForm">
         <h2>Formulário de alteração</h2>
         <div class="grid">
+
+          <!-- Sala -->
           <div class="field">
             <label for="roomSelect">Seleção de sala</label>
             <select id="roomSelect" required></select>
           </div>
+
+          <!-- Data + inputs de hora ocultos (usados só para guardar o valor) -->
           <div class="grid grid-3">
-            <div class="field"><label for="newDate">Nova data</label><input id="newDate" type="date" required /></div>
-            <div class="field"><label for="startTime">Horário inicial</label><input id="startTime" type="time" step="3600" required /></div>
-            <div class="field"><label for="endTime">Horário final</label><input id="endTime" type="time" step="3600" required /></div>
+            <div class="field">
+              <label for="newDate">Nova data</label>
+              <input id="newDate" type="date" required />
+            </div>
+            <div class="field">
+              <label>Entrada</label>
+              <strong id="displayStart">—</strong>
+              <!-- input hidden para manter o valor no submit -->
+              <input id="startTime" type="hidden" required />
+            </div>
+            <div class="field">
+              <label>Saída (+ 1 h)</label>
+              <strong id="displayEnd">—</strong>
+              <input id="endTime" type="hidden" required />
+            </div>
           </div>
+
+          <!-- Status -->
           <div class="field">
             <label for="statusSelect">Status da reserva</label>
             <select id="statusSelect" required>
@@ -239,19 +336,43 @@
               <option value="Cancelada">Cancelada</option>
             </select>
           </div>
-          <div class="field"><label for="peopleCount">Quantidade de pessoas</label><input id="peopleCount" type="number" min="1" /></div>
-          <div class="field"><label for="notes">Observações (opcional)</label><textarea id="notes" placeholder="Projetor disponível? Preciso de uma sala próxima à entrada."></textarea></div>
-          <div class="box">
-            <h2>Horários disponíveis</h2>
-            <div class="time-options" id="timeOptions"></div>
+
+          <!-- Quantidade de pessoas -->
+          <div class="field">
+            <label for="peopleCount">Quantidade de pessoas</label>
+            <input id="peopleCount" type="number" min="1" />
           </div>
-        </div>
+
+          <!-- Observações -->
+          <div class="field">
+            <label for="notes">Observações (opcional)</label>
+            <textarea id="notes" placeholder="Projetor disponível? Preciso de uma sala próxima à entrada."></textarea>
+          </div>
+
+          <!-- Painel de horários disponíveis -->
+          <div class="box" id="slotsBox">
+            <div class="slots-header">
+              <h2 style="margin-bottom:0">Horários disponíveis</h2>
+              <div class="slots-legend">
+                <span><i class="legend-dot free"></i>Livre</span>
+                <span><i class="legend-dot taken"></i>Ocupado</span>
+                <span><i class="legend-dot selected"></i>Selecionado</span>
+              </div>
+            </div>
+            <div class="time-options" id="timeOptions">
+              <span class="slots-hint">Selecione uma sala e uma data para ver os horários.</span>
+            </div>
+            <div class="selected-range" id="selectedRange"></div>
+          </div>
+
+        </div><!-- /grid -->
 
         <p class="note">Alterações estão sujeitas à disponibilidade da sala.</p>
+
         <div class="actions">
           <div class="left-actions">
             <button class="cancel" type="button" id="cancelButton">Cancelar</button>
-            <button class="save" type="submit">Salvar alterações</button>
+            <button class="save"   type="submit"  id="saveButton">Salvar alterações</button>
           </div>
           <button class="delete" type="button" id="deleteButton">Excluir reserva</button>
         </div>
@@ -263,39 +384,75 @@
   <script src="../js/config.js"></script>
   <script src="../js/auth.js"></script>
   <script>
-    const API_BASE_URL = window.API_BASE_URL || 'http://127.0.0.1:8000/api';
-    const params = new URLSearchParams(window.location.search);
-    const reservaId = Number(params.get('id'));
-    const state = { reserva: null, salas: [] };
+    // ─────────────────────────────────────────────────────────
+    //  Config
+    // ─────────────────────────────────────────────────────────
+    const API_BASE_URL = (window.API_BASE_URL) || 'http://127.0.0.1:8000/api';
+    const urlParams    = new URLSearchParams(window.location.search);
+    const reservaId    = Number(urlParams.get('id'));
 
-    if (!reservaId) {
-      window.location.href = 'gerenciamento-conta.html#reservas';
+    if (!reservaId) window.location.href = 'gerenciamento-conta.html#reservas';
+
+    const state = {
+      reserva:       null,   // objeto da reserva carregada
+      salas:         [],     // lista de salas
+      reservasDaSala: [],    // reservas da sala selecionada (para calcular ocupados)
+      selectedStart: '',     // "HH:MM" da entrada escolhida via chip
+      loadingSlots:  false,
+    };
+
+    // Slots de hora disponíveis (de 1 em 1 hora)
+    const ALL_SLOTS = [
+      '07:00','08:00','09:00','10:00','11:00','12:00',
+      '13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00',
+    ];
+
+    // ─────────────────────────────────────────────────────────
+    //  Utilitários
+    // ─────────────────────────────────────────────────────────
+    function getAuth() {
+      try {
+        const raw = localStorage.getItem('axisWork.auth');
+        return raw ? JSON.parse(raw) : null;
+      } catch { return null; }
     }
 
     function setMessage(text, type = '') {
-      const message = document.getElementById('message');
-      message.textContent = text;
-      message.className = `message ${type}`.trim();
+      const el = document.getElementById('message');
+      el.textContent  = text;
+      el.className    = `message ${type}`.trim();
     }
 
     async function request(path, options = {}) {
-      const response = await fetch(`${API_BASE_URL}${path}`, {
-        headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
-        ...options,
-      });
-      if (!response.ok) {
-        const data = await response.json().catch(() => ({}));
-        throw new Error(data.detail || `Erro ${response.status}`);
+      const auth    = getAuth();
+      const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+      if (auth?.token) headers['Authorization'] = `${auth.tokenType || 'bearer'} ${auth.token}`;
+
+      const res = await fetch(`${API_BASE_URL}${path}`, { ...options, headers });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.detail || `Erro ${res.status}`);
       }
-      if (response.status === 204) return null;
-      return response.json();
+      if (res.status === 204) return null;
+      return res.json();
     }
 
+    // Extrai "YYYY-MM-DD" de um datetime com fuso
     function datePart(value) {
-      return new Date(value).toISOString().slice(0, 10);
+      // Usa split para não converter fuso
+      if (!value) return '';
+      const iso = value.includes('T') ? value : value + 'T00:00:00';
+      return iso.slice(0, 10);
     }
 
+    // Extrai "HH:MM" de um datetime (considerando offset -03:00)
     function timePart(value) {
+      if (!value) return '';
+      // Se vier com offset ex "2026-06-10T14:00:00-03:00"
+      if (/[+-]\d{2}:\d{2}$/.test(value)) {
+        const d = new Date(value);
+        return d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo' });
+      }
       return new Date(value).toTimeString().slice(0, 5);
     }
 
@@ -307,113 +464,263 @@
       return `${timePart(start)} às ${timePart(end)}`;
     }
 
-    function selectedSala() {
-      return state.salas.find((sala) => Number(sala.id_sala) === Number(document.getElementById('roomSelect').value));
+    /** Soma 1 hora a "HH:MM" → "HH:MM" */
+    function addOneHour(hhmm) {
+      if (!hhmm) return '';
+      const [h, m] = hhmm.split(':').map(Number);
+      const d = new Date(0, 0, 0, h + 1, m);
+      return d.toTimeString().slice(0, 5);
     }
 
-    function renderTimeOptions() {
-      const container = document.getElementById('timeOptions');
-      const start = document.getElementById('startTime').value;
-      const options = ['09:00', '10:00', '13:00', '15:00', '17:00'];
-      container.innerHTML = options.map((time) => `
-        <button class="time-chip ${time === start ? 'active' : ''}" type="button" data-time="${time}">${time}</button>
-      `).join('');
+    /** Converte "YYYY-MM-DD" + "HH:MM" → "YYYY-MM-DDTHH:MM:00-03:00" */
+    function toISO(date, hhmm) {
+      return `${date}T${hhmm}:00-03:00`;
+    }
 
-      container.querySelectorAll('button').forEach((button) => {
-        button.addEventListener('click', () => {
-          document.getElementById('startTime').value = button.dataset.time;
+    // ─────────────────────────────────────────────────────────
+    //  Lógica de slots
+    // ─────────────────────────────────────────────────────────
+
+    /** Retorna Set de "HH:MM" ocupados no dia/mês/ano atual */
+    function getOcupados(date) {
+      return new Set(
+        state.reservasDaSala
+          .filter(r => {
+            // Ignora a própria reserva sendo editada
+            if (Number(r.id_reserva) === reservaId) return false;
+            return datePart(r.entrada) === date;
+          })
+          .map(r => timePart(r.entrada))
+      );
+    }
+
+    /** Renderiza os chips de horário com base na sala+data selecionados */
+    async function renderTimeOptions() {
+      const salaId = document.getElementById('roomSelect').value;
+      const date   = document.getElementById('newDate').value;
+      const container = document.getElementById('timeOptions');
+      const rangeEl   = document.getElementById('selectedRange');
+
+      if (!salaId || !date) {
+        container.innerHTML = '<span class="slots-hint">Selecione uma sala e uma data para ver os horários.</span>';
+        rangeEl.innerHTML   = '';
+        return;
+      }
+
+      // Carrega reservas da sala se ainda não carregou ou se mudou a sala
+      if (!state._lastSalaId || state._lastSalaId !== salaId) {
+        state._lastSalaId = salaId;
+        container.innerHTML = '<div class="slots-loading"><div class="mini-spinner"></div>Carregando horários…</div>';
+        try {
+          const list = await request(`/reservas?id_sala=${encodeURIComponent(salaId)}&limit=200`);
+          state.reservasDaSala = Array.isArray(list) ? list : (list?.value || []);
+        } catch {
+          state.reservasDaSala = [];
+        }
+      }
+
+      const ocupados = getOcupados(date);
+      const endTime  = state.selectedStart ? addOneHour(state.selectedStart) : '';
+
+      container.innerHTML = ALL_SLOTS.map(slot => {
+        const isOcupado  = ocupados.has(slot);
+        const isStart    = slot === state.selectedStart;
+        const isEnd      = slot === endTime && !isStart;
+
+        let cls = 'time-chip';
+        let label = slot;
+
+        if (isOcupado) {
+          cls += ' disabled';
+        } else if (isStart) {
+          cls += ' active-start';
+          label += ' ↵';
+        } else if (isEnd) {
+          cls += ' active-end';
+          label += ' ↳';
+        }
+
+        const disabled = isOcupado ? 'disabled' : '';
+        return `<button class="${cls}" type="button" data-time="${slot}" ${disabled}>${label}</button>`;
+      }).join('');
+
+      // Atualiza display de entrada/saída
+      if (state.selectedStart) {
+        document.getElementById('displayStart').textContent = state.selectedStart;
+        document.getElementById('displayEnd').textContent   = endTime;
+        document.getElementById('startTime').value          = state.selectedStart;
+        document.getElementById('endTime').value            = endTime;
+        rangeEl.innerHTML = `Entrada: <strong>${state.selectedStart}</strong> &nbsp;→&nbsp; Saída: <strong>${endTime}</strong> <span>(1 hora)</span>`;
+      } else {
+        rangeEl.innerHTML = '';
+      }
+
+      // Eventos de clique nos chips
+      container.querySelectorAll('button.time-chip:not(.disabled)').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.selectedStart = btn.dataset.time;
           renderTimeOptions();
         });
       });
     }
 
+    // ─────────────────────────────────────────────────────────
+    //  Render do resumo e formulário
+    // ─────────────────────────────────────────────────────────
     function render() {
-      const sala = state.salas.find((item) => Number(item.id_sala) === Number(state.reserva.id_sala));
+      const sala      = state.salas.find(s => Number(s.id_sala) === Number(state.reserva.id_sala));
       const finalizada = state.reserva.status === 'Finalizada';
-      document.getElementById('currentRoom').textContent = sala?.nome || 'Sala não informada';
-      document.getElementById('currentDate').textContent = formatDate(datePart(state.reserva.entrada));
-      document.getElementById('currentTime').textContent = formatTimeRange(state.reserva.entrada, state.reserva.saida);
+
+      // Resumo atual
+      document.getElementById('currentRoom').textContent     = sala?.nome || 'Sala não informada';
+      document.getElementById('currentDate').textContent     = formatDate(datePart(state.reserva.entrada));
+      document.getElementById('currentTime').textContent     = formatTimeRange(state.reserva.entrada, state.reserva.saida);
       document.getElementById('currentCapacity').textContent = sala?.capacidade ? `até ${sala.capacidade} pessoas` : '-';
-      document.getElementById('currentStatus').textContent = state.reserva.status;
+      document.getElementById('currentStatus').textContent   = state.reserva.status;
 
-      document.getElementById('roomSelect').innerHTML = state.salas.map((item) => `
-        <option value="${item.id_sala}">${item.nome}</option>
-      `).join('');
+      // Preenche select de salas
+      document.getElementById('roomSelect').innerHTML = state.salas.map(s =>
+        `<option value="${s.id_sala}">${s.nome}</option>`
+      ).join('');
       document.getElementById('roomSelect').value = state.reserva.id_sala;
-      document.getElementById('newDate').value = datePart(state.reserva.entrada);
-      document.getElementById('startTime').value = timePart(state.reserva.entrada);
-      document.getElementById('endTime').value = timePart(state.reserva.saida);
-      document.getElementById('statusSelect').value = state.reserva.status;
-      document.getElementById('peopleCount').value = sala?.capacidade || '';
-      renderTimeOptions();
 
-      document.querySelectorAll('#editForm input, #editForm select, #editForm textarea, #editForm .save, #deleteButton').forEach((element) => {
-        element.disabled = finalizada;
-      });
+      // Preenche data
+      document.getElementById('newDate').value = datePart(state.reserva.entrada);
+
+      // Define horário inicial a partir da reserva carregada
+      state.selectedStart  = timePart(state.reserva.entrada);
+      const endHHMM        = timePart(state.reserva.saida);
+
+      document.getElementById('displayStart').textContent = state.selectedStart;
+      document.getElementById('displayEnd').textContent   = endHHMM;
+      document.getElementById('startTime').value          = state.selectedStart;
+      document.getElementById('endTime').value            = endHHMM;
+
+      document.getElementById('statusSelect').value  = state.reserva.status;
+      document.getElementById('peopleCount').value   = sala?.capacidade || '';
+
+      // Bloqueia campos se finalizada
+      const editables = document.querySelectorAll(
+        '#editForm input:not([type=hidden]), #editForm select, #editForm textarea, #saveButton, #deleteButton'
+      );
+      editables.forEach(el => el.disabled = finalizada);
+
       if (finalizada) {
+        document.getElementById('slotsBox').style.opacity      = '0.5';
+        document.getElementById('slotsBox').style.pointerEvents = 'none';
         setMessage('Reservas finalizadas não podem ser alteradas.', 'error');
       }
+
+      // Carrega os chips de horário
+      renderTimeOptions();
     }
 
+    // ─────────────────────────────────────────────────────────
+    //  Load inicial
+    // ─────────────────────────────────────────────────────────
     async function load() {
-      const [reserva, salas] = await Promise.all([
+      const [reserva, salasRaw] = await Promise.all([
         request(`/reservas/${reservaId}`),
         request('/salas'),
       ]);
       state.reserva = reserva;
-      state.salas = salas;
+      state.salas   = Array.isArray(salasRaw) ? salasRaw : (salasRaw?.value || []);
       render();
     }
 
-    document.getElementById('editForm').addEventListener('submit', async (event) => {
-      event.preventDefault();
+    // ─────────────────────────────────────────────────────────
+    //  Submit — PATCH /reservas/{id}
+    // ─────────────────────────────────────────────────────────
+    document.getElementById('editForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
       if (state.reserva.status === 'Finalizada') {
         setMessage('Reservas finalizadas não podem ser alteradas.', 'error');
         return;
       }
-      const date = document.getElementById('newDate').value;
+
+      const date  = document.getElementById('newDate').value;
       const start = document.getElementById('startTime').value;
-      const end = document.getElementById('endTime').value;
+      const end   = document.getElementById('endTime').value;
+
+      if (!start || !end) {
+        setMessage('Selecione um horário de entrada antes de salvar.', 'error');
+        return;
+      }
+
       const payload = {
         id_cliente: state.reserva.id_cliente,
-        id_sala: Number(document.getElementById('roomSelect').value),
-        status: document.getElementById('statusSelect').value,
-        entrada: `${date}T${start}:00`,
-        saida: `${date}T${end}:00`,
+        id_sala:    Number(document.getElementById('roomSelect').value),
+        status:     document.getElementById('statusSelect').value,
+        entrada:    toISO(date, start),
+        saida:      toISO(date, end),
       };
+
+      const saveBtn = document.getElementById('saveButton');
+      saveBtn.disabled    = true;
+      saveBtn.textContent = 'Salvando…';
+      setMessage('', '');
 
       try {
         state.reserva = await request(`/reservas/${reservaId}`, {
           method: 'PATCH',
-          body: JSON.stringify(payload),
+          body:   JSON.stringify(payload),
         });
-        setMessage('Reserva atualizada com sucesso.', 'success');
-        render();
-        window.location.href = 'gerenciamento-conta.html#reservas';
-      } catch (error) {
-        console.error(error);
-        setMessage(error.message || 'Não foi possível atualizar a reserva.', 'error');
+        setMessage('Reserva atualizada com sucesso!', 'success');
+        setTimeout(() => {
+          window.location.href = 'gerenciamento-conta.html#reservas';
+        }, 1200);
+      } catch (err) {
+        setMessage(err.message || 'Não foi possível atualizar a reserva.', 'error');
+        saveBtn.disabled    = false;
+        saveBtn.textContent = 'Salvar alterações';
       }
     });
 
+    // ─────────────────────────────────────────────────────────
+    //  Recarrega slots ao trocar sala ou data
+    // ─────────────────────────────────────────────────────────
+    document.getElementById('roomSelect').addEventListener('change', () => {
+      state._lastSalaId   = null; // força reload das reservas
+      state.selectedStart = '';
+      document.getElementById('displayStart').textContent = '—';
+      document.getElementById('displayEnd').textContent   = '—';
+      document.getElementById('startTime').value          = '';
+      document.getElementById('endTime').value            = '';
+      renderTimeOptions();
+    });
+
+    document.getElementById('newDate').addEventListener('change', () => {
+      state.selectedStart = '';
+      document.getElementById('displayStart').textContent = '—';
+      document.getElementById('displayEnd').textContent   = '—';
+      document.getElementById('startTime').value          = '';
+      document.getElementById('endTime').value            = '';
+      renderTimeOptions();
+    });
+
+    // ─────────────────────────────────────────────────────────
+    //  Cancelar / Excluir
+    // ─────────────────────────────────────────────────────────
     document.getElementById('cancelButton').addEventListener('click', () => {
       window.location.href = 'gerenciamento-conta.html#reservas';
     });
 
     document.getElementById('deleteButton').addEventListener('click', async () => {
+      if (!confirm('Tem certeza que deseja excluir esta reserva?')) return;
       try {
         await request(`/reservas/${reservaId}`, { method: 'DELETE' });
         window.location.href = 'gerenciamento-conta.html#reservas';
-      } catch (error) {
-        console.error(error);
+      } catch (err) {
         setMessage('Não foi possível excluir a reserva.', 'error');
       }
     });
 
-    document.getElementById('startTime').addEventListener('change', renderTimeOptions);
-
-    load().catch((error) => {
-      console.error(error);
+    // ─────────────────────────────────────────────────────────
+    //  Init
+    // ─────────────────────────────────────────────────────────
+    load().catch(err => {
+      console.error(err);
       setMessage('Não foi possível carregar a reserva.', 'error');
     });
   </script>

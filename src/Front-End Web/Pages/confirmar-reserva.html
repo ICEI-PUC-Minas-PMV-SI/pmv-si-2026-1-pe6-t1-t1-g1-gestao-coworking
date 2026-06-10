@@ -19,16 +19,13 @@
       --blue: #55728f;
       --blue-dark: #425f7c;
       --green: #37885c;
+      --red: #c0392b;
       --radius-lg: 18px;
       --radius-md: 14px;
       --radius-pill: 999px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100vh;
@@ -38,26 +35,66 @@
       padding: 32px;
     }
 
-    .page-header {
-      margin-bottom: 20px;
-    }
-
+    .page-header { margin-bottom: 20px; }
     .page-header h1 {
       color: var(--text-primary);
       font-size: 24px;
       font-weight: 800;
       line-height: 1.2;
-      margin-bottom: 20px;
+      margin-bottom: 6px;
+    }
+    .page-header p { color: #666; font-size: 13px; }
+
+    /* ── Loading / erro ─────────────────────────── */
+    .state-overlay {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 60px 0;
+      color: var(--text-muted);
+      font-size: 14px;
     }
 
-    .page-header p {
-      color: #666;
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--border);
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-msg {
+      background: #fdecea;
+      border: 1px solid #f5c6c2;
+      border-radius: var(--radius-md);
+      color: var(--red);
       font-size: 13px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      display: none;
     }
 
+    .success-msg {
+      background: var(--bg-success-soft);
+      border: 1px solid #b2dfcc;
+      border-radius: var(--radius-md);
+      color: var(--green);
+      font-size: 13px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      display: none;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    /* ── Card principal ─────────────────────────── */
     .confirmation-card {
       width: 100%;
-      min-height: 565px;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
@@ -79,6 +116,7 @@
       border-radius: var(--radius-md);
     }
 
+    /* ── Sala ───────────────────────────────────── */
     .room-box {
       min-height: 64px;
       background: var(--bg-selected);
@@ -89,17 +127,10 @@
       margin-bottom: 14px;
     }
 
-    .room-box strong {
-      font-size: 14px;
-      line-height: 1.3;
-    }
+    .room-box strong { font-size: 14px; line-height: 1.3; }
+    .room-box span   { color: var(--text-muted); font-size: 12px; margin-top: 3px; }
 
-    .room-box span {
-      color: var(--text-muted);
-      font-size: 12px;
-      margin-top: 3px;
-    }
-
+    /* ── Grid de dados ──────────────────────────── */
     .reservation-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -150,6 +181,7 @@
       text-overflow: ellipsis;
     }
 
+    /* ── Total ──────────────────────────────────── */
     .total-box {
       min-height: 77px;
       background: var(--bg-success-soft);
@@ -161,26 +193,11 @@
       margin-bottom: 18px;
     }
 
-    .total-label {
-      color: #66766f;
-      font-size: 11px;
-      margin-bottom: 3px;
-    }
+    .total-label  { color: #66766f; font-size: 11px; margin-bottom: 3px; }
+    .total-value  { color: var(--green); display: block; font-size: 25px; font-weight: 800; line-height: 1; }
+    .total-note   { color: #666; font-size: 12px; white-space: nowrap; }
 
-    .total-value {
-      color: var(--green);
-      display: block;
-      font-size: 25px;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .total-note {
-      color: #666;
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
+    /* ── Observações ────────────────────────────── */
     .form-label {
       display: block;
       font-size: 13px;
@@ -201,10 +218,9 @@
       margin-bottom: 18px;
     }
 
-    .observation-input::placeholder {
-      color: var(--text-soft);
-    }
+    .observation-input::placeholder { color: var(--text-soft); }
 
+    /* ── Aviso ──────────────────────────────────── */
     .notice-box {
       min-height: 52px;
       background: var(--bg-success-soft);
@@ -226,6 +242,7 @@
       flex: 0 0 auto;
     }
 
+    /* ── Botões ─────────────────────────────────── */
     .actions {
       display: flex;
       justify-content: center;
@@ -243,53 +260,26 @@
       transition: 0.2s ease;
     }
 
-    .btn:hover {
-      opacity: 0.92;
-      transform: translateY(-1px);
+    .btn:hover:not(:disabled) { opacity: 0.92; transform: translateY(-1px); }
+
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
     }
 
-    .btn-back {
-      background: #eef6f5;
-      color: var(--text-primary);
-      min-width: 73px;
-    }
+    .btn-back    { background: #eef6f5; color: var(--text-primary); min-width: 73px; }
+    .btn-confirm { background: var(--blue); color: #ffffff; min-width: 143px; }
 
-    .btn-confirm {
-      background: var(--blue);
-      color: #ffffff;
-      min-width: 143px;
-    }
-
+    /* ── Responsivo ─────────────────────────────── */
     @media (max-width: 760px) {
-      body {
-        padding: 24px 18px;
-      }
-
-      .confirmation-card {
-        padding: 18px;
-        min-height: auto;
-      }
-
-      .reservation-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .total-box {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .total-note {
-        white-space: normal;
-      }
-
-      .actions {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
+      body { padding: 24px 18px; }
+      .confirmation-card { padding: 18px; }
+      .reservation-grid { grid-template-columns: 1fr; }
+      .total-box { align-items: flex-start; flex-direction: column; }
+      .total-note { white-space: normal; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
     }
   </style>
 </head>
@@ -299,70 +289,306 @@
     <p>Revise os dados antes de finalizar</p>
   </header>
 
-  <main class="confirmation-card">
-    <section aria-labelledby="reservation-summary">
-      <h2 class="section-title" id="reservation-summary">Resumo da reserva</h2>
+  <main id="main-content">
+    <!-- Estado de carregamento inicial -->
+    <div id="loading-state" class="state-overlay">
+      <div class="spinner"></div>
+      <span>Carregando dados da reserva…</span>
+    </div>
 
-      <div class="room-box">
-        <strong>Sala Reunião Premium</strong>
-        <span>Unidade Centro</span>
-      </div>
+    <!-- Card principal (oculto até os dados carregarem) -->
+    <div class="confirmation-card" id="confirmation-card" style="display:none;">
+      <div id="error-msg"   class="error-msg"></div>
+      <div id="success-msg" class="success-msg"></div>
 
-      <div class="reservation-grid">
-        <div class="data-box">
-          <span class="icon-chip" aria-hidden="true">📅</span>
-          <div class="data-copy">
-            <span>Data</span>
-            <strong>17/05/2026</strong>
+      <section aria-labelledby="reservation-summary">
+        <h2 class="section-title" id="reservation-summary">Resumo da reserva</h2>
+
+        <div class="room-box">
+          <strong id="room-name">—</strong>
+          <span   id="room-type">—</span>
+        </div>
+
+        <div class="reservation-grid">
+          <div class="data-box">
+            <span class="icon-chip" aria-hidden="true">📅</span>
+            <div class="data-copy">
+              <span>Data</span>
+              <strong id="info-data">—</strong>
+            </div>
+          </div>
+
+          <div class="data-box">
+            <span class="icon-chip" aria-hidden="true">⏱</span>
+            <div class="data-copy">
+              <span>Horário</span>
+              <strong id="info-horario">—</strong>
+            </div>
+          </div>
+
+          <div class="data-box">
+            <span class="icon-chip" aria-hidden="true">👥</span>
+            <div class="data-copy">
+              <span>Capacidade</span>
+              <strong id="info-capacidade">—</strong>
+            </div>
+          </div>
+
+          <div class="data-box">
+            <span class="icon-chip" aria-hidden="true">👤</span>
+            <div class="data-copy">
+              <span>Reservado por</span>
+              <strong id="info-usuario">—</strong>
+            </div>
           </div>
         </div>
 
-        <div class="data-box">
-          <span class="icon-chip" aria-hidden="true">⏱</span>
-          <div class="data-copy">
-            <span>Horário</span>
-            <strong>14:00 às 16:00</strong>
+        <div class="total-box">
+          <div>
+            <div class="total-label">Valor total</div>
+            <strong class="total-value" id="info-preco">—</strong>
           </div>
+          <span class="total-note" id="info-preco-nota">1 hora de uso</span>
         </div>
 
-        <div class="data-box">
-          <span class="icon-chip" aria-hidden="true">👥</span>
-          <div class="data-copy">
-            <span>Participantes</span>
-            <strong>8 pessoas</strong>
-          </div>
+        <label class="form-label" for="observacoes">Observações (opcional)</label>
+        <textarea
+          class="observation-input"
+          id="observacoes"
+          placeholder="Ex: reunião com cliente, necessidade de projetor…"
+        ></textarea>
+
+        <div class="notice-box">
+          <span class="notice-dot" aria-hidden="true"></span>
+          <span>Confira os dados antes de finalizar sua reserva. Alterações estão sujeitas à disponibilidade.</span>
         </div>
 
-        <div class="data-box">
-          <span class="icon-chip" aria-hidden="true">★</span>
-          <div class="data-copy">
-            <span>Plano assinado</span>
-            <strong>Plano Business</strong>
-          </div>
+        <div class="actions">
+          <button class="btn btn-back"    id="btn-back"    type="button">Voltar</button>
+          <button class="btn btn-confirm" id="btn-confirm" type="button">Finalizar reserva</button>
         </div>
-      </div>
-
-      <div class="total-box">
-        <div>
-          <div class="total-label">Valor total</div>
-          <strong class="total-value">R$ 160</strong>
-        </div>
-        <span class="total-note">Total da reserva</span>
-      </div>
-
-      <label class="form-label" for="observacoes">Observações (opcional)</label>
-      <textarea class="observation-input" id="observacoes" placeholder="Ex: reunião com cliente, necessidade de projetor..."></textarea>
-
-      <div class="notice-box">
-        <span class="notice-dot" aria-hidden="true"></span>
-        <span>Confira os dados antes de finalizar sua reserva. Alterações estão sujeitas à disponibilidade.</span>
-      </div>
-
-      <div class="actions">
-        <button class="btn btn-back" type="button">Voltar</button>
-        <button class="btn btn-confirm" type="button">Finalizar reserva</button>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
+
+  <script>
+    // ─────────────────────────────────────────────────────────
+    //  Configuração
+    // ─────────────────────────────────────────────────────────
+    const API_BASE_URL =
+      (typeof window !== 'undefined' && window.API_BASE_URL) ||
+      'http://127.0.0.1:8000/api';
+
+    // ─────────────────────────────────────────────────────────
+    //  Utilitários
+    // ─────────────────────────────────────────────────────────
+
+    /** Lê os parâmetros da URL */
+    function getParams() {
+      const p = new URLSearchParams(window.location.search);
+      return {
+        salaId:  p.get('sala')    || localStorage.getItem('salaId') || '',
+        data:    p.get('data')    || '',   // "YYYY-MM-DD"
+        horario: p.get('horario') || '',   // "HH:MM"
+      };
+    }
+
+    /** Retorna { token, user } do localStorage, ou null */
+    function getAuth() {
+      try {
+        const raw = localStorage.getItem('axisWork.auth');
+        if (!raw) return null;
+        return JSON.parse(raw); // { token, tokenType, user: { id_cliente, nome, ... } }
+      } catch {
+        return null;
+      }
+    }
+
+    /** Converte "YYYY-MM-DD" + "HH:MM" para ISO 8601 com fuso -03:00 */
+    function toISO(data, horario) {
+      return `${data}T${horario}:00-03:00`;
+    }
+
+    /** Formata "YYYY-MM-DD" → "DD/MM/YYYY" */
+    function formatarData(data) {
+      if (!data) return '—';
+      const [ano, mes, dia] = data.split('-');
+      return `${dia}/${mes}/${ano}`;
+    }
+
+    /** Soma 1 hora a "HH:MM" → "HH:MM" */
+    function somarUmaHora(horario) {
+      const [h, m] = horario.split(':').map(Number);
+      const fim = new Date(0, 0, 0, h + 1, m);
+      return fim.toTimeString().slice(0, 5);
+    }
+
+    /** Faz fetch autenticado */
+    async function fetchApi(path, options = {}) {
+      const auth = getAuth();
+      const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+      if (auth?.token) {
+        headers['Authorization'] = `${auth.tokenType || 'bearer'} ${auth.token}`;
+      }
+      const res = await fetch(`${API_BASE_URL}${path}`, { ...options, headers });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body?.detail || body?.message || `Erro ${res.status}`);
+      }
+      return res.json();
+    }
+
+    // ─────────────────────────────────────────────────────────
+    //  UI helpers
+    // ─────────────────────────────────────────────────────────
+    function showError(msg) {
+      const el = document.getElementById('error-msg');
+      el.textContent = msg;
+      el.style.display = 'block';
+      document.getElementById('success-msg').style.display = 'none';
+    }
+
+    function showSuccess(msg) {
+      const el = document.getElementById('success-msg');
+      el.textContent = msg;
+      el.style.display = 'block';
+      document.getElementById('error-msg').style.display = 'none';
+    }
+
+    function setConfirmando(ativo) {
+      const btn = document.getElementById('btn-confirm');
+      btn.disabled = ativo;
+      btn.textContent = ativo ? 'Enviando…' : 'Finalizar reserva';
+    }
+
+    // ─────────────────────────────────────────────────────────
+    //  Inicialização — carrega dados da sala e preenche o card
+    // ─────────────────────────────────────────────────────────
+    async function init() {
+      const { salaId, data, horario } = getParams();
+      const auth = getAuth();
+
+      // Guarda para uso posterior ao confirmar
+      window._reservaParams = { salaId, data, horario };
+
+      // Validações básicas
+      if (!salaId || !data || !horario) {
+        document.getElementById('loading-state').innerHTML =
+          '<p style="color:#c0392b;font-size:14px;">Parâmetros de reserva inválidos. Volte e tente novamente.</p>';
+        return;
+      }
+
+      if (!auth) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      try {
+        // Busca dados da sala na API
+        const sala = await fetchApi(`/salas/${salaId}`);
+
+        // Preenche o card
+        document.getElementById('room-name').textContent =
+          sala.nome || 'Sala';
+        document.getElementById('room-type').textContent =
+          sala.tipo || sala.descricao || 'Espaço para reserva';
+        document.getElementById('info-data').textContent =
+          formatarData(data);
+        document.getElementById('info-horario').textContent =
+          `${horario} às ${somarUmaHora(horario)}`;
+        document.getElementById('info-capacidade').textContent =
+          sala.capacidade ? `${sala.capacidade} pessoas` : '—';
+        document.getElementById('info-usuario').textContent =
+          auth.user?.nome || '—';
+
+        // Preço — usa sala.preco_hora se existir
+        if (sala.preco_hora != null) {
+          document.getElementById('info-preco').textContent =
+            `R$ ${Number(sala.preco_hora).toFixed(2).replace('.', ',')}`;
+        } else {
+          document.getElementById('info-preco').textContent = 'Consultar';
+          document.getElementById('info-preco-nota').textContent = '';
+        }
+
+        // Exibe o card e oculta o loading
+        document.getElementById('loading-state').style.display  = 'none';
+        document.getElementById('confirmation-card').style.display = 'block';
+
+      } catch (err) {
+        document.getElementById('loading-state').innerHTML =
+          `<p style="color:#c0392b;font-size:14px;">Erro ao carregar a sala: ${err.message}</p>`;
+      }
+    }
+
+    // ─────────────────────────────────────────────────────────
+    //  Confirmar reserva — POST /reservas
+    // ─────────────────────────────────────────────────────────
+    async function confirmarReserva() {
+      const { salaId, data, horario } = window._reservaParams;
+      const auth = getAuth();
+      const obs  = document.getElementById('observacoes').value.trim();
+
+      // Monta os datetimes com fuso
+      const entrada = toISO(data, horario);
+      const saida   = toISO(data, somarUmaHora(horario));
+
+      const payload = {
+        id_sala:    Number(salaId),
+        id_cliente: auth.user?.id_cliente,
+        entrada:    entrada,
+        saida:      saida,
+        ...(obs ? { observacoes: obs } : {}),
+      };
+
+      setConfirmando(true);
+      document.getElementById('error-msg').style.display   = 'none';
+      document.getElementById('success-msg').style.display = 'none';
+
+      try {
+        await fetchApi('/reservas', {
+          method: 'POST',
+          body: JSON.stringify(payload),
+        });
+
+        showSuccess('Reserva realizada com sucesso! Redirecionando…');
+
+        // Salva no localStorage para o dashboard poder exibir
+        try {
+          const dashRaw = localStorage.getItem('dashboardData');
+          const dash    = dashRaw ? JSON.parse(dashRaw) : {};
+          dash.data     = data;
+          dash.turno    = horario;
+          dash.obs      = obs;
+          localStorage.setItem('dashboardData', JSON.stringify(dash));
+        } catch { /* não crítico */ }
+
+        // Redireciona após 1.8 s
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1800);
+
+      } catch (err) {
+        showError(`Não foi possível confirmar a reserva: ${err.message}`);
+        setConfirmando(false);
+      }
+    }
+
+    // ─────────────────────────────────────────────────────────
+    //  Event listeners
+    // ─────────────────────────────────────────────────────────
+    document.getElementById('btn-confirm').addEventListener('click', confirmarReserva);
+
+    document.getElementById('btn-back').addEventListener('click', () => {
+      const salaId = window._reservaParams?.salaId || localStorage.getItem('salaId') || '';
+      history.length > 1
+        ? history.back()
+        : window.location.href = `sala.html?id=${salaId}`;
+    });
+
+    // ─────────────────────────────────────────────────────────
+    //  Inicia
+    // ─────────────────────────────────────────────────────────
+    init();
+  </script>
 </body>
 </html>
