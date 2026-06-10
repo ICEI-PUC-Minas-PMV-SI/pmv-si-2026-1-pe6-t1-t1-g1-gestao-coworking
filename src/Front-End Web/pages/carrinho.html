@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carrinho - Axis Working</title>
 
-  <link rel="stylesheet" href="carrinho.css">
+  <link rel="stylesheet" href="../css/carrinho.css">
 
 </head>
+
 <body>
 
   <!-- NAVBAR -->
@@ -104,11 +106,97 @@
       }
     }
 
-    function finalizarCompra() {
-      window.location.href = isLogged() ? 'gerenciamento-conta.html#plano' : 'login.html';
-    }
+    async function finalizarCompra() {
+      // 1. Verifica login
+      const rawAuth = localStorage.getItem('axisWork.auth');
+      if (!rawAuth) {
+        window.location.href = 'login.html';
+        return;
+      }
 
+      let auth;
+      try {
+        auth = JSON.parse(rawAuth);
+      } catch {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const token = auth.token;
+      const idCliente = auth.user?.id_cliente;
+
+      if (!token || !idCliente) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      };
+
+      const btn = document.querySelector('.btn-finalizar');
+      btn.disabled = true;
+      btn.textContent = 'Processando...';
+
+      try {
+        // 2. Busca assinaturas do cliente
+        const resAss = await fetch(
+          `${API_BASE_URL}/assinaturas?id_cliente=${idCliente}`,
+          { headers }
+        );
+        if (!resAss.ok) throw new Error(`Erro ao buscar assinaturas: ${resAss.status}`);
+        const assinaturas = await resAss.json();
+
+        // 3. Cancela a assinatura ativa (se existir)
+        const ativa = assinaturas.find(a => a.status === 'Ativa');
+        if (ativa) {
+          const resCancel = await fetch(
+            `${API_BASE_URL}/assinaturas/${ativa.id_assinatura}`,
+            {
+              method: 'PUT',   // <-- troca PATCH por PUT
+              headers,
+              body: JSON.stringify({ status: 'Cancelada' }),
+            }
+          );
+          if (!resCancel.ok) throw new Error(`Erro ao cancelar assinatura: ${resCancel.status}`);
+        }
+
+        // 4. Cria nova assinatura com o plano selecionado
+        const hoje = new Date();
+        const validade = new Date(hoje);
+        validade.setMonth(validade.getMonth() + 1);
+
+        const novaAssinatura = {
+          id_cliente: idCliente,
+          id_plano: Number(idPlano),
+          status: 'Ativa',
+          data_inicio: hoje.toISOString().split('T')[0],
+          validade: validade.toISOString().split('T')[0],
+        };
+
+        const resCriar = await fetch(
+          `${API_BASE_URL}/assinaturas`,
+          {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(novaAssinatura),
+          }
+        );
+        if (!resCriar.ok) throw new Error(`Erro ao criar assinatura: ${resCriar.status}`);
+
+        // 5. Redireciona para a conta com mensagem de sucesso
+        window.location.href = 'gerenciamento-conta.html#plano';
+
+      } catch (error) {
+        console.error(error);
+        alert('Não foi possível finalizar a compra. Tente novamente.\n\n' + error.message);
+        btn.disabled = false;
+        btn.textContent = 'Finalizar Compra';
+      }
+    }
     carregarPlano();
   </script>
 </body>
+
 </html>

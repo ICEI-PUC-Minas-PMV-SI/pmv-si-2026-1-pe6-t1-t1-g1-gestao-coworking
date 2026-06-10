@@ -4,21 +4,14 @@
    ===================================================== */
 
 body {
-  margin: 0;
+  margin-top: 50px;
   font-family: var(--aw-font);
   background: var(--aw-bg);
   color: var(--aw-ink);
 }
 
 /* ── Cabeçalho da página ──────────────────────────── */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 48px;
-  background: var(--aw-surface);
-  border-bottom: 1px solid var(--aw-border);
-}
+
 
 .logo {
   font-weight: 700;
@@ -221,6 +214,47 @@ h2 { margin-bottom: 20px; color: var(--aw-ink); }
   background: var(--aw-panel);
   color: var(--aw-blue-pale);
   cursor: not-allowed;
+}
+
+/* Dia de hoje — anel azul sutil */
+.calendar-day.today {
+  box-shadow: 0 0 0 2px var(--aw-blue);
+  font-weight: 700;
+  color: var(--aw-blue);
+}
+
+/* Dias com ao menos uma reserva — pontinho indicador */
+.calendar-day.has-reserva::after {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--aw-warn, #f59e0b);
+  margin: 2px auto 0;
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.calendar-day.has-reserva {
+  position: relative;
+}
+
+/* Célula vazia de alinhamento do calendário */
+.calendar-day.empty {
+  background: transparent;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Mensagem dentro do painel de horários */
+.times-hint {
+  font-size: 13px;
+  color: var(--aw-muted);
+  line-height: 1.5;
+  padding: 8px 0;
 }
 
 /* ── Horários ─────────────────────────────────────── */
