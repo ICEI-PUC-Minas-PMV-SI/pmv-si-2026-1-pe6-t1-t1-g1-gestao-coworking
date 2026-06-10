@@ -1,6 +1,6 @@
 # 📊 Relatório de Contribuições do Projeto
 
-**Última atualização:** 10/06/2026 13:01
+**Última atualização:** 10/06/2026 17:03
 
 ---
 
@@ -16,15 +16,15 @@
 | Luana                 |        15 |     10856 |        61 |        316 |              7 |               0 |
 | Luana-Horta           |        86 |       772 |       232 |          7 |             86 |               7 |
 | Victor Samuel         |        14 |       422 |        60 |         11 |             13 |               3 |
-| Victor-477            |        15 |     78083 |     35965 |       1496 |              0 |               0 |
+| Victor-477            |        16 |     79457 |     36108 |       1501 |              0 |               0 |
 | Yan Oyama             |        30 |      2008 |       228 |         33 |             15 |               3 |
-| github-actions[bot]   |       223 |      1340 |      1314 |          3 |            223 |               1 |
+| github-actions[bot]   |       224 |      1359 |      1333 |          3 |            224 |               1 |
 | github-classroom[bot] |         1 |      2152 |         0 |         45 |              1 |              13 |
 
 
 ## 📅 Contribuições Semanais (Todo o Semestre)
 
-**2026-06-03**: Carlos Souza: 10, Luana: 6, Luana-Horta: 17, Victor-477: 2, github-actions[bot]: 33
+**2026-06-03**: Carlos Souza: 10, Luana: 6, Luana-Horta: 17, Victor-477: 3, github-actions[bot]: 34
 
 **2026-05-27**: Victor Samuel: 1, Victor-477: 1, github-actions[bot]: 3
 
@@ -40,9 +40,9 @@
 
 **2026-04-15**: github-actions[bot]: 1
 
-**2026-04-08**: Carlos Souza: 20, LapucP: 6, LauraLosque: 9, Luana: 1, Luana-Horta: 19, Victor Samuel: 8, Yan Oyama: 17, github-actions[bot]: 72
+**2026-04-08**: Carlos Souza: 19, LapucP: 6, LauraLosque: 9, Luana: 1, Luana-Horta: 19, Victor Samuel: 8, Yan Oyama: 17, github-actions[bot]: 71
 
-**2026-04-01**: Luana-Horta: 1, github-actions[bot]: 2
+**2026-04-01**: Carlos Souza: 1, Luana-Horta: 1, github-actions[bot]: 3
 
 **2026-03-25**: Carlos Souza: 1, github-actions[bot]: 2
 
