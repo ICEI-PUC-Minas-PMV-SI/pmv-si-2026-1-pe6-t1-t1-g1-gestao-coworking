@@ -52,6 +52,8 @@ import { SalasScreen }    from './src/screens/user/SalasScreen';
 import { ReservasScreen } from './src/screens/user/ReservasScreen';
 import { PerfilScreen }   from './src/screens/user/PerfilScreen';
 import { PlanoScreen }    from './src/screens/user/PlanoScreen';
+import { MeuPlanoScreen } from './src/screens/user/MeuPlanoScreen';
+import { NotificacoesScreen } from './src/screens/user/NotificacoesScreen';
 import { SobreNosScreen } from './src/screens/user/SobreNosScreen';
 import { ReservarSalaScreen } from './src/screens/user/ReservarSalaScreen';
 import { EditarReservaScreen } from './src/screens/user/EditarReservaScreen';
@@ -74,6 +76,7 @@ function HomeStack() {
       <Stack.Screen name="HomePrincipal" component={HomeScreen} />
       <Stack.Screen name="Planos"        component={PlanoScreen} />
       <Stack.Screen name="SobreNos"      component={SobreNosScreen} />
+      <Stack.Screen name="Notificacoes"  component={NotificacoesScreen} />
     </Stack.Navigator>
   );
 }
@@ -98,6 +101,18 @@ function ReservasStack() {
   );
 }
 
+// ── Stack de Perfil (conta → meu plano / notificações / planos) ──
+function PerfilStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="PerfilPrincipal" component={PerfilScreen} />
+      <Stack.Screen name="MeuPlano"        component={MeuPlanoScreen} />
+      <Stack.Screen name="Notificacoes"    component={NotificacoesScreen} />
+      <Stack.Screen name="Planos"          component={PlanoScreen} />
+    </Stack.Navigator>
+  );
+}
+
 // ── Bottom tabs do usuário ───────────────────────────────────
 function UserTabs() {
   return (
@@ -118,7 +133,7 @@ function UserTabs() {
       <Tab.Screen name="Home"     component={HomeStack}      options={{ tabBarLabel: 'Home',     tabBarIcon: () => <TabIcon icon="🏠" /> }} />
       <Tab.Screen name="Salas"    component={SalasStack}     options={{ tabBarLabel: 'Salas',    tabBarIcon: () => <TabIcon icon="🏢" /> }} />
       <Tab.Screen name="Reservas" component={ReservasStack}  options={{ tabBarLabel: 'Reservas', tabBarIcon: () => <TabIcon icon="📅" /> }} />
-      <Tab.Screen name="Perfil"   component={PerfilScreen}   options={{ tabBarLabel: 'Perfil',   tabBarIcon: () => <TabIcon icon="👤" /> }} />
+      <Tab.Screen name="Perfil"   component={PerfilStack}    options={{ tabBarLabel: 'Perfil',   tabBarIcon: () => <TabIcon icon="👤" /> }} />
     </Tab.Navigator>
   );
 }

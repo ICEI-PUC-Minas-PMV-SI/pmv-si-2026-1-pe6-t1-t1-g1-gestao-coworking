@@ -19,6 +19,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { colors, radius, spacing } from '../theme';
 
 // ── Container scrollável ─────────────────────────────────────
@@ -31,11 +32,40 @@ export function Container({ children }: { children: React.ReactNode }) {
 }
 
 // ── Cabeçalho (estilo do painel admin: título + subtítulo à esquerda) ──
-export function Header({ title = 'Axis Work', subtitle }: { title?: string; subtitle?: string }) {
+// Opcionalmente exibe um sino de notificações à direita (com contador de não
+// lidas) quando `onNotifications` é informado.
+export function Header({
+  title = 'Axis Work',
+  subtitle,
+  onNotifications,
+  unread = 0,
+}: {
+  title?: string;
+  subtitle?: string;
+  onNotifications?: () => void;
+  unread?: number;
+}) {
   return (
     <View style={styles.header}>
-      <Text style={styles.headerTitle}>{title}</Text>
-      {subtitle ? <Text style={styles.headerSubtitle}>{subtitle}</Text> : null}
+      <View style={styles.headerTextBlock}>
+        <Text style={styles.headerTitle}>{title}</Text>
+        {subtitle ? <Text style={styles.headerSubtitle}>{subtitle}</Text> : null}
+      </View>
+      {onNotifications ? (
+        <TouchableOpacity
+          style={styles.bell}
+          onPress={onNotifications}
+          accessibilityLabel="Abrir notificações"
+          activeOpacity={0.7}
+        >
+          <Ionicons name="notifications-outline" size={24} color={colors.navy} />
+          {unread > 0 ? (
+            <View style={styles.bellBadge}>
+              <Text style={styles.bellBadgeText}>{unread > 9 ? '9+' : unread}</Text>
+            </View>
+          ) : null}
+        </TouchableOpacity>
+      ) : null}
     </View>
   );
 }
@@ -120,12 +150,44 @@ const styles = StyleSheet.create({
     paddingTop: 52,
     paddingBottom: spacing.md,
     paddingHorizontal: spacing.lg,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    gap: spacing.md,
+  },
+  headerTextBlock: {
+    flex: 1,
     gap: 4,
   },
   headerTitle: {
     fontSize: 24,
     fontWeight: '700',
     color: colors.ink,
+  },
+  bell: {
+    width: 44,
+    height: 44,
+    borderRadius: radius.pill,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.blueGhost,
+  },
+  bellBadge: {
+    position: 'absolute',
+    top: 4,
+    right: 4,
+    minWidth: 18,
+    height: 18,
+    paddingHorizontal: 4,
+    borderRadius: 9,
+    backgroundColor: colors.danger,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bellBadgeText: {
+    color: '#FFFFFF',
+    fontSize: 10,
+    fontWeight: '800',
   },
   headerSubtitle: {
     fontSize: 12,

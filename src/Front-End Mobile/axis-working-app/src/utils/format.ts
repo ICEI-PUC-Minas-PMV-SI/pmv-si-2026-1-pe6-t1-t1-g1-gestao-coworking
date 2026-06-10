@@ -67,6 +67,41 @@ export function normalize(value = '') {
     .toLowerCase();
 }
 
+/**
+ * Pr\u00f3ximos `count` dias (a partir de `from`, inclusive) como chips de sele\u00e7\u00e3o.
+ * O `iso` \u00e9 montado a partir dos componentes locais para evitar o deslocamento
+ * de fuso que `toISOString()` causaria.
+ */
+export function upcomingDays(count = 14, from: Date = new Date()) {
+  const days: { iso: string; label: string }[] = [];
+  for (let i = 0; i < count; i += 1) {
+    const d = new Date(from.getFullYear(), from.getMonth(), from.getDate() + i);
+    const iso = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    const label = new Intl.DateTimeFormat('pt-BR', { weekday: 'short', day: '2-digit', month: 'short' })
+      .format(d)
+      .replace(/\./g, '');
+    days.push({ iso, label });
+  }
+  return days;
+}
+
+/** Lista de hor\u00e1rios "HH:00" de `start` at\u00e9 `end` (inclusive). Ex.: 07\u219221. */
+export function hourRange(start = 7, end = 21) {
+  const horas: string[] = [];
+  for (let h = start; h <= end; h += 1) horas.push(`${String(h).padStart(2, '0')}:00`);
+  return horas;
+}
+
+/**
+ * N\u00edvel de acesso de um plano/sala (1 a 4) extra\u00eddo do prefixo num\u00e9rico do
+ * texto \u2014 ex.: "4 Sala de Reuni\u00e3o" \u2192 4. Quanto maior, mais "superior".
+ * `Plano.acesso` e `Sala.tipo` usam a mesma conven\u00e7\u00e3o.
+ */
+export function tierFromAccess(value?: string | null) {
+  const n = parseInt(String(value ?? '').trim(), 10);
+  return Number.isFinite(n) ? n : 0;
+}
+
 export function latestSubscriptionByClient(assinaturas: Assinatura[]) {
   const map = new Map<number, Assinatura>();
   assinaturas.forEach((assinatura) => {

@@ -90,7 +90,11 @@ def criar_assinatura(payload: AssinaturaCreate, db: Session = Depends(get_db)) -
         )
     )
     if ativa is not None:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Cliente ja possui assinatura ativa")
+        if ativa.id_plano == payload.id_plano:
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Cliente ja assina este plano")
+        # Troca livre de plano: cancela a assinatura ativa anterior antes de criar
+        # a nova (o usuario nao precisa cancelar manualmente para contratar outra).
+        ativa.status = StatusAssinatura.CANCELADA
 
     hoje = date.today()
     assinatura = Assinatura(

@@ -6,11 +6,12 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Alert, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { userApi } from '../../api/client';
 import { Card, Header, LoadingState, PrimaryButton } from '../../components/shared';
+import { DateField, TimeField } from '../../components/pickers';
 import { colors, radius, spacing } from '../../theme';
-import { dateOnly, formatDate, timePart, timeRange } from '../../utils/format';
+import { addOneHour, dateOnly, formatDate, hourRange, timePart, timeRange } from '../../utils/format';
 
 type Reserva = {
   id_reserva: number;
@@ -23,7 +24,8 @@ type Reserva = {
 
 type Sala = { id_sala: number; nome: string; tipo: string; capacidade: number };
 
-const HORARIOS = ['08:00', '09:00', '10:00', '13:00', '15:00', '17:00'];
+const HORAS = hourRange(7, 21);                 // 07:00 … 21:00
+const HORAS_INICIO = HORAS.slice(0, -1);        // início vai até 20:00
 
 export function EditarReservaScreen({ route, navigation }: { route: any; navigation: any }) {
   const reservaId = Number(route.params?.id);
@@ -67,6 +69,13 @@ export function EditarReservaScreen({ route, navigation }: { route: any; navigat
   const salaAtual    = salas.find((s) => Number(s.id_sala) === Number(reserva.id_sala));
   const salaSelecionada = salas.find((s) => Number(s.id_sala) === Number(form.id_sala));
   const locked = reserva.status === 'Finalizada' || reserva.status === 'Cancelada';
+
+  const horasFim = HORAS.filter((h) => h > form.inicio);
+  const duracao = Math.max(1, Number((form.fim || '00').slice(0, 2)) - Number((form.inicio || '00').slice(0, 2)));
+
+  function escolherInicio(t: string) {
+    setForm((v) => ({ ...v, inicio: t, fim: v.fim > t ? v.fim : addOneHour(t) }));
+  }
 
   async function salvar(statusOverride?: string) {
     if (!reserva || locked) {
@@ -137,34 +146,15 @@ export function EditarReservaScreen({ route, navigation }: { route: any; navigat
             </View>
             <Text style={styles.hint}>Selecionada: {salaSelecionada?.nome ?? 'Nenhuma'}</Text>
 
-            <Text style={[styles.label, styles.mt]}>Data (AAAA-MM-DD)</Text>
-            <TextInput
-              value={form.data}
-              onChangeText={(data) => setForm((v) => ({ ...v, data }))}
-              placeholderTextColor={colors.muted}
-              style={styles.input}
-            />
-
-            <Text style={[styles.label, styles.mt]}>Horário de início</Text>
-            <View style={styles.chips}>
-              {HORARIOS.map((h) => (
-                <Pressable
-                  key={h}
-                  onPress={() => setForm((v) => ({ ...v, inicio: h }))}
-                  style={[styles.chip, form.inicio === h && styles.chipActive]}
-                >
-                  <Text style={[styles.chipText, form.inicio === h && styles.chipTextActive]}>{h}</Text>
-                </Pressable>
-              ))}
+            <View style={styles.mt}>
+              <DateField label="Dia" value={form.data} onChange={(data) => setForm((v) => ({ ...v, data }))} />
             </View>
 
-            <Text style={[styles.label, styles.mt]}>Horário final (HH:MM)</Text>
-            <TextInput
-              value={form.fim}
-              onChangeText={(fim) => setForm((v) => ({ ...v, fim }))}
-              placeholderTextColor={colors.muted}
-              style={styles.input}
-            />
+            <View style={[styles.timeRow, styles.mt]}>
+              <TimeField label="Início" value={form.inicio} options={HORAS_INICIO} onChange={escolherInicio} />
+              <TimeField label="Término" value={form.fim} options={horasFim} onChange={(fim) => setForm((v) => ({ ...v, fim }))} />
+            </View>
+            <Text style={styles.hint}>Duração: {duracao}h</Text>
           </Card>
         )}
 
@@ -216,18 +206,7 @@ const styles = StyleSheet.create({
   salaNome:       { fontSize: 15, fontWeight: '700', color: colors.ink },
   salaNomeActive: { color: colors.navy },
   salaMeta:       { fontSize: 13, color: colors.muted },
-  chips:   { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  chip: {
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: radius.pill,
-    backgroundColor: colors.blueGhost,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  chipActive:     { backgroundColor: colors.navy, borderColor: colors.navy },
-  chipText:       { fontSize: 13, fontWeight: '700', color: colors.inkSoft },
-  chipTextActive: { color: '#fff' },
+  timeRow: { flexDirection: 'row', gap: spacing.md },
   hint:    { fontSize: 13, color: colors.muted, marginTop: spacing.sm },
   actions: { gap: spacing.sm },
   mt:      { marginTop: spacing.md },

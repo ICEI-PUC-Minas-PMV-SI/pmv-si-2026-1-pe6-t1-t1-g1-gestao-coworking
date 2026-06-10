@@ -10,7 +10,7 @@ import { adminApi } from '../../api/client';
 import { Card, Container, Field, PrimaryButton, RoleBadge } from '../../components/shared';
 import { colors, spacing } from '../../theme';
 
-export function PerfilScreen() {
+export function PerfilScreen({ navigation }: { navigation: any }) {
   const { user, logout, setViewMode } = useAuth();
   const [editing, setEditing] = useState(false);
   const [nome, setNome]       = useState(user?.nome ?? '');
@@ -75,6 +75,8 @@ export function PerfilScreen() {
             </Card>
 
             <View style={styles.actions}>
+              <PrimaryButton label="Meu plano" variant="secondary" onPress={() => navigation.navigate('MeuPlano')} />
+              <PrimaryButton label="Notificações" variant="ghost" onPress={() => navigation.navigate('Notificacoes')} />
               <PrimaryButton label="Editar dados" variant="ghost" onPress={() => setEditing(true)} />
               {user?.is_admin ? (
                 <PrimaryButton label="Painel administrativo" variant="secondary" onPress={() => setViewMode('painel')} />

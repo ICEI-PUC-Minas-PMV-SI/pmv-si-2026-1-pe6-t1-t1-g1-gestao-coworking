@@ -8,12 +8,13 @@
  */
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { Alert, Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Image, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useAuth } from '../../context/AuthContext';
 import { userApi } from '../../api/client';
 import { Card, Header, PrimaryButton } from '../../components/shared';
+import { DateField, TimeField } from '../../components/pickers';
 import { colors, radius, spacing } from '../../theme';
-import { addOneHour, formatDate, formatMoney } from '../../utils/format';
+import { addOneHour, formatDate, formatMoney, hourRange } from '../../utils/format';
 
 type Sala = {
   id_sala: number;
@@ -26,20 +27,32 @@ type Sala = {
 type Assinatura = { id_assinatura: number; id_plano?: number | null; status: string; validade?: string };
 type Plano = { id_plano: number; nome: string; preco: number | string; acesso?: string };
 
-const HORARIOS = ['08:00', '09:00', '10:00', '13:00', '15:00', '17:00'];
+const HORAS = hourRange(7, 21);                 // 07:00 … 21:00
+const HORAS_INICIO = HORAS.slice(0, -1);        // início vai até 20:00
 
 export function ReservarSalaScreen({ route, navigation }: { route: any; navigation: any }) {
   const { user } = useAuth();
   const sala: Sala = route.params?.sala;
 
-  const amanha = useMemo(() => new Date(Date.now() + 86400000).toISOString().slice(0, 10), []);
+  const amanha = useMemo(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  }, []);
   const [data, setData]       = useState(amanha);
   const [inicio, setInicio]   = useState('09:00');
+  const [fim, setFim]         = useState('10:00');
   const [observacoes, setObs] = useState('');
   const [plano, setPlano]     = useState<Plano | null>(null);
   const [saving, setSaving]   = useState(false);
 
-  const fim = addOneHour(inicio);
+  const horasFim = HORAS.filter((h) => h > inicio);
+  const duracao = Math.max(1, Number(fim.slice(0, 2)) - Number(inicio.slice(0, 2)));
+
+  function escolherInicio(t: string) {
+    setInicio(t);
+    if (fim <= t) setFim(addOneHour(t));
+  }
 
   useEffect(() => {
     if (!user?.id_cliente) return;
@@ -122,28 +135,13 @@ export function ReservarSalaScreen({ route, navigation }: { route: any; navigati
         {/* Formulário */}
         <Card>
           <Text style={styles.sectionTitle}>Data e horário</Text>
-          <Text style={styles.label}>Data (AAAA-MM-DD)</Text>
-          <TextInput
-            value={data}
-            onChangeText={setData}
-            placeholder="2026-06-10"
-            placeholderTextColor={colors.muted}
-            style={styles.input}
-          />
+          <DateField label="Dia" value={data} onChange={setData} />
 
-          <Text style={[styles.label, styles.mt]}>Horário de início</Text>
-          <View style={styles.chips}>
-            {HORARIOS.map((h) => (
-              <Pressable
-                key={h}
-                onPress={() => setInicio(h)}
-                style={[styles.chip, inicio === h && styles.chipActive]}
-              >
-                <Text style={[styles.chipText, inicio === h && styles.chipTextActive]}>{h}</Text>
-              </Pressable>
-            ))}
+          <View style={[styles.timeRow, styles.mt]}>
+            <TimeField label="Início" value={inicio} options={HORAS_INICIO} onChange={escolherInicio} />
+            <TimeField label="Término" value={fim} options={horasFim} onChange={setFim} />
           </View>
-          <Text style={styles.hint}>Término previsto: {fim} (1 hora)</Text>
+          <Text style={styles.hint}>Duração: {duracao}h</Text>
         </Card>
 
         {/* Plano / cobertura */}
@@ -205,18 +203,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
   },
   textarea: { minHeight: 88, textAlignVertical: 'top' },
-  chips:   { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  chip: {
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: radius.pill,
-    backgroundColor: colors.blueGhost,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  chipActive:     { backgroundColor: colors.navy, borderColor: colors.navy },
-  chipText:       { fontSize: 13, fontWeight: '700', color: colors.inkSoft },
-  chipTextActive: { color: '#fff' },
+  timeRow: { flexDirection: 'row', gap: spacing.md },
   hint:    { fontSize: 13, color: colors.muted, marginTop: spacing.sm },
   coverBox: { backgroundColor: colors.successBg, borderRadius: radius.md, padding: spacing.md, marginTop: spacing.sm },
   coverLabel: { fontSize: 12, fontWeight: '700', color: colors.muted },
