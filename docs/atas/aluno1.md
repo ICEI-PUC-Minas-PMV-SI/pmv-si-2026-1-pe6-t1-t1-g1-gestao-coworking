@@ -18,9 +18,9 @@
 | 29/04 - 05/05 | Desenvolvimento de Aplicações Móveis - Unidade 1 | ✅ | Acabar a página estática. | Finalizei a página de maneira estática no html e css. |
 | 06/05 - 10/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ✅ | Fazer a parte dinâmica da minha página e fazer o user flow | Fiz a parte do script da página usando os endpoints das APIs. Fiz um userflow para cara página do site.|
 | 11/05 - 17/05 | Desenvolvimento de Aplicações Móveis - Unidade 2 | ✅ | Terminar de ver os vídeos e começar a fazer a aplicação. | Comecei a fazer a parte básica da página de home da aplicação |
-| 18/05 - 24/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 1 | ⬜ | Continuar a fazer a home. | Terminei de fazer a navegação de barra inferior na home imaginando as outras páginas, e a barra superior de header. |
-| 25/05 - 31/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 2 | ⬜ | Terminar a parte visual e estrutural da página. | Terminei de fazer a parte de estrutura e visual da página de home. |
+| 18/05 - 24/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 1 | ✅ | Continuar a fazer a home. | Terminei de fazer a navegação de barra inferior na home imaginando as outras páginas, e a barra superior de header. |
+| 25/05 - 31/05 | Fundamentos de Projeto e Análise de Algoritmos - Unidade 2 | ✅ | Terminar a parte visual e estrutural da página. | Terminei de fazer a parte de estrutura e visual da página de home. |
 | 01/06 - 07/06 |  | ✅ | Conectar a API na aplicação. Fazer o texto da implantação. | Finalizei a página de home com a conexão com a API usando o localtunnel. Fiz o texto da implantação.|
-| 08/06 - 14/06 |  | ⬜ |  |  |
+| 08/06 - 14/06 |  | ✅ | Preparar a apresentação da aplicação web e apresentar para a turma. | Apresentei a parte da aplicação web na apresentação oficial para turma na quarta. |
 
 **Legenda:** ✅ Estudou | ⬜ Não estudou
