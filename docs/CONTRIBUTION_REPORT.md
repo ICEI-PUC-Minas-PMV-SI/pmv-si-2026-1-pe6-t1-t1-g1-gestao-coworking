@@ -1,6 +1,6 @@
 # 📊 Relatório de Contribuições do Projeto
 
-**Última atualização:** 21/09/2026 00:54
+**Última atualização:** 28/09/2026 00:57
 
 ---
 
@@ -18,7 +18,7 @@
 | Victor Samuel         |        14 |       422 |        60 |         11 |             13 |               3 |
 | Victor-477            |        17 |     80206 |     37635 |       1510 |              0 |               0 |
 | Yan Oyama             |        30 |      2008 |       228 |         33 |             15 |               3 |
-| github-actions[bot]   |       244 |      1523 |      1485 |          3 |            244 |               1 |
+| github-actions[bot]   |       245 |      1530 |      1490 |          3 |            245 |               1 |
 | github-classroom[bot] |         1 |      2152 |         0 |         45 |              1 |              13 |
 
 
@@ -29,6 +29,8 @@
 **2026-09-07**: github-actions[bot]: 1
 
 **2026-08-31**: github-actions[bot]: 1
+
+**2026-08-24**: github-actions[bot]: 1
 
 **2026-08-17**: github-actions[bot]: 1
 
@@ -64,11 +66,7 @@
 
 **2026-04-27**: Luana-Horta: 6, github-actions[bot]: 6
 
-**2026-04-20**: github-actions[bot]: 1
-
 **2026-04-13**: Carlos Souza: 3, Victor Samuel: 5, Yan Oyama: 5, github-actions[bot]: 13
-
-**2026-04-06**: Carlos Souza: 17, LapucP: 6, LauraLosque: 9, Luana: 1, Luana-Horta: 20, Victor Samuel: 3, Yan Oyama: 12, github-actions[bot]: 60
 
 
 
